@@ -11,6 +11,11 @@ a {
   text-decoration: none;
   color: gray;
 }
+
+div {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
 </style>
 
 </head>

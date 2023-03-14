@@ -14,6 +14,11 @@ a {
   text-decoration: none;
   color: black;
 }
+
+div {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
 </style>
 
 </head>
@@ -33,26 +38,27 @@ a {
 		<a href="idSearch.do">Forget?</a>
 	</td>
 </tr>
+
 <tr>
 	<td>
-		<input type="text" name="pwd" size="35px" placeholder="Password">
+		<br><input type="text" name="pwd" size="35px" placeholder="Password">
 	</td>
 	<td align="right">
-		<a href="pwdSearch.do">Forget?</a>
+		<br><a href="pwdSearch.do">Forget?</a>
 	</td>
 </tr>
 <tr>
 	<td>
-		<input type="checkbox" id="id_save"> Remember me
+		<br><input type="checkbox" id="id_save"> Remember me
 	</td>
 	<td align="right">
-		<a href="regi.do">회원가입</a>
+		<br><a href="regi.do">회원가입</a>
 	</td>
 </tr>
 <tr>
 	<td colspan="2" align="center">
 		<br>
-		<button type="submit">로그인</button>
+		<button type="submit">로그인</button><br>
 	</td>
 </tr>
 </table>

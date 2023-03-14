@@ -35,6 +35,12 @@ public class MemberDto implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	public MemberDto(String email, String nickname) {
+		super();
+		this.email = email;
+		this.nickname = nickname;
+	}
+
 	public MemberDto(int member_id, String email, String pwd, String nickname, String name, String phone_number,
 			String profile, String rdate, int auth, double rating) {
 		super();
