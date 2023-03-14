@@ -13,6 +13,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans:wght@300;400;500;600;700;800&family=PT+Serif:ital@1&family=Roboto&family=Source+Sans+Pro:wght@600;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/public/reset.css">
+	<link rel="stylesheet" href="css/public/common.css">
 	
 	<!-- Header CSS -->
 	<link rel="stylesheet" href="css/public/header.css">
@@ -39,7 +40,7 @@
 			
 			<!-- main -->
 			<tr>
-				<td>
+				<td id="main_contents">
 					<tiles:insertAttribute name="content"/>
 				</td>
 			</tr>
