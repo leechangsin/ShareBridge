@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="Notification">
+
+<select id="getNotificationCountByMemberId" parameterType="int" resultType="int">
+	select COUNT(*)
+	from notification as n
+	join request as r
+	on n.request_id = r.request_id
+	join product as p
+	on r.product_id = p.product_id
+	where p.member_id = #{memberId}
+</select>
+
+</mapper>
