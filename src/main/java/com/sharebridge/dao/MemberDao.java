@@ -5,4 +5,5 @@ import com.sharebridge.dto.MemberDto;
 public interface MemberDao {
 
 	MemberDto idSearch(String phone_number);
+	MemberDto selectOneByMemberId(int memberId);
 }

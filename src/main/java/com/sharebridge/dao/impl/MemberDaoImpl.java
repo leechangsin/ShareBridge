@@ -20,4 +20,9 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return session.selectOne(ns + "idSearch", phone_number);
 	}
+
+	@Override
+	public MemberDto selectOneByMemberId(int memberId) {
+		return session.selectOne(ns + "selectOneByMemberId", memberId);
+	}
 }

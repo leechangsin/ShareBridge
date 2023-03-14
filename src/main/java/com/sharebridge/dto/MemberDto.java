@@ -29,14 +29,14 @@ public class MemberDto implements Serializable{
 	private String profile;
 	private String rdate;
 	private int auth;
-	private double rating;
+	private float rating;
 	
 	public MemberDto() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public MemberDto(int member_id, String email, String pwd, String nickname, String name, String phone_number,
-			String profile, String rdate, int auth, double rating) {
+			String profile, String rdate, int auth, float rating) {
 		super();
 		this.member_id = member_id;
 		this.email = email;
@@ -122,11 +122,11 @@ public class MemberDto implements Serializable{
 		this.auth = auth;
 	}
 
-	public double getRating() {
+	public float getRating() {
 		return rating;
 	}
 
-	public void setRating(double rating) {
+	public void setRating(float rating) {
 		this.rating = rating;
 	}
 

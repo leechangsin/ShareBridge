@@ -18,4 +18,9 @@ public class MemberServiceImpl implements MemberService {
 		
 		return dao.idSearch(phone_number);
 	}
+
+	@Override
+	public MemberDto selectOneByMemberId(int memberId) {
+		return dao.selectOneByMemberId(memberId);
+	}
 }
