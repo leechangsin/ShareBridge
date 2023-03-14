@@ -36,7 +36,7 @@ footer {
   font-size: 14px;
 }
 
-#footer_wrap a, #footer_wrap span, #footer_wrap .copy {
+#footer_wrap a, #footer_wrap span, #footer_wrap, .copy {
   color: #F9F9F9; 
 }
 
