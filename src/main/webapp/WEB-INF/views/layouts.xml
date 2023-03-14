@@ -23,5 +23,9 @@
 	<definition name="bbswrite" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/bbs/bbswrite.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="productRegi" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/productRegi.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>
