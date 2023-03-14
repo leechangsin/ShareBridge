@@ -13,15 +13,15 @@
 	</definition>
 	
 	<definition name="login" extends="baseLayout">
-		<put-attribute name="content" value="/WEB-INF/views/login.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/login/login.jsp" />
 	</definition>
 	
-	<definition name="bbslist" extends="baseLayout">
-		<put-attribute name="content" value="/WEB-INF/views/bbs/bbslist.jsp" />
+	<definition name="idSearch" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/login/idSearch.jsp" />
 	</definition>
 	
-	<definition name="bbswrite" extends="baseLayout">
-		<put-attribute name="content" value="/WEB-INF/views/bbs/bbswrite.jsp"></put-attribute>
+	<definition name="pwdSearch" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/login/pwdSearch.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>
