@@ -8,9 +8,6 @@
 </head>
 <body>
 
-<%
-response.sendRedirect("baseLayout.do");
-%>
-
+<% response.sendRedirect("baseLayout.do"); %>
 </body>
 </html>
