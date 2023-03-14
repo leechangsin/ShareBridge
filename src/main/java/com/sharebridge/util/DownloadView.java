@@ -13,12 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
-import mul.cam.a.service.PdsService;
+//import mul.cam.a.service.PdsService;
 
 public class DownloadView extends AbstractView {
 	
 	@Autowired
-	PdsService service;
+	//PdsService service;
 	
 	// 다운로드를 받을 수 있는 뷰
 	@Override
@@ -49,7 +49,7 @@ public class DownloadView extends AbstractView {
 		FileCopyUtils.copy(fis, os);
 		
 		// download count 증가
-		service.downCount(seq);
+		//service.downCount(seq);
 		
 		if(fis != null) {
 			fis.close();
