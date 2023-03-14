@@ -10,6 +10,12 @@
 	where phone_number=#{phone_number}
 </select>
 
+<select id="selectOneByMemberId" parameterType="int" resultType="com.sharebridge.dto.MemberDto">
+	select *
+	from member
+	where member_id = #{memberId}
+</select>
+
 <!-- 
 <select id="idcheck" parameterType="String" resultType="Integer">
 	select count(*)
