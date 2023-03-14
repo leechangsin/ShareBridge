@@ -77,14 +77,47 @@ main {
 }
 /* 회원 정보, 회원 정보 수정, 회원 탈퇴 */
 
-/* 후기 */
+/* 후기, 알림, 등록상품 */
+#review_wrap, #noti_wrap, #product_wrap {
+	text-align: center;
+   	padding-top: 40px;
+}
 
-/* 후기 */
+#review_wrap > div, #noti_wrap > div, #product_wrap > div {
+    background: lightgray;
+    width: 90px;
+    height: 90px;
+    border-radius: 45px;
+    margin: 0 auto;
+       display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
-/* 알림 */
+#review_wrap > *, #noti_wrap > *, #product_wrap > * {
+	margin-top: 20px;
+}
 
-/* 알림 */
+#review_wrap > div > .fa-pen-to-square, #noti_wrap > div > .fa-bell, #product_wrap > div > .fa-inbox {
+	font-size: 32px;
+}
 
-/* 등록상품 */
+#review_wrap > h1, #noti_wrap > h1, #product_wrap > h1 {
+	font-size: 24px;
+	font-weight: bold;
+}
 
-/* 등록상품 */
+#review_wrap > p, #noti_wrap > p, #product_wrap > p {
+	font-size: 20px;
+}
+
+#review_wrap > p > span, #noti_wrap > p > span, #product_wrap > p > span {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.vertical_line {
+	border-left: 1px lightgray solid;
+	margin: 45px 0;
+	flex-grow: 0 !important;
+}

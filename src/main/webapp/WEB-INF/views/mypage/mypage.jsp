@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_main.css">
 
 <style>
-
+	
 </style>
 
 <main>
@@ -33,24 +33,26 @@
 		</div>
 		<div id="review_wrap">
 			<div>
-				<img alt="" src="">
+				<i class="fa-solid fa-pen-to-square"></i>
 			</div>
 			<h1>후기</h1>
-			<p>2<span>건</span></p>
+			<p><span>2</span>건</p>
 		</div>
+		<div class="vertical_line"></div>
 		<div id="noti_wrap">
 			<div>
-				<img alt="" src="">
+				<i class="fa-regular fa-bell"></i>
 			</div>
 			<h1>알림</h1>
-			<p>3<span>건</span></p>
+			<p><span>3</span>건</p>
 		</div>
+		<div class="vertical_line"></div>
 		<div id="product_wrap">
 			<div>
-				<img alt="" src="">
+				<i class="fa-solid fa-inbox"></i>
 			</div>
 			<h1>등록상품</h1>
-			<p>4<span>건</span></p>
+			<p><span>4</span>건</p>
 		</div>
 	</div>
 	
