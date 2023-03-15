@@ -9,6 +9,7 @@
 	select COUNT(*)
 	from review
 	where renter_id = #{memberId}
+	order by rdate DESC
 </select>
 
 </mapper>

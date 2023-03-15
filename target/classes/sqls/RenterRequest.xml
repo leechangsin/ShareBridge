@@ -10,7 +10,7 @@
 	from request as r
 	join product as p
 	on r.product_id = p.product_id
-	where p.member_id = #{memberId}
+	where p.member_id = #{memberId} AND r.del IS NULL
 	order by r.rdate desc
 	<if test="limitEnd != 0">
 		limit #{limitStart}, #{limitEnd}

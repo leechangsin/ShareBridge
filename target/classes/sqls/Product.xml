@@ -8,7 +8,8 @@
 <select id="getProductCountByMemberId" parameterType="int" resultType="int">
 	select COUNT(*)
 	from product
-	where member_id = #{memberId}
+	where member_id = #{memberId} AND del IS NULL
+	order by wdate DESC
 </select>
 
 </mapper>

@@ -8,7 +8,7 @@
 <select id="selectAllByMemberId" parameterType="com.sharebridge.param.MypageParam" resultType="com.sharebridge.dto.RequestDto">
 	select *
 	from request
-	where member_id = #{memberId}
+	where member_id = #{memberId} AND del IS NULL
 	order by rdate desc
 	<if test="limitEnd != 0">
 		limit #{limitStart}, #{limitEnd}
