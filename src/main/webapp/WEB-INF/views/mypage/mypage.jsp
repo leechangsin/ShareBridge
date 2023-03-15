@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_main.css">
 
@@ -66,41 +67,37 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row">상품명</th>
-					<td>2023-03-10 ~ 2023-03-11</td>
-					<td>10,000원/일</td>
-					<td>신청 대기</td>
-					<td><button type="button" class="btn btn-secondary">취소</button></td>
-				</tr>
-				<tr>
-					<th scope="row">상품명</th>
-					<td>2023-03-10 ~ 2023-03-11</td>
-					<td>10,000원/일</td>
-					<td>신청 대기</td>
-					<td><button type="button" class="btn btn-secondary">취소</button></td>
-				</tr>
-				<tr>
-					<th scope="row">상품명</th>
-					<td>2023-03-10 ~ 2023-03-11</td>
-					<td>10,000원/일</td>
-					<td>신청 대기</td>
-					<td><button type="button" class="btn btn-secondary">취소</button></td>
-				</tr>
-				<tr>
-					<th scope="row">상품명</th>
-					<td>2023-03-10 ~ 2023-03-11</td>
-					<td>10,000원/일</td>
-					<td>신청 대기</td>
-					<td><button type="button" class="btn btn-secondary">취소</button></td>
-				</tr>
-				<tr>
-					<th scope="row">상품명</th>
-					<td>2023-03-10 ~ 2023-03-11</td>
-					<td>10,000원/일</td>
-					<td>신청 대기</td>
-					<td><button type="button" class="btn btn-secondary">취소</button></td>
-				</tr>
+				<c:choose>
+					<c:when test="${empty requestSnedList }">
+						<tr><th scope="row" colspan="5" class="text_align">대여 신청 내역이 없습니다</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${requestSendList }" var="request">
+							<tr>
+								<th scope="row">${request.name }</th>
+								<td>${request.sdate } ~ ${request.edate }</td>
+								<td>10,000원/일</td>
+								<td>
+									<c:choose>
+										<c:when test="${request.is_cancel eq 0 }">
+											신청 취소
+										</c:when>
+										<c:when test="${request.is_accept eq 0 }">
+											신청 대기
+										</c:when>
+										<c:when test="${request.is_accept eq 1 }">
+											대여 수락
+										</c:when>
+										<c:when test="${request.is_accept eq 2 }">
+											대여 거절
+										</c:when>
+									</c:choose>
+								</td>
+								<td><button type="button" class="btn btn-secondary">취소</button></td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</tbody>
 		</table>
 	</div>
@@ -120,56 +117,38 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row">상품명</th>
-					<td>2023-03-10 ~ 2023-03-11</td>
-					<td>10,000원/일</td>
-					<td>신청 대기</td>
-					<td>
-						<button type="button" class="btn btn-secondary">수락</button>
-						<button type="button" class="btn btn-secondary">거절</button>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">상품명</th>
-					<td>2023-03-10 ~ 2023-03-11</td>
-					<td>10,000원/일</td>
-					<td>신청 대기</td>
-					<td>
-						<button type="button" class="btn btn-secondary">수락</button>
-						<button type="button" class="btn btn-secondary">거절</button>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">상품명</th>
-					<td>2023-03-10 ~ 2023-03-11</td>
-					<td>10,000원/일</td>
-					<td>신청 대기</td>
-					<td>
-						<button type="button" class="btn btn-secondary">수락</button>
-						<button type="button" class="btn btn-secondary">거절</button>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">상품명</th>
-					<td>2023-03-10 ~ 2023-03-11</td>
-					<td>10,000원/일</td>
-					<td>신청 대기</td>
-					<td>
-						<button type="button" class="btn btn-secondary">수락</button>
-						<button type="button" class="btn btn-secondary">거절</button>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">상품명</th>
-					<td>2023-03-10 ~ 2023-03-11</td>
-					<td>10,000원/일</td>
-					<td>신청 대기</td>
-					<td>
-						<button type="button" class="btn btn-secondary">수락</button>
-						<button type="button" class="btn btn-secondary">거절</button>
-					</td>
-				</tr>
+				<c:choose>
+					<c:when test="${empty requestReceiveList }">
+						<tr><th scope="row" colspan="5" class="text_align">대여 요청 내역이 없습니다</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${requestReceiveList }" var="request" >
+							<tr>
+								<th scope="row">${request.name }</th>
+								<td>${request.sdate } ~ ${request.edate }</td>
+								<td>10,000원/일</td>
+								<c:choose>
+									<c:when test="${request.is_cancel eq 0 }">
+										신청 취소
+									</c:when>
+									<c:when test="${request.is_accept eq 0 }">
+										신청 대기
+									</c:when>
+									<c:when test="${request.is_accept eq 1 }">
+										대여 수락
+									</c:when>
+									<c:when test="${request.is_accept eq 2 }">
+										대여 거절
+									</c:when>
+								</c:choose>
+								<td>
+									<button type="button" class="btn btn-secondary">수락</button>
+									<button type="button" class="btn btn-secondary">거절</button>
+								</td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</tbody>
 		</table>
 	</div>

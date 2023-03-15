@@ -15,12 +15,14 @@ public class RequestDto {
 	private String receiver;
 	private String receiver_phone;
 	private String payment;
+	private byte is_cancel;
+	private byte is_accept;
 	private LocalDateTime rdate;
 	private byte del;
 	
 	public RequestDto(int request_id, int product_id, int member_id, String name, String email, String phone_number,
 			LocalDateTime sdate, LocalDateTime edate, String receiver, String receiver_phone, String payment,
-			LocalDateTime rdate, byte del) {
+			byte is_cancel, byte is_accept, LocalDateTime rdate, byte del) {
 		this.request_id = request_id;
 		this.product_id = product_id;
 		this.member_id = member_id;
@@ -32,6 +34,8 @@ public class RequestDto {
 		this.receiver = receiver;
 		this.receiver_phone = receiver_phone;
 		this.payment = payment;
+		this.is_cancel = is_cancel;
+		this.is_accept = is_accept;
 		this.rdate = rdate;
 		this.del = del;
 	}
@@ -41,9 +45,9 @@ public class RequestDto {
 		return "RequestDto [request_id=" + request_id + ", product_id=" + product_id + ", member_id=" + member_id
 				+ ", name=" + name + ", email=" + email + ", phone_number=" + phone_number + ", sdate=" + sdate
 				+ ", edate=" + edate + ", receiver=" + receiver + ", receiver_phone=" + receiver_phone + ", payment="
-				+ payment + ", rdate=" + rdate + ", del=" + del + "]";
+				+ payment + ", is_cancel=" + is_cancel + ", is_accept=" + is_accept + ", rdate=" + rdate + ", del="
+				+ del + "]";
 	}
-
 
 	public int getRequest_id() {
 		return request_id;
@@ -116,6 +120,18 @@ public class RequestDto {
 	}
 	public void setPayment(String payment) {
 		this.payment = payment;
+	}
+	public byte getIs_cancel() {
+		return is_cancel;
+	}
+	public void setIs_cancel(byte is_cancel) {
+		this.is_cancel = is_cancel;
+	}
+	public byte getIs_accept() {
+		return is_accept;
+	}
+	public void setIs_accept(byte is_accept) {
+		this.is_accept = is_accept;
 	}
 	public LocalDateTime getRdate() {
 		return rdate;
