@@ -9,4 +9,8 @@ public interface productService {
 	List<CategoryDto> allCategory();
 	
 	boolean insertProduct(ProductDto dto);
+	
+	boolean updateProduct(int product_id);
+	
+	ProductDto getProduct(int product_id);
 }

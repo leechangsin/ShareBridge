@@ -25,4 +25,15 @@ public class productServiceImpl implements productService {
 		int n = dao.insertProduct(dto);
 		return n>0?true:false;
 	}
+
+	@Override
+	public boolean updateProduct(int product_id) {
+		int n = dao.updateProduct(product_id);
+		return n>0?true:false;
+	}
+
+	@Override
+	public ProductDto getProduct(int product_id) {
+		return dao.getProduct(product_id);
+	}
 }

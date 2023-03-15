@@ -75,6 +75,30 @@ public class ProductController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:";	// message.jsp로 이동 혹은 메인페이지로 이동
+		return "redirect:";	// message.jsp로 이동 혹은 메인페이지로 바로 이동
+	}
+	
+	// 상품 수정
+	@GetMapping("/updateProduct.do")
+	public String updateProduct(int product_id) {
+		boolean isS = service.updateProduct(product_id);
+		String msg = "Yes";
+		if(isS) {
+			System.out.println(msg);
+		} else {
+			msg = "No";
+			System.out.println(msg);
+		}
+		
+		return "productDetail";	// message.jsp로 이동 혹은 디테일로 바로 이동
+	}
+	
+	// 상품 상세 보기
+	@GetMapping("/productDetail.do")
+	public String productDetail(int product_id, Model model) {
+		ProductDto detail = service.getProduct(product_id);
+		model.addAttribute("detail", detail);
+		
+		return "productDetail";
 	}
 }

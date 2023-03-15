@@ -17,4 +17,19 @@
 	from product
 	where product_id = ${product_id};
 </select>
+
+<!-- 상품 수정 -->
+<update id="updateProduct" parameterType="Integer">
+	update product
+	set category_id=${category_id}, title=#{title}, content=#{content}, sdate=timestamp(#{sdate}), edate=timestamp(#{edate}),
+		photo=#{photo}, now(), 0, 0);
+	where product_id = ${product_id}
+</update>
+
+<!-- 상품 삭제 -->
+<delete id="delProduct">
+	update product
+	set del = del+1;
+	where product_id = ${product_id}
+</delete>
 </mapper>
