@@ -16,6 +16,38 @@
 	where member_id = #{memberId}
 </select>
 
+<select id="selectOneByNickname" parameterType="String" resultType="com.sharebridge.dto.MemberDto">
+	select *
+	from member
+	where nickname = #{nickname}
+</select>
+
+
+<select id="selectOneByPhone_number" parameterType="String" resultType="com.sharebridge.dto.MemberDto">
+	select *
+	from member
+	where phone_number = #{phone_number}
+</select>
+
+<update id="updateMemberInfo" parameterType="com.sharebridge.dto.MemberDto"  >
+	update member
+	<set>
+		<if test="pwd != null">
+			, pwd = #{pwd}
+		</if>
+		<if test="nickname != null">
+			, nickname = #{nickname}
+		</if>
+		<if test="name != null">
+			, name = #{name}
+		</if>
+		<if test="phone_number != null">
+			, phone_number = #{phone_number}
+		</if>
+	</set>
+	where member_id = member_id
+</update>
+
 <!-- 
 <select id="idcheck" parameterType="String" resultType="Integer">
 	select count(*)

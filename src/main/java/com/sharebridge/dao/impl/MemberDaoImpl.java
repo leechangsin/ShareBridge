@@ -25,4 +25,19 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberDto selectOneByMemberId(int memberId) {
 		return session.selectOne(ns + "selectOneByMemberId", memberId);
 	}
+
+	@Override
+	public MemberDto selectOneByNickname(String nickname) {
+		return session.selectOne(ns + "selectOneByNickname", nickname);
+	}
+
+	@Override
+	public MemberDto selectOneByPhone_number(String phone_number) {
+		return session.selectOne(ns + "selectOneByPhone_number", phone_number);
+	}
+
+	@Override
+	public void updateMemberInfo(MemberDto newMemberInfo) {
+		session.update(ns + "updateMemberInfo", newMemberInfo);
+	}
 }

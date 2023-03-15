@@ -6,4 +6,5 @@ public interface MemberService {
 
 	MemberDto idSearch(String phone_number);
 	MemberDto selectOneByMemberId(int memberId);
+	String updateMemberInfo(MemberDto newMemberInfo, MemberDto oldMemberInfo);
 }
