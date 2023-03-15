@@ -57,14 +57,13 @@ public class ProductController {
 		// 파일 생성
 		File file = new File(fupload + "/" + newfilename);
 
-		try {
-			// 파일 업로드
-			FileUtils.writeByteArrayToFile(file, fileload.getBytes());
-			
+		try {			
 			// DB에 저장
 			boolean isS = service.insertProduct(dto);
 			String msg = "Yes";
 			if(isS) {
+				// 파일 업로드
+				FileUtils.writeByteArrayToFile(file, fileload.getBytes());
 				System.out.println(msg);
 			} else {
 				msg = "No";

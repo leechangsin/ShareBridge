@@ -7,21 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Product Registration</title>
-<title>Bootstrap datepicket demo</title>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
-<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-<script type='text/javascript'>
-$(function(){
-$('.input-daterange').datepicker({
-    autoclose: true
-});
-});
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<!-- flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-</script>
+<!-- js -->
+<script src="js/productRegi.js" defer></script>
 
 <style type="text/css">
 .regi_container {
@@ -69,12 +63,12 @@ input[type=file] {
 
 <div class="regi_container">
 <h2 class="regi_title">상품등록</h2>
-	<form action="productRegiAf.do" method="post">
+	<form action="productRegiAf.do" method="post" id="frm" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<th>카테고리</th>
 				<td>
-					<select>
+					<select id="choice" name="choice">
 						<option value="">카테고리</option>
 						<%
 							for(int i = 0;i < cateList.size();i++) {
@@ -97,30 +91,29 @@ input[type=file] {
 			</tr>
 			<tr>
 				<th>대여기간</th>
-				<td  class="input-daterange input-group" id="datepicker">
-					<input type="text" class="input-sm form-control" name="sdate" placeholder="From date"/>
-    				<span class="input-group-addon">to</span>
-    				<input type="text" class="input-sm form-control" name="edate" placeholder="To date"/>
-				</td>
+				<td>
+					<input class="selector" id="start" placeholder="시작 날짜" readonly="readonly" />
+					<input class="selector" id="end" placeholder="마지막 날짜" readonly="readonly" />
+				</td>	
 			</tr>
 			<tr>
 				<th>가격</th>
 				<td>
-					<input type="text" id="price" name="price">
+					<input type="number" id="price" name="price">
 					<span>원 / 일</span>
 				</td>
 			</tr>
 			<tr>
 				<th>내용</th>
 				<td>
-					<textarea rows="30" cols="50" name="content"></textarea>	
+					<textarea rows="30" cols="50" name="content" id="content"></textarea>	
 				</td>
 			</tr>
 			<tr>
 				<th>사진등록</th>
 				<td class="photo_regi">
 				    <label for="file" class="upload-btn">
-				    	<input id="file" type="file" accept="image/*" name="file" onchange="changeImg()"/>
+				    	<input id="file" type="file" accept="image/*" name="fileload" onchange="changeImg()"/>
 				    	<span>+</span>
 				    </label>
 				    <img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" id="preview" class="image-box" />
@@ -132,42 +125,11 @@ input[type=file] {
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="등록하기" id="regiBtn">
+					<input type="button" value="test" id="test">
 				</td>
 			</tr>
 		</table>
 	</form>
 </div>
-<script type="text/javascript">
-	
-	// 사진 미리보기
-    const fileInput = document.getElementById("file");
-    const preview = document.getElementById("preview");
-    var prevURL, currentURL;
-
-    function changeImg() {
-      URL.revokeObjectURL(prevURL);
-      const selectedFile = fileInput.files[0];
-      if (selectedFile) {
-        currentURL = URL.createObjectURL(selectedFile);
-        preview.src = currentURL;
-        prevURL = currentURL;
-      }
-    };
-    
-    function deleteImg() {
-    	const selectedFile = fileInput.files[0];
-        if (selectedFile) {
-        	currentURL = URL.createObjectURL(selectedFile);
-	    	URL.revokeObjectURL(currentURL);
-			
-	    	preview.src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg";
-        }  
-    }
-    
-    // 빈칸검사
-    
-    
-   
-</script>
 </body>
 </html>
