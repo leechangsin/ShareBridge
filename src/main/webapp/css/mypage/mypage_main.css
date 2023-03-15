@@ -14,18 +14,6 @@ a:hover {
 	text-decoration: none;
 }
 
-.text_align {
-	text-align: center;
-}
-
-/* 타이틀 */
-#page_title {
-    margin-top: 50px;
-   	margin-bottom: 30px;
-   	font-size: 32px;
-   	font-weight: bold;
-}
-
 /* 회원 정보, 회원 정보 수정, 회원 탈퇴 */
 #mrnp_wrap {
     display: flex;
