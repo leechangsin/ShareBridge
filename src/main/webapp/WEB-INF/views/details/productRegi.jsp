@@ -13,47 +13,11 @@
 <!-- flatpickr -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
 <!-- js -->
 <script src="js/productRegi.js" defer></script>
+<!-- css -->
+<link rel="stylesheet" href="css/details/productRegi.css">
 
-<style type="text/css">
-.regi_container {
-/* 	margin: 0 412px; */
-}
-.regi_title {
-	font-size: 24px;
-	font-weight: bold;
-}
-
-input[type='date']::before {
-  content: attr(data-placeholder);
-  width: 100%;
-}
-
-input[type='date']:focus::before,
-input[type='date']:valid::before {
-  display: none;
-}
-
-.image-box {
-   width: 200px;
-   height: 200px;
-   object-fit: cover;
-   display: block;
- }
-
-.upload-btn {
-   border: 1px solid #ddd;
-   padding: 6px 12px;
-   display: inline-block;
-   cursor: pointer;
-}
-
-input[type=file] {
-  display: none;
-} 
-</style>
 </head>
 <body>
 
@@ -81,6 +45,7 @@ input[type=file] {
 							}
 						%>
 					</select>
+					<input type="hidden" value="1" name="member_id" />
 				</td>
 			</tr>
 			<tr>

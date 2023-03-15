@@ -51,9 +51,11 @@ public class ProductController {
 		
 		// 파일명을 충돌되지 않는 명칭으로 변경
 		String newfilename = FileUtil.getNewFileName(filename);
-
-		dto.setPhoto(fupload + "/" + newfilename);	// DB에 파일 경로 저장 
 		
+		String photoPath = fupload + "/" + newfilename;
+		dto.setPhoto(photoPath);	// DB에 파일 경로 저장 
+		
+		System.out.println(dto.getPhoto());
 		// 파일 생성
 		File file = new File(fupload + "/" + newfilename);
 
