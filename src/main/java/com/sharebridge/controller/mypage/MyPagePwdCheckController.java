@@ -1,4 +1,4 @@
-package com.sharebridge.controller;
+package com.sharebridge.controller.mypage;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +13,7 @@ import com.sharebridge.dto.MemberDto;
 import com.sharebridge.service.MemberService;
 
 @Controller
-public class PwdCheckController {
+public class MyPagePwdCheckController {
 
 	@Autowired
 	MemberService memberService;
