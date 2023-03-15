@@ -13,6 +13,7 @@
 	join product as p
 	on r.product_id = p.product_id
 	where p.member_id = #{memberId}
+	order by n.read DESC, n.rdate DESC
 </select>
 
 </mapper>
