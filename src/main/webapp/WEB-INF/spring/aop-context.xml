@@ -8,6 +8,6 @@
 	<aop:aspectj-autoproxy />
 	
 	<!-- aop 해당 클래스를 생성 -->
-	<bean id="myAop" class="mul.cam.a.aop.AopProc" />
+	<bean id="myAop" class="com.sharebridge.aop.AopProc" />
 			
 </beans>

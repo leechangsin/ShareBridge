@@ -19,7 +19,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Aspect
 public class AopProc {
 	
-	@Around("within(mul.cam.a.controller.*) or within(mul.cam.a.dao.*.*)")	// controller뿐만 아니라 모든 dao 감시
+	@Around("within(com.sharebridge.controller.*) or within(com.sharebridge.dao.*.*)")	// controller뿐만 아니라 모든 dao 감시
 	public Object loggerAop(ProceedingJoinPoint joinpoint) throws Throwable {
 		/*
 		// session check
