@@ -68,14 +68,14 @@ input[type=file] {
 			<tr>
 				<th>카테고리</th>
 				<td>
-					<select id="choice" name="choice">
+					<select id="choice" name="category_id">
 						<option value="">카테고리</option>
 						<%
 							for(int i = 0;i < cateList.size();i++) {
 								CategoryDto cate = cateList.get(i);
 								if(cate.getParent_id() != 0) {
 								%>
-								<option value="<%=cate.getCategory_id()%>" name="category_id" ><%=cate.getName() %></option>
+								<option value="<%=cate.getCategory_id()%>"><%=cate.getName() %></option>
 								<%
 								}
 							}
@@ -92,8 +92,8 @@ input[type=file] {
 			<tr>
 				<th>대여기간</th>
 				<td>
-					<input class="selector" id="start" placeholder="시작 날짜" readonly="readonly" />
-					<input class="selector" id="end" placeholder="마지막 날짜" readonly="readonly" />
+					<input class="selector" id="start" placeholder="시작 날짜" name="sdate" />
+					<input class="selector" id="end" placeholder="마지막 날짜" name="edate" />
 				</td>	
 			</tr>
 			<tr>
@@ -124,8 +124,7 @@ input[type=file] {
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="등록하기" id="regiBtn">
-					<input type="button" value="test" id="test">
+ 					<input type="submit" value="등록하기" id="regiBtn">
 				</td>
 			</tr>
 		</table>

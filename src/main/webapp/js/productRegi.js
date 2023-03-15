@@ -1,32 +1,18 @@
-// flatpickr
-let sdate = document.getElementById("start").value;
-let edate = document.getElementById("end").value;
 
 $(document).ready(function() {
-	$("#start").flatpickr({
+		
+	// flatpickr
+	const sfp = flatpickr("#start", {
 		dateFormat: "Y-m-d",
-		minDate : new Date().fp_incr(1) // 날짜는 다음날부터 선택
+		minDate : new Date().fp_incr(1), // 날짜는 다음날부터 선택
 	});
-	
-	$("#end").flatpickr({
+	const efp = flatpickr("#end", {
 		dateFormat: "Y-m-d",
-		minDate : new Date().fp_incr(2)
+		minDate : new Date().fp_incr(2),
 	});
-	
-	$("#start").change(function(e) {
-		sdate = e.target.value;	
-		console.log(sdate);
-	});
-	
-	$("#end").change(function(e) {
-		edate = e.target.value
-		console.log(edate);
-	});
-	
-	$("#test").click(function() {
-		console.log("click");
-		console.log($("#sdate").val());    	
-	});
+
+	$(".selector").on('focus', function(currentTarget) {$(currentTarget).blur()});
+	$(".selector").prop('readonly', false);	
 	    
 	// 빈칸검사
 	$("#regiBtn").click(function(e) {
@@ -38,11 +24,11 @@ $(document).ready(function() {
 			e.preventDefault;
 			alert("제목(상품명)을 입력해주세요");
 			return;
-		} else if(sdate == null || sdate == "") {
+		} else if($("#start").val() == undefined || $("#start").val() == "") {
 			e.preventDefault;
 			alert("시작날짜를 선택해주세요");
 			return;
-		} else if(edate == null || edate == "") {
+		} else if($("#end").val() == undefined || $("#end").val() == "") {
 			e.preventDefault;
 			alert("마지막날짜를 선택해주세요")
 		} else if($("#price").val().trim() == "") {
@@ -56,6 +42,7 @@ $(document).ready(function() {
 		}
 	});
 }); 
+
 
 // 사진 미리보기
 const fileInput = document.getElementById("file");
