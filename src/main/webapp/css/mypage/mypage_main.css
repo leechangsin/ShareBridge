@@ -5,6 +5,15 @@ main {
 
 }
 
+a {
+	color: black;
+}
+
+a:hover {
+	color: gray;
+	text-decoration: none;
+}
+
 /* 타이틀 */
 #page_title {
     margin-top: 50px;
@@ -98,7 +107,7 @@ main {
 	margin-top: 20px;
 }
 
-#review_wrap > div > .fa-pen-to-square, #noti_wrap > div > .fa-bell, #product_wrap > div > .fa-inbox {
+#review_wrap > div > a > .fa-pen-to-square, #noti_wrap > div > a > .fa-bell, #product_wrap > div > a > .fa-inbox {
 	font-size: 32px;
 }
 
