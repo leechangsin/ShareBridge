@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+input[type=password] {
+	width: 400px;
+    display: inline-block;
+}
+
+button {
+    margin-top: 12px;
+}

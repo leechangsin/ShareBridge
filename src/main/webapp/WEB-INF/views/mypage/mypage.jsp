@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<link rel="stylesheet" href="/sharebridge/css/mypage/mypage_common.css">
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_main.css">
 
 <main>
@@ -14,7 +15,7 @@
 					<img alt="test" src="/sharebridge/upload/profile/temp.png">
 				</div>
 				<div class="member_button">
-					<a href="#">회원정보 수정</a>
+					<a href="pwd_check/update.do">회원정보 수정</a>
 				</div>
 			</div>
 			<div id="member_wrap_2">
@@ -24,7 +25,7 @@
 					<p>별점 ${memberInfo.rating } / 5</p>
 				</div>
 				<div class="member_button">
-					<a href="#">회원탈퇴</a>
+					<a href="pwd_check/delete.do">회원탈퇴</a>
 				</div>
 			</div>
 		</div>
