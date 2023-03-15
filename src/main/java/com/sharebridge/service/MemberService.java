@@ -17,4 +17,10 @@ public interface MemberService {
 	
 	// 로그인
 	MemberDto login(MemberDto mem);
+	
+	// 임시 비밀번호 제작
+	boolean updatePw(MemberDto mem);
+	
+	// 임시 비밀번호 이메일로 보내기
+	void sendEmail(MemberDto mem) throws Exception;
 }

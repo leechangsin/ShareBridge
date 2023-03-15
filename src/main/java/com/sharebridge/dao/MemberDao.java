@@ -17,4 +17,7 @@ public interface MemberDao {
 	
 	// 로그인
 	MemberDto login(MemberDto mem);
+	
+	// 비밀번호 변경
+	int updatePw(MemberDto mem);
 }

@@ -63,6 +63,39 @@ public class MemberController {
 		return "pwdSearch";
 	}
 	
+	// 비밀번호 찾기
+	@ResponseBody
+	@RequestMapping(value = "pwdSearchAf.do",
+					method = RequestMethod.POST,
+					produces="application/String; charset=utf-8")
+	public String pwdSearchAf(String email) throws Exception {
+		System.out.println("MemberController pwdSearchAf " + new Date());
+		
+		// 첫 번째 입력한 이메일과 일치하는 이메일이 DB에 있는지 확인
+		boolean isS = service.idcheck(email);
+		if(isS == false) {
+			return "입력하신 이메일과 일치하는 이메일이 없습니다.";
+		}
+		
+		// 두 번째 이메일이 일치하면 임시 비밀번호를 생성
+		String pwd = "";
+		for (int i = 0; i < 12; i++) {
+			pwd += (char) ((Math.random() * 26) + 97);
+		}
+		MemberDto mem = new MemberDto(email, pwd);
+		boolean updatePw = service.updatePw(mem);
+		if(updatePw) {
+			return "임시비밀번호는 " + pwd + " 입니다.";
+		}
+		return "";
+		/*	이메일 발송을 계속 실패해서 일단 alert로 띄운 상황, 후기 만들고 나중에 다시 손 보자!
+		// 마지막으로 이메일로 임시 비밀번호를 발송
+		service.sendEmail(mem);
+		System.out.println("MemberController pwdSearchAfThree " + new Date());
+		return "이메일로 임시 비밀번호를 발급했습니다";
+		*/
+	}
+	
 	// 아이디 찾기에서 연락처 입력 후
 	@PostMapping(value = "idSearchAf.do")
 	public String idSearchAf(String phone_number, Model model) {
@@ -147,7 +180,7 @@ public class MemberController {
 		return "logMsg";
 	}
 	
-	// 세션 만료
+	// 로그아웃
 	@GetMapping(value = "logout.do")
 	public String sessionOut(Model model, HttpSession session) {
 		String logout = "logout";

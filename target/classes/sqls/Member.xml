@@ -38,4 +38,9 @@
 	where email=#{email} and pwd=#{pwd}
 </select>
 
+<!-- 비밀번호 변경 -->
+<update id="updatePw" parameterType="com.sharebridge.dto.MemberDto">
+	update member set pwd = #{pwd} where email = #{email}
+</update>
+
 </mapper>

@@ -49,4 +49,11 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return session.selectOne(ns + "login", mem);
 	}
+
+	// 비밀번호 변경
+	@Override
+	public int updatePw(MemberDto mem) {
+		
+		return session.update(ns + "updatePw", mem);
+	}
 }
