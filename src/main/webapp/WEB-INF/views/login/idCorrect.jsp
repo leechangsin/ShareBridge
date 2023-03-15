@@ -11,7 +11,7 @@
 
 <%
 MemberDto mem = (MemberDto)request.getAttribute("mem");
-if(mem.getEmail() != null && !mem.getEmail().equals("")){
+if(mem == null){
 	%>
 	<div align="center">
 	<h3>입력하신 전화번호와 일치하는 계정이 없습니다.</h3>

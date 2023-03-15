@@ -14,4 +14,7 @@ public interface MemberService {
 	
 	// 회원가입
 	boolean addmember(MemberDto mem);
+	
+	// 로그인
+	MemberDto login(MemberDto mem);
 }

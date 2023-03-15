@@ -42,4 +42,11 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return session.insert(ns + "addmember", mem);
 	}
+
+	// 로그인
+	@Override
+	public MemberDto login(MemberDto mem) {
+		
+		return session.selectOne(ns + "login", mem);
+	}
 }

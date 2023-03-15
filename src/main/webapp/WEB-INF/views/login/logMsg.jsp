@@ -21,4 +21,33 @@ if(message != null && !message.equals("")){
 		<%
 	}
 }
+
+String log = (String)request.getAttribute("log");
+if(log != null && !log.equals("")){
+	if(log.equals("LOGIN_OK")) {
+		%>
+		<script type="text/javascript">
+		alert("로그인 성공!");
+		location.href = "baseLayout.do";
+		</script>
+		<%
+	}else{
+		%>
+		<script type="text/javascript">
+		alert("로그인 실패!");
+		location.href = "login.do";
+		</script>
+		<%
+	}
+}
+
+String logout = (String)request.getAttribute("logout");
+if(logout != null && !logout.equals("")) {
+	%>
+	<script type="text/javascript">
+	alert('로그아웃 되었습니다.');
+	location.href = "baseLayout.do";
+	</script>
+	<%
+}
 %>

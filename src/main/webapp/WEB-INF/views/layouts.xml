@@ -37,7 +37,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/login/idCorrect.jsp" />
 	</definition>
 	
-	<!-- 각종 메세지 -->
+	<!-- 회원가입부터 로그인 메세지 -->
 	<definition name="logMsg" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/login/logMsg.jsp" />
 	</definition>

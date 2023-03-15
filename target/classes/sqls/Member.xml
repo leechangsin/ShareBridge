@@ -31,12 +31,11 @@
 	values((select ifnull(max(member_id), 0)+1 from member b), #{email}, #{pwd}, #{nickname}, #{name}, #{phone_number}, null, now(), 3, 0)
 </insert>
 
-<!-- 
-<select id="login" parameterType="mul.cam.a.dto.MemberDto" resultType="mul.cam.a.dto.MemberDto">
-	select id, name, email
+<!-- 로그인 -->
+<select id="login" parameterType="com.sharebridge.dto.MemberDto" resultType="com.sharebridge.dto.MemberDto">
+	select member_id, email, nickname, name, phone_number, profile, rdate, rating
 	from member
-	where id=#{id} and pwd=#{pwd}
+	where email=#{email} and pwd=#{pwd}
 </select>
- -->
 
 </mapper>

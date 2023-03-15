@@ -2,6 +2,9 @@ package com.sharebridge.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -122,6 +125,35 @@ public class MemberController {
 		
 		model.addAttribute("msg", msg);
 		
+		return "logMsg";
+	}
+	
+	// 로그인 후
+	@PostMapping(value = "loginAf.do")
+	public String loginAf(HttpSession session, Model model, MemberDto mem) {
+		System.out.println("MemberController loginAf " + new Date());
+		
+		MemberDto dto = service.login(mem);
+		String msg = "LOGIN_FAIL";
+		
+		if(dto != null) {
+			session.setAttribute("login", dto);
+			session.setMaxInactiveInterval(60 * 60 * 2);
+			msg = "LOGIN_OK";
+		}
+		
+		model.addAttribute("log", msg);
+		
+		return "logMsg";
+	}
+	
+	// 세션 만료
+	@GetMapping(value = "logout.do")
+	public String sessionOut(Model model, HttpSession session) {
+		String logout = "logout";
+		session.invalidate();
+		
+		model.addAttribute("logout", logout);
 		return "logMsg";
 	}
 }

@@ -40,4 +40,11 @@ public class MemberServiceImpl implements MemberService {
 		int n = dao.addmember(mem);
 		return n>0?true:false;
 	}
+
+	// 로그인
+	@Override
+	public MemberDto login(MemberDto mem) {
+		
+		return dao.login(mem);
+	}
 }
