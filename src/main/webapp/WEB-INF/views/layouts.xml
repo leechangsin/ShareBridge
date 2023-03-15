@@ -52,4 +52,7 @@
 	<definition name="mypage_update" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/mypage/update.jsp" />
 	</definition>
+	<definition name="mypage_delete" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/mypage/delete.jsp" />
+	</definition>
 </tiles-definitions>
