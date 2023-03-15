@@ -14,6 +14,10 @@ a:hover {
 	text-decoration: none;
 }
 
+.text_align {
+	text-align: center;
+}
+
 /* 타이틀 */
 #page_title {
     margin-top: 50px;
@@ -35,11 +39,11 @@ a:hover {
 }
 
 #member_wrap {
-    background: lightgray;
-    padding: 20px 0 20px 20px;
-    display: flex;
-       border-top-left-radius: 10px;
-   	border-bottom-left-radius: 10px;
+	background: #d6d8db;
+	padding: 20px 0 20px 20px;
+	display: flex;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 #member_wrap_1, #member_wrap_2 {
@@ -93,14 +97,14 @@ a:hover {
 }
 
 #review_wrap > div, #noti_wrap > div, #product_wrap > div {
-    background: lightgray;
-    width: 90px;
-    height: 90px;
-    border-radius: 45px;
-    margin: 0 auto;
-       display: flex;
-    justify-content: center;
-    flex-direction: column;
+	background: #d6d8db;
+	width: 90px;
+	height: 90px;
+	border-radius: 45px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
 
 #review_wrap > *, #noti_wrap > *, #product_wrap > * {
@@ -129,4 +133,20 @@ a:hover {
 	border-left: 1px lightgray solid;
 	margin: 45px 0;
 	flex-grow: 0 !important;
+}
+
+/* 대여 신청 목록, 대여 요청 목록 */
+.sub_title {
+	font-size: 22px;
+	font-weight: bold;
+	margin-top: 50px;
+	margin-bottom: 10px;
+}
+
+.request_list table td:last-child {
+	text-align: center;
+}
+
+.request_list table th, .request_list table td {
+	vertical-align: middle;
 }
