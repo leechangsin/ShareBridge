@@ -27,11 +27,6 @@
 		<put-attribute name="content" value="/WEB-INF/views/login/pwdSearch.jsp"></put-attribute>
 	</definition>
 	
-	<!-- mypage -->
-	<definition name="mypage_main" extends="baseLayout">
-		<put-attribute name="content" value="/WEB-INF/views/mypage/mypage.jsp" />
-	</definition>
-	
 	<!-- 회원가입 -->
 	<definition name="regi" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/login/regi.jsp" />
@@ -46,5 +41,15 @@
 	<definition name="logMsg" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/login/logMsg.jsp" />
 	</definition>
-
+	
+	<!-- mypage -->
+	<definition name="mypage_main" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/mypage/mypage.jsp" />
+	</definition>
+	<definition name="mypage_pwd_chk" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/mypage/pwdCheck.jsp" />
+	</definition>
+	<definition name="mypage_update" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/mypage/update.jsp" />
+	</definition>
 </tiles-definitions>

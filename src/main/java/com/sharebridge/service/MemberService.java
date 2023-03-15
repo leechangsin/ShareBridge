@@ -24,5 +24,9 @@ public interface MemberService {
 	// 임시 비밀번호 이메일로 보내기
 	void sendEmail(MemberDto mem) throws Exception;
 	
+	// 아이디로 회원 정보 조회
 	MemberDto selectOneByMemberId(int memberId);
+	
+	// 회원 정보 수정
+	String updateMemberInfo(MemberDto newMemberInfo, MemberDto oldMemberInfo);
 }

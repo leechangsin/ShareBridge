@@ -21,5 +21,15 @@ public interface MemberDao {
 	// 비밀번호 변경
 	int updatePw(MemberDto mem);
 	
+	// 아이디로 회원 정보 조회
 	MemberDto selectOneByMemberId(int memberId);
+	
+	// 닉네임으로 회원 정보 조회
+	MemberDto selectOneByNickname(String nickname);
+	
+	// 휴대전화 번호로 회원 정보 조회
+	MemberDto selectOneByPhone_number(String phone_number);
+	
+	// 회원 정보 수정
+	void updateMemberInfo(MemberDto newMemberInfo);
 }

@@ -10,11 +10,46 @@
 	where phone_number=#{phone_number}
 </select>
 
+<!-- 아이디로 회원 정보 조회 -->
 <select id="selectOneByMemberId" parameterType="int" resultType="com.sharebridge.dto.MemberDto">
 	select *
 	from member
 	where member_id = #{memberId}
 </select>
+
+<!-- 닉네임으로 회원 정보 조회 -->
+<select id="selectOneByNickname" parameterType="String" resultType="com.sharebridge.dto.MemberDto">
+	select *
+	from member
+	where nickname = #{nickname}
+</select>
+
+<!-- 휴대 전화 번호로 회원 정보 조회 -->
+<select id="selectOneByPhone_number" parameterType="String" resultType="com.sharebridge.dto.MemberDto">
+	select *
+	from member
+	where phone_number = #{phone_number}
+</select>
+
+<!-- 회원 정보 수정 -->
+<update id="updateMemberInfo" parameterType="com.sharebridge.dto.MemberDto"  >
+	update member
+	<set>
+		<if test="pwd != null">
+			, pwd = #{pwd}
+		</if>
+		<if test="nickname != null">
+			, nickname = #{nickname}
+		</if>
+		<if test="name != null">
+			, name = #{name}
+		</if>
+		<if test="phone_number != null">
+			, phone_number = #{phone_number}
+		</if>
+	</set>
+	where member_id = member_id
+</update>
 
 <!-- 아이디 중복확인 -->
 <select id="idcheck" parameterType="String" resultType="Integer">

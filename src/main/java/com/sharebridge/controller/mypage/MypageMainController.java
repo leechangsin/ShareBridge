@@ -1,4 +1,4 @@
-package com.sharebridge.controller;
+package com.sharebridge.controller.mypage;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import com.sharebridge.service.RenterRequestService;
 import com.sharebridge.service.ReviewService;
 
 @Controller
-public class MypageController {
+public class MypageMainController {
 	@Autowired
 	MemberService memberService;
 	@Autowired

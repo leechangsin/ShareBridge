@@ -22,6 +22,7 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne(ns + "idSearch", phone_number);
 	}
 	
+	// 아이디로 회원 정보 조회
 	@Override
 	public MemberDto selectOneByMemberId(int memberId) {
 		return session.selectOne(ns + "selectOneByMemberId", memberId);
@@ -60,5 +61,23 @@ public class MemberDaoImpl implements MemberDao {
 	public int updatePw(MemberDto mem) {
 		
 		return session.update(ns + "updatePw", mem);
+	}
+	
+	// 닉네임으로 회원 정보 조회
+	@Override
+	public MemberDto selectOneByNickname(String nickname) {
+		return session.selectOne(ns + "selectOneByNickname", nickname);
+	}
+
+	// 휴대 전화 번호로 회원 정보 조회
+	@Override
+	public MemberDto selectOneByPhone_number(String phone_number) {
+		return session.selectOne(ns + "selectOneByPhone_number", phone_number);
+	}
+
+	// 회원 정보 수정
+	@Override
+	public void updateMemberInfo(MemberDto newMemberInfo) {
+		session.update(ns + "updateMemberInfo", newMemberInfo);
 	}
 }
