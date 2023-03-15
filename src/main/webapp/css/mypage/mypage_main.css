@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+main {
+	width: 1000px;
+
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: gray;
+	text-decoration: none;
+}
+
+.text_align {
+	text-align: center;
+}
+
+/* 타이틀 */
+#page_title {
+    margin-top: 50px;
+   	margin-bottom: 30px;
+   	font-size: 32px;
+   	font-weight: bold;
+}
+
+/* 회원 정보, 회원 정보 수정, 회원 탈퇴 */
+#mrnp_wrap {
+    display: flex;
+	border: 1px solid;
+   	border-radius: 10px;
+}
+
+#mrnp_wrap > div {
+	flex-shrink: 0;
+	flex-grow: 1;
+}
+
+#member_wrap {
+	background: #d6d8db;
+	padding: 20px 0 20px 20px;
+	display: flex;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+#member_wrap_1, #member_wrap_2 {
+   	display: flex;
+   	flex-direction: column;
+   	flex-grow: 1;
+}
+
+#member_wrap_1 {
+	text-align: center;
+}
+
+#member_wrap_2 {
+	text-align: left;
+}
+
+#member_wrap_1 > div:nth-child(1) > img {
+	width: 200px;
+	border-radius: 101px;
+}
+
+#member_wrap_2 > div:nth-child(1) {
+	height: 202px;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#member_wrap_2 > div:nth-child(1) > p {
+	margin-bottom: 15px;
+}
+
+#member_wrap_2 > div:nth-child(1) > p:nth-child(1) {
+	margin-bottom: 25px;
+}
+
+#nickname {
+	font-size: 32px;
+	font-weight: bold;
+}
+
+.member_button {
+	margin-top: 20px;
+}
+/* 회원 정보, 회원 정보 수정, 회원 탈퇴 */
+
+/* 후기, 알림, 등록상품 */
+#review_wrap, #noti_wrap, #product_wrap {
+	text-align: center;
+   	padding-top: 40px;
+}
+
+#review_wrap > div, #noti_wrap > div, #product_wrap > div {
+	background: #d6d8db;
+	width: 90px;
+	height: 90px;
+	border-radius: 45px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+#review_wrap > *, #noti_wrap > *, #product_wrap > * {
+	margin-top: 20px;
+}
+
+#review_wrap > div > a > .fa-pen-to-square, #noti_wrap > div > a > .fa-bell, #product_wrap > div > a > .fa-inbox {
+	font-size: 32px;
+}
+
+#review_wrap > h1, #noti_wrap > h1, #product_wrap > h1 {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#review_wrap > p, #noti_wrap > p, #product_wrap > p {
+	font-size: 20px;
+}
+
+#review_wrap > p > span, #noti_wrap > p > span, #product_wrap > p > span {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.vertical_line {
+	border-left: 1px lightgray solid;
+	margin: 45px 0;
+	flex-grow: 0 !important;
+}
+
+/* 대여 신청 목록, 대여 요청 목록 */
+.sub_title {
+	font-size: 22px;
+	font-weight: bold;
+	margin-top: 50px;
+	margin-bottom: 10px;
+}
+
+.request_list table td:last-child {
+	text-align: center;
+}
+
+.request_list table th, .request_list table td {
+	vertical-align: middle;
+}
