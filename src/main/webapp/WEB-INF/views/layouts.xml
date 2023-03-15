@@ -28,5 +28,10 @@
 	<definition name="mypage_main" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/mypage/mypage.jsp" />
 	</definition>
-
+	<definition name="mypage_pwd_chk" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/mypage/pwdCheck.jsp" />
+	</definition>
+	<definition name="mypage_update" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/mypage/update.jsp" />
+	</definition>
 </tiles-definitions>
