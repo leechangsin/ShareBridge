@@ -1,6 +1,7 @@
 package com.sharebridge.dao;
 
 import com.sharebridge.dto.MemberDto;
+import com.sharebridge.param.MypageDeleteParam;
 
 public interface MemberDao {
 	// 아이디 찾기
@@ -32,4 +33,7 @@ public interface MemberDao {
 	
 	// 회원 정보 수정
 	void updateMemberInfo(MemberDto newMemberInfo);
+	
+	// 회원 탈퇴
+	void deleteByMember_id(MypageDeleteParam param);
 }

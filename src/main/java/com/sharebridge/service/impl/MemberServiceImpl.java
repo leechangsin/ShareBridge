@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.sharebridge.dao.MemberDao;
 import com.sharebridge.dto.MemberDto;
+import com.sharebridge.param.MypageDeleteParam;
 import com.sharebridge.service.MemberService;
 
 @Service
@@ -163,5 +164,11 @@ public class MemberServiceImpl implements MemberService {
 		} else {
 			return "not_change";
 		}
+	}
+
+	// 회원 탈퇴
+	@Override
+	public void deleteByMember_id(MypageDeleteParam param) {
+		dao.deleteByMember_id(param);
 	}
 }

@@ -11,3 +11,14 @@
    	font-size: 32px;
    	font-weight: bold;
 }
+
+.light_gray_btn {
+    border: none;
+    background: lightgray;
+    color: black;
+}
+
+.light_gray_btn:hover {
+	background: gray;
+	color: white;
+}
