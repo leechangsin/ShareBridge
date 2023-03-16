@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.sharebridge.dao.ProductDao;
 
 @Repository
-public class ProductDtoImpl implements ProductDao {
+public class ProductDaoImpl implements ProductDao {
 	@Autowired
 	SqlSession session;
 	
