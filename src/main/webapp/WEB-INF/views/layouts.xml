@@ -27,5 +27,13 @@
 	<definition name="productRegi" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/details/productRegi.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="detailsMsg" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/detailsMsg.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="productDetail" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/productDetail.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

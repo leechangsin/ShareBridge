@@ -6,20 +6,21 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sharebridge.dao.productDao;
+import com.sharebridge.dao.ProductDao;
 import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
 
 @Repository
-public class productDaoImpl implements productDao {
+public class ProductDaoImpl implements ProductDao {
 	@Autowired
 	SqlSession session;
 	
+	String c_ns = "Category.";
 	String ns = "Product.";	
 	
 	@Override
 	public List<CategoryDto> allCategory() {
-		return session.selectList("Category.allCategory");
+		return session.selectList(c_ns + "allCategory");
 	}
 
 	@Override
@@ -35,6 +36,16 @@ public class productDaoImpl implements productDao {
 	@Override
 	public ProductDto getProduct(int product_id) {
 		return session.selectOne(ns + "getProduct", product_id);
+	}
+
+	@Override
+	public CategoryDto getCate(int category_id) {
+		return session.selectOne(c_ns + "getCate", category_id);
+	}
+
+	@Override
+	public int delProduct(int product_id) {
+		return session.update(ns + "delProduct", product_id);
 	}
 	
 }

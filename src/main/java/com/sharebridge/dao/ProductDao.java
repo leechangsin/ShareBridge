@@ -5,7 +5,7 @@ import java.util.List;
 import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
 
-public interface productDao {
+public interface ProductDao {
 	List<CategoryDto> allCategory();	
 		
 	int insertProduct(ProductDto dto);
@@ -13,4 +13,8 @@ public interface productDao {
 	int updateProduct(int product_id);
 	
 	ProductDto getProduct(int product_id);
+	
+	CategoryDto getCate(int category_id);
+	
+	int delProduct(int product_id);
 }

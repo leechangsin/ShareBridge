@@ -18,13 +18,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
-import com.sharebridge.service.productService;
+import com.sharebridge.service.ProductService;
 import com.sharebridge.util.FileUtil;
 
 @Controller
 public class ProductController {
 	@Autowired
-	productService service;
+	ProductService service;
 	
 	// 상품등록
 	@GetMapping(value = "productRegi.do")
@@ -39,7 +39,8 @@ public class ProductController {
 	public String productRegiAf(ProductDto dto,
 								@RequestParam(value="fileload", required=false)
 								MultipartFile fileload,
-								HttpServletRequest req) {
+								HttpServletRequest req,
+								Model model) {
 		
 		// filename 취득(원본)
 		String filename = fileload.getOriginalFilename();
@@ -51,31 +52,31 @@ public class ProductController {
 		
 		// 파일명을 충돌되지 않는 명칭으로 변경
 		String newfilename = FileUtil.getNewFileName(filename);
-
-		dto.setPhoto(fupload + "/" + newfilename);	// DB에 파일 경로 저장 
 		
+		String photoPath = fupload + "/" + newfilename;
+		dto.setPhoto(photoPath);	// DB에 파일 경로 저장 
+		
+		System.out.println(dto.getPhoto());
 		// 파일 생성
 		File file = new File(fupload + "/" + newfilename);
 
-		try {
-			// 파일 업로드
-			FileUtils.writeByteArrayToFile(file, fileload.getBytes());
-			
+		try {			
 			// DB에 저장
 			boolean isS = service.insertProduct(dto);
-			String msg = "Yes";
+			String msg = "PRODUCT_INSERT_OK";
 			if(isS) {
-				System.out.println(msg);
+				// 파일 업로드
+				FileUtils.writeByteArrayToFile(file, fileload.getBytes());
 			} else {
-				msg = "No";
-				System.out.println(msg);
+				msg = "PRODUCT_INSERT_NO";
 			}
+			model.addAttribute("insertProduct", msg);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return "redirect:";	// message.jsp로 이동 혹은 메인페이지로 바로 이동
+		return "detailsMsg";
 	}
 	
 	// 상품 수정
@@ -92,13 +93,30 @@ public class ProductController {
 		
 		return "productDetail";	// message.jsp로 이동 혹은 디테일로 바로 이동
 	}
-	
+		
 	// 상품 상세 보기
 	@GetMapping("/productDetail.do")
-	public String productDetail(int product_id, Model model) {
+	public String productDetail(int product_id, int category_id, Model model) {
 		ProductDto detail = service.getProduct(product_id);
+		CategoryDto getCate = service.getCate(category_id);
+		
 		model.addAttribute("detail", detail);
+		model.addAttribute("getCate", getCate);
 		
 		return "productDetail";
+	}
+	
+	// 상품 삭제 : 데이터는 그대로 보존
+	@GetMapping("/delProduct.do")
+	public String delProduct(int product_id, Model model) {
+		boolean isS = service.delProduct(product_id);
+		String msg = "PRODUCT_DELETE_OK";
+		if(!isS) {			
+			msg = "PRODUCT_DELETE_NO";
+		}
+		
+		model.addAttribute("delProduct", msg);
+		
+		return "detailsMsg";
 	}
 }
