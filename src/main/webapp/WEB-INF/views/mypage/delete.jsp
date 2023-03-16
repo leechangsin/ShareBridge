@@ -31,6 +31,17 @@
 	#select_wrap > select, #input_wrap > input, #button_wrap > button {
 		width: 100%;
 	}
+	
+	#button_wrap > button {
+		background: lightgray;
+    	border: none;
+    	color: black;
+	}
+	
+	#button_wrap > button:hover {
+		background: #5a6268;
+		color: white;
+	}
 </style>
 
 <main>
@@ -54,7 +65,7 @@
 				<input type="text" id="direct" placeholder="소중한 의견을 입력해주세요">
 			</div>
 			<div id="button_wrap">
-				<button type="button" class="btn btn-secondary mb-3">탈퇴 완료</button>
+				<button type="button" class="btn light_gray_btn mb-3">탈퇴 완료</button>
 			</div>
 		</form>
 	</div>

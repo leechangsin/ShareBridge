@@ -63,5 +63,7 @@
 	</div>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
+	
 </body>
 </html>
