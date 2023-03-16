@@ -17,12 +17,12 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 	
-	@GetMapping(value = "baseLayout.do")
-	public String baseLayout() {
-		System.out.println("MemberController baseLayout " + new Date());
-		
-		return "baseLayout";
-	}
+//	@GetMapping(value = "baseLayout.do")
+//	public String baseLayout() {
+//		System.out.println("MemberController baseLayout " + new Date());
+//		
+//		return "baseLayout";
+//	}
 	
 	@GetMapping(value = "login.do")
 	public String login() {
