@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="Product">
+<!-- 상품등록 -->
+<insert id="insertProduct" parameterType="com.sharebridge.dto.ProductDto">
+	insert into product(product_id, category_id, member_id, title, content, 
+						sdate, edate, price, photo, wdate, state, del)
+	values(cast(concat(cast(${member_id} as char), cast(${category_id} as char)) as char), ${category_id}, ${member_id},
+			#{title}, #{content}, timestamp(#{sdate}), select timestamp(#{edate}), ${price}, #{photo}, now(), 0, 0);
+</insert>
+
+<!-- 상품 상세 보기 -->
+<select id="getProduct" parameterType="Integer" resultType="com.sharebridge.dto.ProductDto">
+	select category_id, member_id, title, content, sdate, edate, price
+	from product
+	where product_id = ${product_id};
+</select>
+</mapper>
