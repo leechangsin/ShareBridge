@@ -19,7 +19,7 @@
 	select *
 	from notification as n
 	join request as r
-	on n.request_id = r.reqeust_id
+	on n.request_id = r.request_id
 	where r.member_id = #{member_id}
 	order by n.read desc, n.rdate desc
 	<choose>
