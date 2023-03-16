@@ -60,4 +60,9 @@
 	<definition name="productRegi" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/details/productRegi.jsp"></put-attribute>
 	</definition>
+	
+	<!-- notification -->
+	<definition name="notification_list" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/notification/notificationList.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
