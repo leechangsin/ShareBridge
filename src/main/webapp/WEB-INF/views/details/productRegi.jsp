@@ -1,69 +1,21 @@
+<%@page import="com.sharebridge.dto.MemberDto"%>
 <%@page import="com.sharebridge.dto.CategoryDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Product Registration</title>
-<title>Bootstrap datepicket demo</title>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
-<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-<script type='text/javascript'>
-$(function(){
-$('.input-daterange').datepicker({
-    autoclose: true
-});
-});
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<!-- flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<!-- js -->
+<script src="js/productRegi.js" defer></script>
+<!-- css -->
+<link rel="stylesheet" href="css/details/productRegi.css">
 
-</script>
-
-<style type="text/css">
-.regi_container {
-/* 	margin: 0 412px; */
-}
-.regi_title {
-	font-size: 24px;
-	font-weight: bold;
-}
-
-input[type='date']::before {
-  content: attr(data-placeholder);
-  width: 100%;
-}
-
-input[type='date']:focus::before,
-input[type='date']:valid::before {
-  display: none;
-}
-
-.image-box {
-   width: 200px;
-   height: 200px;
-   object-fit: cover;
-   display: block;
- }
-
-.upload-btn {
-   border: 1px solid #ddd;
-   padding: 6px 12px;
-   display: inline-block;
-   cursor: pointer;
-}
-
-input[type=file] {
-  display: none;
-} 
-</style>
-</head>
-<body>
-
-<% 
+<% 	
+	MemberDto login = (MemberDto)session.getAttribute("login");
 	List<CategoryDto> cateList = (List<CategoryDto>)request.getAttribute("allCategory");
 %>
 
@@ -87,6 +39,7 @@ input[type=file] {
 							}
 						%>
 					</select>
+					<input type="hidden" value="<%=login.getMember_id() %>" name="member_id" />
 				</td>
 			</tr>
 			<tr>
@@ -136,38 +89,8 @@ input[type=file] {
 			</tr>
 		</table>
 	</form>
-</div>
-<script type="text/javascript">
-	
-	// 사진 미리보기
-    const fileInput = document.getElementById("file");
-    const preview = document.getElementById("preview");
-    var prevURL, currentURL;
-
-    function changeImg() {
-      URL.revokeObjectURL(prevURL);
-      const selectedFile = fileInput.files[0];
-      if (selectedFile) {
-        currentURL = URL.createObjectURL(selectedFile);
-        preview.src = currentURL;
-        prevURL = currentURL;
-      }
-    };
-    
-    function deleteImg() {
-    	const selectedFile = fileInput.files[0];
-        if (selectedFile) {
-        	currentURL = URL.createObjectURL(selectedFile);
-	    	URL.revokeObjectURL(currentURL);
-			
-	    	preview.src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg";
-        }  
-    }
-    
-    // 빈칸검사
-    
-    
-   
+</div> 
 </script>
 </body>
 </html>
+</div>

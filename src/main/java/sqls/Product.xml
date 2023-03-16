@@ -7,8 +7,8 @@
 <insert id="insertProduct" parameterType="com.sharebridge.dto.ProductDto">
 	insert into product(product_id, category_id, member_id, title, content, 
 						sdate, edate, price, photo, wdate, state, del)
-	values(cast(concat(cast(${member_id} as char), cast(${category_id} as char)) as char), ${category_id}, ${member_id}, 
-			#{title}, #{content}, timestamp(#{sdate}), timestamp(#{edate}), ${price}, #{photo}, now(), 0, 0);
+	values((select LPAD(IFNULL(MAX(product_id) + 1, 1), 4, 0) from product p), ${category_id}, ${member_id}, #{title}, #{content}, 
+			timestamp(#{sdate}), timestamp(#{edate}), ${price}, #{photo}, now(), 0, 0);
 </insert>
 
 <!-- 상품 상세 보기 -->
