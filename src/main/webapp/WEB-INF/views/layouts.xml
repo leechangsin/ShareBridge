@@ -12,16 +12,44 @@
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>
 	
+	<!-- 로그인 -->
 	<definition name="login" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/login/login.jsp" />
 	</definition>
 	
+	<!-- 아이디 찾기 -->
 	<definition name="idSearch" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/login/idSearch.jsp" />
 	</definition>
 	
+	<!-- 비밀번호 찾기 -->
 	<definition name="pwdSearch" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/login/pwdSearch.jsp"></put-attribute>
 	</definition>
-
+	
+	<!-- 회원가입 -->
+	<definition name="regi" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/login/regi.jsp" />
+	</definition>
+	
+	<!-- 아이디 찾기 후 -->
+	<definition name="idCorrect" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/login/idCorrect.jsp" />
+	</definition>
+	
+	<!-- 회원가입부터 로그인 메세지 -->
+	<definition name="logMsg" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/login/logMsg.jsp" />
+	</definition>
+	
+	<!-- mypage -->
+	<definition name="mypage_main" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/mypage/mypage.jsp" />
+	</definition>
+	<definition name="mypage_pwd_chk" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/mypage/pwdCheck.jsp" />
+	</definition>
+	<definition name="mypage_update" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/mypage/update.jsp" />
+	</definition>
 </tiles-definitions>

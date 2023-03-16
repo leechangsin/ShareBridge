@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <footer>
-	<img src="./images/footer_logo.png" id="footer_logo" alt="logo">
+	<img src="/sharebridge/images/footer_logo.png" id="footer_logo" alt="logo">
 	<div id="footer_wrap">
 		<ul id="fnb_wrap">
 			<li><a href="#">서비스 소개</a></li>
