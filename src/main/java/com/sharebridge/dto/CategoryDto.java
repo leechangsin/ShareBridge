@@ -1,9 +1,11 @@
 package com.sharebridge.dto;
 
-public class CategoryDto {
-	int category_id;
-	String name;
-	int parent_id;
+import java.io.Serializable;
+
+public class CategoryDto implements Serializable {
+	private int category_id;
+	private String name;
+	private int parent_id;
 	
 	public CategoryDto() {
 	}

@@ -52,4 +52,10 @@
 	<definition name="mypage_update" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/mypage/update.jsp" />
 	</definition>
+	
+	<!-- product -->
+	<definition name="productRegi" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/productRegi.jsp"></put-attribute>
+	</definition>
+
 </tiles-definitions>
