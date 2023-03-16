@@ -235,5 +235,6 @@
         </div>
       </div>
      </div>
+    <a href="productRegi.do">상품등록</a>
 </body>
 </html>

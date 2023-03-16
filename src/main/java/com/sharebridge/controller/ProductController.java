@@ -39,7 +39,8 @@ public class ProductController {
 	public String productRegiAf(ProductDto dto,
 								@RequestParam(value="fileload", required=false)
 								MultipartFile fileload,
-								HttpServletRequest req) {
+								HttpServletRequest req,
+								Model model) {
 		
 		// filename 취득(원본)
 		String filename = fileload.getOriginalFilename();
@@ -62,20 +63,19 @@ public class ProductController {
 		try {			
 			// DB에 저장
 			boolean isS = service.insertProduct(dto);
-			String msg = "Yes";
+			String msg = "PRODUCT_INSERT_OK";
 			if(isS) {
 				// 파일 업로드
 				FileUtils.writeByteArrayToFile(file, fileload.getBytes());
-				System.out.println(msg);
 			} else {
-				msg = "No";
-				System.out.println(msg);
+				msg = "PRODUCT_INSERT_NO";
 			}
+			model.addAttribute("insertProduct", msg);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return "redirect:";	// message.jsp로 이동 혹은 메인페이지로 이동
+		return "detailsMsg";
 	}
 }

@@ -1,12 +1,8 @@
+<%@page import="com.sharebridge.dto.MemberDto"%>
 <%@page import="com.sharebridge.dto.CategoryDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Product Registration</title>
 
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -18,10 +14,9 @@
 <!-- css -->
 <link rel="stylesheet" href="css/details/productRegi.css">
 
-</head>
-<body>
 
-<% 
+<% 	
+	MemberDto login = (MemberDto)session.getAttribute("login");
 	List<CategoryDto> cateList = (List<CategoryDto>)request.getAttribute("allCategory");
 %>
 
@@ -45,7 +40,7 @@
 							}
 						%>
 					</select>
-					<input type="hidden" value="1" name="member_id" />
+					<input type="hidden" value="<%=login.getMember_id() %>" name="member_id" />
 				</td>
 			</tr>
 			<tr>
@@ -95,5 +90,3 @@
 		</table>
 	</form>
 </div>
-</body>
-</html>
