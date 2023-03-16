@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+main {
+	width: 300px;
+	display: flex;
+   	flex-direction: column;
+}
+
+#title_wrap {
+	margin-bottom: 50px;
+    text-align: center;
+}
+
+#page_title {
+	margin-bottom: 10px;
+}
+
+#select_wrap, #button_wrap {
+	display: flex;
+   	justify-content: center;
+}
+
+#input_wrap {
+	display: none;
+	margin-top: 10px;
+}
+
+#select_wrap > select, #input_wrap > input, #button_wrap > button {
+	width: 100%;
+}
+
+#button_wrap > button {
+	background: lightgray;
+   	border: none;
+   	color: black;
+   	margin-top: 10px;
+}
+
+#button_wrap > button:hover {
+	background: #5a6268;
+	color: white;
+}

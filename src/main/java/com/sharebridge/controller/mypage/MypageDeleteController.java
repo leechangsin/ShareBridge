@@ -3,6 +3,7 @@ package com.sharebridge.controller.mypage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ public class MypageDeleteController {
 	}
 	
 	@PostMapping(value="/mypage/deleteAf.do")
-	public void deleteAf(String reason, HttpSession session) {
+	public ResponseEntity<Void> deleteAf(String reason, HttpSession session) {
 		if(session.getAttribute("member_id") == null) {
 			System.out.println("로그인 페이지로 이동");
 //			return "redirect://";
@@ -38,5 +39,7 @@ public class MypageDeleteController {
 		MypageDeleteParam param = new MypageDeleteParam(member_id, reason);
 		
 		service.deleteByMember_id(param);
+		
+		return ResponseEntity.status(200).build();
 	}
 }
