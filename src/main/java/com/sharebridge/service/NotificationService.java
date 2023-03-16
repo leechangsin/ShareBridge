@@ -8,4 +8,5 @@ import com.sharebridge.param.NotificationListParam;
 public interface NotificationService {
 	int getNotificationCountByMemberId(int memberId);
 	List<NotificationDto> getNotificationList(NotificationListParam nlp);
+	void readNotification(int notification_id);
 }

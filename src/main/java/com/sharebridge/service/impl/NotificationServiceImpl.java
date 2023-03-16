@@ -25,4 +25,9 @@ public class NotificationServiceImpl implements NotificationService {
 	public List<NotificationDto> getNotificationList(NotificationListParam nlp) {
 		return dao.getNotificationList(nlp);
 	}
+
+	@Override
+	public void readNotification(int notification_id) {
+		dao.readNotification(notification_id);
+	}
 }

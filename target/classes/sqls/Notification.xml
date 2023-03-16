@@ -32,4 +32,8 @@
 	</choose>
 </select>
 
+<update id="readNotification" parameterType="int">
+	update notification set `read` = b'1' where notification_id = #{notification_id}
+</update>
+
 </mapper>

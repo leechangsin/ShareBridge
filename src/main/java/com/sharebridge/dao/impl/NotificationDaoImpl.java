@@ -26,4 +26,9 @@ public class NotificationDaoImpl implements NotificationDao {
 	public List<NotificationDto> getNotificationList(NotificationListParam nlp) {
 		return session.selectList(ns + "getNotificationList", nlp);
 	}
+
+	@Override
+	public void readNotification(int notification_id) {
+		session.update(ns + "readNotification", notification_id);
+	}
 }
