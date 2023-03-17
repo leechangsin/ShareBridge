@@ -27,6 +27,9 @@ CategoryDto getCate = (CategoryDto)request.getAttribute("getCate");
 
 String sdate = getProduct.getSdate();
 String edate = getProduct.getEdate();
+
+int pid = getProduct.getProduct_id();
+int cid = getProduct.getCategory_id();
 %>
 
 <div>
@@ -34,7 +37,6 @@ String edate = getProduct.getEdate();
 	<div class="product_info">
 		<div class="product_photo">
 			<%
-				System.out.println(getProduct.toString());
 				if(getProduct.getPhoto() == null || getProduct.getPhoto().equals("")) {
 					%>
 					<img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" alt="상품이미지" class="preview">
@@ -69,8 +71,8 @@ String edate = getProduct.getEdate();
 				if(getProduct.getMember_id() == login.getId()) { 
 					--%>					
 					<div>
-						<a href="goUpdate.do">수정</a>
-						<a href="delProduct.do?product_id=<%=getProduct.getProduct_id() %>">삭제</a>
+						<a href="goUpdate.do?product_id=<%=pid%>&category_id=<%=cid%>">수정</a>
+						<a href="delProduct.do?product_id=<%=pid%>">삭제</a>
 					</div>
 					<%--
 				} else {

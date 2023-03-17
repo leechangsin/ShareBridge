@@ -17,10 +17,11 @@ $(document).ready(function() {
 	// 빈칸검사
 	$("#regiBtn").click(function(e) {
 		e.preventDefault();
+		console.log($("#content").val());
 		if($("#choice").val().trim() == "") {
 			alert("카테고리를 선택해주세요");
 			return;
-		} else if($("#title").val().trim() == "") {
+		} else if($("#title").val() == undefined || $("#title").val().trim() == "") {
 			e.preventDefault;
 			alert("제목(상품명)을 입력해주세요");
 			return;
@@ -31,10 +32,10 @@ $(document).ready(function() {
 		} else if($("#end").val() == undefined || $("#end").val() == "") {
 			e.preventDefault;
 			alert("마지막날짜를 선택해주세요")
-		} else if($("#price").val().trim() == "") {
+		} else if($("#price").val() == undefined || $("#price").val().trim() == "") {
 			e.preventDefault;
 			alert("가격을 입력해주세요");
-		} else if($("#content").val().trim() == "") {
+		} else if($("#content").val() == undefined || $("#content").val().trim() == "") {
 			e.preventDefault;
 			alert("상품에 대한 내용을 입력해주세요");
 		} else {

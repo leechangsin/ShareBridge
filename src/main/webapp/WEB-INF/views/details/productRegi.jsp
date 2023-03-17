@@ -21,25 +21,25 @@
 
 <div class="regi_container">
 <h2 class="regi_title">상품등록</h2>
-	<form action="productRegiAf.do" method="post">
+	<form action="productRegiAf.do" method="post" id="frm" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<th>카테고리</th>
 				<td>
-					<select>
+					<select id="choice" name="category_id">
 						<option value="">카테고리</option>
 						<%
 							for(int i = 0;i < cateList.size();i++) {
 								CategoryDto cate = cateList.get(i);
 								if(cate.getParent_id() != 0) {
 								%>
-								<option value="<%=cate.getCategory_id()%>" name="category_id" ><%=cate.getName() %></option>
+								<option value="<%=cate.getCategory_id()%>"><%=cate.getName() %></option>
 								<%
 								}
 							}
 						%>
 					</select>
-					<input type="hidden" value="<%=login.getMember_id() %>" name="member_id" />
+					<%-- <input type="hidden" value="<%=login.getMember_id() %>" name="member_id" /> --%>
 				</td>
 			</tr>
 			<tr>
@@ -50,10 +50,9 @@
 			</tr>
 			<tr>
 				<th>대여기간</th>
-				<td  class="input-daterange input-group" id="datepicker">
-					<input type="text" class="input-sm form-control" name="sdate" placeholder="From date"/>
-    				<span class="input-group-addon">to</span>
-    				<input type="text" class="input-sm form-control" name="edate" placeholder="To date"/>
+				<td>
+					<input class="selector" id="start" placeholder="시작 날짜" name="sdate" />
+					<input class="selector" id="end" placeholder="마지막 날짜" name="edate" />
 				</td>
 			</tr>
 			<tr>
@@ -66,7 +65,7 @@
 			<tr>
 				<th>내용</th>
 				<td>
-					<textarea rows="30" cols="50" name="content"></textarea>	
+					<textarea rows="30" cols="50" name="content" id="content"></textarea>	
 				</td>
 			</tr>
 			<tr>
@@ -90,7 +89,4 @@
 		</table>
 	</form>
 </div> 
-</script>
-</body>
-</html>
-</div>
+
