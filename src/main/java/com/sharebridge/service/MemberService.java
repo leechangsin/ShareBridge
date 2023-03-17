@@ -1,6 +1,7 @@
 package com.sharebridge.service;
 
 import com.sharebridge.dto.MemberDto;
+import com.sharebridge.param.MypageDeleteParam;
 
 public interface MemberService {
 	// 아이디 찾기
@@ -29,4 +30,7 @@ public interface MemberService {
 	
 	// 회원 정보 수정
 	String updateMemberInfo(MemberDto newMemberInfo, MemberDto oldMemberInfo);
+	
+	// 회원 탈퇴
+	void deleteByMember_id(MypageDeleteParam param);
 }

@@ -8,7 +8,7 @@
 	
 	<form action="go_from.do" method="POST">
 		<input type="password" class="form-control" id="inputPassword">
-		<button type="button" class="btn btn-secondary mb-3">확인</button>
+		<button type="button" class="btn light_gray_btn mb-3">확인</button>
 	</form>
 </main>
 

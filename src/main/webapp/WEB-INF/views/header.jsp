@@ -16,6 +16,7 @@ MemberDto login = (MemberDto)session.getAttribute("login");
 			<li><a href="#noti"> <img src="/sharebridge/images/notification_icon.png" alt="notification"></a></li>
 			<li><a href="wish.do"> <img src="/sharebridge/images/shoopingcart_icon.png" alt="wish"></a></li>
 			<li><a href="#cart"> <img src="/sharebridge/images/wish_icon.png" alt="cart"></a></li>
+
 		</ul>
 	</div>
 </header>
