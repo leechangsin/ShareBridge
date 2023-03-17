@@ -18,7 +18,7 @@ public class ProductDaoImpl implements ProductDao {
 	String ns = "Product.";	
 	
 	@Override
-	public List<CategoryDto> allCategory() {
+	public List<CategoryDto> getAllCategory() {
 		return session.selectList("Category.allCategory");
 	}
 
