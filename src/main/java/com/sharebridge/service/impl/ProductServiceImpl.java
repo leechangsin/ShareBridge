@@ -16,8 +16,8 @@ public class ProductServiceImpl implements ProductService {
 	ProductDao dao;
 
 	@Override
-	public List<CategoryDto> allCategory() {
-		return dao.allCategory();
+	public List<CategoryDto> getAllCategory() {
+		return dao.getAllCategory();
 	}
 
 	@Override

@@ -81,4 +81,9 @@
 		<put-attribute name="content" value="/WEB-INF/views/notification/notificationList.jsp"></put-attribute>
 	</definition>
 
+	<!-- details message -->
+	<definition name="detailsMsg" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/detailsMsg.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>

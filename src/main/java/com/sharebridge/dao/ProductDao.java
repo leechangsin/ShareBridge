@@ -6,7 +6,7 @@ import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
 
 public interface ProductDao {
-	List<CategoryDto> allCategory();
+	List<CategoryDto> getAllCategory();
 	
 	int insertProduct(ProductDto dto);
 	
