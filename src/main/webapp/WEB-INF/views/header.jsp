@@ -6,7 +6,7 @@ MemberDto login = (MemberDto)session.getAttribute("login");
 %>
 
 <header>
-	<img src="./images/header_logo.png" id="header_logo" alt="logo">
+	<img src="/sharebridge/images/header_logo.png" id="header_logo" alt="logo">
 	<div>
 		<ul id="lnb_wrap">
 			<li><a href="login.do" id="login">로그인</a></li>

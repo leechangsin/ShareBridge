@@ -45,6 +45,7 @@ public class ProductDto implements Serializable{
 
 	public ProductDto(int product_id, int category_id, int member_id, String title, String content, LocalDateTime sdate,
 			LocalDateTime edate, int price, String photo, LocalDateTime wdate, byte state, byte del) {
+
 		super();
 		this.product_id = product_id;
 		this.category_id = category_id;

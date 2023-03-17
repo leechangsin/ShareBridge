@@ -22,15 +22,7 @@ public class MemberController {
 
 	@Autowired
 	MemberService service;
-	/* 은아꺼랑 겹치니까 일단 주석 처리
-	@GetMapping(value = "baseLayout.do")
-	public String baseLayout() {
-		System.out.println("MemberController baseLayout " + new Date());
-		
-		return "baseLayout";
-	}
-	*/
-	
+
 	// 로그인 페이지로 이동
 	@GetMapping(value = "login.do")
 	public String login() {

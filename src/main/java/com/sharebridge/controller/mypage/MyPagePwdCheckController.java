@@ -1,12 +1,10 @@
-package com.sharebridge.controller;
+package com.sharebridge.controller.mypage;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +13,7 @@ import com.sharebridge.dto.MemberDto;
 import com.sharebridge.service.MemberService;
 
 @Controller
-public class PwdCheckController {
+public class MyPagePwdCheckController {
 
 	@Autowired
 	MemberService memberService;
@@ -55,6 +53,8 @@ public class PwdCheckController {
 				
 				response.setStatus(300);
 				response.setHeader("Location", redirectURL);
+			} else {
+				response.setStatus(400);
 			}
 		}
 	}
