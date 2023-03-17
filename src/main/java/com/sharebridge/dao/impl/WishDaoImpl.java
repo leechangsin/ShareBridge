@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sharebridge.dao.WishDao;
+import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.WishDto;
 
 @Repository
@@ -16,8 +17,13 @@ public class WishDaoImpl implements WishDao {
 	SqlSession session;
 
 	@Override
-	public List<WishDto> getAllWishByMemberId() {
-		return session.selectList("Wish.getAllWishByMemberId");
+	public List<ProductDto> getAllWishByMemberId(int memberId) {
+		return session.selectList("Wish.getAllWishByMemberId", memberId);
+	}
+
+	@Override
+	public int addWish(WishDto wishDto) {
+		return session.insert("Wish.addWish", wishDto);
 	}
 
 }

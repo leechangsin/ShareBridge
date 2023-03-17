@@ -31,4 +31,9 @@ public class ProductDaoImpl implements ProductDao {
 	public int getProductCountByMemberId(int memberId) {
 		return session.selectOne(ns + "getProductCountByMemberId", memberId);
 	}
+
+	@Override
+	public List<ProductDto> getAllProducts() {
+		return session.selectList("Product.getAllProducts");
+	}
 }

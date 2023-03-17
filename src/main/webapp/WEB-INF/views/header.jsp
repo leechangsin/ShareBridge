@@ -14,8 +14,8 @@ MemberDto login = (MemberDto)session.getAttribute("login");
 			<li><a href="regi.do">회원가입</a></li>
 			<li><a href="#mypage">마이페이지</a></li>
 			<li><a href="#noti"> <img src="/sharebridge/images/notification_icon.png" alt="notification"></a></li>
-			<li><a href="wish.do"> <img src="/sharebridge/images/shoopingcart_icon.png" alt="wish"></a></li>
-			<li><a href="#cart"> <img src="/sharebridge/images/wish_icon.png" alt="cart"></a></li>
+			<li><a href="wish.do"> <img src="/sharebridge/images/wish_icon.png" alt="wish"></a></li>
+			<li><a href="cart.do"> <img src="/sharebridge/images/shoopingcart_icon.png" alt="cart"></a></li>
 
 		</ul>
 	</div>

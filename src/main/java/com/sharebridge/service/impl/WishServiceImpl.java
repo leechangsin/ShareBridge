@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sharebridge.dao.WishDao;
+import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.WishDto;
 import com.sharebridge.service.WishService;
 
@@ -16,8 +17,13 @@ public class WishServiceImpl implements WishService {
 	WishDao dao;
 
 	@Override
-	public List<WishDto> getAllWishByMemberId() {
-		return dao.getAllWishByMemberId();
+	public List<ProductDto> getAllWishByMemberId(int memberId) {
+		return dao.getAllWishByMemberId(memberId);
+	}
+
+	@Override
+	public int addWish(WishDto wishDto) {
+		return dao.addWish(wishDto);
 	}
 
 }

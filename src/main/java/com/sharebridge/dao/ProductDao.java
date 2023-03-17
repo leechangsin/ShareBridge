@@ -11,4 +11,6 @@ public interface ProductDao {
 	int insertProduct(ProductDto dto);
 	
 	int getProductCountByMemberId(int memberId);
+	
+	List<ProductDto> getAllProducts();
 }

@@ -47,6 +47,11 @@
 		<put-attribute name="content" value="/WEB-INF/views/wish/wish.jsp" />
 	</definition>
 	
+	<!-- wish -->
+	<definition name="cart" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/cart/cart.jsp" />
+	</definition>
+	
 	<!-- 후기 목록 -->
 	<definition name="review" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/review/review.jsp" />

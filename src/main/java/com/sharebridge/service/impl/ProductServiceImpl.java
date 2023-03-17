@@ -30,4 +30,9 @@ public class ProductServiceImpl implements ProductService {
 	public int getProductCountByMemberId(int memberId) {
 		return dao.getProductCountByMemberId(memberId);
 	}
+
+	@Override
+	public List<ProductDto> getAllProducts() {
+		return dao.getAllProducts();
+	}
 }

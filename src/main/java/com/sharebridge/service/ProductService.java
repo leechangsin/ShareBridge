@@ -11,4 +11,6 @@ public interface ProductService {
 	boolean insertProduct(ProductDto dto);
 	
 	int getProductCountByMemberId(int memberId);
+	
+	List<ProductDto> getAllProducts();
 }

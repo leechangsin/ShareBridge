@@ -12,4 +12,12 @@
 	order by wdate DESC
 </select>
 
+<!-- 상품메인화면에 보이게하기 -->
+<select id="getAllProducts" resultType="com.sharebridge.dto.ProductDto">
+	select p.*, w.member_id as wish_member_id
+	from product p
+	left join wish w on p.product_id = w.product_id
+	inner join member m on w.member_id = m.member_id 
+</select>
+
 </mapper>
