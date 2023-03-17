@@ -36,4 +36,8 @@
 	update notification set `read` = b'1' where notification_id = #{notification_id}
 </update>
 
+<delete id="deleteNotificationByNotification_id" parameterType="int">
+	delete from notification where notification_id = #{notification_id}
+</delete>
+
 </mapper>

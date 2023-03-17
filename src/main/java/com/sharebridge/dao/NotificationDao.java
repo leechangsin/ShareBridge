@@ -9,4 +9,5 @@ public interface NotificationDao {
 	int getNotificationCountByMemberId(int memberId);
 	List<NotificationDto> getNotificationList(NotificationListParam nlp);
 	void readNotification(int notification_id);
+	void deleteNotificationByNotification_id(int notification_id);
 }

@@ -31,4 +31,10 @@ public class NotificationDaoImpl implements NotificationDao {
 	public void readNotification(int notification_id) {
 		session.update(ns + "readNotification", notification_id);
 	}
+
+	@Override
+	public void deleteNotificationByNotification_id(int notification_id) {
+		session.delete(ns + "deleteNotificationByNotification_id", notification_id);
+		
+	}
 }

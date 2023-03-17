@@ -30,4 +30,9 @@ public class NotificationServiceImpl implements NotificationService {
 	public void readNotification(int notification_id) {
 		dao.readNotification(notification_id);
 	}
+
+	@Override
+	public void deleteNotificationByNotification_id(int notification_id) {
+		dao.deleteNotificationByNotification_id(notification_id);
+	}
 }

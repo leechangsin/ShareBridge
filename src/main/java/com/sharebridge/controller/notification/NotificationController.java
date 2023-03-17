@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sharebridge.dto.NotificationDto;
 import com.sharebridge.param.NotificationListParam;
@@ -50,4 +49,15 @@ public class NotificationController {
 		return ResponseEntity.status(200).build();
 	}
 	
+	@PostMapping("/notification/delete_notification.do")
+	public ResponseEntity<Void> deleteNotification(HttpSession session, int notification_id) {
+		if(session.getAttribute("member_id") == null) {
+			System.out.println("로그인 페이지로 이동");
+//			return ResponseEntity.status(300).header("Location", "로그인 페이지 URL").build();
+		}
+		
+		notificationService.deleteNotificationByNotification_id(notification_id);
+		
+		return ResponseEntity.status(200).build();
+	}
 }
