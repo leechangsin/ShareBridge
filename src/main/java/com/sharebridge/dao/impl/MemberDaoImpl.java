@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sharebridge.dao.MemberDao;
 import com.sharebridge.dto.MemberDto;
+import com.sharebridge.param.MypageDeleteParam;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -79,5 +80,10 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void updateMemberInfo(MemberDto newMemberInfo) {
 		session.update(ns + "updateMemberInfo", newMemberInfo);
+	}
+
+	@Override
+	public void deleteByMember_id(MypageDeleteParam param) {
+		session.delete(ns + "deleteByMember_id", param);
 	}
 }

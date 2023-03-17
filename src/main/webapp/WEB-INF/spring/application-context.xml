@@ -24,7 +24,7 @@
 		<property name="password" value="${jdbc.password}" />
 		<property name="initialSize" value="${jdbc.initialSize}" />
 		<property name="maxActive" value="${jdbc.maxActive}" />
-		<property name="minIdle" value="${jdbc.initialSize}"></property>	<!-- 최소사이즈를 초기값으로 설정 -->
+		<property name="minIdle" value="${jdbc.initialSize}" />	<!-- 최소사이즈를 초기값으로 설정 -->
 		<property name="maxWait" value="3000" />							<!-- 대기시간이 최대3초 -->
 		<property name="poolPreparedStatements" value="true" />
 		<property name="maxOpenPreparedStatements" value="50" /> 			<!-- 동시에 접속했을 때 가져갈 수 있는 최대 갯수 -->

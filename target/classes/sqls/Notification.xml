@@ -13,7 +13,31 @@
 	join product as p
 	on r.product_id = p.product_id
 	where p.member_id = #{memberId}
-	order by n.read DESC, n.rdate DESC
 </select>
+
+<select id="getNotificationList" parameterType="com.sharebridge.param.NotificationListParam" resultType="com.sharebridge.dto.NotificationDto">
+	select *
+	from notification as n
+	join request as r
+	on n.request_id = r.request_id
+	where r.member_id = #{member_id}
+	order by n.read desc, n.rdate desc
+	<choose>
+		<when test="limitEnd == 0">
+			limit 0, 20
+		</when>
+		<otherwise>
+			limit #{limitStart}, #{limitEnd}
+		</otherwise>
+	</choose>
+</select>
+
+<update id="readNotification" parameterType="int">
+	update notification set `read` = b'1' where notification_id = #{notification_id}
+</update>
+
+<delete id="deleteNotificationByNotification_id" parameterType="int">
+	delete from notification where notification_id = #{notification_id}
+</delete>
 
 </mapper>

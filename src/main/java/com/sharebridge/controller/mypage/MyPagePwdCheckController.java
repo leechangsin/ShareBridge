@@ -53,6 +53,8 @@ public class MyPagePwdCheckController {
 				
 				response.setStatus(300);
 				response.setHeader("Location", redirectURL);
+			} else {
+				response.setStatus(400);
 			}
 		}
 	}
