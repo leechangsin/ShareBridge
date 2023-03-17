@@ -34,6 +34,10 @@ public class ReviewDto implements Serializable {
 	private String photo;
 	private LocalDateTime rdate;
 	
+	public ReviewDto() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public ReviewDto(int review_id, int product_id, int renter_id, int rentee_id, String content, int rating, String photo, LocalDateTime rdate) {
 		this.review_id = review_id;
 		this.product_id = product_id;

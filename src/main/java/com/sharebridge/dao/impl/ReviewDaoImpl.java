@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.sharebridge.dao.ReviewDao;
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.RequestDto;
+import com.sharebridge.dto.ReviewDto;
 
 @Repository
 public class ReviewDaoImpl implements ReviewDao {
@@ -41,5 +42,12 @@ public class ReviewDaoImpl implements ReviewDao {
 	public String reviewListThree(int member_id) {
 		
 		return session.selectOne(ns + "reviewListThree", member_id);
+	}
+
+	// 후기 작성
+	@Override
+	public int writeRev(ReviewDto dto) {
+		
+		return session.insert(ns + "writeRev", dto);
 	}
 }

@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.RequestDto;
+import com.sharebridge.dto.ReviewDto;
 import com.sharebridge.service.ReviewService;
 
 @Controller
@@ -48,5 +50,30 @@ public class ReviewController {
 		model.addAttribute("nickname", nickname);
 		
 		return "review";
+	}
+	
+	@GetMapping(value = "writeReview.do")
+	public String writeReview(ProductDto prod, Model model) {
+		System.out.println("ReviewController writeReview " + new Date());
+		
+		model.addAttribute("prod", prod);
+		
+		return "review_form";
+	}
+	
+	@PostMapping(value = "reviewWriteAf.do")
+	public String reviewWriteAf(ReviewDto dto, Model model) {
+		System.out.println("ReviewController writeReviewAf " + new Date());
+		
+		boolean isS = service.writeRev(dto);
+		String msg = "REVIEW_NO";
+		
+		if(isS) {
+			msg = "REVIEW_OK";
+		}
+		
+		model.addAttribute("writeRev", msg);
+		
+		return "revMsg";
 	}
 }

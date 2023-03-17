@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.sharebridge.dao.ReviewDao;
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.RequestDto;
+import com.sharebridge.dto.ReviewDto;
 import com.sharebridge.service.ReviewService;
 
 @Service
@@ -39,5 +40,12 @@ public class ReviewServiceImpl implements ReviewService {
 	public String reviewListThree(int member_id) {
 		
 		return dao.reviewListThree(member_id);
+	}
+
+	// 후기 작성
+	@Override
+	public boolean writeRev(ReviewDto dto) {
+		int n = dao.writeRev(dto);
+		return n>0?true:false;
 	}
 }

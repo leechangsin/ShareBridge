@@ -1,3 +1,5 @@
+<%@page import="com.sharebridge.dto.ProductDto"%>
+<%@page import="com.sharebridge.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,11 +51,18 @@
 </head>
 <body>
 
+<%
+MemberDto login = (MemberDto)session.getAttribute("login");
+ProductDto prod = (ProductDto)request.getAttribute("prod");
+%>
+
 <div align="center">
 <h1>후기 작성</h1>
 <hr><br>
 
-<form action="reviewWrite" method="post">
+<form action="reviewWriteAf.do" method="post">
+<input type="hidden" name="renter_id" value="<%=prod.getMember_id() %>">
+<input type="hidden" name="rentee_id" value="<%=login.getMember_id() %>">
 <table>
 <tr>
 	<th>별점</th>
@@ -75,7 +84,8 @@
 <tr>
 	<th><br>상품명</th>
 	<td>
-		<br><input value="상품명" name="product_id" readonly="readonly">
+		<br><input type="text" value="<%=prod.getTitle() %>" readonly="readonly">
+		<input type="hidden" value="<%=prod.getProduct_id() %>">
 	</td>
 </tr>
 <tr>
@@ -94,10 +104,6 @@
 </form>
 
 </div>
-
-<script type="text/javascript">
-
-</script>
 
 </body>
 </html>

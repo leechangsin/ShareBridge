@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.RequestDto;
+import com.sharebridge.dto.ReviewDto;
 
 public interface ReviewDao {
 	int getReviewCountByMemberId(int memberId);
@@ -16,4 +17,7 @@ public interface ReviewDao {
 	
 	// 작성해야할 후기 목록(렌터 닉네임)
 	String reviewListThree(int member_id);
+	
+	// 후기 작성
+	int writeRev(ReviewDto dto);
 }

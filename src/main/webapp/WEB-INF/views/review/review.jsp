@@ -64,7 +64,7 @@ if(rentalDate == null || rentalDate.size() == 0){
 			
 			<td><%-- <%=dto.getSdate() + "~" + dto.getEdate() %> --%>임시</td>
 			<td><%=prod.getPrice() %></td>
-			<td><button type="button">후기작성</button></td>
+			<td><button type="button" onclick="writeReview(<%=prod %>)">후기작성</button></td>
 			
 			<%-- <%
 			if(dto.getDel() == 0){
@@ -96,6 +96,12 @@ if(rentalDate == null || rentalDate.size() == 0){
 </table>
 
 </div>
+
+<script type="text/javascript">
+function writeReview(prod) {
+	location.href="writeReview.do?prod=" + prod;
+}
+</script>
 
 </body>
 </html>

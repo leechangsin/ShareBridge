@@ -24,7 +24,7 @@
 
 <!-- 후기 목록2(상품명, 렌터번호, 금액) -->
 <select id="reviewListTwo" parameterType="Integer" resultType="com.sharebridge.dto.ProductDto">
-	select member_id, title, price
+	select member_id, title, price, product_id
 	from product
 	where product_id=#{product_id}
 </select>
@@ -35,5 +35,11 @@
 	from member
 	where member_id=#{member_id}
 </select>
+
+<!-- 후기 작성 -->
+<insert id="writeRev" parameterType="com.sharebridge.dto.ReviewDto">
+	insert into review(review_id, product_id, renter_id, rentee_id, content, rating, photo, rdate)
+	values((select ifnull(max(review_id), 0)+1 from review b), #{product_id}, #{renter_id}, #{rentee_id}, #{content}, #{rating}, null, now())
+</insert>
 
 </mapper>
