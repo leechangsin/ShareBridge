@@ -162,9 +162,13 @@ public class MemberController {
 		String msg = "LOGIN_FAIL";
 		
 		if(dto != null) {
-			session.setAttribute("login", dto);
-			session.setMaxInactiveInterval(60 * 60 * 2);
-			msg = "LOGIN_OK";
+			if(dto.getDel() == 0) {
+				session.setAttribute("login", dto);
+				session.setMaxInactiveInterval(60 * 60 * 2);
+				msg = "LOGIN_OK";
+			} else {
+				msg = "DELETE";
+			}
 		}
 		
 		model.addAttribute("log", msg);

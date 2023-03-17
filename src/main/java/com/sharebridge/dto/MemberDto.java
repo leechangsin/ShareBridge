@@ -29,6 +29,8 @@ public class MemberDto implements Serializable{
 	private String profile;
 	private String rdate;
 	private int auth;
+	private byte del;
+	private String reason;
 	private float rating;
 	
 	public MemberDto() {
@@ -43,6 +45,20 @@ public class MemberDto implements Serializable{
 
 	public MemberDto(int member_id, String email, String pwd, String nickname, String name, String phone_number,
 			String profile, String rdate, int auth, float rating) {
+		this.member_id = member_id;
+		this.email = email;
+		this.pwd = pwd;
+		this.nickname = nickname;
+		this.name = name;
+		this.phone_number = phone_number;
+		this.profile = profile;
+		this.rdate = rdate;
+		this.auth = auth;
+		this.rating = rating;
+	}
+
+	public MemberDto(int member_id, String email, String pwd, String nickname, String name, String phone_number,
+			String profile, String rdate, int auth, byte del, String reason, float rating) {
 		super();
 		this.member_id = member_id;
 		this.email = email;
@@ -53,6 +69,8 @@ public class MemberDto implements Serializable{
 		this.profile = profile;
 		this.rdate = rdate;
 		this.auth = auth;
+		this.del = del;
+		this.reason = reason;
 		this.rating = rating;
 	}
 
@@ -126,6 +144,22 @@ public class MemberDto implements Serializable{
 
 	public void setAuth(int auth) {
 		this.auth = auth;
+	}
+
+	public byte getDel() {
+		return del;
+	}
+
+	public void setDel(byte del) {
+		this.del = del;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 
 	public float getRating() {
