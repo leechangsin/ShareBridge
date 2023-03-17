@@ -4,7 +4,8 @@
 <mapper namespace="Wish">
 	<!-- wish -->
 	<select id="getAllWishByMemberId"
-		resultType="com.sharebridge.dto.CategoryDto"> <!-- wish dto로 만들어서 매핑해주기 -->
+		parameterType="int"
+		resultType="com.sharebridge.dto.ProductDto"> <!-- wish dto로 만들어서 매핑해주기 -->
 		select *
 		from product p
 		inner join wish w on p.product_id = w.product_id
@@ -14,4 +15,8 @@
 	</select>
 
 
+	<insert id="addWish" parameterType="com.sharebridge.dto.WishDto">
+		insert into wish(product_id, member_id, rdate)
+		value(#{product_id}, #{member_id}, now())
+	</insert>
 </mapper>

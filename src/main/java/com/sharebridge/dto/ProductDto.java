@@ -3,6 +3,7 @@ package com.sharebridge.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+
 /*
 CREATE TABLE IF NOT EXISTS `product` (
   `product_id` int(11) NOT NULL COMMENT '상품 번호',
@@ -31,20 +32,22 @@ public class ProductDto implements Serializable{
 	private int member_id;
 	private String title;
 	private String content;
-	private LocalDateTime sdate;
-	private LocalDateTime edate;
+//	private LocalDateTime sdate;
+//	private LocalDateTime edate;
 	private int price;
 	private String photo;
-	private LocalDateTime wdate;
+//	private LocalDateTime wdate;
 	private byte state;
 	private byte del;
+	private int wish_member_id;
+	
 	
 	public ProductDto() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public ProductDto(int product_id, int category_id, int member_id, String title, String content, LocalDateTime sdate,
-			LocalDateTime edate, int price, String photo, LocalDateTime wdate, byte state, byte del) {
+			LocalDateTime edate, int price, String photo, LocalDateTime wdate, byte state, byte del,int wish_member_id) {
 
 		super();
 		this.product_id = product_id;
@@ -52,13 +55,22 @@ public class ProductDto implements Serializable{
 		this.member_id = member_id;
 		this.title = title;
 		this.content = content;
-		this.sdate = sdate;
-		this.edate = edate;
+//		this.sdate = sdate;
+//		this.edate = edate;
 		this.price = price;
 		this.photo = photo;
-		this.wdate = wdate;
+//		this.wdate = wdate;
 		this.state = state;
 		this.del = del;
+		this.wish_member_id = wish_member_id;
+	}
+
+	public int getWish_member_id() {
+		return wish_member_id;
+	}
+
+	public void setWish_member_id(int wish_member_id) {
+		this.wish_member_id = wish_member_id;
 	}
 
 	public int getProduct_id() {
@@ -101,21 +113,15 @@ public class ProductDto implements Serializable{
 		this.content = content;
 	}
 
-	public LocalDateTime getSdate() {
-		return sdate;
-	}
-
-	public void setSdate(LocalDateTime sdate) {
-		this.sdate = sdate;
-	}
-
-	public LocalDateTime getEdate() {
-		return edate;
-	}
-
-	public void setEdate(LocalDateTime edate) {
-		this.edate = edate;
-	}
+	/*
+	 * public LocalDateTime getSdate() { return sdate; }
+	 * 
+	 * public void setSdate(LocalDateTime sdate) { this.sdate = sdate; }
+	 * 
+	 * public LocalDateTime getEdate() { return edate; }
+	 * 
+	 * public void setEdate(LocalDateTime edate) { this.edate = edate; }
+	 */
 
 	public int getPrice() {
 		return price;
@@ -133,14 +139,11 @@ public class ProductDto implements Serializable{
 		this.photo = photo;
 	}
 
-	public LocalDateTime getWdate() {
-		return wdate;
-	}
-
-	public void setWdate(LocalDateTime wdate) {
-		this.wdate = wdate;
-	}
-
+	/*
+	 * public LocalDateTime getWdate() { return wdate; }
+	 * 
+	 * public void setWdate(LocalDateTime wdate) { this.wdate = wdate; }
+	 */
 	public byte getState() {
 		return state;
 	}
@@ -160,7 +163,7 @@ public class ProductDto implements Serializable{
 	@Override
 	public String toString() {
 		return "ProductDto [product_id=" + product_id + ", category_id=" + category_id + ", member_id=" + member_id
-				+ ", title=" + title + ", content=" + content + ", sdate=" + sdate + ", edate=" + edate + ", price="
-				+ price + ", photo=" + photo + ", wdate=" + wdate + ", state=" + state + ", del=" + del + "]";
+				+ ", title=" + title + ", content=" + content +  ", price="
+				+ price + ", photo=" + photo + ", state=" + state + ", del=" + del + ", wish_member_id=" + wish_member_id +"]";
 	}
 }

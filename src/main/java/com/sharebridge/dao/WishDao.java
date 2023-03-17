@@ -2,8 +2,10 @@ package com.sharebridge.dao;
 
 import java.util.List;
 
+import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.WishDto;
 
 public interface WishDao {
-	List<WishDto> getAllWishByMemberId();
+	List<ProductDto> getAllWishByMemberId(int memberId);
+	int addWish(WishDto wishDto);
 }

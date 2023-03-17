@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <body>
 	<div class="album py-5 bg-light">
 		<div class="container">
-
+		<h2>위시 리스트</h2>
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 				<c:forEach items="${wishes}" var="wish">
 					<div class="col">
@@ -22,12 +23,12 @@
 
 							<div class="card-body">
 								<div class="d-flex justify-content-between align-items-center">
-									<p class="card-text">${product.title}</p>
+									<p class="card-text">${wish.title}</p>
 									<div>
 										<img src="/sharebridge/images/wish_icon.png" alt="cart">
 									</div>
 								</div>
-								<p class="card-text">${product.price}원/일</p>
+								<p class="card-text">${wish.price}원/일</p>
 
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group">
