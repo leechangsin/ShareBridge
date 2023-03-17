@@ -3,15 +3,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<!-- flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="js/rentalFrm.js" defer></script>
 
 <%
-	MemberDto login = (MemberDto)session.getAttribute("login");
+	// MemberDto login = (MemberDto)session.getAttribute("login");
 	ProductDto getProduct = (ProductDto)request.getAttribute("detail");
 	
-	String sdate = getProduct.getSdate();
-	String edate = getProduct.getEdate();
+	String sdate = getProduct.getSdate().toString();
+	String edate = getProduct.getEdate().toString();
 %>
 
 <div class="rental_from">
@@ -25,19 +29,22 @@
 				<tr>
 					<td>이름</td>
 					<td>
-						<input type="text" id="name" name="name" value="<%=login.getName() %>">
+						<%-- <input type="text" id="name" name="name" value="<%=login.getName() %>"> --%>
+						<input type="text" id="name" name="name" value="에비씨">
 					</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
 					<td>
-						<input type="email" id="email" name="email" value="<%=login.getEmail() %>">
+						<%-- <input type="email" id="email" name="email" value="<%=login.getEmail() %>"> --%>
+						<input type="email" id="email" name="email" value="abc081@naver.com">
 					</td>
 				</tr>
 				<tr>
 					<td>휴대전화</td>
 					<td>
-						<input type="number" id="phone_number" name="phone_number" value="<%=login.getPhone_number()%>">
+						<%-- <input type="number" id="phone_number" name="phone_number" value="<%=login.getPhone_number()%>"> --%>
+						<input type="number" id="phone_number" name="phone_number" value="01012345678">
 					</td>
 				</tr>
 				<tr>
@@ -82,7 +89,7 @@
 		</div>
 		<!-- payment -->
 		<div class="payment">
-			<label><input type="radio" name="patmenr" value="card" checked>신용카드</label>
+			<label><input type="radio" name="payment" value="card" checked>신용카드</label>
 			<label><input type="radio" name="payment" value="account">가상계좌</label>
 		</div>
 		<!-- total price -->
@@ -96,6 +103,15 @@
 	</form>
 </div>
 
-<<script type="text/javascript">
+<script type="text/javascript">
 	range(<%=sdate%>, <%=edate%>);
+	/* 
+	function dateDiff(day1, day2) {
+		const d1 = new Date(day1);
+	  	const d2 = new Date(day2);
+	  
+	  	const diff = d1.getTime() - d2.getTime();
+	  	
+	  	return Math.abs(diff / (1000 * 60 * 60 * 24));
+	} */
 </script>

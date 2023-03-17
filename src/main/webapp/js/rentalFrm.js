@@ -16,6 +16,18 @@ function range(sdate, edate) {
 			to:edate
 		}]
 	});
+	
+	diffDate(sdate, edate);
+	
+}
+
+function diffDate(sdate, edate) {
+	const d1 = new Date(sdate);
+  	const d2 = new Date(edate);
+  
+  	const diff = d1.getTime() - d2.getTime();
+  	
+  	return Math.abs(diff / (1000 * 60 * 60 * 24));	
 }
 
 $(document).ready(function() {
@@ -24,46 +36,54 @@ $(document).ready(function() {
 	
 	
 	// 수령자 정보
-	if($("#same_chk").is(":checked")) {
-		let name = $("#name").val();
-		let email = $("#email").val();
-		
-		$("#receiver").val(name);
-		$("#receiver_phone").val(phone);
-	}
+	$("#same_chk").click(function() {
+		if($("#same_chk").is(":checked")) {
+			alert("checked");
+			let name = $("#name").val();
+			let phone = $("#phone_number").val();
+			
+			$("#receiver").val(name);
+			$("#receiver_phone").val(phone);			
+		} else {
+			$("#receiver").val("");
+			$("#receiver_phone").val("");
+		}
+	});
 	
 	// 빈칸검사
 	$("#regiBtn").click(function(e) {
 		e.preventDefault();
 		
-		if($("#name").val().trim() == undefined || $("#name").val().trim() == "") {
+		if($("#name").val() == undefined || $("#name").val().trim() == "") {
 			alert("대여자명을 입력해주세요");
 			return;
-		} else if($("#email").val().trim() == undefined || $("#email").val().trim() == "") {
+		} else if($("#email").val() == undefined || $("#email").val().trim() == "") {
 			alert("이메일을 입력해주세요");
 			return;
-		} else if($("phone_number").val().trim() == undefined || $("#phone_number").val().trim() == "") {
+		} else if($("#phone_number").val() == undefined || $("#phone_number").val().trim() == "") {
 			alert("휴대전화 번호를 입력해주세요");
 			return;
-		} else if($("#sdate").val().trim() == undefined || $("#sdate").val().trim() == "") {
+		} else if($("#sdate").val() == undefined || $("#sdate").val().trim() == "") {
 			alert("시작일을 선택해주세요");
 			return;
-		} else if($("#edate").val().trim() == undefined || $("#edate").val().trim() == "") {
+		} else if($("#edate").val() == undefined || $("#edate").val().trim() == "") {
 			alert("마지막일을 선택해주세요");
 			return;
-		} else if($("#receiver").val().trim() == undefined || $("#receiver").val().trim() == "") {
+		} else if($("#receiver").val() == undefined || $("#receiver").val().trim() == "") {
 			alert("수령자명을 입력해주세요");
 			return;
-		} else if($("#receiver_phone").val().trim() == undefined || $("#receiver").val().trim() == "") {
+		} else if($("#receiver_phone").val() == undefined || $("#receiver").val().trim() == "") {
 			alert("수령자 휴대전화 번호를 입력해주세요");
 			return;
-		} else if($("#postcode").val().trim() == undefined || $("#postcode").val().trim() == "") {
+		} else if($("#postcode").val() == undefined || $("#postcode").val().trim() == "") {
 			alert("우편번호를 조회해주세요");
 			return;
-		} else if($("#detailAddress").val().trim() == undefined || $("#detailAddress").val().trim() == "") {
+		} else if($("#detailAddress").val() == undefined || $("#detailAddress").val().trim() == "") {
 			alert("상세주소를 입력해주세요");
 			return;
 		} 
+		
+		saveAddress();
 	});
 });
 
@@ -109,9 +129,9 @@ function findPostcode() {
             // 커서를 상세주소 필드로 이동한다.
             document.getElementById("detailAddress").focus();
             
-            saveAddress();
         }
     }).open();
+    
 }
 
 function saveAddress() {
@@ -121,4 +141,6 @@ function saveAddress() {
 	
 	let saveAddress = document.getElementById("saveAddress").value
 	saveAddress = `${postcode}-${address}-${detail}`;
+	
+	alert(saveAddress);
 }

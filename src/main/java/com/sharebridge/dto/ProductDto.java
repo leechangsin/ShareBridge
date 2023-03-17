@@ -1,6 +1,7 @@
 package com.sharebridge.dto;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class ProductDto implements Serializable {
 	private int product_id;
@@ -8,19 +9,19 @@ public class ProductDto implements Serializable {
 	private int member_id;
 	private String title;
 	private String content;
-	private String sdate;
-	private String edate;
+	private LocalDateTime sdate;
+	private LocalDateTime edate;
 	private int price;
 	private String photo;
-	private String wdate;
+	private LocalDateTime wdate;
 	private boolean state;	
 	private boolean del;
 	
 	public ProductDto() {
 	}
 
-	public ProductDto(int product_id, int category_id, int member_id, String title, String content, String sdate,
-			String edate, int price, String photo, String wdate, boolean state, boolean del) {
+	public ProductDto(int product_id, int category_id, int member_id, String title, String content, LocalDateTime sdate,
+			LocalDateTime edate, int price, String photo, LocalDateTime wdate, boolean state, boolean del) {
 		super();
 		this.product_id = product_id;
 		this.category_id = category_id;
@@ -76,19 +77,19 @@ public class ProductDto implements Serializable {
 		this.content = content;
 	}
 
-	public String getSdate() {
+	public LocalDateTime getSdate() {
 		return sdate;
 	}
 
-	public void setSdate(String sdate) {
+	public void setSdate(LocalDateTime sdate) {
 		this.sdate = sdate;
 	}
 
-	public String getEdate() {
+	public LocalDateTime getEdate() {
 		return edate;
 	}
 
-	public void setEdate(String edate) {
+	public void setEdate(LocalDateTime edate) {
 		this.edate = edate;
 	}
 
@@ -108,11 +109,11 @@ public class ProductDto implements Serializable {
 		this.photo = photo;
 	}
 
-	public String getWdate() {
+	public LocalDateTime getWdate() {
 		return wdate;
 	}
 
-	public void setWdate(String wdate) {
+	public void setWdate(LocalDateTime wdate) {
 		this.wdate = wdate;
 	}
 
