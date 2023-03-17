@@ -10,7 +10,7 @@ public interface ProductDao {
 		
 	int insertProduct(ProductDto dto);
 	
-	int updateProduct(int product_id);
+	int updateProduct(ProductDto dto);
 	
 	ProductDto getProduct(int product_id);
 	

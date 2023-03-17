@@ -19,10 +19,10 @@
 </select>
 
 <!-- 상품 수정 -->
-<update id="updateProduct" parameterType="Integer">
+<update id="updateProduct" parameterType="com.sharebridge.dto.ProductDto">
 	update product
 	set category_id=${category_id}, title=#{title}, content=#{content}, sdate=timestamp(#{sdate}), edate=timestamp(#{edate}),
-		photo=#{photo}, now(), 0, 0);
+		photo=#{photo}, wdate=now()
 	where product_id = ${product_id}
 </update>
 

@@ -39,4 +39,26 @@ if(delProduct != null && !delProduct.equals("")) {
 		<%
 	}
 }
+
+String updateProduct = (String)request.getAttribute("updateProduct");
+int pid = Integer.parseInt(request.getAttribute("pid").toString());
+int cid = Integer.parseInt(request.getAttribute("cid").toString());
+
+if(updateProduct != null && !updateProduct.equals("")) {
+	if(updateProduct.equals("PRODUCT_UPDATE_OK")) {
+		%>
+		<script type="text/javascript">
+			alert("상품이 성공적으로 수정되었습니다");
+			location.href = "productDetail.do?product_id=<%=pid%>&category_id=<%=cid%>";
+		</script>
+		<%
+	} else {
+		%>
+		<script type="text/javascript">
+			alert("상품이 수정되지 않았습니다");
+			location.href = "productDetail.do";
+		</script>		
+		<%
+	}
+}
 %>

@@ -79,19 +79,40 @@ public class ProductController {
 		return "detailsMsg";
 	}
 	
-	// 상품 수정
-	@GetMapping("/updateProduct.do")
-	public String updateProduct(int product_id) {
-		boolean isS = service.updateProduct(product_id);
-		String msg = "Yes";
-		if(isS) {
-			System.out.println(msg);
-		} else {
-			msg = "No";
-			System.out.println(msg);
-		}
+	// 수정페이지로 이동
+	@GetMapping("goUpdate.do")
+	public String goUpdate(Model model, int product_id, int category_id) {
+		List<CategoryDto> allCategory = service.allCategory();
+		ProductDto detail = service.getProduct(product_id);
 		
-		return "productDetail";	// message.jsp로 이동 혹은 디테일로 바로 이동
+		model.addAttribute("allCategory", allCategory);
+		model.addAttribute("detail", detail);
+		model.addAttribute("cid", category_id);
+		
+		return "productUpdate";
+	}
+	
+	// 상품 수정
+	@PostMapping("/updateProduct.do")
+	public String updateProduct(ProductDto dto,
+								@RequestParam(value="fileload", required=false)
+								MultipartFile fileload,
+								HttpServletRequest req,
+								Model model) {
+		
+		// 수정된 사진
+		
+		boolean isS = service.updateProduct(dto);
+		String msg = "PRODUCT_UPDATE_OK";
+		if(!isS) {
+			msg = "PRODUCT_UPDATE_NO";
+		} 
+		
+		model.addAttribute("updateProduct", msg);
+		model.addAttribute("pid", dto.getProduct_id());
+		model.addAttribute("cid", dto.getCategory_id());
+		
+		return "productDetail";	
 	}
 		
 	// 상품 상세 보기

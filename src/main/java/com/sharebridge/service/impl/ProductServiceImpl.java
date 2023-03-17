@@ -27,8 +27,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public boolean updateProduct(int product_id) {
-		int n = dao.updateProduct(product_id);
+	public boolean updateProduct(ProductDto dto) {
+		int n = dao.updateProduct(dto);
 		return n>0?true:false;
 	}
 

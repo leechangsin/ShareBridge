@@ -29,8 +29,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public int updateProduct(int product_id) {
-		return session.update(ns + "updateProduct", product_id);
+	public int updateProduct(ProductDto dto) {
+		return session.update(ns + "updateProduct", dto);
 	}
 
 	@Override

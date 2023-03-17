@@ -10,7 +10,7 @@ public interface ProductService {
 	
 	boolean insertProduct(ProductDto dto);
 	
-	boolean updateProduct(int product_id);
+	boolean updateProduct(ProductDto dto);
 	
 	ProductDto getProduct(int product_id);
 	
