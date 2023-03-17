@@ -9,7 +9,7 @@ function goTo(url) {
 		url = "/" + url;
 	}
 	
-	if(!url.startsWith(PROJECT_NAME)) {
+	if(!url.startsWith("/" + PROJECT_NAME)) {
 		url = "/" + PROJECT_NAME + url;
 	}
 	

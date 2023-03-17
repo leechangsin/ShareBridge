@@ -48,7 +48,7 @@
 			, phone_number = #{phone_number}
 		</if>
 	</set>
-	where member_id = member_id
+	where member_id = #{member_id}
 </update>
 
 <!-- 아이디 중복확인 -->
@@ -73,7 +73,7 @@
 
 <!-- 로그인 -->
 <select id="login" parameterType="com.sharebridge.dto.MemberDto" resultType="com.sharebridge.dto.MemberDto">
-	select member_id, email, nickname, name, phone_number, profile, del, rdate, rating
+	select member_id, email, pwd, nickname, name, phone_number, profile, del, rdate, rating
 	from member
 	where email=#{email} and pwd=#{pwd}
 </select>

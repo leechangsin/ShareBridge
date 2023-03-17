@@ -4,9 +4,7 @@
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_update.css">
 
 <style>
-	#id {
-		border: none;
-	}
+	
 </style>
 
 <main class="container">
@@ -51,6 +49,7 @@
 	</div>
 </main>
 
+<script src="/sharebridge/js/public/common.js"></script>
 <script>
 	$("#main_contents > main > div > form > div:nth-child(7) > button").on("click", function() {
 		let pwd = $("#pwd").val().trim();
@@ -78,12 +77,11 @@
 		}
 		
 		$.ajax({
-			url: $("form").attr("action"),
-			type: $("form").attr("method"),
+			url: $("div.container > form").attr("action"),
+			type: $("div.container > form").attr("method"),
 			data: {"pwd": pwd, "nickname": nickname, "name": name, "phone_number": phone_number},
 			success: function() {
 				alert("회원 정보를 수정했습니다.");
-				location.reload();
 			},
 			error: function(xhr) {
 				if(xhr.status == 409) {
@@ -94,6 +92,8 @@
 						alert("이미 사용중인 휴대전화번호입니다.");
 						$("#phone_number").focus();
 					}
+				} else if(xhr.status == 300) {
+					goTo(xhr.getResponseHeader("Location"));
 				} else if(xhr.status == 400) {
 					
 				} else {

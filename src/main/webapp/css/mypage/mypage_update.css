@@ -21,6 +21,10 @@ input {
 	border-radius: 10px!important;
 }
 
+#id {
+	border: none;
+}
+
 #main_contents > main > div > form > div:nth-child(7) > button {
 	width: 100%;
 	background: lightgray;
