@@ -17,7 +17,6 @@ $(document).ready(function() {
 	// 빈칸검사
 	$("#regiBtn").click(function(e) {
 		e.preventDefault();
-		console.log($("#content").val());
 		if($("#choice").val().trim() == "") {
 			alert("카테고리를 선택해주세요");
 			return;

@@ -50,7 +50,6 @@
 							}
 						%>
 					</select>
-					<%-- <input type="hidden" value="<%=login.getMember_id() %>" name="member_id" /> --%>
 				</td>
 			</tr>
 			<tr>
@@ -86,7 +85,7 @@
 				    	<input id="file" type="file" accept="image/*" name="file" onchange="changeImg()"/>
 				    	<span>+</span>
 				    </label>
-				    <img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" id="preview" class="image-box" />
+				    <img src="<%=getProduct.getPhoto() %>" id="preview" class="image-box" />
 				    <button type="button" class="deleteBtn" onclick="deleteImg()">
 				    	<img src="images/delete_icon.png" />
 				    </button>
@@ -107,9 +106,5 @@ $(document).ready(function() {
 	$("#backBtn").click(function() {
 		location.href="productDetail.do?product_id=" + <%=pid%> + "&category_id=" + <%=cid%>
 	});	
-	
-	$("#regiBtn").click(function() {
-		location.href="updateProduct.do";
-	});
 });
 </script>

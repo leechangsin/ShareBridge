@@ -100,19 +100,56 @@ public class ProductController {
 								HttpServletRequest req,
 								Model model) {
 		
-		// 수정된 사진
+		// 사진 수정
+		if(fileload == null) {	// 기존의 사진 저장
+			System.out.println("fileload is null");
+			ProductDto getProduct = service.getProduct(dto.getProduct_id());
+			dto.setPhoto(getProduct.getPhoto());
+			
+		} else {	// 수정된 사진 저장
+			System.out.println("fileload is not null");
+			// filename 취득(원본)
+			String filename = fileload.getOriginalFilename();
+			
+			// upload 경로
+			// folder -> 일단 로컬에 저장, 나중에 서버에 저장으로 변경할 것
+			String fupload = "C:\\upload";
+			
+			// server
+			// String fupload = req.getServletContext().getRealPath("/upload/product");
+			
+			// 파일명을 충돌되지 않는 명칭으로 변경
+			String newfilename = FileUtil.getNewFileName(filename);
+			
+			String photoPath = fupload + "/" + newfilename;
+			dto.setPhoto(photoPath);	// DB에 파일 경로 저장 
+			
+			// 파일 생성
+			File file = new File(fupload + "/" + newfilename);
+			
+			try {			
+				// 파일 업로드
+				FileUtils.writeByteArrayToFile(file, fileload.getBytes());
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
+		// DB에 저장
 		boolean isS = service.updateProduct(dto);
 		String msg = "PRODUCT_UPDATE_OK";
-		if(!isS) {
+		if(isS) {
+
+		} else {					
 			msg = "PRODUCT_UPDATE_NO";
-		} 
+		}
 		
 		model.addAttribute("updateProduct", msg);
 		model.addAttribute("pid", dto.getProduct_id());
 		model.addAttribute("cid", dto.getCategory_id());
 		
-		return "productDetail";	
+		return "detailsMsg";	
 	}
 		
 	// 상품 상세 보기
