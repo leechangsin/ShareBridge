@@ -13,4 +13,12 @@ public interface ProductService {
 	int getProductCountByMemberId(int memberId);
 	
 	List<ProductDto> getAllProducts();
+	
+	boolean updateProduct(ProductDto dto);
+	
+	ProductDto getProduct(int product_id);
+	
+	CategoryDto getCate(int category_id);
+	
+	boolean delProduct(int product_id);
 }

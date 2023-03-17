@@ -13,4 +13,12 @@ public interface ProductDao {
 	int getProductCountByMemberId(int memberId);
 	
 	List<ProductDto> getAllProducts();
+		
+	int updateProduct(ProductDto dto);
+	
+	ProductDto getProduct(int product_id);
+	
+	CategoryDto getCate(int category_id);
+	
+	int delProduct(int product_id);
 }

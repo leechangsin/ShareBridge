@@ -29,9 +29,23 @@
 
 <!-- 상품 상세 보기 -->
 <select id="getProduct" parameterType="Integer" resultType="com.sharebridge.dto.ProductDto">
-	select category_id, member_id, title, content, sdate, edate, price
+	select *
 	from product
 	where product_id = ${product_id};
 </select>
 
+<!-- 상품 수정 -->
+<update id="updateProduct" parameterType="com.sharebridge.dto.ProductDto">
+	update product
+	set category_id=${category_id}, title=#{title}, content=#{content}, sdate=timestamp(#{sdate}), edate=timestamp(#{edate}),
+		photo=#{photo}, wdate=now()
+	where product_id = ${product_id}
+</update>
+
+<!-- 상품 삭제 -->
+<delete id="delProduct" parameterType="Integer">
+	update product
+	set del = 1
+	where product_id = ${product_id}
+</delete>
 </mapper>

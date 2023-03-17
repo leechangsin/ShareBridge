@@ -14,7 +14,6 @@
 <!-- css -->
 <link rel="stylesheet" href="css/details/productRegi.css">
 
-
 <% 	
 	MemberDto login = (MemberDto)session.getAttribute("login");
 	List<CategoryDto> cateList = (List<CategoryDto>)request.getAttribute("allCategory");
@@ -89,4 +88,4 @@
 			</tr>
 		</table>
 	</form>
-</div>
+</div> 

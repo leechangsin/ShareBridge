@@ -71,7 +71,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/mypage/delete.jsp" />
 	</definition>
 	
-	<!-- product -->
+	<!-- product registration -->
 	<definition name="productRegi" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/details/productRegi.jsp"></put-attribute>
 	</definition>
@@ -86,4 +86,13 @@
 		<put-attribute name="content" value="/WEB-INF/views/details/detailsMsg.jsp"></put-attribute>
 	</definition>
 	
+	<!-- product detail -->
+	<definition name="productDetail" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/productDetail.jsp"></put-attribute>
+	</definition>
+	
+	<!-- product update -->
+	<definition name="productUpdate" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/productUpdate.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

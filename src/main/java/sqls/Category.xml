@@ -8,4 +8,11 @@
 		select *
 		from category
 	</select>
+	
+	<!-- 해당 상품의 카테고리 -->
+	<select id="getCate" parameterType="Integer" resultType="com.sharebridge.dto.CategoryDto">
+		select *
+		from category
+		where category_id = ${category_id}
+	</select>
 </mapper>
