@@ -67,12 +67,6 @@ $(document).ready(function() {
 	});
 });
 
-function chkBlank(val, msg) {
-	if(val.trim() == undefined || val.trim() == "") {
-			alert(msg);
-			return;
-}
-
 // 주소찾기
 function findPostcode() {
     new daum.Postcode({
