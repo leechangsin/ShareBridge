@@ -12,32 +12,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.sharebridge.dto.CategoryDto;
+import com.sharebridge.dto.WishDto;
 import com.sharebridge.service.CategoryService;
 import com.sharebridge.service.ProductService;
+import com.sharebridge.service.WishService;
 import com.sharebridge.service.impl.CategoryServiceImpl;
 
 @Controller
-public class sbcontroller {
+public class wishController {
 
 	@Autowired
-	CategoryService categoryService;
-
-	//category
-	@GetMapping(value = "baseLayout.do")
-	public String baseLayout(HttpSession session, Model model) {
+	WishService service;
+	
+	@GetMapping(value = "wish.do")
+	public String wish(HttpSession session, Model model) {
 		System.out.println("sbcontroller baseLayout" + new Date());
 
-		List<CategoryDto> categories = categoryService.getAllCategory();
-
-//		for (CategoryDto x : categories) { //객체가져오기
-//			x.getCategory_id();
-//			System.out.println(x);
-//		}
-
-		model.addAttribute("displayCategories", categories.stream().limit(3).toList()); // 3개만 가져오기
-		model.addAttribute("hideCategories", categories.stream().skip(3).toList()); // 3개 이후부터 가져오기
-
-		return "baseLayout";
-
+		List<WishDto> wishes = service.getAllWishByMemberId();
+		model.addAttribute("wishes", wishes);
+		return "wish";
 	}
 }

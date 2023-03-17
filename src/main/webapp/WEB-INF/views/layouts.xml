@@ -42,6 +42,11 @@
 		<put-attribute name="content" value="/WEB-INF/views/login/logMsg.jsp" />
 	</definition>
 	
+	<!-- 로그인 -->
+	<definition name="wish" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/wish/wish.jsp" />
+	</definition>
+	
 	<!-- mypage -->
 	<definition name="mypage_main" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/mypage/mypage.jsp" />
