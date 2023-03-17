@@ -45,8 +45,12 @@ public class ProductController {
 		// filename 취득(원본)
 		String filename = fileload.getOriginalFilename();
 		
-		// upload 경로 -> folder
+		// upload 경로
+		// folder -> 일단 로컬에 저장, 나중에 서버에 저장으로 변경할 것
 		String fupload = "C:\\upload";
+		
+		// server
+		// String fupload = req.getServletContext().getRealPath("/upload/product");
 		
 		System.out.println("fupload: " + fupload);
 		
@@ -139,9 +143,7 @@ public class ProductController {
 		// DB에 저장
 		boolean isS = service.updateProduct(dto);
 		String msg = "PRODUCT_UPDATE_OK";
-		if(isS) {
-
-		} else {					
+		if(!isS) {					
 			msg = "PRODUCT_UPDATE_NO";
 		}
 		
