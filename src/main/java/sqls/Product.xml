@@ -8,21 +8,21 @@
 	insert into product(product_id, category_id, member_id, title, content, 
 						sdate, edate, price, photo, wdate, state, del)
 	values((select LPAD(IFNULL(MAX(product_id) + 1, 1), 4, 0) from product p), ${category_id}, ${member_id}, #{title}, #{content}, 
-			timestamp(#{sdate}), timestamp(#{edate}), ${price}, #{photo}, now(), 0, 0);
+			timestamp(#{sdate}), timestamp(#{edate}), ${price}, #{photo}, now(), 0, 0)
 </insert>
 
 <!-- 상품 상세 보기 -->
 <select id="getProduct" parameterType="Integer" resultType="com.sharebridge.dto.ProductDto">
 	select *
 	from product
-	where product_id = ${product_id};
+	where product_id = ${product_id}
 </select>
 
 <!-- 상품 수정 -->
 <update id="updateProduct" parameterType="Integer">
 	update product
 	set category_id=${category_id}, title=#{title}, content=#{content}, sdate=timestamp(#{sdate}), edate=timestamp(#{edate}),
-		photo=#{photo}, now(), 0, 0);
+		photo=#{photo}, wdate=now()
 	where product_id = ${product_id}
 </update>
 
