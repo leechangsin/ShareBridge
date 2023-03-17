@@ -43,4 +43,9 @@
 	<definition name="productUpdate" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/details/productUpdate.jsp"></put-attribute>
 	</definition>
+	
+	<!-- rental form -->
+	<definition name="rentalFrm" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/rentalFrm.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

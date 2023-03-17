@@ -1,15 +1,77 @@
 	
+		
+// flatpickr
+function range(sdate, edate) {	
+	const sfp = flatpickr("#start", {
+		dateFormat: "Y-m-d",
+		disable : [{
+			from:sdate,
+			to:edate
+		}]
+	});
+	const efp = flatpickr("#end", {
+		dateFormat: "Y-m-d",
+		disable : [{
+			from:sdate,
+			to:edate
+		}]
+	});
+}
+
 $(document).ready(function() {
+	$(".selector").on('focus', function(currentTarget) {$(currentTarget).blur()});
+	$(".selector").prop('readonly', false);	
+	
+	
 	// 수령자 정보
 	if($("#same_chk").is(":checked")) {
-		$("#receiver").val();
-		$("#receiver_phone").val();
+		let name = $("#name").val();
+		let email = $("#email").val();
+		
+		$("#receiver").val(name);
+		$("#receiver_phone").val(phone);
 	}
 	
 	// 빈칸검사
-	
-	
+	$("#regiBtn").click(function(e) {
+		e.preventDefault();
+		
+		if($("#name").val().trim() == undefined || $("#name").val().trim() == "") {
+			alert("대여자명을 입력해주세요");
+			return;
+		} else if($("#email").val().trim() == undefined || $("#email").val().trim() == "") {
+			alert("이메일을 입력해주세요");
+			return;
+		} else if($("phone_number").val().trim() == undefined || $("#phone_number").val().trim() == "") {
+			alert("휴대전화 번호를 입력해주세요");
+			return;
+		} else if($("#sdate").val().trim() == undefined || $("#sdate").val().trim() == "") {
+			alert("시작일을 선택해주세요");
+			return;
+		} else if($("#edate").val().trim() == undefined || $("#edate").val().trim() == "") {
+			alert("마지막일을 선택해주세요");
+			return;
+		} else if($("#receiver").val().trim() == undefined || $("#receiver").val().trim() == "") {
+			alert("수령자명을 입력해주세요");
+			return;
+		} else if($("#receiver_phone").val().trim() == undefined || $("#receiver").val().trim() == "") {
+			alert("수령자 휴대전화 번호를 입력해주세요");
+			return;
+		} else if($("#postcode").val().trim() == undefined || $("#postcode").val().trim() == "") {
+			alert("우편번호를 조회해주세요");
+			return;
+		} else if($("#detailAddress").val().trim() == undefined || $("#detailAddress").val().trim() == "") {
+			alert("상세주소를 입력해주세요");
+			return;
+		} 
+	});
 });
+
+function chkBlank(val, msg) {
+	if(val.trim() == undefined || val.trim() == "") {
+			alert(msg);
+			return;
+}
 
 // 주소찾기
 function findPostcode() {

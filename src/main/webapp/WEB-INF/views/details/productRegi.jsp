@@ -1,11 +1,10 @@
-<%@page import="com.sharebridge.dto.MemberDto"%>
+<%--@page import="com.sharebridge.dto.MemberDto"--%>
 <%@page import="com.sharebridge.dto.CategoryDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!-- jquery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
 <!-- flatpickr -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -15,7 +14,7 @@
 <link rel="stylesheet" href="css/details/productRegi.css">
 
 <% 	
-	MemberDto login = (MemberDto)session.getAttribute("login");
+	// MemberDto login = (MemberDto)session.getAttribute("login");
 	List<CategoryDto> cateList = (List<CategoryDto>)request.getAttribute("allCategory");
 %>
 
@@ -40,6 +39,7 @@
 						%>
 					</select>
 					<%-- <input type="hidden" value="<%=login.getMember_id() %>" name="member_id" /> --%>
+					<input type="hidden" value="1" name="member_id" />
 				</td>
 			</tr>
 			<tr>
@@ -72,7 +72,7 @@
 				<th>사진등록</th>
 				<td class="photo_regi">
 				    <label for="file" class="upload-btn">
-				    	<input id="file" type="file" accept="image/*" name="file" onchange="changeImg()"/>
+				    	<input id="file" type="file" accept="image/*" name="fileload" onchange="changeImg()"/>
 				    	<span>+</span>
 				    </label>
 				    <img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" id="preview" class="image-box" />

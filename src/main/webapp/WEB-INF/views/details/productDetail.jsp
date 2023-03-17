@@ -3,11 +3,7 @@
 <%@page import="com.sharebridge.dto.ProductDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <style type="text/css">
 .product_info {
 	display: flex;
@@ -36,17 +32,7 @@ int cid = getProduct.getCategory_id();
 	<%-- 상품 정보(이미지, 카테고리, 상품명, 기간 등등) --%>
 	<div class="product_info">
 		<div class="product_photo">
-			<%
-				if(getProduct.getPhoto() == null || getProduct.getPhoto().equals("")) {
-					%>
-					<img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" alt="상품이미지" class="preview">
-					<%
-				} else {
-					%>
-					<img src="<%=getProduct.getPhoto() %>" alt="상품이미지" class="preview">					
-					<%
-				}
-			%>
+			<img src="<%=getProduct.getPhoto() %>" alt="상품이미지" class="preview">					
 		</div>
 		<div class="product_desc">
 			<table>
@@ -77,7 +63,7 @@ int cid = getProduct.getCategory_id();
 					<%--
 				} else {
 					--%>
-					<button type="button">대여신청</button>
+					<button type="button" id="rentalFrmBtn">대여신청</button>
 					<%--					
 				}
 			--%>
@@ -93,5 +79,11 @@ int cid = getProduct.getCategory_id();
 	<%-- 상품 내용, 문의 --%>
 	<div class="content_and_question"></div>
 </div>
-</body>
-</html>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#rentalFrmBtn").click(function() {
+		location.href="goRentalFrm.do?product_id=" + <%=pid%>;
+	});
+});
+</script>

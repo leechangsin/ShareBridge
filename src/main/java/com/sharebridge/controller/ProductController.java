@@ -140,4 +140,13 @@ public class ProductController {
 		
 		return "detailsMsg";
 	}
+	
+	// 상품 대여 폼으로 이동
+	@GetMapping("/goRentalFrm.do")
+	public String goRentalFrm(int product_id, Model model) {
+		ProductDto detail = service.getProduct(product_id);
+		model.addAttribute("detail", detail);
+		
+		return "rentalFrm";
+	}
 }

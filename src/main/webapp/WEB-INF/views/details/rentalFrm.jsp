@@ -1,12 +1,22 @@
+<%@page import="com.sharebridge.dto.ProductDto"%>
+<%@page import="com.sharebridge.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="js/rentalFrm.js" defer></script>
 
+<%
+	MemberDto login = (MemberDto)session.getAttribute("login");
+	ProductDto getProduct = (ProductDto)request.getAttribute("detail");
+	
+	String sdate = getProduct.getSdate();
+	String edate = getProduct.getEdate();
+%>
+
 <div class="rental_from">
 	<h2>대여 신청서 작성</h2>
-	<form action="rentalFrmAf.do">
+	<form action="rentalFrmAf.do" method="post" name="frm" id="frm">
 	<input type="hidden" value="" name="member_id">
 		<!-- rentee_info -->
 		<div class="rentee_info_container">
@@ -15,19 +25,19 @@
 				<tr>
 					<td>이름</td>
 					<td>
-						<input type="text" id="name" name="name" value="">
+						<input type="text" id="name" name="name" value="<%=login.getName() %>">
 					</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
 					<td>
-						<input type="email" id="email" name="email" value="">
+						<input type="email" id="email" name="email" value="<%=login.getEmail() %>">
 					</td>
 				</tr>
 				<tr>
 					<td>휴대전화</td>
 					<td>
-						<input type="number" id="phone_number" name="phone_number" value="">
+						<input type="number" id="phone_number" name="phone_number" value="<%=login.getPhone_number()%>">
 					</td>
 				</tr>
 				<tr>
@@ -72,7 +82,7 @@
 		</div>
 		<!-- payment -->
 		<div class="payment">
-			<label><input type="radio" name="patmenr" value="card">신용카드</label>
+			<label><input type="radio" name="patmenr" value="card" checked>신용카드</label>
 			<label><input type="radio" name="payment" value="account">가상계좌</label>
 		</div>
 		<!-- total price -->
@@ -81,5 +91,11 @@
 			<span></span>
 			<span>원</span>
 		</div>
+		<button type="button" id="shopping_cart">장바구니</button>
+		<button type="submit" id="regiBtn">대여신청</button>
 	</form>
 </div>
+
+<<script type="text/javascript">
+	range(<%=sdate%>, <%=edate%>);
+</script>
