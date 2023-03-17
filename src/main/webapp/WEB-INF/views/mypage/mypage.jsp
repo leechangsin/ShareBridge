@@ -39,7 +39,7 @@
 		<div class="vertical_line"></div>
 		<div id="noti_wrap">
 			<div>
-				<a href="#"><i class="fa-regular fa-bell"></i></a>
+				<a href="/sharebridge/notification/notification_list.do"><i class="fa-regular fa-bell"></i></a>
 			</div>
 			<h1>알림</h1>
 			<p><span>${notiCount }</span>건</p>

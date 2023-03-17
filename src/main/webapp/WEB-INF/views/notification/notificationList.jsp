@@ -3,6 +3,12 @@
 
 <link rel="stylesheet" href="/sharebridge/css/notification/notification_list.css">
 
+<style>
+	#button_wrap {
+		z-index: 1;
+	}
+</style>
+
 <main>
 	<div id="title_wrap">
 		<h1 id="page_title">알림</h1>
@@ -22,7 +28,7 @@
 				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
 				<div id="button_wrap">
 					<span>안읽음</span>
-					<span>X</span>
+					<span class="delete_btn">X</span>
 				</div>
 			</div>
 		</div>
@@ -34,7 +40,7 @@
 				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
 				<div id="button_wrap">
 					<span>안읽음</span>
-					<span>X</span>
+					<span class="delete_btn">X</span>
 				</div>
 			</div>
 		</div>
@@ -46,7 +52,7 @@
 				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
 				<div id="button_wrap">
 					<span>읽음</span>
-					<span>X</span>
+					<span class="delete_btn">X</span>
 				</div>
 			</div>
 		</div>
@@ -58,7 +64,7 @@
 				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
 				<div id="button_wrap">
 					<span>읽음</span>
-					<span>X</span>
+					<span class="delete_btn">X</span>
 				</div>
 			</div>
 		</div>
@@ -70,7 +76,7 @@
 				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
 				<div id="button_wrap">
 					<span>읽음</span>
-					<span>X</span>
+					<span class="delete_btn">X</span>
 				</div>
 			</div>
 		</div>
@@ -82,7 +88,7 @@
 				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
 				<div id="button_wrap">
 					<span>읽음</span>
-					<span>X</span>
+					<span class="delete_btn">X</span>
 				</div>
 			</div>
 		</div>
@@ -94,7 +100,7 @@
 				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
 				<div id="button_wrap">
 					<span>읽음</span>
-					<span>X</span>
+					<span class="delete_btn">X</span>
 				</div>
 			</div>
 		</div>
@@ -106,7 +112,7 @@
 				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
 				<div id="button_wrap">
 					<span>읽음</span>
-					<span>X</span>
+					<span class="delete_btn">X</span>
 				</div>
 			</div>
 		</div>
@@ -118,7 +124,7 @@
 				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
 				<div id="button_wrap">
 					<span>읽음</span>
-					<span>X</span>
+					<span class="delete_btn">X</span>
 				</div>
 			</div>
 		</div>
@@ -130,7 +136,7 @@
 				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
 				<div id="button_wrap">
 					<span>읽음</span>
-					<span>X</span>
+					<span class="delete_btn">X</span>
 				</div>
 			</div>
 		</div>
@@ -155,5 +161,21 @@
 				}
 			}
 		});
+	});
+	
+	$(".delete_btn").on("click", function(e) {
+		let $list = $(this).parent().parent().parent();
+		let notification_id = $list.attr("notification_id");
+		
+		$.ajax({
+			url: "/sharebridge/notification/delete_notification.do",
+			type: "POST",
+			data: "notification_id="+notification_id,
+			success: function() {
+				$list.remove();
+			}
+		});
+		
+		e.stopPropagation();
 	});
 </script>
