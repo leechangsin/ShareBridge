@@ -20,6 +20,16 @@ public class RequestDto {
 	private LocalDateTime rdate;
 	private byte del;
 	
+	public RequestDto() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public RequestDto(int product_id, int member_id) {
+		super();
+		this.product_id = product_id;
+		this.member_id = member_id;
+	}
+
 	public RequestDto(int request_id, int product_id, int member_id, String name, String email, String phone_number,
 			LocalDateTime sdate, LocalDateTime edate, String receiver, String receiver_phone, String payment,
 			byte is_cancel, byte is_accept, LocalDateTime rdate, byte del) {

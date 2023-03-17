@@ -12,7 +12,7 @@ MemberDto login = (MemberDto)session.getAttribute("login");
 			<li><a href="login.do" id="login">로그인</a></li>
 			<li><a href="logout.do" id="logout">로그아웃</a></li>
 			<li><a href="regi.do">회원가입</a></li>
-			<li><a href="#mypage">마이페이지</a></li>
+			<li><a href="mypage.do">마이페이지</a></li>
 			<li><a href="#noti"> <img src="./images/notification_icon.png" alt="notification"></a></li>
 			<li><a href="#wish"> <img src="./images/shoopingcart_icon.png" alt="wish"></a></li>
 			<li><a href="#cart"> <img src="./images/wish_icon.png" alt="cart"></a></li>

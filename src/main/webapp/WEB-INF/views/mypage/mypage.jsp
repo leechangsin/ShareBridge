@@ -1,8 +1,13 @@
+<%@page import="com.sharebridge.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_common.css">
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_main.css">
+
+<%
+MemberDto mem = (MemberDto)session.getAttribute("login");
+%>
 
 <main>
 	<h1 id="page_title">마이페이지</h1>
@@ -31,7 +36,7 @@
 		</div>
 		<div id="review_wrap">
 			<div>
-				<a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+				<a href="reviewList.do?member_id=<%=mem.getMember_id() %>"><i class="fa-solid fa-pen-to-square"></i></a>
 			</div>
 			<h1>후기</h1>
 			<p><span>${reviewCount }</span>건</p>
