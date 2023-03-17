@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.sharebridge.dto.MemberDto;
 import com.sharebridge.param.MypageDeleteParam;
 import com.sharebridge.service.MemberService;
 
@@ -18,9 +19,9 @@ public class MypageDeleteController {
 	
 	@GetMapping(value="/mypage/delete.do")
 	public String deleteView(HttpSession session) {
-		if(session.getAttribute("member_id") == null) {
-			System.out.println("로그인 페이지로 이동");
-//			return "redirect://";
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			return "redirect:/login.do";
 		}
 		
 		return "mypage_delete";
@@ -28,17 +29,19 @@ public class MypageDeleteController {
 	
 	@PostMapping(value="/mypage/deleteAf.do")
 	public ResponseEntity<Void> deleteAf(String reason, HttpSession session) {
-		if(session.getAttribute("member_id") == null) {
-			System.out.println("로그인 페이지로 이동");
-//			return "redirect://";
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			return ResponseEntity.status(300).header("Location", "/sharebridge/login.do").build();
 		}
 		
-		int member_id = 1;
-//		int member_id = (int) session.getAttribute("member_id");
+		MemberDto memberInfo = (MemberDto) session.getAttribute("login");
+		int member_id = memberInfo.getMember_id();
 		
 		MypageDeleteParam param = new MypageDeleteParam(member_id, reason);
 		
 		service.deleteByMember_id(param);
+		
+		session.invalidate();
 		
 		return ResponseEntity.status(200).build();
 	}
