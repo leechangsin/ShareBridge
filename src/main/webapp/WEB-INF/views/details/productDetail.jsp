@@ -68,7 +68,7 @@ int cid = getProduct.getCategory_id();
 				</tr>
 			</table>
 			<%--
-				if(getProduct.getMember_id() == login.getId()) { 
+				if(getProduct.getMember_id() == login.getMember_id()) { 
 					--%>					
 					<div>
 						<a href="goUpdate.do?product_id=<%=pid%>&category_id=<%=cid%>">수정</a>
