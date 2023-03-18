@@ -58,6 +58,11 @@ $(document).ready(function() {
 		}
 	});
 	
+	// 입력된 주소 저장
+	$(".addAddress").change(function() {
+		saveAddress();
+	});
+	
 	// 빈칸검사
 	$("#regiBtn").click(function(e) {
 		e.preventDefault();
@@ -92,8 +97,6 @@ $(document).ready(function() {
 		} else {
 			$("#frm").submit();
 		}
-		
-		saveAddress();
 	});
 });
 
@@ -150,7 +153,7 @@ function saveAddress() {
 	let detail = document.getElementById("detailAddress").value;
 	
 	let saveAddress = document.getElementById("saveAddress").value
-	saveAddress = `${postcode}-${address}-${detail}`;
+	saveAddress = `${postcode}/${address}/${detail}`;
 	
-	alert(saveAddress);
+	console.log(saveAddress);
 }

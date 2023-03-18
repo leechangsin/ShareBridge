@@ -24,8 +24,9 @@ String edate = getProduct.getEdate().substring(0,10);
 
 <div class="request_from">
 <h2 class="request_title">대여 신청서 작성</h2>
-	<form action="requestFrmAf.do" method="post" name="frm" id="frm">
-	<input type="hidden" value="" name="member_id">
+	<form action="requestFrmAf.do" method="post" id="frm">
+	<input type="hidden" value="<%=getProduct.getProduct_id() %>" name="product_id">
+	<input type="hidden" value="1" name="member_id">
 		<!-- rentee_info -->
 		<div class="rentee_info_container">
 			<h3>대여자 정보</h3>
@@ -41,7 +42,7 @@ String edate = getProduct.getEdate().substring(0,10);
 					<th>이메일</th>
 					<td>
 						<%-- <input type="email" id="email" name="email" value="<%=login.getEmail() %>"> --%>
-						<input type="email" id="email" name="email" value="abc081@naver.com">
+						<input type="email" id="email" name="email" value="abc@naver.com">
 					</td>
 				</tr>
 				<tr>
@@ -82,10 +83,10 @@ String edate = getProduct.getEdate().substring(0,10);
 				<tr>
 					<th>주소</th>
 					<td>
-						<input type="text" id="postcode" placeholder="우편번호">
+						<input type="text" class="addAddress" id="postcode" placeholder="우편번호">
 						<input type="button" onclick="findPostcode()" value="우편번호 찾기"><br>
-						<input type="text" id="address" placeholder="주소"><br>
-						<input type="text" id="detailAddress" placeholder="상세주소">
+						<input type="text" class="addAddress" id="address" placeholder="주소"><br>
+						<input type="text" class="addAddress" id="detailAddress" placeholder="상세주소">
 						<input type="hidden" id="saveAddress" name="address"> 
 					</td>
 				</tr>
