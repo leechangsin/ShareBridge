@@ -11,7 +11,7 @@ function range(sdate, edate) {
 		enable : [{
 			from: sdate,
 			to: edate
-		}]
+		}],
 	});
 	const efp = flatpickr("#end", {
 		dateFormat: "Y-m-d",
@@ -26,7 +26,7 @@ function diffDate(sdate, edate) {
 	const d1 = new Date(sdate);
   	const d2 = new Date(edate);
   
-  	const diff = d1.getTime() - d2.getTime();
+	const diff = d1.getTime() - d2.getTime();
   	
   	return Math.abs(diff / (1000 * 60 * 60 * 24));	
 }
@@ -43,7 +43,23 @@ $(document).ready(function() {
 		let total = $("#price").val() * diffDate(s,e);
 		$("#total").val(total);
 	});
+	
+	$("#start").change(function() {
+		let s = $("#start").val();	
 		
+		let convert_s = new Date(s).toISOString().slice(0,19);
+		
+		$("#startDate").val(convert_s);	
+	});
+	
+	$("#end").change(function() {
+		let e = $("#end").val();	
+		
+		let convert_e = new Date(e).toISOString().slice(0,19);
+		
+		$("#endDate").val(convert_e);	
+	});
+	
 	// 수령자 정보
 	$("#same_chk").click(function() {
 		if($("#same_chk").is(":checked")) {

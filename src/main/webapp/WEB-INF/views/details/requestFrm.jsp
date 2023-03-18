@@ -55,8 +55,10 @@ String edate = getProduct.getEdate().substring(0,10);
 				<tr>
 					<th>대여기간</th>
 					<td>
-						<input class="selector" id="start" placeholder="<%=sdate %>" name="sdate" />
-						<input class="selector" id="end" placeholder="<%=edate %>" name="edate" />
+						<input class="selector" id="start" placeholder="<%=sdate %>" />
+						<input class="selector" id="end" placeholder="<%=edate %>" />
+						<input type="hidden" id="startDate" name="start" />
+						<input type="hidden" id="endDate" name="end" />
 					</td>
 				</tr>
 			</table>
