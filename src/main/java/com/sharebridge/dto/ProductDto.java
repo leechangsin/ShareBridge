@@ -9,19 +9,19 @@ public class ProductDto implements Serializable {
 	private int member_id;
 	private String title;
 	private String content;
-	private LocalDateTime sdate;
-	private LocalDateTime edate;
+	private String sdate;
+	private String edate;
 	private int price;
 	private String photo;
-	private LocalDateTime wdate;
+	private String wdate;
 	private boolean state;	
 	private boolean del;
 	
 	public ProductDto() {
 	}
 
-	public ProductDto(int product_id, int category_id, int member_id, String title, String content, LocalDateTime sdate,
-			LocalDateTime edate, int price, String photo, LocalDateTime wdate, boolean state, boolean del) {
+	public ProductDto(int product_id, int category_id, int member_id, String title, String content, String sdate,
+			String edate, int price, String photo, String wdate, boolean state, boolean del) {
 		super();
 		this.product_id = product_id;
 		this.category_id = category_id;
@@ -77,19 +77,19 @@ public class ProductDto implements Serializable {
 		this.content = content;
 	}
 
-	public LocalDateTime getSdate() {
+	public String getSdate() {
 		return sdate;
 	}
 
-	public void setSdate(LocalDateTime sdate) {
+	public void setSdate(String sdate) {
 		this.sdate = sdate;
 	}
 
-	public LocalDateTime getEdate() {
+	public String getEdate() {
 		return edate;
 	}
 
-	public void setEdate(LocalDateTime edate) {
+	public void setEdate(String edate) {
 		this.edate = edate;
 	}
 
@@ -109,11 +109,11 @@ public class ProductDto implements Serializable {
 		this.photo = photo;
 	}
 
-	public LocalDateTime getWdate() {
+	public String getWdate() {
 		return wdate;
 	}
 
-	public void setWdate(LocalDateTime wdate) {
+	public void setWdate(String wdate) {
 		this.wdate = wdate;
 	}
 

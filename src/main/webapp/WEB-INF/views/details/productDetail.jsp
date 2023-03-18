@@ -21,8 +21,8 @@ ProductDto getProduct = (ProductDto)request.getAttribute("detail");
 CategoryDto getCate = (CategoryDto)request.getAttribute("getCate");
 // MemberDto login = (MemberDto)session.getAttribute("login");
 
-String sdate = getProduct.getSdate();
-String edate = getProduct.getEdate();
+String sdate = getProduct.getSdate().toString();
+String edate = getProduct.getEdate().toString();
 
 int pid = getProduct.getProduct_id();
 int cid = getProduct.getCategory_id();
@@ -63,7 +63,7 @@ int cid = getProduct.getCategory_id();
 					<%--
 				} else {
 					--%>
-					<button type="button" id="rentalFrmBtn">대여신청</button>
+					<button type="button" id="requestFrmBtn">대여신청</button>
 					<%--					
 				}
 			--%>
@@ -82,8 +82,8 @@ int cid = getProduct.getCategory_id();
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#rentalFrmBtn").click(function() {
-		location.href="goRentalFrm.do?product_id=" + <%=pid%>;
+	$("#requestFrmBtn").click(function() {
+		location.href="goRequestFrm.do?product_id=" + <%=pid%>;
 	});
 });
 </script>

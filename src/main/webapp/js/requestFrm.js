@@ -1,24 +1,27 @@
-	
-		
+
+let sdate = document.getElementById("start").placeholder;
+let edate = document.getElementById("end").placeholder;
+
+range(sdate, edate);
+			
 // flatpickr
-function range(sdate, edate) {	
+function range(sdate, edate) {
+	console.log(sdate);	
+	console.log(edate);	
 	const sfp = flatpickr("#start", {
 		dateFormat: "Y-m-d",
-		disable : [{
-			from:sdate,
-			to:edate
+		enable : [{
+			from: sdate,
+			to: edate
 		}]
 	});
 	const efp = flatpickr("#end", {
 		dateFormat: "Y-m-d",
-		disable : [{
-			from:sdate,
-			to:edate
+		enable : [{
+			from: sdate,
+			to: edate
 		}]
-	});
-	
-	diffDate(sdate, edate);
-	
+	});	
 }
 
 function diffDate(sdate, edate) {
@@ -34,11 +37,27 @@ $(document).ready(function() {
 	$(".selector").on('focus', function(currentTarget) {$(currentTarget).blur()});
 	$(".selector").prop('readonly', false);	
 	
+	// 총 결제금액
+	let s, e;
+	$("#start").change(function() {	// 시작일 선택
+		s = $("#start").val();
+	});
 	
+	$("#end").change(function() {	// 마지막일 선택
+		e = $("#end").val();
+	});
+	$(".selector").change(function() {
+		let s = $("#start").val();
+		let e = $("#end").val();
+		
+		let total = $("#price").val() * diffDate(s,e);
+		$("#total").val(total);
+		console.log(total);		
+	});
+		
 	// 수령자 정보
 	$("#same_chk").click(function() {
 		if($("#same_chk").is(":checked")) {
-			alert("checked");
 			let name = $("#name").val();
 			let phone = $("#phone_number").val();
 			

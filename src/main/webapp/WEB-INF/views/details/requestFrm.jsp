@@ -1,40 +1,44 @@
+<%--@page import="com.sharebridge.dto.MemberDto"--%>
 <%@page import="com.sharebridge.dto.ProductDto"%>
-<%@page import="com.sharebridge.dto.MemberDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 
 <!-- flatpickr -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<!-- js -->
+<script src="js/requestFrm.js" defer></script>
 
+<!-- address -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="js/rentalFrm.js" defer></script>
 
-<%
-	// MemberDto login = (MemberDto)session.getAttribute("login");
-	ProductDto getProduct = (ProductDto)request.getAttribute("detail");
-	
-	String sdate = getProduct.getSdate().toString();
-	String edate = getProduct.getEdate().toString();
+<% 	
+// MemberDto login = (MemberDto)session.getAttribute("login");
+ProductDto getProduct = (ProductDto)request.getAttribute("detail");
+
+String sdate = getProduct.getSdate().substring(0,10);
+String edate = getProduct.getEdate().substring(0,10);
 %>
 
-<div class="rental_from">
-	<h2>대여 신청서 작성</h2>
-	<form action="rentalFrmAf.do" method="post" name="frm" id="frm">
+<div class="request_from">
+<h2 class="request_title">대여 신청서 작성</h2>
+	<form action="requestFrmAf.do" method="post" name="frm" id="frm">
 	<input type="hidden" value="" name="member_id">
 		<!-- rentee_info -->
 		<div class="rentee_info_container">
 			<h3>대여자 정보</h3>
 			<table class="rentee_info">
 				<tr>
-					<td>이름</td>
+					<th>이름</th>
 					<td>
 						<%-- <input type="text" id="name" name="name" value="<%=login.getName() %>"> --%>
 						<input type="text" id="name" name="name" value="에비씨">
 					</td>
 				</tr>
 				<tr>
-					<td>이메일</td>
+					<th>이메일</th>
 					<td>
 						<%-- <input type="email" id="email" name="email" value="<%=login.getEmail() %>"> --%>
 						<input type="email" id="email" name="email" value="abc081@naver.com">
@@ -48,10 +52,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td>대여기간</td>
+					<th>대여기간</th>
 					<td>
-						<input class="selector" id="start" placeholder="시작 날짜" name="sdate" />
-						<input class="selector" id="end" placeholder="마지막 날짜" name="edate" />
+						<input class="selector" id="start" placeholder="<%=sdate %>" name="sdate" />
+						<input class="selector" id="end" placeholder="<%=edate %>" name="edate" />
 					</td>
 				</tr>
 			</table>
@@ -63,29 +67,29 @@
 			<lable><input type="checkbox" id="same_chk">대여자 정보와 동일</lable>
 		</div>
 		<table class="adderss_info">
-			<tr>
-				<td>수령자</td>
-				<td>
-					<input type="text" id="receiver" name="receiver" value="">
-				</td>
-			</tr>
-			<tr>
-				<td>휴대전화</td>
-				<td>
-					<input type="number" id="receiver_phone" name="receiver_phone" value="">
-				</td>
-			</tr>
-			<tr>
-				<td>주소</td>
-				<td>
-					<input type="text" id="postcode" placeholder="우편번호">
-					<input type="button" onclick="findPostcode()" value="우편번호 찾기"><br>
-					<input type="text" id="address" placeholder="주소"><br>
-					<input type="text" id="detailAddress" placeholder="상세주소">
-					<input type="hidden" id="saveAddress" name="address"> 
-				</td>
-			</tr>
-		</table>
+				<tr>
+					<th>수령자</th>
+					<td>
+						<input type="text" id="receiver" name="receiver" value="">
+					</td>
+				</tr>
+				<tr>
+					<th>휴대전화</th>
+					<td>
+						<input type="number" id="receiver_phone" name="receiver_phone" value="">	
+					</td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td>
+						<input type="text" id="postcode" placeholder="우편번호">
+						<input type="button" onclick="findPostcode()" value="우편번호 찾기"><br>
+						<input type="text" id="address" placeholder="주소"><br>
+						<input type="text" id="detailAddress" placeholder="상세주소">
+						<input type="hidden" id="saveAddress" name="address"> 
+					</td>
+				</tr>
+			</table>
 		</div>
 		<!-- payment -->
 		<div class="payment">
@@ -95,23 +99,12 @@
 		<!-- total price -->
 		<div class="total_price">
 			<span>총금액</span>
-			<span></span>
+			<input type="hidden" id="price" value="<%=getProduct.getPrice() %>">
+			<input type="number" id="total" readonly="readonly">
 			<span>원</span>
 		</div>
 		<button type="button" id="shopping_cart">장바구니</button>
 		<button type="submit" id="regiBtn">대여신청</button>
 	</form>
-</div>
+</div> 
 
-<script type="text/javascript">
-	range(<%=sdate%>, <%=edate%>);
-	/* 
-	function dateDiff(day1, day2) {
-		const d1 = new Date(day1);
-	  	const d2 = new Date(day2);
-	  
-	  	const diff = d1.getTime() - d2.getTime();
-	  	
-	  	return Math.abs(diff / (1000 * 60 * 60 * 24));
-	} */
-</script>
