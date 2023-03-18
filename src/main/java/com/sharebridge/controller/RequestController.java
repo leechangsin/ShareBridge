@@ -13,8 +13,8 @@ public class RequestController {
 	@Autowired
 	RequestService service;
 	
-	@PostMapping("/insertRequest.do")
-	public String insertRequest(RequestDto dto, Model model) {
+	@PostMapping("/requestFrmAf.do")
+	public String requestFrmAf(RequestDto dto, Model model) {
 		boolean isS = service.insertReq(dto);
 		int request_id = dto.getRequest_id();
 		
