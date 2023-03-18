@@ -18,4 +18,9 @@ public class RequestDaoImpl implements RequestDao {
 	public int insertReq(RequestDto dto) {
 		return session.insert( ns + "insertReq", dto);
 	}
+
+	@Override
+	public RequestDto getReqFrm(int request_id) {
+		return session.selectOne(ns + "getReqFrm", request_id);
+	}
 }
