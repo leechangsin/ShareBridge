@@ -70,7 +70,7 @@ if(insertReq != null && !insertReq.equals("")) {
 		%>
 		<script type="text/javascript">
 			alert("대여 신청이 완료되었습니다");
-			location.href = "successReq.do?product_id=<%=rid%>";
+			location.href = "successReq.do?request_id=<%=rid%>";
 		</script>
 		<%
 	} else {
