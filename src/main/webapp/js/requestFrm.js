@@ -38,17 +38,9 @@ $(document).ready(function() {
 	$(".selector").prop('readonly', false);	
 	
 	// 총 결제금액
-	let s, e;
-	$("#start").change(function() {	// 시작일 선택
-		s = $("#start").val();
-	});
-	
-	$("#end").change(function() {	// 마지막일 선택
-		e = $("#end").val();
-	});
 	$(".selector").change(function() {
-		let s = $("#start").val();
-		let e = $("#end").val();
+		let s = $("#start").val();	// 시작일
+		let e = $("#end").val();	// 마지막일
 		
 		let total = $("#price").val() * diffDate(s,e);
 		$("#total").val(total);
