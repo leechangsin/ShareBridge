@@ -6,8 +6,6 @@ range(sdate, edate);
 			
 // flatpickr
 function range(sdate, edate) {
-	console.log(sdate);	
-	console.log(edate);	
 	const sfp = flatpickr("#start", {
 		dateFormat: "Y-m-d",
 		enable : [{
@@ -44,7 +42,6 @@ $(document).ready(function() {
 		
 		let total = $("#price").val() * diffDate(s,e);
 		$("#total").val(total);
-		console.log(total);		
 	});
 		
 	// 수령자 정보
@@ -74,10 +71,10 @@ $(document).ready(function() {
 		} else if($("#phone_number").val() == undefined || $("#phone_number").val().trim() == "") {
 			alert("휴대전화 번호를 입력해주세요");
 			return;
-		} else if($("#sdate").val() == undefined || $("#sdate").val().trim() == "") {
+		} else if($("#start").val() == undefined || $("#end").val().trim() == "") {
 			alert("시작일을 선택해주세요");
 			return;
-		} else if($("#edate").val() == undefined || $("#edate").val().trim() == "") {
+		} else if($("#end").val() == undefined || $("#end").val().trim() == "") {
 			alert("마지막일을 선택해주세요");
 			return;
 		} else if($("#receiver").val() == undefined || $("#receiver").val().trim() == "") {
@@ -92,7 +89,9 @@ $(document).ready(function() {
 		} else if($("#detailAddress").val() == undefined || $("#detailAddress").val().trim() == "") {
 			alert("상세주소를 입력해주세요");
 			return;
-		} 
+		} else {
+			$("#frm").submit();
+		}
 		
 		saveAddress();
 	});
