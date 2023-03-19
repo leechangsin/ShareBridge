@@ -21,16 +21,12 @@ public class MypageUpdateController {
 	
 	@GetMapping(value="/mypage/update.do")
 	public String updateView(HttpSession session, Model model) {
-		if(session.getAttribute("member_id") == null) {
-			System.out.println("로그인 페이지로 이동");
-//			return "redirect://";
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			return "redirect:/login.do";
 		}
 		
-		int member_id = 1;
-//		int member_id = (int) session.getAttribute("member_id");
-		
-//		로그인한 사용자의 회원 정보 가져오기
-		MemberDto memberInfo = memberService.selectOneByMemberId(member_id);
+		MemberDto memberInfo = (MemberDto) session.getAttribute("login");
 		
 		model.addAttribute("memberInfo", memberInfo);
 		
@@ -39,16 +35,12 @@ public class MypageUpdateController {
 	
 	@PostMapping(value="/mypage/updateAf.do")
 	public ResponseEntity<String> updateAf(MemberDto newMemberInfo, HttpSession session,HttpServletResponse response) {
-		if(session.getAttribute("member_id") == null) {
-			System.out.println("로그인 페이지로 이동");
-//			return "redirect://";
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			return ResponseEntity.status(300).header("Location", "/sharebridge/login.do").build();
 		}
 		
-		int member_id = 1;
-//		int member_id = (int) session.getAttribute("member_id");
-		
-//		로그인한 사용자의 회원 정보 가져오기
-		MemberDto oldMemberInfo = memberService.selectOneByMemberId(member_id);
+		MemberDto oldMemberInfo = (MemberDto) session.getAttribute("login");
 		
 		String result = memberService.updateMemberInfo(newMemberInfo, oldMemberInfo);
 		if(result.equals("nickname_conflict")) {
@@ -58,6 +50,21 @@ public class MypageUpdateController {
 		} else if(result.equals("not_change")) {
 			return new ResponseEntity<>("not_change", HttpStatus.BAD_REQUEST);
 		} else {
+			// 회원 정보 수정에서 수정할 수 있는 데이터는 그대로
+			// 회원 정보 수정에서 수정할 수 없는 데이터는 기존 로그인 정보에서 가져와
+			// newMemberInfo 객체에 저장
+			newMemberInfo.setMember_id(oldMemberInfo.getMember_id());
+			newMemberInfo.setEmail(oldMemberInfo.getEmail());
+			newMemberInfo.setProfile(oldMemberInfo.getProfile());
+			newMemberInfo.setRdate(oldMemberInfo.getRdate());
+			newMemberInfo.setAuth(oldMemberInfo.getAuth());
+			newMemberInfo.setDel(oldMemberInfo.getDel());
+			newMemberInfo.setReason(oldMemberInfo.getReason());
+			newMemberInfo.setRating(oldMemberInfo.getRating());
+			
+			// 로그인한 회원의 정보를 수정된 정보로 교체
+			session.setAttribute("login", newMemberInfo);
+			
 			return new ResponseEntity<>("OK", HttpStatus.OK);
 		}
 	}

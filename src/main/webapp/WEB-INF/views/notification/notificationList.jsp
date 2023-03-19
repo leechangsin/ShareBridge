@@ -173,6 +173,11 @@
 			data: "notification_id="+notification_id,
 			success: function() {
 				$list.remove();
+			},
+			error: function(xhr) {
+				if(xhr.status == 300) {
+					goTo(xhr.responseHeader("Location"));
+				}
 			}
 		});
 		
