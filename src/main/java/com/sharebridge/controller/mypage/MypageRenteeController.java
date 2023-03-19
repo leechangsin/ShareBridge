@@ -16,7 +16,7 @@ public class MypageRenteeController {
 	@Autowired
 	RenteeRequestService service;
 	
-	@PostMapping(value="/mypage/request/cancel")
+	@PostMapping(value="/mypage/request/cancel.do")
 	public ResponseEntity<Void> cancelRequest(HttpSession session, int request_id) {
 		if(session.getAttribute("login") == null) {
 			session.setAttribute("required", true);

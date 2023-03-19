@@ -79,27 +79,45 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${requestSendList }" var="request">
-							<tr>
+							<tr request_id="${request.request_id }">
 								<th scope="row">${request.name }</th>
 								<td>${request.sdate } ~ ${request.edate }</td>
 								<td>10,000원/일</td>
 								<td>
 									<c:choose>
-										<c:when test="${request.is_cancel eq 0 }">
-											신청 취소
+<!-- 									신청한 상태(request.is_cancel eq 0)이고 -->
+										<c:when test="${request.is_cancel eq 0}">
+											<c:choose>
+<!-- 											렌터가 요청서 수락 또는 거절하기 전(request._is_accept eq 0)이라면 -->
+												<c:when test="${request.is_accept eq 0 }">
+													<span class="alert alert-secondary" role="alert">신청 대기</span>
+												</c:when>
+<!-- 											렌터가 요청서를 수락했다면 -->
+												<c:when test="${request.is_accept eq 1 }">
+													<span class="alert alert-secondary" role="alert">대여 수락</span>
+												</c:when>
+<!-- 											렌터가 요청서를 거절했다면 -->
+												<c:when test="${request.is_accept eq -1 }">
+													<span class="alert alert-secondary" role="alert">대여 거절</span>
+												</c:when>
+											</c:choose>
 										</c:when>
-										<c:when test="${request.is_accept eq 0 }">
-											신청 대기
-										</c:when>
-										<c:when test="${request.is_accept eq 1 }">
-											대여 수락
-										</c:when>
-										<c:when test="${request.is_accept eq 2 }">
-											대여 거절
+<!-- 									신청을 취소한 상태라면 -->
+										<c:when test="${request.is_cancel eq 1 }">
+											<span class="alert alert-secondary" role="alert">신청 취소</span>
 										</c:when>
 									</c:choose>
 								</td>
-								<td><button type="button" class="btn btn-secondary">취소</button></td>
+								<td>
+									<c:choose>
+										<c:when test="${request.is_cancel eq 0 and request.is_accept eq 0 }">
+											<button type="button" class="btn btn-secondary cancel_btn">취소하기</button>
+										</c:when>
+										<c:otherwise>
+											<span class="alert alert-secondary" role="alert">취소 불가</span>
+										</c:otherwise>
+									</c:choose>
+								</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
@@ -129,27 +147,38 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${requestReceiveList }" var="request" >
-							<tr>
+							<tr request_id="${request.request_id }">
 								<th scope="row">${request.name }</th>
 								<td>${request.sdate } ~ ${request.edate }</td>
 								<td>10,000원/일</td>
-								<c:choose>
-									<c:when test="${request.is_cancel eq 0 }">
-										신청 취소
-									</c:when>
-									<c:when test="${request.is_accept eq 0 }">
-										신청 대기
-									</c:when>
-									<c:when test="${request.is_accept eq 1 }">
-										대여 수락
-									</c:when>
-									<c:when test="${request.is_accept eq 2 }">
-										대여 거절
-									</c:when>
-								</c:choose>
+									<c:choose>
+<!-- 									신청한 상태(request.is_cancel eq 0)이고 -->
+										<c:when test="${request.is_cancel eq 0}">
+											<c:choose>
+<!-- 											렌터가 요청서 수락 또는 거절하기 전(request._is_accept eq 0)이라면 -->
+												<c:when test="${request.is_accept eq 0 }">
+													<span class="alert alert-secondary" role="alert">신청 대기</span>
+												</c:when>
+<!-- 											렌터가 요청서를 수락했다면 -->
+												<c:when test="${request.is_accept eq 1 }">
+													<span class="alert alert-secondary" role="alert">대여 수락</span>
+												</c:when>
+<!-- 											렌터가 요청서를 거절했다면 -->
+												<c:when test="${request.is_accept eq -1 }">
+													<span class="alert alert-secondary" role="alert">대여 거절</span>
+												</c:when>
+											</c:choose>
+										</c:when>
+<!-- 									신청을 취소한 상태라면 -->
+										<c:when test="${request.is_cancel eq 1 }">
+											<span class="alert alert-secondary" role="alert">신청 취소</span>
+										</c:when>
+									</c:choose>
 								<td>
-									<button type="button" class="btn btn-secondary">수락</button>
-									<button type="button" class="btn btn-secondary">거절</button>
+									<c:if test="${request.is_cancel eq 0 and request.is_accept eq 0 }">
+										<button type="button" class="btn btn-secondary accept_btn">수락</button>
+										<button type="button" class="btn btn-secondary reject_btn">거절</button>
+									</c:if>
 								</td>
 							</tr>
 						</c:forEach>
@@ -159,3 +188,33 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 		</table>
 	</div>
 </main>
+
+<script src="/sharebridge/js/public/common.js"></script>
+<script>
+	$(".cancel_btn").on("click", function() {
+		let request_id = $(this).parent().parent().attr("request_id");
+		
+		$.ajax({
+			url: "request/cancel.do",
+			type: "POST",
+			data: "request_id="+request_id,
+			success: function(data, xhr) {
+				if(xhr.status == 208) {
+					alert("이미 신청을 취소했습니다");
+				} else {
+					alert("신청이 취소됐습니다");
+				}
+				
+				$(this).parent().html("<span class=\"alert alert-secondary\" role=\"alert\">신청 취소</span>");
+			},
+			error: function(xhr) {
+				if(xhr.status == 300) {
+					goTo(xhr.getResponseHeader("Location"));
+				} else if(xhr.status == 409) {
+					alert("렌터가 신청을 수락 또는 거절했습니다\n페이지를 새로고침해 요청서의 상태를 갱신하세요");
+				}
+			}
+		});
+	});
+
+</script>
