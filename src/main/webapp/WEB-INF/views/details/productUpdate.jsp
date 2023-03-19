@@ -22,6 +22,9 @@
 	
 	int pid = getProduct.getProduct_id();
 	int cid = Integer.parseInt(request.getAttribute("cid").toString());
+	
+	String sdate = getProduct.getSdate().toString().substring(0,10);
+	String edate = getProduct.getSdate().toString().substring(0,10);
 %>
 
 <div class="regi_container">
@@ -62,8 +65,10 @@
 			<tr>
 				<th>대여기간</th>
 				<td>
-					<input class="selector" id="start" placeholder="시작 날짜" name="sdate" value="<%=getProduct.getSdate() %>"/>
-					<input class="selector" id="end" placeholder="마지막 날짜" name="edate" value="<%=getProduct.getEdate() %>"/>
+					<input class="selector" id="start" placeholder="시작 날짜" value="<%=sdate %>"/>
+					<input class="selector" id="end" placeholder="마지막 날짜" value="<%=edate %>"/>
+					<input type="hidden" id="startDate" name="start" />
+					<input type="hidden" id="endDate" name="end" />
 				</td>
 			</tr>
 			<tr>

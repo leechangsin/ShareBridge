@@ -111,7 +111,14 @@ public class ProductController {
 								@RequestParam(value="fileload", required=false)
 								MultipartFile fileload,
 								HttpServletRequest req,
+								@RequestParam(value="start", required=false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+								LocalDateTime sdate,
+								@RequestParam(value="end", required=false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+								LocalDateTime edate,
 								Model model) {
+		
+		dto.setSdate(sdate);
+		dto.setEdate(edate);
 		
 		// 사진 수정
 		if(fileload == null) {	// 기존의 사진 저장
