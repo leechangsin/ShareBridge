@@ -6,7 +6,9 @@ MemberDto login = (MemberDto)session.getAttribute("login");
 %>
 
 <header>
-	<img src="/sharebridge/images/header_logo.png" id="header_logo" alt="logo">
+	<div id="logo_wrap">
+		<a href="/sharebridge/baseLayout.do"><img src="/sharebridge/images/header_logo.png" id="header_logo" alt="logo"></a>
+	</div>
 	<div>
 		<ul id="lnb_wrap">
 			<li><a href="/sharebridge/login.do" id="login">로그인</a></li>
