@@ -217,4 +217,30 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 		});
 	});
 
+	$(".accept_btn").on("click", function() {
+		let reuqest_id = $(this).parent().parent().attr("request_id");
+		
+		$.ajax({
+			url: "request/accept.do",
+			type: "POST",
+			data: "request_id="+request_id,
+			success: function(data, xhr) {
+				if(xhr.status == 208) {
+					alert("이미 신청을 수락했습니다");
+				} else {
+					alert("신청을 수락했습니다");
+				}
+				
+				$(this).parent().prev().html("<span class=\"alert alert-secondary\" role=\"alert\">대여 수락</span>");
+				$(this).parent().empty();
+			},
+			error: function(xhr) {
+				if(xhr.status == 300) {
+					goTo(xhr.getResponseHeader("Location"));
+				} else if(xhr.status == 409) {
+					alert("렌티가 신청을 취소했습니다\n페이지를 새로고침해 요청서의 상태를 갱신하세요");
+				}
+			}
+		});
+	});
 </script>
