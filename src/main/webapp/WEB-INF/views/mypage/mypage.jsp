@@ -107,11 +107,8 @@
 								<td>
 									<c:choose>
 										<c:when test="${request.is_cancel eq 0 and request.is_accept eq 0 }">
-											<button type="button" class="btn btn-secondary cancel_btn">취소하기</button>
+											<button type="button" class="btn btn-secondary cancel_btn">취소</button>
 										</c:when>
-										<c:otherwise>
-											<span class="alert alert-secondary" role="alert">취소 불가</span>
-										</c:otherwise>
 									</c:choose>
 								</td>
 							</tr>
@@ -192,6 +189,8 @@
 	$(".cancel_btn").on("click", function() {
 		let request_id = $(this).parent().parent().attr("request_id");
 		
+		let $this = $(this);
+		
 		$.ajax({
 			url: "request/cancel.do",
 			type: "POST",
@@ -203,7 +202,8 @@
 					alert("신청이 취소됐습니다");
 				}
 				
-				$(this).parent().html("<span class=\"alert alert-secondary\" role=\"alert\">신청 취소</span>");
+				$this.parent().prev().html("<span>신청 취소</span>");
+				$this.remove();
 			},
 			error: function(xhr) {
 				if(xhr.status == 300) {
@@ -216,7 +216,9 @@
 	});
 
 	$(".accept_btn").on("click", function() {
-		let reuqest_id = $(this).parent().parent().attr("request_id");
+		let request_id = $(this).parent().parent().attr("request_id");
+		
+		let $this = $(this);
 		
 		$.ajax({
 			url: "request/accept.do",
@@ -229,8 +231,8 @@
 					alert("신청을 수락했습니다");
 				}
 				
-				$(this).parent().prev().html("<span class=\"alert alert-secondary\" role=\"alert\">대여 수락</span>");
-				$(this).parent().empty();
+				$this.parent().prev().html("<span>대여 수락</span>");
+				$this.remove();
 			},
 			error: function(xhr) {
 				if(xhr.status == 300) {
@@ -243,10 +245,12 @@
 	});
 	
 	$(".reject_btn").on("click", function() {
-		let reuqest_id = $(this).parent().parent().attr("request_id");
+		let request_id = $(this).parent().parent().attr("request_id");
+		
+		let $this = $(this);
 		
 		$.ajax({
-			url: "request/accept.do",
+			url: "request/reject.do",
 			type: "POST",
 			data: "request_id="+request_id,
 			success: function(data, xhr) {
@@ -256,8 +260,8 @@
 					alert("신청을 거절했습니다");
 				}
 				
-				$(this).parent().prev().html("<span class=\"alert alert-secondary\" role=\"alert\">대여 거절</span>");
-				$(this).parent().empty();
+				$this.parent().prev().html("<span>대여 거절</span>");
+				$this.remove();
 			},
 			error: function(xhr) {
 				if(xhr.status == 300) {

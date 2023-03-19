@@ -15,7 +15,7 @@
 	</if>
 </select>
 
-<select id="getRequestByRequeste_id" parameterType="int" resultType="com.sharebridge.dto.RequestDto">
+<select id="getRequestByRequest_id" parameterType="int" resultType="com.sharebridge.dto.RequestDto">
 	select *
 	from request
 	where request_id = #{request_id}
