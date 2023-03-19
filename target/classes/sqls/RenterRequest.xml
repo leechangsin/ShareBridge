@@ -17,4 +17,8 @@
 	</if>
 </select>
 
+<update id="acceptRequest" parameterType="int">
+	update request set is_accept = b'1' where request_id = #{request_id}
+</update>
+
 </mapper>

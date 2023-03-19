@@ -7,4 +7,5 @@ import com.sharebridge.param.MypageParam;
 
 public interface RenterRequestDao {
 	List<RequestDto> getRequestListByMemberId(MypageParam mp);
+	void acceptRequest(int request_id);
 }

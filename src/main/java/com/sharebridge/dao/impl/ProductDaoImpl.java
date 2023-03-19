@@ -36,4 +36,14 @@ public class ProductDaoImpl implements ProductDao {
 	public List<ProductDto> getAllProducts() {
 		return session.selectList("Product.getAllProducts");
 	}
+
+	@Override
+	public ProductDto getProductByProduct_id(int product_id) {
+		return session.selectOne(ns + "getProduct", product_id);
+	}
+
+	@Override
+	public void updateStateTo1(int product_id) {
+		session.update(ns + "updateStateTo1", product_id);
+	}
 }
