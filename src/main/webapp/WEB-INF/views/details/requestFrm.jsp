@@ -1,4 +1,4 @@
-<%--@page import="com.sharebridge.dto.MemberDto"--%>
+<%@page import="com.sharebridge.dto.MemberDto"%>
 <%@page import="com.sharebridge.dto.ProductDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,11 +15,11 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <% 	
-// MemberDto login = (MemberDto)session.getAttribute("login");
+MemberDto login = (MemberDto)session.getAttribute("login");
 ProductDto getProduct = (ProductDto)request.getAttribute("detail");
 
-String sdate = getProduct.getSdate().substring(0,10);
-String edate = getProduct.getEdate().substring(0,10);
+String sdate = getProduct.getSdate().toString().substring(0,10);
+String edate = getProduct.getEdate().toString().substring(0,10);
 %>
 
 <div class="request_from">
@@ -34,22 +34,19 @@ String edate = getProduct.getEdate().substring(0,10);
 				<tr>
 					<th>이름</th>
 					<td>
-						<%-- <input type="text" id="name" name="name" value="<%=login.getName() %>"> --%>
-						<input type="text" id="name" name="name" value="에비씨">
+						<input type="text" id="name" name="name" value="<%=login.getName() %>">
 					</td>
 				</tr>
 				<tr>
 					<th>이메일</th>
 					<td>
-						<%-- <input type="email" id="email" name="email" value="<%=login.getEmail() %>"> --%>
-						<input type="email" id="email" name="email" value="abc@naver.com">
+						<input type="email" id="email" name="email" value="<%=login.getEmail() %>">
 					</td>
 				</tr>
 				<tr>
 					<td>휴대전화</td>
 					<td>
-						<%-- <input type="number" id="phone_number" name="phone_number" value="<%=login.getPhone_number()%>"> --%>
-						<input type="number" id="phone_number" name="phone_number" value="01012345678">
+						<input type="number" id="phone_number" name="phone_number" value="<%=login.getPhone_number()%>">
 					</td>
 				</tr>
 				<tr>
