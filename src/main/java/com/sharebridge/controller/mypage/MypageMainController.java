@@ -61,11 +61,11 @@ public class MypageMainController {
 //		로그인한 사용자의 대여 신청 목록 가져오기
 		MypageParam mp = new MypageParam(member_id, 0, 5);
 		List<RequestDto> requestSendList = renteeRequestService.getRequestListByMemberId(mp);
-		System.out.println(requestSendList);
+		System.out.println("requestSendList = " + requestSendList);
 		
 //		로그인한 사용자의 대여 요청 목록 가져오기
 		List<RequestDto> requestReceiveList = renterRequestService.getRequestListByMemberId(mp);
-		System.out.println(requestReceiveList);
+		System.out.println("requestReceiveList = " + requestReceiveList);
 		
 //		회원 정보, 후기 개수, 등록한 상품 개수, 대여 신청 목록, 대여 요청 목록 뷰로 전달
 		model.addAttribute("memberInfo", memberInfo);

@@ -5,10 +5,6 @@
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_common.css">
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_main.css">
 
-<%
-MemberDto mem = (MemberDto)session.getAttribute("login");
-%>
-
 <main>
 	<h1 id="page_title">마이페이지</h1>
 	
@@ -36,7 +32,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 		</div>
 		<div id="review_wrap">
 			<div>
-				<a href="reviewList.do?member_id=<%=mem.getMember_id() %>"><i class="fa-solid fa-pen-to-square"></i></a>
+				<a href="/sharebridge/reviewList.do?member_id=${memberInfo.member_id }"><i class="fa-solid fa-pen-to-square"></i></a>
 			</div>
 			<h1>후기</h1>
 			<p><span>${reviewCount }</span>건</p>
@@ -74,7 +70,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty requestSnedList }">
+					<c:when test="${empty requestSendList }">
 						<tr><th scope="row" colspan="5" class="text_align">대여 신청 내역이 없습니다</tr>
 					</c:when>
 					<c:otherwise>
@@ -85,26 +81,26 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 								<td>10,000원/일</td>
 								<td>
 									<c:choose>
-<!-- 									신청한 상태(request.is_cancel eq 0)이고 -->
+<%-- 									신청한 상태(request.is_cancel eq 0)이고 --%>
 										<c:when test="${request.is_cancel eq 0}">
 											<c:choose>
-<!-- 											렌터가 요청서 수락 또는 거절하기 전(request._is_accept eq 0)이라면 -->
+<%-- 											렌터가 요청서 수락 또는 거절하기 전(request._is_accept eq 0)이라면 --%>
 												<c:when test="${request.is_accept eq 0 }">
-													<span class="alert alert-secondary" role="alert">신청 대기</span>
+													<span>신청 대기</span>
 												</c:when>
-<!-- 											렌터가 요청서를 수락했다면 -->
+<%-- 											렌터가 요청서를 수락했다면 --%>
 												<c:when test="${request.is_accept eq 1 }">
-													<span class="alert alert-secondary" role="alert">대여 수락</span>
+													<span>대여 수락</span>
 												</c:when>
-<!-- 											렌터가 요청서를 거절했다면 -->
+<%-- 											렌터가 요청서를 거절했다면 --%>
 												<c:when test="${request.is_accept eq -1 }">
-													<span class="alert alert-secondary" role="alert">대여 거절</span>
+													<span>대여 거절</span>
 												</c:when>
 											</c:choose>
 										</c:when>
-<!-- 									신청을 취소한 상태라면 -->
+<%-- 									신청을 취소한 상태라면 --%>
 										<c:when test="${request.is_cancel eq 1 }">
-											<span class="alert alert-secondary" role="alert">신청 취소</span>
+											<span>신청 취소</span>
 										</c:when>
 									</c:choose>
 								</td>
@@ -151,29 +147,31 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 								<th scope="row">${request.name }</th>
 								<td>${request.sdate } ~ ${request.edate }</td>
 								<td>10,000원/일</td>
+								<td>
 									<c:choose>
-<!-- 									신청한 상태(request.is_cancel eq 0)이고 -->
+<%-- 									신청한 상태(request.is_cancel eq 0)이고 --%>
 										<c:when test="${request.is_cancel eq 0}">
 											<c:choose>
-<!-- 											렌터가 요청서 수락 또는 거절하기 전(request._is_accept eq 0)이라면 -->
+<%-- 											렌터가 요청서 수락 또는 거절하기 전(request._is_accept eq 0)이라면 --%>
 												<c:when test="${request.is_accept eq 0 }">
-													<span class="alert alert-secondary" role="alert">신청 대기</span>
+													<span>신청 대기</span>
 												</c:when>
-<!-- 											렌터가 요청서를 수락했다면 -->
+<%-- 											렌터가 요청서를 수락했다면 --%>
 												<c:when test="${request.is_accept eq 1 }">
-													<span class="alert alert-secondary" role="alert">대여 수락</span>
+													<span>대여 수락</span>
 												</c:when>
-<!-- 											렌터가 요청서를 거절했다면 -->
+<%-- 											렌터가 요청서를 거절했다면 --%>
 												<c:when test="${request.is_accept eq -1 }">
-													<span class="alert alert-secondary" role="alert">대여 거절</span>
+													<span>대여 거절</span>
 												</c:when>
 											</c:choose>
 										</c:when>
-<!-- 									신청을 취소한 상태라면 -->
+<%-- 									신청을 취소한 상태라면 --%>
 										<c:when test="${request.is_cancel eq 1 }">
-											<span class="alert alert-secondary" role="alert">신청 취소</span>
+											<span>신청 취소</span>
 										</c:when>
 									</c:choose>
+								</td>
 								<td>
 									<c:if test="${request.is_cancel eq 0 and request.is_accept eq 0 }">
 										<button type="button" class="btn btn-secondary accept_btn">수락</button>

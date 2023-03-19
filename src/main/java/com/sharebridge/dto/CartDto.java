@@ -2,18 +2,19 @@ package com.sharebridge.dto;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class CartDto implements Serializable{
 		private int product_id;  
 		private int member_id;  
 		private int request_id; 
-		private Timestamp rdate;
+		private LocalDateTime rdate;
 		
 		public CartDto() {
 			super();
 		}
 
-		public CartDto(int product_id, int member_id, int request_id, Timestamp rdate) {
+		public CartDto(int product_id, int member_id, int request_id, LocalDateTime rdate) {
 			super();
 			this.product_id = product_id;
 			this.member_id = member_id;
@@ -45,12 +46,12 @@ public class CartDto implements Serializable{
 			this.request_id = request_id;
 		}
 
-		public Timestamp getRdate() {
+		public LocalDateTime getRdate() {
 			return rdate;
 		}
 
 		public void setRdate(Timestamp rdate) {
-			this.rdate = rdate;
+			this.rdate = rdate.toLocalDateTime();
 		}
 
 		@Override

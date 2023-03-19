@@ -118,10 +118,6 @@ public class ProductDto implements Serializable{
 		return sdate;
 	}
 
-	public void setSdate(LocalDateTime sdate) {
-		this.sdate = sdate;
-	}
-	
 	public void setSdate(Timestamp sdate) {
 		this.sdate = sdate.toLocalDateTime();
 	}
@@ -130,10 +126,6 @@ public class ProductDto implements Serializable{
 		return edate;
 	}
 
-	public void setEdate(LocalDateTime edate) {
-		this.edate = edate;
-	}
-	
 	public void setEdate(Timestamp edate) {
 		this.edate = edate.toLocalDateTime();
 	}
@@ -158,10 +150,6 @@ public class ProductDto implements Serializable{
 		return wdate;
 	}
 
-	public void setWdate(LocalDateTime wdate) {
-		this.wdate = wdate;
-	}
-	
 	public void setWdate(Timestamp wdate) {
 		this.wdate = wdate.toLocalDateTime();
 	}

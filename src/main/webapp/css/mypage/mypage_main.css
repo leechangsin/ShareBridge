@@ -138,3 +138,7 @@ a:hover {
 .request_list table th, .request_list table td {
 	vertical-align: middle;
 }
+
+#rentee > table > tbody > tr > td:nth-child(3), #renter > table > tbody > tr > td:nth-child(4) {
+	text-align: center;
+}
