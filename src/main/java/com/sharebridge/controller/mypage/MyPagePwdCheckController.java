@@ -1,12 +1,10 @@
-package com.sharebridge.controller;
+package com.sharebridge.controller.mypage;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,16 +13,15 @@ import com.sharebridge.dto.MemberDto;
 import com.sharebridge.service.MemberService;
 
 @Controller
-public class PwdCheckController {
-
+public class MyPagePwdCheckController {
 	@Autowired
 	MemberService memberService;
 	
 	@GetMapping(value="/mypage/pwd_check.do")
 	public String pwdCheckView(HttpSession session, HttpServletResponse response) {
-		if(session.getAttribute("member_id") == null) {
-			System.out.println("로그인 페이지로 이동");
-//			return "redirect://";
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			return "redirect:/login.do";
 		} else if(session.getAttribute("redirectURL") == null) {
 			response.setStatus(400);
 			
@@ -37,24 +34,26 @@ public class PwdCheckController {
 	
 	@PostMapping(value="/mypage/go_from.do")
 	public void goFrom(String pwd, HttpSession session, HttpServletResponse response) {
-		session.setAttribute("member_id", 1);
-		
-		if(session.getAttribute("member_id") == null) {
-			System.out.println("로그인 페이지로 이동");
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
 			
 			response.setStatus(300);
-			response.setHeader("Location", "로그인 페이지 URL");
+			response.setHeader("Location", "/sharebridge/login.do");
 		} else if(session.getAttribute("redirectURL") == null) {
 			response.setStatus(403);
 		} else {
-			int member_id = (int) session.getAttribute("member_id");
+			MemberDto memberInfo = (MemberDto) session.getAttribute("login");
+			int member_id = memberInfo.getMember_id();
 			
 			MemberDto memberDto = memberService.selectOneByMemberId(member_id);
 			if(memberDto.getPwd().equals(pwd)) {
 				String redirectURL = (String) session.getAttribute("redirectURL");
+				session.removeAttribute("redirectURL");
 				
 				response.setStatus(300);
 				response.setHeader("Location", redirectURL);
+			} else {
+				response.setStatus(400);
 			}
 		}
 	}
