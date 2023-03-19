@@ -23,7 +23,7 @@
 <% 
 ProductDto getProduct = (ProductDto)request.getAttribute("detail");
 CategoryDto getCate = (CategoryDto)request.getAttribute("getCate");
-// MemberDto login = (MemberDto)session.getAttribute("login");
+MemberDto login = (MemberDto)session.getAttribute("login");
 
 String sdate = getProduct.getSdate();
 String edate = getProduct.getEdate();
@@ -67,20 +67,20 @@ int cid = getProduct.getCategory_id();
 					<td><%=getProduct.getPrice() %><span>원 / 일</span></td>
 				</tr>
 			</table>
-			<%--
-				if(getProduct.getMember_id() == login.getId()) { 
-					--%>					
+			<%
+				if(getProduct.getMember_id() == login.getMember_id()) { 
+					%>					
 					<div>
 						<a href="goUpdate.do?product_id=<%=pid%>&category_id=<%=cid%>">수정</a>
 						<a href="delProduct.do?product_id=<%=pid%>">삭제</a>
 					</div>
-					<%--
+					<%
 				} else {
-					--%>
+					%>
 					<button type="button">대여신청</button>
-					<%--					
+					<%					
 				}
-			--%>
+			%>
 		</div>
 	</div>
 	

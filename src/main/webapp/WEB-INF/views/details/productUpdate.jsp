@@ -1,3 +1,4 @@
+<%@page import="com.sharebridge.dto.MemberDto"%>
 <%@page import="com.sharebridge.dto.CategoryDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sharebridge.dto.ProductDto"%>
@@ -15,7 +16,7 @@
 <link rel="stylesheet" href="css/details/productRegi.css">
 
 <% 	
-	// MemberDto login = (MemberDto)session.getAttribute("login");
+	MemberDto login = (MemberDto)session.getAttribute("login");
 	List<CategoryDto> cateList = (List<CategoryDto>)request.getAttribute("allCategory");
 	ProductDto getProduct = (ProductDto)request.getAttribute("detail");
 	
