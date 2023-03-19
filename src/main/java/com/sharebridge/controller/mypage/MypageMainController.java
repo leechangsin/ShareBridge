@@ -38,18 +38,13 @@ public class MypageMainController {
 	
 	@RequestMapping(value="/mypage/mypage.do", method = RequestMethod.GET)
 	public String mypageView(HttpSession session, Model model) {
-		int member_id = 1;
-		
-		if(session.getAttribute("member_id") == null) {
-			System.out.println("로그인 페이지로 이동");
-//			return "redirect://";
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			return "redirect:/login.do";
 		}
 		
-//		int member_id = (int) session.getAttribute("member_id");
-		
-//		로그인한 사용자의 회원 정보 가져오기
-		MemberDto memberInfo = memberService.selectOneByMemberId(member_id);
-		System.out.println(memberInfo);
+		MemberDto memberInfo = (MemberDto) session.getAttribute("login");
+		int member_id = memberInfo.getMember_id();
 		
 //		로그인한 사용자의 후기 개수 가져오기
 		int reviewCount = reviewService.getReviewCountByMemberId(member_id);

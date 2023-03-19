@@ -21,4 +21,10 @@ public interface ProductDao {
 	CategoryDto getCate(int category_id);
 	
 	int delProduct(int product_id);
+	
+	ProductDto getProductByProduct_id(int product_id);
+	
+	void updateStateTo1(int product_id);
+	
+	void updateStateTo0(int product_id);
 }

@@ -21,4 +21,14 @@ public class RenteeRequestImpl implements RenteeRequestDao {
 	public List<RequestDto> getRequestListByMemberId(MypageParam mp) {
 		return session.selectList(ns + "selectAllByMemberId", mp);
 	}
+	
+	@Override
+	public RequestDto getRequestByRequest_id(int request_id) {
+		return session.selectOne(ns + "getRequestByRequeste_id");
+	}
+
+	@Override
+	public void cancelRequest(int request_id) {
+		session.update(ns + "cancelRequest", request_id);
+	}
 }

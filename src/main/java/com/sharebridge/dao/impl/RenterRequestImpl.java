@@ -21,4 +21,14 @@ public class RenterRequestImpl implements RenterRequestDao {
 	public List<RequestDto> getRequestListByMemberId(MypageParam mp) {
 		return session.selectList(ns + "selectAllByMemberId", mp);
 	}
+
+	@Override
+	public void acceptRequest(int request_id) {
+		session.update(ns + "acceptRequest", request_id);
+	}
+
+	@Override
+	public void rejectRequest(int request_id) {
+		session.update(ns + "rejectRequest", request_id);
+	}
 }

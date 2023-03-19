@@ -58,17 +58,21 @@
 				return ;
 			}
 		}
-			
+		
 		$.ajax({
-			url: $("form").attr("action"),
-			type: $("form").attr("method"),
+			url: $("#contents_wrap > form").attr("action"),
+			type: $("#contents_wrap > form").attr("method"),
 			data: {"reason": reason},
 			success: function() {
 				alert("탈퇴 처리가 완료 되었습니다\n첫 화면으로 돌아갑니다");
-				goTo("/main.do");
+				goTo("/baseLayout.do");
 			},
-			error: function() {
-				alert("알 수 없는 문제가 생겼습니다.");
+			error: function(xhr) {
+				if(xhr.status == 300) {
+					goTo(xhr.getResponseHeader("Location"));
+				} else {
+					alert("알 수 없는 문제가 생겼습니다.");
+				}
 			}
 		});
 	});

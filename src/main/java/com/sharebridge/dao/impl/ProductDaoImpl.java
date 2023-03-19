@@ -47,6 +47,11 @@ public class ProductDaoImpl implements ProductDao {
 	public ProductDto getProduct(int product_id) {
 		return session.selectOne(ns + "getProduct", product_id);
 	}
+	
+	@Override
+	public ProductDto getProductByProduct_id(int product_id) {
+		return session.selectOne(ns + "getProduct", product_id);
+	}
 
 	@Override
 	public CategoryDto getCate(int category_id) {
@@ -58,4 +63,13 @@ public class ProductDaoImpl implements ProductDao {
 		return session.update(ns + "delProduct", product_id);
 	}
 	
+	@Override
+	public void updateStateTo1(int product_id) {
+		session.update(ns + "updateStateTo1", product_id);
+	}
+
+	@Override
+	public void updateStateTo0(int product_id) {
+		session.update(ns + "updateStateTo0", product_id);
+	}
 }

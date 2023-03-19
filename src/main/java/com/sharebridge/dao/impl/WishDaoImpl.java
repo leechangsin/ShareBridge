@@ -12,18 +12,17 @@ import com.sharebridge.dto.WishDto;
 
 @Repository
 public class WishDaoImpl implements WishDao {
-
 	@Autowired
 	SqlSession session;
+	
+	String ns = "Wish.";
 
-	@Override
 	public List<ProductDto> getAllWishByMemberId(int memberId) {
-		return session.selectList("Wish.getAllWishByMemberId", memberId);
+		return session.selectList(ns + "getAllWishByMemberId", memberId);
 	}
 
-	@Override
 	public int addWish(WishDto wishDto) {
-		return session.insert("Wish.addWish", wishDto);
+		return session.insert(ns + "addWish", wishDto);
 	}
 
 }

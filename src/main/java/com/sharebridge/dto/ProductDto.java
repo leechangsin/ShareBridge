@@ -1,6 +1,7 @@
 package com.sharebridge.dto;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 
@@ -32,11 +33,11 @@ public class ProductDto implements Serializable{
 	private int member_id;
 	private String title;
 	private String content;
-//	private LocalDateTime sdate;
-//	private LocalDateTime edate;
+	private LocalDateTime sdate;
+	private LocalDateTime edate;
 	private int price;
 	private String photo;
-//	private LocalDateTime wdate;
+	private LocalDateTime wdate;
 	private byte state;
 	private byte del;
 	private int wish_member_id;
@@ -55,11 +56,11 @@ public class ProductDto implements Serializable{
 		this.member_id = member_id;
 		this.title = title;
 		this.content = content;
-//		this.sdate = sdate;
-//		this.edate = edate;
+		this.sdate = sdate;
+		this.edate = edate;
 		this.price = price;
 		this.photo = photo;
-//		this.wdate = wdate;
+		this.wdate = wdate;
 		this.state = state;
 		this.del = del;
 		this.wish_member_id = wish_member_id;
@@ -113,15 +114,29 @@ public class ProductDto implements Serializable{
 		this.content = content;
 	}
 
-	/*
-	 * public LocalDateTime getSdate() { return sdate; }
-	 * 
-	 * public void setSdate(LocalDateTime sdate) { this.sdate = sdate; }
-	 * 
-	 * public LocalDateTime getEdate() { return edate; }
-	 * 
-	 * public void setEdate(LocalDateTime edate) { this.edate = edate; }
-	 */
+	public LocalDateTime getSdate() {
+		return sdate;
+	}
+
+	public void setSdate(LocalDateTime sdate) {
+		this.sdate = sdate;
+	}
+	
+	public void setSdate(Timestamp sdate) {
+		this.sdate = sdate.toLocalDateTime();
+	}
+
+	public LocalDateTime getEdate() {
+		return edate;
+	}
+
+	public void setEdate(LocalDateTime edate) {
+		this.edate = edate;
+	}
+	
+	public void setEdate(Timestamp edate) {
+		this.edate = edate.toLocalDateTime();
+	}
 
 	public int getPrice() {
 		return price;
@@ -139,11 +154,18 @@ public class ProductDto implements Serializable{
 		this.photo = photo;
 	}
 
-	/*
-	 * public LocalDateTime getWdate() { return wdate; }
-	 * 
-	 * public void setWdate(LocalDateTime wdate) { this.wdate = wdate; }
-	 */
+	public LocalDateTime getWdate() {
+		return wdate;
+	}
+
+	public void setWdate(LocalDateTime wdate) {
+		this.wdate = wdate;
+	}
+	
+	public void setWdate(Timestamp wdate) {
+		this.wdate = wdate.toLocalDateTime();
+	}
+
 	public byte getState() {
 		return state;
 	}

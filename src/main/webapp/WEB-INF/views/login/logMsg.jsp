@@ -30,6 +30,13 @@ if(log != null && !log.equals("")){
 		location.href = "baseLayout.do";
 		</script>
 		<%
+	}else if(log.equals("DELETE")){
+		%>
+		<script type="text/javascript">
+		alert("탈퇴한 회원입니다!");
+		location.href = "login.do";
+		</script>
+		<%
 	}else{
 		%>
 		<script type="text/javascript">

@@ -9,7 +9,6 @@
 	select COUNT(*)
 	from product
 	where member_id = #{memberId} AND del IS NULL
-	order by wdate DESC
 </select>
 
 <!-- 상품메인화면에 보이게하기 -->
@@ -17,7 +16,9 @@
 	select p.*, w.member_id as wish_member_id
 	from product p
 	left join wish w on p.product_id = w.product_id
-	inner join member m on w.member_id = m.member_id 
+	inner join member m on w.member_id = m.member_id
+	where p.del is null
+	order by wdate desc
 </select>	
 <!-- 상품등록 -->
 <insert id="insertProduct" parameterType="com.sharebridge.dto.ProductDto">
@@ -31,7 +32,7 @@
 <select id="getProduct" parameterType="Integer" resultType="com.sharebridge.dto.ProductDto">
 	select *
 	from product
-	where product_id = ${product_id}
+	where product_id = ${product_id} and del is null;
 </select>
 
 <!-- 상품 수정 -->
@@ -43,9 +44,19 @@
 </update>
 
 <!-- 상품 삭제 -->
-<delete id="delProduct" parameterType="Integer">
+<update id="delProduct" parameterType="Integer">
 	update product
 	set del = 1
 	where product_id = ${product_id}
-</delete>
+</update>
+
+<!-- 대여 상태를 대여중 으로 변경 -->
+<update id="updateStateTo1" parameterType="int">
+	update product set state = b'1' where product_id = #{product_id}
+</update>
+
+<!-- 대여 상태를 대여아님 으로 변경 -->
+<update id="updateStateTo0" parameterType="int">
+	update product set state is null where product_id = #{product_id}
+</update>
 </mapper>

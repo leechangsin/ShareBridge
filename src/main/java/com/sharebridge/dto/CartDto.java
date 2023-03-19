@@ -11,7 +11,6 @@ public class CartDto implements Serializable{
 		
 		public CartDto() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
 
 		public CartDto(int product_id, int member_id, int request_id, Timestamp rdate) {
@@ -59,6 +58,4 @@ public class CartDto implements Serializable{
 			return "CartDto [product_id=" + product_id + ", member_id=" + member_id + ", request_id=" + request_id
 					+ ", rdate=" + rdate + "]";
 		}
-		
-		
 }
