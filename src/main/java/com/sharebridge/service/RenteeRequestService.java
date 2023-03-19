@@ -7,4 +7,5 @@ import com.sharebridge.param.MypageParam;
 
 public interface RenteeRequestService {
 	List<RequestDto> getRequestListByMemberId(MypageParam mp);
+	String cancelRequest(int member_id, int request_id);
 }
