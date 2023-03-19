@@ -11,14 +11,14 @@ public class QuestionDto implements Serializable{
 	private String content;
 	private boolean private_question;	// 예약어와 겹치므로 다른 이름으로 변경
 	private boolean qstate;
-	private LocalDateTime rdate;
+	private String rdate;
 	
 	public QuestionDto() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public QuestionDto(int question_id, int product_id, int member_id, String title, String content,
-			boolean private_question, boolean qstate, LocalDateTime rdate) {
+			boolean private_question, boolean qstate, String rdate) {
 		super();
 		this.question_id = question_id;
 		this.product_id = product_id;
@@ -86,11 +86,11 @@ public class QuestionDto implements Serializable{
 		this.qstate = qstate;
 	}
 
-	public LocalDateTime getRdate() {
+	public String getRdate() {
 		return rdate;
 	}
 
-	public void setRdate(LocalDateTime rdate) {
+	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
 

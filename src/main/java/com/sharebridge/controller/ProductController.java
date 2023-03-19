@@ -191,11 +191,13 @@ public class ProductController {
 		
 		// 문의한 렌티의 닉네임 취득
 		List<String> q_renteeNickList = new ArrayList<>();
+		System.out.println("size : "+ questionList.size());
 		if(questionList.size() != 0) {
 			for(int i=0; i<questionList.size(); i++) {
 				QuestionDto q = questionList.get(i);
 				String q_nick = reviewService.reviewListThree(q.getMember_id());
-				r_renteeNickList.add(q_nick);
+				System.out.println("q_nick : "+ q_nick);
+				q_renteeNickList.add(q_nick);
 			}
 		}
 		

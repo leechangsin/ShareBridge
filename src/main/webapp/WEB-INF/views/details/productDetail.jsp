@@ -19,6 +19,9 @@
 .preview {
 	width: 400px;
 }
+.trans {
+	transition: max-height 0.5s ease-out;
+}
 </style>
 </head>
 <body>
@@ -125,7 +128,7 @@ int cid = getProduct.getCategory_id();
 	<%-- 상품 내용, 문의 --%>
 	<div class="content_and_question">
 		<div class="question_container">
-			<table>
+			<table class="question">
 				<%
 					if(questionList.size() == 0) {
 						%>
@@ -136,7 +139,7 @@ int cid = getProduct.getCategory_id();
 							QuestionDto q = questionList.get(i);
 							String q_nick = q_renteeNickList.get(i);
 							%>
-							<tr>
+							<tr class="question_list">
 								<td><%
 									if(q.isQstate()) {
 										%>
@@ -158,11 +161,12 @@ int cid = getProduct.getCategory_id();
 									%>
 								</td>
 								<td><%=q.getTitle() %></td>
-								<td><%=q.getRdate() %></td>
-								<td><%=q_nick %></td>
+								<td><%=q.getRdate().toString().substring(0,10) %></td>
+								<td><%=q_nick.substring(0,1)%>***</td>
 							</tr>
-							<tr>
+							<tr class="question_con" style="display:none">
 								<td colspan="4">
+									<p><%=q.getContent() %></p>
 								</td>
 							</tr>
 							<%
@@ -176,6 +180,13 @@ int cid = getProduct.getCategory_id();
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
+	// 문의글 내용
+	$(".question_list").click(function() {
+		$(this).next(".question_con").stop().slideToggle(300);
+		$(this).toggleClass("on").siblings().removeClass("on");
+		$(this).next(".question_con").siblings(".question_con").slideUp(300);
+	});
+	
 	$("#goWriteBtn").click(function() {
 		location.href="goWriteQuestion.do?product_id=<%=pid%>&category_id=<%=cid%>";
 	});
