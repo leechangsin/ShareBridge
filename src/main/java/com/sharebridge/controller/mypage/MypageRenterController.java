@@ -36,4 +36,25 @@ public class MypageRenterController {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
 	}
+	
+	@PostMapping(value="/mypage/request/reject.do")
+	public ResponseEntity<Void> rejectRequest(HttpSession session, int request_id) {
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			return ResponseEntity.status(300).header("Location", "/sharebridge/login.do").build();
+		}
+		
+		MemberDto memberInfo = (MemberDto) session.getAttribute("login");
+		
+		String result = service.rejectRequest(memberInfo.getMember_id(), request_id);
+		if(result.equals("success")) {
+			return ResponseEntity.status(200).build();
+		} else if(result.equals("forbidden")) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+		} else if(result.equals("already")) {
+			return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).build();
+		} else {
+			return ResponseEntity.status(HttpStatus.CONFLICT).build();
+		}
+	}
 }

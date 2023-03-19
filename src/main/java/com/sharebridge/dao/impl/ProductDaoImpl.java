@@ -46,4 +46,9 @@ public class ProductDaoImpl implements ProductDao {
 	public void updateStateTo1(int product_id) {
 		session.update(ns + "updateStateTo1", product_id);
 	}
+
+	@Override
+	public void updateStateTo0(int product_id) {
+		session.update(ns + "updateStateTo0", product_id);
+	}
 }
