@@ -1,3 +1,4 @@
+<%@page import="com.sharebridge.dto.QuestionDto"%>
 <%@page import="com.sharebridge.dto.ReviewDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sharebridge.dto.MemberDto"%>
@@ -28,7 +29,9 @@ CategoryDto getCate = (CategoryDto)request.getAttribute("getCate");
 MemberDto login = (MemberDto)session.getAttribute("login");
 MemberDto renter = (MemberDto)request.getAttribute("renter");
 List<ReviewDto> reviewList = (List<ReviewDto>)request.getAttribute("review");
-List<String> renteeNickList = (List<String>)request.getAttribute("renteeNick");
+List<String> r_renteeNickList = (List<String>)request.getAttribute("r_renteeNick");
+List<String> q_renteeNickList = (List<String>)request.getAttribute("q_renteeNick");
+List<QuestionDto> questionList = (List<QuestionDto>)request.getAttribute("question");
 
 String sdate = getProduct.getSdate();
 String edate = getProduct.getEdate();
@@ -100,10 +103,10 @@ int cid = getProduct.getCategory_id();
 				if(reviewList.size() != 0) {
 					for(int i=0; i<=4; i++) {
 						ReviewDto r = reviewList.get(i);
-						String nick = renteeNickList.get(i);
+						String r_nick = r_renteeNickList.get(i);
 						%>
 						<div class="reviewlist">
-							<span><%=nick %></span>
+							<span><%=r_nick %></span>
 							<span><%=r.getRdate() %></span>
 							<span><%=r.getRating() %></span>
 							<p><%=r.getContent() %></p>
@@ -121,6 +124,53 @@ int cid = getProduct.getCategory_id();
 	
 	<%-- 상품 내용, 문의 --%>
 	<div class="content_and_question">
+		<div class="question_container">
+			<table>
+				<%
+					if(questionList.size() == 0) {
+						%>
+						<span>**문의 내역이 없습니다<span>
+						<%
+					} else {
+						for(int i=0; i<questionList.size(); i++) {
+							QuestionDto q = questionList.get(i);
+							String q_nick = q_renteeNickList.get(i);
+							%>
+							<tr>
+								<td><%
+									if(q.isQstate()) {
+										%>
+										답변완료
+										<%
+									} else {
+										%>
+										미답변
+										<%
+									}
+								%></td>
+								<td>
+									<%
+										if(q.isPrivate_question()) {
+											%>											
+											<img src="images/lock_icon.png" alt="private_question">
+											<%
+										}
+									%>
+								</td>
+								<td><%=q.getTitle() %></td>
+								<td><%=q.getRdate() %></td>
+								<td><%=q_nick %></td>
+							</tr>
+							<tr>
+								<td colspan="4">
+								</td>
+							</tr>
+							<%
+						}
+					}
+				%>
+			</table>
+		</div>
 		<button type="button" id="goWriteBtn">문의하기</button>
 	</div>
 </div>

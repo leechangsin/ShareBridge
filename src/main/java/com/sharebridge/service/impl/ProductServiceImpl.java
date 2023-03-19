@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.sharebridge.dao.ProductDao;
 import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
+import com.sharebridge.dto.QuestionDto;
 import com.sharebridge.dto.ReviewDto;
 import com.sharebridge.service.ProductService;
 
@@ -62,5 +63,10 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ReviewDto> getReviewList(int renter_id) {
 		return dao.getReviewList(renter_id);
+	}
+
+	@Override
+	public List<QuestionDto> getQuestionList() {
+		return dao.getQuestionList();
 	}
 }

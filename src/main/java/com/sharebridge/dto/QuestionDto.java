@@ -9,7 +9,7 @@ public class QuestionDto implements Serializable{
 	private int member_id;
 	private String title;
 	private String content;
-	private boolean private_question;	// 예약어와 겹치므로 다른 이름으로 설정 -> sql문에서 별칭으로 할 것
+	private boolean private_question;	// 예약어와 겹치므로 다른 이름으로 변경
 	private boolean qstate;
 	private LocalDateTime rdate;
 	

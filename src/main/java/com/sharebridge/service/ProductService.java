@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
+import com.sharebridge.dto.QuestionDto;
 import com.sharebridge.dto.ReviewDto;
 
 public interface ProductService {
@@ -24,4 +25,6 @@ public interface ProductService {
 	boolean delProduct(int product_id);
 	
 	List<ReviewDto> getReviewList(int renter_id);
+	
+	List<QuestionDto> getQuestionList();
 }
