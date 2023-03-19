@@ -10,4 +10,11 @@
 	values(${product_id}, ${member_id}, #{name}, #{email}, #{phone_number}, #{sdate}, #{edate},
 			#{receiver}, #{receiver_phone}, #{address}, #{payment}, now())
 </insert>
+
+<!-- 대여신청서 불러오기 -->
+<select id="getReqFrm" parameterType="Integer" resultType="com.sharebridge.dto.RequestDto">
+	select *
+	from request
+	where request_id = ${request_id}
+</select>
 </mapper>

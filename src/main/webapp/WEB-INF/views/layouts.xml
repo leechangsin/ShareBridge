@@ -96,8 +96,12 @@
 		<put-attribute name="content" value="/WEB-INF/views/details/productUpdate.jsp"></put-attribute>
 	</definition>
 	
-	<!-- rental form -->
+	<!-- request form -->
 	<definition name="requestFrm" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/details/requestFrm.jsp"></put-attribute>
 	</definition>
+	<definition name="requestConfirm" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/requestConfirm.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>
