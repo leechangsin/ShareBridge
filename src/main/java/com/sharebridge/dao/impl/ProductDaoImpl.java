@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sharebridge.dao.ProductDao;
+import com.sharebridge.dao.ReviewDao;
 import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
+import com.sharebridge.dto.QuestionDto;
+import com.sharebridge.dto.ReviewDto;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
@@ -16,6 +19,8 @@ public class ProductDaoImpl implements ProductDao {
 	SqlSession session;
 	
 	String c_ns = "Category.";
+	String r_ns = "Review.";
+	String q_ns = "Question.";
 	String ns = "Product.";	
 	
 	@Override
@@ -71,5 +76,15 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public void updateStateTo0(int product_id) {
 		session.update(ns + "updateStateTo0", product_id);
+	}
+
+	@Override
+	public List<ReviewDto> getReviewList(int renter_id) {
+		return session.selectList(r_ns + "getReviewList", renter_id);
+	}
+
+	@Override
+	public List<QuestionDto> getQuestionList() {
+		return session.selectList(q_ns + "getQuestionList");
 	}
 }

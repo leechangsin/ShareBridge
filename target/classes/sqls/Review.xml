@@ -36,4 +36,11 @@
 	where member_id=#{member_id}
 </select>
 
+<!-- 상세페이지에 나타낼 후기 목록 -->
+<select id="getReviewList" parameterType="Integer" resultType="com.sharebridge.dto.ReviewDto">
+	select *
+	from review
+	where renter_id = #{renter_id}
+	order by rdate desc;
+</select>
 </mapper>

@@ -3,6 +3,7 @@ package com.sharebridge.controller;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,14 +20,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sharebridge.dto.CategoryDto;
+import com.sharebridge.dto.MemberDto;
 import com.sharebridge.dto.ProductDto;
+import com.sharebridge.dto.QuestionDto;
+import com.sharebridge.dto.ReviewDto;
+import com.sharebridge.service.MemberService;
 import com.sharebridge.service.ProductService;
+import com.sharebridge.service.ReviewService;
 import com.sharebridge.util.FileUtil;
 
 @Controller
 public class ProductController {
 	@Autowired
 	ProductService service;
+	@Autowired
+	MemberService memberService;
+	@Autowired
+	ReviewService reviewService;
 	
 	// 상품등록
 	@GetMapping(value = "productRegi.do")
@@ -173,11 +183,47 @@ public class ProductController {
 	// 상품 상세 보기
 	@GetMapping("/productDetail.do")
 	public String productDetail(int product_id, int category_id, Model model) {
+		// 상품 정보
 		ProductDto detail = service.getProduct(product_id);
 		CategoryDto getCate = service.getCate(category_id);
 		
+		// 렌터 정보
+		MemberDto renter = memberService.selectOneByMemberId(detail.getMember_id());
+		List<ReviewDto> reviewList = service.getReviewList(renter.getMember_id());
+		
+		// 리뷰를 작성한 렌티 닉네임 취득
+		List<String> r_renteeNickList = new ArrayList<>();
+		System.out.println("size : "+ reviewList.size());
+		if(reviewList.size() != 0) {
+			for(int i=0; i<4; i++) {
+				ReviewDto r = reviewList.get(i);
+				String r_nick = reviewService.reviewListThree(r.getRentee_id());
+				r_renteeNickList.add(r_nick);
+			}
+		}
+		
+		// 문의 내역
+		List<QuestionDto> questionList = service.getQuestionList();
+		
+		// 문의한 렌티의 닉네임 취득
+		List<String> q_renteeNickList = new ArrayList<>();
+		System.out.println("size : "+ questionList.size());
+		if(questionList.size() != 0) {
+			for(int i=0; i<questionList.size(); i++) {
+				QuestionDto q = questionList.get(i);
+				String q_nick = reviewService.reviewListThree(q.getMember_id());
+				System.out.println("q_nick : "+ q_nick);
+				q_renteeNickList.add(q_nick);
+			}
+		}
+		
 		model.addAttribute("detail", detail);
 		model.addAttribute("getCate", getCate);
+		model.addAttribute("renter", renter);
+		model.addAttribute("review", reviewList);
+		model.addAttribute("r_renteeNick", r_renteeNickList);
+		model.addAttribute("q_renteeNick", q_renteeNickList);
+		model.addAttribute("question", questionList);
 		
 		return "productDetail";
 	}

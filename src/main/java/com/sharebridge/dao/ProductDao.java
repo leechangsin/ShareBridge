@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
+import com.sharebridge.dto.QuestionDto;
+import com.sharebridge.dto.ReviewDto;
 
 public interface ProductDao {
 	List<CategoryDto> getAllCategory();
@@ -27,4 +29,7 @@ public interface ProductDao {
 	void updateStateTo1(int product_id);
 	
 	void updateStateTo0(int product_id);
+	List<ReviewDto> getReviewList(int renter_id);
+	
+	List<QuestionDto> getQuestionList();
 }

@@ -104,4 +104,8 @@
 		<put-attribute name="content" value="/WEB-INF/views/details/requestConfirm.jsp"></put-attribute>
 	</definition>
 	
+	<!-- question write -->
+	<definition name="questionWrite" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/questionWrite.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

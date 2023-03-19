@@ -1,6 +1,7 @@
 package com.sharebridge.dto;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class QuestionDto implements Serializable{
 	private int question_id;
@@ -8,22 +9,23 @@ public class QuestionDto implements Serializable{
 	private int member_id;
 	private String title;
 	private String content;
-	private boolean private_status;	// sql 컬럼명 -> private
+	private boolean private_question;
 	private boolean qstate;
-	private String rdate;
+	private LocalDateTime rdate;
 	
 	public QuestionDto() {
+		// TODO Auto-generated constructor stub
 	}
-
+	
 	public QuestionDto(int question_id, int product_id, int member_id, String title, String content,
-			boolean private_status, boolean qstate, String rdate) {
+			boolean private_question, boolean qstate, LocalDateTime rdate) {
 		super();
 		this.question_id = question_id;
 		this.product_id = product_id;
 		this.member_id = member_id;
 		this.title = title;
 		this.content = content;
-		this.private_status = private_status;
+		this.private_question = private_question;
 		this.qstate = qstate;
 		this.rdate = rdate;
 	}
@@ -68,12 +70,12 @@ public class QuestionDto implements Serializable{
 		this.content = content;
 	}
 
-	public boolean isPrivate_status() {
-		return private_status;
+	public boolean isPrivate_question() {
+		return private_question;
 	}
 
-	public void setPrivate_status(boolean private_status) {
-		this.private_status = private_status;
+	public void setPrivate_question(boolean private_question) {
+		this.private_question = private_question;
 	}
 
 	public boolean isQstate() {
@@ -84,18 +86,18 @@ public class QuestionDto implements Serializable{
 		this.qstate = qstate;
 	}
 
-	public String getRdate() {
+	public LocalDateTime getRdate() {
 		return rdate;
 	}
 
-	public void setRdate(String rdate) {
+	public void setRdate(LocalDateTime rdate) {
 		this.rdate = rdate;
 	}
 
 	@Override
 	public String toString() {
 		return "QuestionDto [question_id=" + question_id + ", product_id=" + product_id + ", member_id=" + member_id
-				+ ", title=" + title + ", content=" + content + ", private_status=" + private_status + ", qstate="
+				+ ", title=" + title + ", content=" + content + ", private_question=" + private_question + ", qstate="
 				+ qstate + ", rdate=" + rdate + "]";
 	}
 }

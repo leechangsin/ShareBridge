@@ -75,10 +75,31 @@ if(insertReq != null && !insertReq.equals("")) {
 		<%
 	} else {
 		%>
-		<script type="text/javascript">
+		<script type="text/javascript">	
 			alert("대여 신청이 되지 않았습니다");
 			location.href = "rentalFrm.do";
-		</script>		
+		</script>	
+	}
+}
+
+String writeQuestion = (String)request.getAttribute("writeQuestion");
+int q_pid = (Integer)request.getAttribute("q_pid");
+int q_cid = (Integer)request.getAttribute("q_cid");
+
+if(writeQuestion != null && !writeQuestion.equals("")) {
+	if(writeQuestion.equals("QUESTION_INSERT_OK")) {
+		%>
+		<script type="text/javascript">
+			alert("문의가 성공적으로 등록되었습니다");
+			location.href = "productDetail.do?product_id=<%=q_pid%>&category_id=<%=q_cid%>";
+		</script>
+		<%
+	} else {
+		%>
+		<script type="text/javascript">
+			alert("문의가 등록되지 않았습니다");
+			location.href = "goWriteQuestion.do?product_id=<%=q_pid%>&category_id=<%=q_cid%>";
+		</script>
 		<%
 	}
 }
