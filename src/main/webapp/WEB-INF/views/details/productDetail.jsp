@@ -120,7 +120,14 @@ int cid = getProduct.getCategory_id();
 	</div>
 	
 	<%-- 상품 내용, 문의 --%>
-	<div class="content_and_question"></div>
+	<div class="content_and_question">
+		<button type="button" id="goWriteBtn">문의하기</button>
+	</div>
 </div>
-</body>
-</html>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#goWriteBtn").click(function() {
+		location.href="goWriteQuestion.do?product_id=<%=pid%>&category_id=<%=cid%>";
+	});
+});
+</script>

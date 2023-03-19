@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Question">
+	<!-- 문의내용 작성  -->
+	<insert id="writeQuestion" parameterType="com.sharebridge.dto.QuestionDto">
+		insert into question(product_id, member_id, title, content, private_question, qstate, rdate)
+		values(${product_id}, ${member_id}, #{title}, #{content}, #{private_question}, #{qstate}, now())
+	</insert>
+</mapper>
