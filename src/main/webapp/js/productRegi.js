@@ -13,6 +13,23 @@ $(document).ready(function() {
 
 	$(".selector").on('focus', function(currentTarget) {$(currentTarget).blur()});
 	$(".selector").prop('readonly', false);	
+	
+	// 선택된 날짜
+	$("#start").change(function() {
+		let s = $("#start").val();	
+		
+		let convert_s = new Date(s).toISOString().slice(0,19);
+		
+		$("#startDate").val(convert_s);	
+	});
+	
+	$("#end").change(function() {
+		let e = $("#end").val();	
+		
+		let convert_e = new Date(e).toISOString().slice(0,19);
+		
+		$("#endDate").val(convert_e);	
+	});
 	    
 	// 빈칸검사
 	$("#regiBtn").click(function(e) {

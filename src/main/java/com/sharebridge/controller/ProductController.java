@@ -2,6 +2,7 @@ package com.sharebridge.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +42,14 @@ public class ProductController {
 								@RequestParam(value="fileload", required=false)
 								MultipartFile fileload,
 								HttpServletRequest req,
+								@RequestParam(value="start", required=false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+								LocalDateTime sdate,
+								@RequestParam(value="end", required=false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+								LocalDateTime edate,
 								Model model) {
+		
+		dto.setSdate(sdate);
+		dto.setEdate(edate);
 		
 		// filename 취득(원본)
 		String filename = fileload.getOriginalFilename();

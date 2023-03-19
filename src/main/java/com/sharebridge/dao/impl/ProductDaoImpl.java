@@ -20,7 +20,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public List<CategoryDto> getAllCategory() {
-		return session.selectList(c_ns + "allCategory");
+		return session.selectList(c_ns + "getAllCategory");
 	}
 
 	@Override

@@ -50,8 +50,10 @@
 			<tr>
 				<th>대여기간</th>
 				<td>
-					<input class="selector" id="start" placeholder="시작 날짜" name="sdate" />
-					<input class="selector" id="end" placeholder="마지막 날짜" name="edate" />
+					<input class="selector" id="start" placeholder="시작 날짜" />
+					<input class="selector" id="end" placeholder="마지막 날짜" />
+					<input type="hidden" id="startDate" name="start" />
+					<input type="hidden" id="endDate" name="end" />
 				</td>	
 			</tr>
 			<tr>
