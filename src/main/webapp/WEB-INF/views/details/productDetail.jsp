@@ -1,3 +1,5 @@
+<%@page import="com.sharebridge.dto.ReviewDto"%>
+<%@page import="java.util.List"%>
 <%@page import="com.sharebridge.dto.MemberDto"%>
 <%@page import="com.sharebridge.dto.CategoryDto"%>
 <%@page import="com.sharebridge.dto.ProductDto"%>
@@ -24,6 +26,9 @@
 ProductDto getProduct = (ProductDto)request.getAttribute("detail");
 CategoryDto getCate = (CategoryDto)request.getAttribute("getCate");
 MemberDto login = (MemberDto)session.getAttribute("login");
+MemberDto renter = (MemberDto)request.getAttribute("renter");
+List<ReviewDto> reviewList = (List<ReviewDto>)request.getAttribute("review");
+List<String> renteeNickList = (List<String>)request.getAttribute("renteeNick");
 
 String sdate = getProduct.getSdate();
 String edate = getProduct.getEdate();
@@ -86,8 +91,32 @@ int cid = getProduct.getCategory_id();
 	
 	<%-- 렌터 정보(프로필, 후기) --%>
 	<div class="renter_info">
-		<div class="renter_profile"></div>
-		<div class="renter_review"></div>
+		<div class="renter_profile">
+			<img scr="" alt="profile">
+			<span><%=renter.getNickname() %></span>
+		</div>
+		<div class="renter_review">
+			<%	
+				if(reviewList.size() != 0) {
+					for(int i=0; i<=4; i++) {
+						ReviewDto r = reviewList.get(i);
+						String nick = renteeNickList.get(i);
+						%>
+						<div class="reviewlist">
+							<span><%=nick %></span>
+							<span><%=r.getRdate() %></span>
+							<span><%=r.getRating() %></span>
+							<p><%=r.getContent() %></p>
+						</div>
+						<%
+					}
+				} else {
+					%>
+					<span>**작성된 리뷰가 없습니다.</span>
+					<%
+				}
+			%>
+		</div>
 	</div>
 	
 	<%-- 상품 내용, 문의 --%>

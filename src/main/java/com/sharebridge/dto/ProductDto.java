@@ -32,11 +32,11 @@ public class ProductDto implements Serializable{
 	private int member_id;
 	private String title;
 	private String content;
-//	private LocalDateTime sdate;
-//	private LocalDateTime edate;
+	private String sdate;
+	private String edate;
 	private int price;
 	private String photo;
-//	private LocalDateTime wdate;
+	private String wdate;
 	private byte state;
 	private byte del;
 	private int wish_member_id;
@@ -46,8 +46,8 @@ public class ProductDto implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductDto(int product_id, int category_id, int member_id, String title, String content, LocalDateTime sdate,
-			LocalDateTime edate, int price, String photo, LocalDateTime wdate, byte state, byte del,int wish_member_id) {
+	public ProductDto(int product_id, int category_id, int member_id, String title, String content, String sdate,
+			String edate, int price, String photo, String wdate, byte state, byte del,int wish_member_id) {
 
 		super();
 		this.product_id = product_id;
@@ -55,11 +55,11 @@ public class ProductDto implements Serializable{
 		this.member_id = member_id;
 		this.title = title;
 		this.content = content;
-//		this.sdate = sdate;
-//		this.edate = edate;
+		this.sdate = sdate;
+		this.edate = edate;
 		this.price = price;
 		this.photo = photo;
-//		this.wdate = wdate;
+		this.wdate = wdate;
 		this.state = state;
 		this.del = del;
 		this.wish_member_id = wish_member_id;
@@ -113,15 +113,15 @@ public class ProductDto implements Serializable{
 		this.content = content;
 	}
 
-	/*
-	 * public LocalDateTime getSdate() { return sdate; }
-	 * 
-	 * public void setSdate(LocalDateTime sdate) { this.sdate = sdate; }
-	 * 
-	 * public LocalDateTime getEdate() { return edate; }
-	 * 
-	 * public void setEdate(LocalDateTime edate) { this.edate = edate; }
-	 */
+
+	public String getSdate() { return sdate; }
+
+	public void setSdate(String sdate) { this.sdate = sdate; }
+ 
+	public String getEdate() { return edate; }
+	 
+	public void setEdate(String edate) { this.edate = edate; }
+	
 
 	public int getPrice() {
 		return price;
@@ -139,11 +139,10 @@ public class ProductDto implements Serializable{
 		this.photo = photo;
 	}
 
-	/*
-	 * public LocalDateTime getWdate() { return wdate; }
-	 * 
-	 * public void setWdate(LocalDateTime wdate) { this.wdate = wdate; }
-	 */
+	public String getWdate() { return wdate; }
+
+	public void setWdate(String wdate) { this.wdate = wdate; }
+	
 	public byte getState() {
 		return state;
 	}
