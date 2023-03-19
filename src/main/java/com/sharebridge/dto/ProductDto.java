@@ -158,10 +158,6 @@ public class ProductDto implements Serializable{
 		return wdate;
 	}
 
-	public void setWdate(LocalDateTime wdate) {
-		this.wdate = wdate;
-	}
-	
 	public void setWdate(Timestamp wdate) {
 		this.wdate = wdate.toLocalDateTime();
 	}

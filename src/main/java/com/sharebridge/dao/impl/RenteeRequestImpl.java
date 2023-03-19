@@ -24,7 +24,7 @@ public class RenteeRequestImpl implements RenteeRequestDao {
 	
 	@Override
 	public RequestDto getRequestByRequest_id(int request_id) {
-		return session.selectOne(ns + "getRequestByRequeste_id");
+		return session.selectOne(ns + "getRequestByRequest_id", request_id);
 	}
 
 	@Override

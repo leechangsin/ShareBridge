@@ -98,20 +98,14 @@ public class RequestDto {
 	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
 	}
-	public LocalDateTime getSdate() {
-		return sdate;
-	}
 	public void setSdate(LocalDateTime sdate) {
 		this.sdate = sdate;
 	}
-	public void setSdate(Timestamp sdate) {
-		this.sdate = sdate.toLocalDateTime();
-	}
-	public LocalDateTime getEdate() {
-		return edate;
-	}
 	public void setEdate(LocalDateTime edate) {
 		this.edate = edate;
+	}
+	public void setSdate(Timestamp sdate) {
+		this.sdate = sdate.toLocalDateTime();
 	}
 	public void setEdate(Timestamp edate) {
 		this.edate = edate.toLocalDateTime();
@@ -152,12 +146,6 @@ public class RequestDto {
 	public void setIs_accept(byte is_accept) {
 		this.is_accept = is_accept;
 	}
-	public LocalDateTime getRdate() {
-		return rdate;
-	}
-	public void setRdate(LocalDateTime rdate) {
-		this.rdate = rdate;
-	}
 	public void setRdate(Timestamp rdate) {
 		this.rdate = rdate.toLocalDateTime();
 	}
@@ -166,5 +154,17 @@ public class RequestDto {
 	}
 	public void setDel(byte del) {
 		this.del = del;
+	}
+
+	public LocalDateTime getSdate() {
+		return sdate;
+	}
+
+	public LocalDateTime getEdate() {
+		return edate;
+	}
+
+	public LocalDateTime getRdate() {
+		return rdate;
 	}
 }

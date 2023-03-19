@@ -1,5 +1,7 @@
 package com.sharebridge.controller.mypage;
 
+import java.sql.Timestamp;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -56,7 +58,7 @@ public class MypageUpdateController {
 			newMemberInfo.setMember_id(oldMemberInfo.getMember_id());
 			newMemberInfo.setEmail(oldMemberInfo.getEmail());
 			newMemberInfo.setProfile(oldMemberInfo.getProfile());
-			newMemberInfo.setRdate(oldMemberInfo.getRdate());
+			newMemberInfo.setRdate(Timestamp.valueOf(oldMemberInfo.getRdate()));
 			newMemberInfo.setAuth(oldMemberInfo.getAuth());
 			newMemberInfo.setDel(oldMemberInfo.getDel());
 			newMemberInfo.setReason(oldMemberInfo.getReason());

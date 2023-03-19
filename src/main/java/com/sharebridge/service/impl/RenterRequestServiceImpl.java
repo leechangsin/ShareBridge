@@ -57,7 +57,7 @@ public class RenterRequestServiceImpl implements RenterRequestService {
 //		대여 신청 수락 처리
 		renterDao.acceptRequest(request_id);
 		// 대여 상태를 대여중 으로 변경
-		productDao.updateStateTo1(product.getProduct_id());
+		productDao.updateStateTo1(request.getProduct_id());
 		
 		return "success";
 	}
