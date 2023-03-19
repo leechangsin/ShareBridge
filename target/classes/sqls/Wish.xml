@@ -3,9 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Wish">
 	<!-- wish -->
-	<select id="getAllWishByMemberId"
-		parameterType="int"
-		resultType="com.sharebridge.dto.ProductDto"> <!-- wish dto로 만들어서 매핑해주기 -->
+	<select id="getAllWishByMemberId" parameterType="int" resultType="com.sharebridge.dto.ProductDto"> <!-- wish dto로 만들어서 매핑해주기 -->
 		select *
 		from product p
 		inner join wish w on p.product_id = w.product_id
