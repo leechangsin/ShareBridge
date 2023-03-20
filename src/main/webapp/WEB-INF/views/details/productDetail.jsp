@@ -58,12 +58,12 @@ int cid = getProduct.getCategory_id();
 			<%
 				if(login == null || login.getMember_id() != getProduct.getMember_id()) { 
 			%>					
-					<a href="goUpdate.do?product_id=<%=pid%>&category_id=<%=cid%>">수정</a>
-					<a href="delProduct.do?product_id=<%=pid%>">삭제</a>
+					<button type="button" class="btn btn-secondary" id="requestFrmBtn">대여신청</button>
 			<%
 				} else {
 			%>
-					<button type="button" class="btn btn-secondary" id="requestFrmBtn">대여신청</button>
+					<a href="goUpdate.do?product_id=<%=pid%>&category_id=<%=cid%>">수정</a>
+					<a href="delProduct.do?product_id=<%=pid%>">삭제</a>
 			<%					
 				}
 			%>
