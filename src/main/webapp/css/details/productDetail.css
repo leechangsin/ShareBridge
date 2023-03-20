@@ -267,6 +267,27 @@
 	color: white;
 }
 
+/* .content_and_question */
+/* .question_con */
+.question_container > .question_list_wrap > .question_con > td > p {
+	margin-bottom: 0;
+}
+.question_container > .question_list_wrap > .question_con > td > div {
+	text-align: right;
+	margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.question_container > .question_list_wrap > .question_con > td > div > button {
+	background: lightgray;
+	margin-right: 10px;
+}
+
+.question_container > .question_list_wrap > .question_con > td > div > button:hover {
+	background: gray;
+	color: white;
+}
+
 .trans {
 	transition: max-height 0.5s ease-out;
 }

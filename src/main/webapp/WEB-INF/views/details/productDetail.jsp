@@ -26,6 +26,11 @@ String edate = getProduct.getEdate().toString();
 
 int pid = getProduct.getProduct_id();
 int cid = getProduct.getCategory_id();
+
+// 상품을 등록한 사용자 아이디
+int renter_id = getProduct.getMember_id();
+// 현재 페이지를 보고 있는 사용자 아이디
+int user_id = login.getMember_id();
 %>
 
 <div>
@@ -157,6 +162,11 @@ int cid = getProduct.getCategory_id();
 
 <script src="/sharebridge/js/public/common.js"></script>
 <script type="text/javascript">
+let product_id = <%= pid %>;
+let category_id = <%= cid %>;
+let renter_id = <%= renter_id %>;
+let user_id = <%= user_id %>;
+
 $("#goWriteBtn").click(function() {
 	location.href="goWriteQuestion.do?product_id=<%=pid%>&category_id=<%=cid%>";
 });
@@ -188,7 +198,10 @@ let loadNewData = (product_id, page) => {
 				
 				let renteeNickname = question.renteeNickname.substring(0, 1) + "***";
 				let content = question.content;
-				content = content.replace("\r\n", "<br>");
+				content = content.replace(/\r\n/gi, "<br>");
+				
+				// 질문을 한 사용자 아이디
+				let rentee_id = question.member_id;
 				
 				let stateHtml = "<td>";
 				if(state) {
@@ -216,7 +229,17 @@ let loadNewData = (product_id, page) => {
 				fullHtml += renteeNicknameHtml;
 				fullHtml += "</tr>";
 				fullHtml += "<tr class='question_con' style='display:none'>";
-				fullHtml += "<td colspan='5'><p>"+content+"</p></td>";
+				fullHtml += "<td colspan='5'>";
+				fullHtml += "<p>"+content+"</p>";
+				fullHtml += "<div>";
+				if(renter_id == user_id) {
+					fullHtml += "<button class='btn question_reply_btn'>답변하기</button>";
+				}
+				if(user_id == rentee_id) {
+					fullHtml += "<button class='btn question_update_btn'>수정</button><button class='btn question_delete_btn'>삭제</button>";
+				}
+				fullHtml += "</div>";
+				fullHtml += "</td>";
 				fullHtml += "</tr>";
 				
 				question_list_wrap.append(fullHtml);
@@ -227,6 +250,10 @@ let loadNewData = (product_id, page) => {
 				$(this).next(".question_con").stop().slideToggle(300);
 				$(this).toggleClass("on").siblings().removeClass("on");
 				$(this).next(".question_con").siblings(".question_con").slideUp(300);
+			});
+			
+			$(".question_container > .question_list_wrap > .question_con > td > div > .question_reply_btn").on("click", function() {
+				goTo("/sharebridge/goWriteQuestion.do?product_id="+product_id+"&category_id="+category_id+"&status=reply");
 			});
 		},
 		error: function() {
