@@ -46,7 +46,7 @@
 			</tr>
 			
 			<!-- nav -->
-			<tr height="83px" style="background-color:#969F95">
+			<tr>
 				<td>
 					<tiles:insertAttribute name="nav"/>
 				</td>		
