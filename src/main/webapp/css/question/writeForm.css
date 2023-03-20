@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+.question_container {
+	width: 1000px;
+}
+
+.title {
+	margin-top: 50px;
+	margin-bottom: 30px;
+    border-bottom: 2px solid;
+   	padding-bottom: 20px;
+   	font-size: 32px;
+   	font-weight: bold;
+}
+
+form > table {
+	width: 100%;
+}
+
+#frm > table > tbody > tr.private_btn_wrap > td {
+	padding-left: 20px;
+}
+
+#frm > table > tbody > tr > th {
+	text-align: right;
+}
+
+#frm > table > tbody > tr > th > label {
+	margin-right: 10px;
+	margin-bottom: 15px;
+}
+
+#frm > table > tbody > tr.private_btn_wrap > th > label {
+	margin-bottom: 5px;
+}
+
+#btn_wrap {
+	display: flex;
+	justify-content: center;
+	margin: 50px 0;
+}
+
+#btn_wrap > button {
+	background: lightgray;
+	font-size: 18px;
+	width: 200px;
+	height: 60px;
+}
+
+#btn_wrap > button:hover {
+	background: gray;
+	color: white;
+}
