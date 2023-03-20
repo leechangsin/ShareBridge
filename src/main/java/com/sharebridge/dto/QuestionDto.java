@@ -1,6 +1,7 @@
 package com.sharebridge.dto;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class QuestionDto implements Serializable{
@@ -90,8 +91,8 @@ public class QuestionDto implements Serializable{
 		return rdate;
 	}
 
-	public void setRdate(LocalDateTime rdate) {
-		this.rdate = rdate;
+	public void setRdate(Timestamp rdate) {
+		this.rdate = rdate.toLocalDateTime();
 	}
 
 	@Override
