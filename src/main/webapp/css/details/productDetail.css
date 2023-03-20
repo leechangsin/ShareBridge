@@ -277,7 +277,7 @@
 .question_container > .question_list_wrap > .question_con > td > p {
 	margin-bottom: 0;
 }
-.question_container > .question_list_wrap > .question_con > td > div {
+.question_container > .question_list_wrap > .question_con > td > div.btn_wrap {
 	text-align: right;
 	margin-top: -5px;
     margin-bottom: 10px;
@@ -293,6 +293,28 @@
 	color: white;
 }
 
-.trans {
-	transition: max-height 0.5s ease-out;
+/* .content_and_question */
+/* reply_wrap */
+.reply_wrap {
+	display: flex;
+	padding-left: 11px;
+	margin-top: -10px;
+}
+
+.reply_wrap > img {
+	width: 20px;
+	height: 20px;
+	margin-top: 8px;
+}
+
+.reply_wrap > .reply_title_content_wrap > p {
+	margin-bottom: 0px;
+}
+
+.reply_wrap > .reply_title_content_wrap > p:nth-child(1) {	
+	padding-bottom: 0px;
+}
+
+.reply_wrap > .reply_title_content_wrap > p:nth-child(2) {
+	padding-top: 0px;
 }

@@ -18,4 +18,9 @@ public class ReplyDaoImpl implements ReplyDao {
 	public void reply(ReplyDto replyDto) {
 		session.insert(ns + "insertReply", replyDto);
 	}
+
+	@Override
+	public ReplyDto getReplyByQuestion_id(int question_id) {
+		return session.selectOne(ns + "getReplyByQuestion_id", question_id);
+	}
 }

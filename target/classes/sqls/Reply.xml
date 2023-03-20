@@ -6,4 +6,8 @@
 	<insert id="insertReply" parameterType="com.sharebridge.dto.ReplyDto">
 		insert into reply(member_id, question_id, title, content) VALUES(#{member_id}, #{question_id}, #{title}, #{content})
 	</insert>
+	
+	<select id="getReplyByQuestion_id" parameterType="int" resultType="com.sharebridge.dto.ReplyDto">
+		select * from reply where question_id = #{question_id}
+	</select>
 </mapper>

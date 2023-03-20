@@ -153,9 +153,15 @@ int user_id = login.getMember_id();
 				</ul>
 			</nav>
 			
-			<div id="question_btn_wrap">
-				<button type="button" class="btn" id="goWriteBtn">문의하기</button>
-			</div>
+			<%
+				if(renter_id != user_id) {
+			%>
+				<div id="question_btn_wrap">
+					<button type="button" class="btn" id="goWriteBtn">문의하기</button>
+				</div>
+			<%
+				}
+			%>
 		</div>
 	</div>
 </div>
@@ -232,7 +238,7 @@ let loadNewData = (product_id, page) => {
 				fullHtml += "<tr class='question_con' style='display:none' question_id='" + question_id + "' reply_load='"+!qstate+"'>";
 				fullHtml += "<td colspan='5'>";
 				fullHtml += "<p>"+content+"</p>";
-				fullHtml += "<div>";
+				fullHtml += "<div class='btn_wrap'>";
 				if((renter_id == user_id) && !qstate) {
 					fullHtml += "<button class='btn question_reply_btn'>답변하기</button>";
 				}
@@ -270,12 +276,12 @@ let loadNewData = (product_id, page) => {
 					let question_id = $now.attr("question_id");
 						
 					$.ajax({
-						url: "/sharebridge/reply",
+						url: "/sharebridge/reply.do",
 						type: "GET",
 						data: "question_id="+question_id,
 						success: function(reply) {
 							$now.attr("reply_load", true);
-							$question_con.children("p").after("<div><p class='reply_title'>"+reply.title+"</p><p class='reply_content'>"+reply.content+"</p></div>");
+							$now.children().children("p").after("<div class='reply_wrap'><img src='/sharebridge/images/arrow_icon.png'><div class='reply_title_content_wrap'><p class='reply_title'>"+reply.title+"</p><p class='reply_content'>"+reply.content+"</p><div></div>");
 						},
 						error: function() {
 							

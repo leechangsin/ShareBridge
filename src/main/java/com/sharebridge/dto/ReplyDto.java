@@ -1,5 +1,6 @@
 package com.sharebridge.dto;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class ReplyDto {
@@ -62,7 +63,7 @@ public class ReplyDto {
 	public LocalDateTime getRdate() {
 		return rdate;
 	}
-	public void setRdate(LocalDateTime rdate) {
-		this.rdate = rdate;
+	public void setRdate(Timestamp rdate) {
+		this.rdate = rdate.toLocalDateTime();
 	}
 }

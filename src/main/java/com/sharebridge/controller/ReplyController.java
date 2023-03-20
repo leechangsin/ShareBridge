@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sharebridge.dto.MemberDto;
@@ -42,5 +43,18 @@ public class ReplyController {
 		} else {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
+	}
+	
+	@GetMapping("/reply.do")
+	public ResponseEntity<ReplyDto> getReply(int question_id, HttpSession session) {
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			
+			return ResponseEntity.status(HttpStatus.MULTIPLE_CHOICES).header("Location", "/sharebridge/login.do").build();
+		}
+		
+		ReplyDto replyDto = replyService.getReplyByQuestion_id(question_id);
+		
+		return ResponseEntity.ok().body(replyDto);
 	}
 }
