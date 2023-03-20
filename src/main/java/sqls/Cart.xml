@@ -4,7 +4,16 @@
 <mapper namespace="Cart">
 	<!-- wish -->
 	<select id="getAllCarts"
-		resultType="com.sharebridge.dto.CartDto"> 
-		select * from cart
+		resultType="com.sharebridge.dto.ProductDto">
+		select p.*, c.cart_id from product p
+		inner join cart c on p.product_id = c.product_id
 	</select>
+
+	<delete id="deleteAll">
+		delete from cart where cart_id in (
+		<foreach collection="cartids" item="id" separator=",">
+			#{id}
+		</foreach>
+		)
+	</delete>
 </mapper>

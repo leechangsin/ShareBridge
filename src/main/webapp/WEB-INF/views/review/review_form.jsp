@@ -1,3 +1,5 @@
+<%@page import="com.sharebridge.dto.ProductDto"%>
+<%@page import="com.sharebridge.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,6 +14,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<!-- js -->
+<script src="js/productRegi.js" defer></script>
+<!-- css -->
+<link rel="stylesheet" href="css/details/productRegi.css">
 
 <style type="text/css">
 .star-rating {
@@ -49,11 +56,20 @@
 </head>
 <body>
 
+<%
+MemberDto login = (MemberDto)session.getAttribute("login");
+ProductDto prod = (ProductDto)request.getAttribute("prod");
+int requestId = (Integer)request.getAttribute("requestId");
+%>
+
 <div align="center">
 <h1>후기 작성</h1>
 <hr><br>
 
-<form action="reviewWrite" method="post">
+<form action="reviewWriteAf.do" method="post" enctype="multipart/form-data">
+<input type="hidden" name="renter_id" value="<%=prod.getMember_id() %>">
+<input type="hidden" name="rentee_id" value="<%=login.getMember_id() %>">
+<input type="hidden" name="request_id" value="<%=requestId %>">
 <table>
 <tr>
 	<th>별점</th>
@@ -75,7 +91,8 @@
 <tr>
 	<th><br>상품명</th>
 	<td>
-		<br><input value="상품명" name="product_id" readonly="readonly">
+		<br><input type="text" value="<%=prod.getTitle() %>" readonly="readonly">
+		<input type="hidden" name="product_id" value="<%=prod.getProduct_id() %>">
 	</td>
 </tr>
 <tr>
@@ -86,7 +103,16 @@
 </tr>
 <tr>
 	<th><br>사진등록</th>
-	<td><br>이미지</td>
+	<td class="photo_regi">
+		<label for="file" class="upload-btn">
+			<input id="file" type="file" name="fileload" onchange="changeImg()">
+			<span>+</span>
+		</label>
+		<img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" id="preview" class="image-box" />
+		<button type="button" class="deleteBtn" onclick="deleteImg()">
+	    	<img src="images/delete_icon.png" />
+	    </button>
+	</td>
 </tr>
 </table>
 <br><br>
@@ -94,10 +120,6 @@
 </form>
 
 </div>
-
-<script type="text/javascript">
-
-</script>
 
 </body>
 </html>

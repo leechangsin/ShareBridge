@@ -14,7 +14,7 @@
 
 <!-- 작성해야할 후기 목록 -->
 <select id="reviewList" parameterType="Integer" resultType="com.sharebridge.dto.RequestDto">
-	select product_id, member_id
+	select product_id, member_id, request_id, is_review
 	<!-- DATE_FORMAT(sdate, '%Y-%m-%d %H:%i:%s') AS sdate, -->
 	<!-- DATE_FORMAT(edate, '%Y-%m-%d %H:%i:%s') AS edate -->
 	from request
@@ -24,7 +24,7 @@
 
 <!-- 후기 목록2(상품명, 렌터번호, 금액) -->
 <select id="reviewListTwo" parameterType="Integer" resultType="com.sharebridge.dto.ProductDto">
-	select member_id, title, price
+	select member_id, title, price, product_id
 	from product
 	where product_id=#{product_id}
 </select>
@@ -43,4 +43,51 @@
 	where renter_id = #{renter_id}
 	order by rdate desc;
 </select>
+
+<!-- 후기 작성 -->
+<insert id="writeRev" parameterType="com.sharebridge.dto.ReviewDto">
+	insert into review(review_id, request_id, product_id, renter_id, rentee_id, content, rating, photo, rdate)
+	values((select ifnull(max(review_id), 0)+1 from review b), #{request_id}, #{product_id}, #{renter_id}, #{rentee_id}, #{content}, #{rating}, #{photo}, now())
+</insert>
+
+<!-- 작성한 후기 표시 -->
+<update id="writeRevTwo" parameterType="Integer">
+	update request
+	set is_review=1
+	where request_id=#{request_id}
+</update>
+
+<!-- 대여신청서 번호로부터 후기 내용 가져오기 -->
+<select id="revFromReq" parameterType="Integer" resultType="com.sharebridge.dto.ReviewDto">
+	select review_id, content, rating, photo, product_id
+	from review
+	where request_id=#{request_id}
+</select>
+
+<!-- 후기 수정 -->
+<update id="updateRev" parameterType="com.sharebridge.dto.ReviewDto">
+	update review
+	set content=#{content}, rating=#{rating}, photo=#{photo}, rdate=now()
+	where review_id=#{review_id}
+</update>
+
+<!-- 후기 삭제 -->
+<delete id="deleteRev" parameterType="Integer">
+	delete from review
+	where request_id=#{request_id}
+</delete>
+
+<!-- 후기 삭제2(대여신청서 리뷰상태 0으로) -->
+<update id="deleteRevTwo" parameterType="Integer">
+	update request
+	set is_review=0
+	where request_id=#{request_id}
+</update>
+
+<!-- 리뷰번호로 리뷰 데이터 가져오기 -->
+<select id="selecAllRev" parameterType="Integer" resultType="com.sharebridge.dto.ReviewDto">
+	select * from review
+	where review_id=#{review_id}
+</select>
+
 </mapper>

@@ -33,8 +33,24 @@ public class ReviewDto implements Serializable {
 	private int rating;
 	private String photo;
 	private LocalDateTime rdate;
+	private int request_id;
 	
-	public ReviewDto(int review_id, int product_id, int renter_id, int rentee_id, String content, int rating, String photo, LocalDateTime rdate) {
+	public ReviewDto() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ReviewDto(int review_id, int product_id, String content, int rating, String photo) {
+		super();
+		this.review_id = review_id;
+		this.product_id = product_id;
+		this.content = content;
+		this.rating = rating;
+		this.photo = photo;
+	}
+	
+	public ReviewDto(int review_id, int product_id, int renter_id, int rentee_id, String content, int rating,
+			String photo, LocalDateTime rdate, int request_id) {
+		super();
 		this.review_id = review_id;
 		this.product_id = product_id;
 		this.renter_id = renter_id;
@@ -43,8 +59,9 @@ public class ReviewDto implements Serializable {
 		this.rating = rating;
 		this.photo = photo;
 		this.rdate = rdate;
+		this.request_id = request_id;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "ReviewDto [review_id=" + review_id + ", product_id=" + product_id + ", renter_id=" + renter_id
@@ -99,5 +116,13 @@ public class ReviewDto implements Serializable {
 	}
 	public void setRdate(Timestamp rdate) {
 		this.rdate = rdate.toLocalDateTime();
+	}
+
+	public int getRequest_id() {
+		return request_id;
+	}
+
+	public void setRequest_id(int request_id) {
+		this.request_id = request_id;
 	}
 }
