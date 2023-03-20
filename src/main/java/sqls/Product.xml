@@ -16,7 +16,7 @@
 	select p.*, w.member_id as wish_member_id
 	from product p
 	left join wish w on p.product_id = w.product_id
-	left join member m on w.member_id = m.member_id
+	inner join member m on w.member_id = m.member_id
 	where p.del is null
 	order by wdate desc
 </select>	

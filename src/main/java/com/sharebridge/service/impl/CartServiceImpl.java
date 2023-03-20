@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.sharebridge.dao.CartDao;
 import com.sharebridge.dto.CartDto;
+import com.sharebridge.dto.ProductDto;
 import com.sharebridge.service.CartService;
 
 @Service
@@ -16,7 +17,7 @@ public class CartServiceImpl implements CartService{
 	CartDao dao;
 
 	@Override
-	public List<CartDto> getAllCarts() {
+	public List<ProductDto> getAllCarts() {
 		return dao.getAllCarts();
 	}
 

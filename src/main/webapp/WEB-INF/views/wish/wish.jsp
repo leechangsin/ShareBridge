@@ -6,6 +6,10 @@
 <head>
 <script type="text/javascript">
 
+function onClickProduct(pid,cid){
+	location.href = "productDetail.do?product_id="+pid+"&category_id="+cid;
+}
+
 function onClickWish(productId){
 	
 	if("${login == null}" === 'false'){
@@ -33,7 +37,7 @@ function onClickWish(productId){
 		<h2>위시 리스트</h2>
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 				<c:forEach items="${wishes}" var="wish">
-					<div class="col">
+					<div class="col" onclick="onClickProduct(${wish.product_id}, ${wish.category_id})">
 						<div class="card shadow-sm">
 							<svg class="bd-placeholder-img card-img-top" width="100%"
 								height="225" xmlns="http://www.w3.org/2000/svg" role="img"
@@ -47,7 +51,7 @@ function onClickWish(productId){
 								<div class="d-flex justify-content-between align-items-center">
 									<p class="card-text">${wish.title}</p>
 									<div>
-										<img onclick="onClickWish(${wish.product_id})"
+										<img onclick="event.stopPropagation(); onClickWish(${wish.product_id})"
 											id="wish_${product.product_id}"
 											src="/sharebridge/images/has_wish_icon.png" alt="cart">
 									</div>

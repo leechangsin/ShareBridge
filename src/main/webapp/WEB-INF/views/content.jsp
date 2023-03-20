@@ -76,8 +76,11 @@
 </head>
 <script type="text/javascript">
 
+function onClickProduct(pid,cid){
+	location.href = "productDetail.do?product_id="+pid+"&category_id="+cid;
+}
+
 function onClickWish(productId, hasWish){
-	
 	if("${login == null}" === 'false'){
 		$.ajax({
 			type:"post",
@@ -101,7 +104,7 @@ function onClickWish(productId, hasWish){
 		<div class="container">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 				<c:forEach items="${products }" var="product">
-					<div class="col">
+					<div class="col" onclick="onClickProduct(${product.product_id}, ${product.category_id})">
 						<div class="card shadow-sm">
 							<svg class="bd-placeholder-img card-img-top" width="100%"
 								height="225" xmlns="http://www.w3.org/2000/svg" role="img"
@@ -117,12 +120,12 @@ function onClickWish(productId, hasWish){
 									<div>
 										<c:choose>
 											<c:when test="${product.wish_member_id > 0}">
-												<img onclick="onClickWish(${product.product_id}, false)"
+												<img onclick="event.stopPropagation(); onClickWish(${product.product_id}, false)"
 											id="wish_${product.product_id}"
 											src="/sharebridge/images/has_wish_icon.png" alt="cart">
 											</c:when>
 											<c:otherwise>
-												<img onclick="onClickWish(${product.product_id}, true)"
+												<img onclick="event.stopPropagation(); onClickWish(${product.product_id}, true)"
 											id="wish_${product.product_id}"
 											src="/sharebridge/images/nohas_wish_icon.png" alt="cart">
 											</c:otherwise>
