@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -251,7 +253,7 @@ public class ProductController {
 	}
 	
 	// 상품 관리 페이지
-	@PostMapping("/productManage.do")
+	@RequestMapping(value="productList.do", method=RequestMethod.GET)
 	public String productManage(int member_id, Model model) {
 		List<ProductDto> productList = service.getProductListForRenter(member_id);
 		model.addAttribute("productList", productList);
