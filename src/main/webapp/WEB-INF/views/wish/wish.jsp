@@ -4,6 +4,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+
+function onClickWish(productId){
+	
+	if("${login == null}" === 'false'){
+		$.ajax({
+			type:"post",
+			url: "removeWish.do",
+			data:{ "member_id":"${login.member_id}", "product_id": productId },
+			success:function(msg){
+				location.reload();
+			},
+			error:function(e){
+				alert('error',e);
+			}
+		});
+	}else{
+		alert('로그인을 해주세요.');
+	}
+	
+}
+</script>
 </head>
 <body>
 	<div class="album py-5 bg-light">
@@ -25,7 +47,9 @@
 								<div class="d-flex justify-content-between align-items-center">
 									<p class="card-text">${wish.title}</p>
 									<div>
-										<img src="/sharebridge/images/wish_icon.png" alt="cart">
+										<img onclick="onClickWish(${wish.product_id})"
+											id="wish_${product.product_id}"
+											src="/sharebridge/images/has_wish_icon.png" alt="cart">
 									</div>
 								</div>
 								<p class="card-text">${wish.price}원/일</p>

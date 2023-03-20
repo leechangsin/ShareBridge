@@ -76,11 +76,12 @@
 </head>
 <script type="text/javascript">
 
-function onClickWish(productId){
+function onClickWish(productId, hasWish){
+	
 	if("${login == null}" === 'false'){
 		$.ajax({
 			type:"post",
-			url:"addWish.do",
+			url: hasWish ? "addWish.do" : "removeWish.do",
 			data:{ "member_id":"${login.member_id}", "product_id": productId },
 			success:function(msg){
 				location.reload();
@@ -89,6 +90,8 @@ function onClickWish(productId){
 				alert('error',e);
 			}
 		});
+	}else{
+		alert('로그인을 해주세요.');
 	}
 	
 }
@@ -98,36 +101,45 @@ function onClickWish(productId){
 		<div class="container">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 				<c:forEach items="${products }" var="product">
-							<div class="col">
-								<div class="card shadow-sm">
-									<svg class="bd-placeholder-img card-img-top" width="100%"
-										height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-										aria-label="Placeholder: Thumbnail"
-										preserveAspectRatio="xMidYMid slice" focusable="false">
+					<div class="col">
+						<div class="card shadow-sm">
+							<svg class="bd-placeholder-img card-img-top" width="100%"
+								height="225" xmlns="http://www.w3.org/2000/svg" role="img"
+								aria-label="Placeholder: Thumbnail"
+								preserveAspectRatio="xMidYMid slice" focusable="false">
 							<title>Placeholder</title><rect width="100%" height="100%"
-											fill="#55595c"></rect>
+									fill="#55595c"></rect>
 							<text x="50%" y="50%" fill="#eceeef" dy=".3em">상품사진</text></svg>
 
-									<div class="card-body">
-										<div class="d-flex justify-content-between align-items-center">
-											<p class="card-text">${product.title}</p>
-											<div>
-											${product.wish_member_id}
-												<img onclick="onClickWish(${product.product_id})" id="wish_${product.product_id}" src="/sharebridge/images/wish_icon.png" alt="cart">
-											</div>
-										</div>
-										<p class="card-text">${product.price}원/일</p>
+							<div class="card-body">
+								<div class="d-flex justify-content-between align-items-center">
+									<p class="card-text">${product.title}</p>
+									<div>
+										<c:choose>
+											<c:when test="${product.wish_member_id > 0}">
+												<img onclick="onClickWish(${product.product_id}, false)"
+											id="wish_${product.product_id}"
+											src="/sharebridge/images/has_wish_icon.png" alt="cart">
+											</c:when>
+											<c:otherwise>
+												<img onclick="onClickWish(${product.product_id}, true)"
+											id="wish_${product.product_id}"
+											src="/sharebridge/images/nohas_wish_icon.png" alt="cart">
+											</c:otherwise>
+										</c:choose>
+									</div>
+								</div>
+								<p class="card-text">${product.price}원/일</p>
 
-										<div class="d-flex justify-content-between align-items-center">
-											<div class="btn-group">
-												<button type="button"
-													class="btn btn-sm btn-outline-secondary">대여가능</button>
-											</div>
-										</div>
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group">
+										<button type="button" class="btn btn-sm btn-outline-secondary">대여가능</button>
 									</div>
 								</div>
 							</div>
-						</c:forEach>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

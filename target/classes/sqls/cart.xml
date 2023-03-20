@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Cart">
-	<!-- Cart -->
-	<select id="getAllCarts" resultType="com.sharebridge.dto.CartDto"> 
+	<!-- wish -->
+	<select id="getAllCarts"
+		resultType="com.sharebridge.dto.CartDto"> 
 		select * from cart
 	</select>
 </mapper>

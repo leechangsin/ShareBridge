@@ -25,4 +25,9 @@ public class WishDaoImpl implements WishDao {
 		return session.insert(ns + "addWish", wishDto);
 	}
 
+	@Override
+	public int removeWish(WishDto wishDto) {
+		return session.delete("Wish.removeWish", wishDto);
+	}
+
 }

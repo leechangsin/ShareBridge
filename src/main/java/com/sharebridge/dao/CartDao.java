@@ -6,4 +6,5 @@ import com.sharebridge.dto.CartDto;
 
 public interface CartDao {
 	List<CartDto> getAllCarts();
+	int removeCarts(List<CartDto> carts);
 }

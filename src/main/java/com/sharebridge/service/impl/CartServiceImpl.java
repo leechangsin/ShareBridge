@@ -19,6 +19,9 @@ public class CartServiceImpl implements CartService{
 	public List<CartDto> getAllCarts() {
 		return dao.getAllCarts();
 	}
-	
 
+	@Override
+	public int removeCarts(List<CartDto> carts) {
+		return dao.removeCarts(carts);
+	}
 }

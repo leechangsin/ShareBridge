@@ -26,4 +26,9 @@ public class WishServiceImpl implements WishService {
 		return dao.addWish(wishDto);
 	}
 
+	@Override
+	public int removeWish(WishDto wishDto) {
+		return dao.removeWish(wishDto);
+	}
+
 }

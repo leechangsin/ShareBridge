@@ -47,7 +47,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/wish/wish.jsp" />
 	</definition>
 	
-	<!-- wish -->
+	<!-- cart -->
 	<definition name="cart" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/cart/cart.jsp" />
 	</definition>

@@ -54,7 +54,7 @@
 										fill="#55595c"></rect>
 								<text x="50%" y="50%" fill="#eceeef" dy=".3em">상품사진</text></svg></td>
 							<td><p>판매자</p>
-								<h3>${wish.title}</h3>
+								<h3>${cart.title}</h3>
 								<p
 									style="border-radius: 14px; border: 1px solid; width: 75px; padding: 4px;">대여가능</p></td>
 							<td>2023-03-10~ 2023-03-11</td>
