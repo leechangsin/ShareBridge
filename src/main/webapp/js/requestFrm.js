@@ -76,7 +76,11 @@ $(document).ready(function() {
 	
 	// 입력된 주소 저장
 	$(".addAddress").change(function() {
-		saveAddress();
+		let postcode = $('#postcode').val();
+		let address = $("#address").val();
+		let detail = $("#detailAddress").val();
+	
+		$("#saveAddress").val(postcode+"/"+address+"/"+detail);
 	});
 	
 	// 빈칸검사
@@ -112,6 +116,8 @@ $(document).ready(function() {
 			return;
 		} else {
 			$("#frm").submit();
+			let a = $("#frm").serializeArray();
+			console.log(a);
 		}
 	});
 });
@@ -161,15 +167,4 @@ function findPostcode() {
         }
     }).open();
     
-}
-
-function saveAddress() {
-	let postcode = document.getElementById('postcode').value;
-	let address = document.getElementById("address").value;
-	let detail = document.getElementById("detailAddress").value;
-	
-	let saveAddress = document.getElementById("saveAddress").value
-	saveAddress = `${postcode}/${address}/${detail}`;
-	
-	console.log(saveAddress);
 }
