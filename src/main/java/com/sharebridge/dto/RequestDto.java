@@ -16,6 +16,7 @@ public class RequestDto {
 	private String receiver_phone;
 	private String address;
 	private String payment;
+	private int total_price;
 	private byte is_cancel;
 	private byte is_accept;
 	private LocalDateTime rdate;
@@ -26,10 +27,19 @@ public class RequestDto {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
+	public String toString() {
+		return "RequestDto [request_id=" + request_id + ", product_id=" + product_id + ", member_id=" + member_id
+				+ ", name=" + name + ", email=" + email + ", phone_number=" + phone_number + ", sdate=" + sdate
+				+ ", edate=" + edate + ", receiver=" + receiver + ", receiver_phone=" + receiver_phone + ", address="
+				+ address + ", payment=" + payment + ", total_price=" + total_price + ", is_cancel=" + is_cancel
+				+ ", is_accept=" + is_accept + ", rdate=" + rdate + ", del=" + del + ", is_review=" + is_review + "]";
+	}
 
 	public RequestDto(int request_id, int product_id, int member_id, String name, String email, String phone_number,
 			LocalDateTime sdate, LocalDateTime edate, String receiver, String receiver_phone, String address,
-			String payment, byte is_cancel, byte is_accept, LocalDateTime rdate, byte del, byte is_review) {
+			String payment, int total_price, byte is_cancel, byte is_accept, LocalDateTime rdate, byte del,
+			byte is_review) {
 		super();
 		this.request_id = request_id;
 		this.product_id = product_id;
@@ -43,6 +53,7 @@ public class RequestDto {
 		this.receiver_phone = receiver_phone;
 		this.address = address;
 		this.payment = payment;
+		this.total_price = total_price;
 		this.is_cancel = is_cancel;
 		this.is_accept = is_accept;
 		this.rdate = rdate;
@@ -50,14 +61,6 @@ public class RequestDto {
 		this.is_review = is_review;
 	}
 
-	@Override
-	public String toString() {
-		return "RequestDto [request_id=" + request_id + ", product_id=" + product_id + ", member_id=" + member_id
-				+ ", name=" + name + ", email=" + email + ", phone_number=" + phone_number + ", sdate=" + sdate
-				+ ", edate=" + edate + ", receiver=" + receiver + ", receiver_phone=" + receiver_phone + ", address="
-				+ address + ", payment=" + payment + ", is_cancel=" + is_cancel + ", is_accept=" + is_accept
-				+ ", rdate=" + rdate + ", del=" + del + "]";
-	}
 
 	public RequestDto(int product_id, int member_id) {
 		super();
@@ -125,6 +128,15 @@ public class RequestDto {
 	public void setPayment(String payment) {
 		this.payment = payment;
 	}
+	
+	public int getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(int total_price) {
+		this.total_price = total_price;
+	}
+
 	public byte getIs_cancel() {
 		return is_cancel;
 	}

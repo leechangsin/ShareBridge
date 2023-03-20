@@ -6,9 +6,9 @@
 <!-- 대여신청서 저장 -->
 <insert id="insertReq" parameterType="com.sharebridge.dto.RequestDto">
 	insert into request(product_id, member_id, name, email, phone_number, sdate, edate, receiver, 
-						receiver_phone, payment, address, rdate)
+						receiver_phone, address, payment, total_price, rdate)
 	values(${product_id}, ${member_id}, #{name}, #{email}, #{phone_number}, #{sdate}, #{edate},
-			#{receiver}, #{receiver_phone}, #{address}, #{payment}, now())
+			#{receiver}, #{receiver_phone}, #{address}, #{payment}, #{total_price}, now())
 </insert>
 
 <!-- 대여신청서 불러오기 -->

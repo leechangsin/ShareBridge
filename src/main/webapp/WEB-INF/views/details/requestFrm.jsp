@@ -100,7 +100,7 @@ String edate = getProduct.getEdate().toString().substring(0,10);
 		<div class="total_price">
 			<span>총금액</span>
 			<input type="hidden" id="price" value="<%=getProduct.getPrice() %>">
-			<input type="number" id="total" readonly="readonly">
+			<input type="number" id="total" name="total_price" readonly="readonly">
 			<span>원</span>
 		</div>
 		<button type="button" id="shopping_cart">장바구니</button>
