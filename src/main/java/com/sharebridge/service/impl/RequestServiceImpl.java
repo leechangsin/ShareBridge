@@ -26,14 +26,18 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public List<Integer> getProductPriceAndCate(int product_id) {
-		return dao.getProductPriceAndCate(product_id);
+	public int getProductPrice(int product_id) {
+		return dao.getProductPrice(product_id);
 	}
 
+	@Override
+	public int getProductCate(int product_id) {
+		return dao.getProductCate(product_id);
+	}
+	
 	@Override
 	public boolean updateReq(int request_id) {
 		int n = dao.updateReq(request_id);
 		return n>0?true:false;
 	}
-
 }

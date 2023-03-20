@@ -143,10 +143,10 @@ public class ProductController {
 			
 			// upload 경로
 			// folder -> 일단 로컬에 저장, 나중에 서버에 저장으로 변경할 것
-			String fupload = "C:\\upload";
+			//String fupload = "C:\\upload";
 			
 			// server
-			// String fupload = req.getServletContext().getRealPath("/upload/product");
+			String fupload = req.getServletContext().getRealPath("/upload/product");
 			
 			// 파일명을 충돌되지 않는 명칭으로 변경
 			String newfilename = FileUtil.getNewFileName(filename);

@@ -34,8 +34,8 @@ public class HomeController {
 			System.out.println(x);
 		}
 		
+		System.out.println(categories.toString());
 		session.setAttribute("categories", categories);
-
 		model.addAttribute("products", products);
 		
 		return "baseLayout";

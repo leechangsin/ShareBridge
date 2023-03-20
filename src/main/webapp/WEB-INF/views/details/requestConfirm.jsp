@@ -1,9 +1,12 @@
+<%@page import="java.util.List"%>
 <%@page import="com.sharebridge.dto.RequestDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <% 
 	RequestDto req = (RequestDto)request.getAttribute("req");
+	int price = (Integer)request.getAttribute("price");
+	int cid = (Integer)request.getAttribute("cid");
 
 	String sdate = req.getSdate().toString().substring(0,10);
 	String edate = req.getEdate().toString().substring(0,10);
@@ -82,11 +85,11 @@
 <script>
 $(document).ready(function() {
 	$("#backToDetail").click(function() {		
-		location.href="productDetail?product_id=<%=req.getProduct_id()%>";
+		location.href="productDetail?product_id=<%=req.getProduct_id()%>&category_id=<%=cid%>";
 	});
 	
 	$("#updateBtn").click(function() {
-		location.href="goRequestUpdate.do?request_id=<%=req.getRequest_id()%>";
+		location.href="goRequestUpdate.do?request_id=<%=req.getRequest_id()%>&category_id=<%=cid%>&price<%=price%>";
 	});
 });
 </script>

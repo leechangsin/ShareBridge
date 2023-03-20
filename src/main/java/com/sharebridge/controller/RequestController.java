@@ -53,20 +53,24 @@ public class RequestController {
 	@GetMapping("/successReq.do")
 	public String successReq(int member_id, Model model) {
 		RequestDto req = service.getReqFrm(member_id);
+		int price = service.getProductPrice(member_id);
+		int cid = service.getProductCate(member_id);
 		
 		model.addAttribute("req", req);
-		
+		model.addAttribute("price", price);
+		model.addAttribute("cid", cid);
+
 		return "requestConfirm";
 	}
 	
 	// 대여신청서 수정 페이지로 이동
 	@PostMapping("/goRequestUpdate.do")
-	public String goRequestUpdate(int request_id, Model model) {
+	public String goRequestUpdate(int request_id, int category_id, int price, Model model) {
 		RequestDto req = service.getReqFrm(request_id);
-		List<Integer> list = service.getProductPriceAndCate(req.getProduct_id());
 		
 		model.addAttribute("req", req);
-		model.addAttribute("list", list);
+		model.addAttribute("price", price);
+		model.addAttribute("cid", category_id);
 		
 		return "RequestUpdate";
 	}

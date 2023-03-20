@@ -67,8 +67,13 @@
 </select>	
 
 <!-- 상품의 1일 대여가격 & 카테고리 번호 -->
-<select id="getProductPriceAndCate" parameterType="Integer">
-	select price, category_id
+<select id="getProductPrice" parameterType="Integer" resultType="Integer">
+	select price
+	from product 
+	where product_id = #{product_id}
+</select>
+<select id="getProductCate" parameterType="Integer" resultType="Integer">
+	select category_id
 	from product 
 	where product_id = #{product_id}
 </select>

@@ -28,12 +28,18 @@ public class RequestDaoImpl implements RequestDao {
 	}
 
 	@Override
-	public List<Integer> getProductPriceAndCate(int product_id) {
-		return session.selectList(p_ns, product_id);
+	public int getProductPrice(int product_id) {
+		return session.selectOne(p_ns + "getProductPrice", product_id);
+	}
+	
+	@Override
+	public int getProductCate(int product_id) {
+		return session.selectOne(p_ns + "getProductCate", product_id);
 	}
 
 	@Override
 	public int updateReq(int request_id) {
 		return session.update(ns + "updateReq", request_id);
 	}
+
 }
