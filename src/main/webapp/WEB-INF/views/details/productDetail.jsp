@@ -128,23 +128,26 @@ int cid = getProduct.getCategory_id();
 					}
 				%>
 			</table>
-
+			
 			<nav id="question_pagination">
 				<ul class="pagination">
 					<%
 						if(questionCount != 0) {
-							int roofAmount = (questionCount / 10) + 1;
+							int roofAmount = questionCount / 10;
+							if(questionCount % 10 != 0) {
+								roofAmount += 1;
+							}
 							
 							for(int i=1; i<=roofAmount; i++) {
 					%>
-								<li class="page-item <%= i== 1 ? "active" : "" %>"><a class="page-link" href="#">1</a></li>
+								<li class="page-item <%= i== 1 ? "active" : "" %>"><a class="page-link"><%=i %></a></li>
 					<%
 							}
 						}
 					%>
 				</ul>
 			</nav>
-
+			
 			<div id="question_btn_wrap">
 				<button type="button" class="btn" id="goWriteBtn">문의하기</button>
 			</div>
@@ -157,6 +160,80 @@ int cid = getProduct.getCategory_id();
 $("#goWriteBtn").click(function() {
 	location.href="goWriteQuestion.do?product_id=<%=pid%>&category_id=<%=cid%>";
 });
+
+let loadNewData = (product_id, page) => {
+	$.ajax({
+		url: "/sharebridge/question/question_list.do",
+		type: "GET",
+		data: "product_id="+product_id+"&page="+page,
+		success: function(questionList) {
+			$(".question_container .question_list_wrap").empty();
+			
+			let question_list_wrap = $(".question_container > .question_list_wrap");
+			
+			for(let i=0; i<questionList.length; i++) {
+				let question = questionList[i];
+				
+				let state = question.qstate;
+				let private_question = question.private_question;
+				let title = question.title;
+				let rdate = question.rdate;
+				if(rdate[1] < 10) {
+					rdate[1] = "0" + rdate[1];
+				}
+				if(rdate[2] < 10) {
+					rdate[2] = "0" + rdate[2];
+				}
+				rdate = rdate[0] + "-" + rdate[1] + "-" + rdate[2];
+				
+				let renteeNickname = question.renteeNickname.substring(0, 1) + "***";
+				let content = question.content;
+				content = content.replace("\r\n", "<br>");
+				
+				let stateHtml = "<td>";
+				if(state) {
+					stateHtml += "답변완료";
+				} else {
+					stateHtml += "미답변"
+				}
+				stateHtml += "</td>";
+				
+				let privateQuestionHtml = "<td>";
+				if(private_question) {
+					privateQuestionHtml += "<img src='/sharebridge/images/lock_icon.png' alt='private_question'>";
+				}
+				privateQuestionHtml += "</td>";
+				
+				let titleHtml = "<td>" + title + "</td>";
+				let rdateHtml = "<td>" + rdate + "</td>";
+				let renteeNicknameHtml = "<td>" + renteeNickname + "</td>";
+				
+				let fullHtml = "<tr class='question_list'>";
+				fullHtml += stateHtml;
+				fullHtml += privateQuestionHtml;
+				fullHtml += titleHtml;
+				fullHtml += rdateHtml;
+				fullHtml += renteeNicknameHtml;
+				fullHtml += "</tr>";
+				fullHtml += "<tr class='question_con' style='display:none'>";
+				fullHtml += "<td colspan='5'><p>"+content+"</p></td>";
+				fullHtml += "</tr>";
+				
+				question_list_wrap.append(fullHtml);
+			}
+			
+			// 문의글 내용
+			$(".question_list").click(function() {
+				$(this).next(".question_con").stop().slideToggle(300);
+				$(this).toggleClass("on").siblings().removeClass("on");
+				$(this).next(".question_con").siblings(".question_con").slideUp(300);
+			});
+		},
+		error: function() {
+			
+		}
+	});
+}
 
 let transTap = () => {
 	let $this = $("#tap_wrap > .tap:not(.active)");
@@ -184,77 +261,9 @@ let loadTapData = () => {
 		if(load == "false") {
 			let product_id = getParameter("product_id");
 			
-			$.ajax({
-				url: "/sharebridge/question/question_list.do",
-				type: "GET",
-				data: "product_id="+product_id+"&page=1",
-				success: function(questionList) {
-					let question_list_wrap = $(".question_container > .question_list_wrap");
-					
-					for(let i=0; i<questionList.length; i++) {
-						let question = questionList[i];
-						
-						let state = question.qstate;
-						let private_question = question.private_question;
-						let title = question.title;
-						let rdate = question.rdate;
-						if(rdate[1] < 10) {
-							rdate[1] = "0" + rdate[1];
-						}
-						if(rdate[2] < 10) {
-							rdate[2] = "0" + rdate[2];
-						}
-						rdate = rdate[0] + "-" + rdate[1] + "-" + rdate[2];
-						
-						let renteeNickname = question.renteeNickname.substring(0, 1) + "***";
-						let content = question.content;
-						content = content.replace("\r\n", "<br>");
-						
-						let stateHtml = "<td>";
-						if(state) {
-							stateHtml += "답변완료";
-						} else {
-							stateHtml += "미답변"
-						}
-						stateHtml += "</td>";
-						
-						let privateQuestionHtml = "<td>";
-						if(private_question) {
-							privateQuestionHtml += "<img src='/sharebridge/images/lock_icon.png' alt='private_question'>";
-						}
-						privateQuestionHtml += "</td>";
-						
-						let titleHtml = "<td>" + title + "</td>";
-						let rdateHtml = "<td>" + rdate + "</td>";
-						let renteeNicknameHtml = "<td>" + renteeNickname + "</td>";
-						
-						let fullHtml = "<tr class='question_list'>";
-						fullHtml += stateHtml;
-						fullHtml += privateQuestionHtml;
-						fullHtml += titleHtml;
-						fullHtml += rdateHtml;
-						fullHtml += renteeNicknameHtml;
-						fullHtml += "</tr>";
-						fullHtml += "<tr class='question_con' style='display:none'>";
-						fullHtml += "<td colspan='5'><p>"+content+"</p></td>";
-						fullHtml += "</tr>";
-						
-						question_list_wrap.append(fullHtml);
-					}
-					
-					// 문의글 내용
-					$(".question_list").click(function() {
-						$(this).next(".question_con").stop().slideToggle(300);
-						$(this).toggleClass("on").siblings().removeClass("on");
-						$(this).next(".question_con").siblings(".question_con").slideUp(300);
-					});
-					
-					$(".question_container").attr("load", "true");
-				},
-				error: function() {
-					
-				}
-			});
+			loadNewData(product_id, 1);
+			
+			$(".question_container").attr("load", "true");
 		}
 	}
 }
@@ -265,4 +274,16 @@ let activeTap = () => {
 }
 
 $("#tap_wrap > .tap:not(.active)").on("click", activeTap);
+
+$("#question_pagination > .pagination .page-item").on("click", function() {
+	if(!$(this).hasClass("active")) {
+		let product_id = getParameter("product_id");
+		let page = $(this).text();
+		
+		loadNewData(product_id, page);
+		
+		$("#question_pagination > .pagination .page-item").removeClass("active");
+		$(this).addClass("active");
+	}
+});
 </script>

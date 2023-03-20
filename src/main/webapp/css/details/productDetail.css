@@ -240,6 +240,7 @@
 #question_pagination > .pagination > .page-item > .page-link {
 	border: none;
 	color: black;
+	cursor: pointer;
 }
 
 #question_pagination > .pagination > .page-item > .page-link:hover {
