@@ -45,9 +45,6 @@ public class ProductController {
 	// 상품등록
 	@GetMapping(value = "productRegi.do")
 	public String productRegi(Model model) {
-		List<CategoryDto> allCategory = service.getAllCategory();
-		model.addAttribute("allCategory", allCategory);
-		
 		return "productRegi";
 	}
 	

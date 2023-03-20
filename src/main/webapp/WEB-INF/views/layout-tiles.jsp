@@ -24,6 +24,7 @@
 	
 	<!-- Header CSS -->
 	<link rel="stylesheet" href="/sharebridge/css/public/header.css">
+	<link rel="stylesheet" href="/sharebridge/css/main/nav.css">
 	
 	<!-- Footer CSS -->
 	<link rel="stylesheet" href="/sharebridge/css/public/footer.css">

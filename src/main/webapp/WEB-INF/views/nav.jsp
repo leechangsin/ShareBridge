@@ -1,105 +1,69 @@
+<%@page import="com.sharebridge.dto.CategoryDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.108.0">
-    <title>Nav</title>
+<%
+	List<CategoryDto> categories = (List<CategoryDto>) session.getAttribute("categories");
+%>
 
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/navbars/">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+	<div class="navbar-toggler" id="navbarDropdown"  role="button" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false" style ="display:block">
+		<span class="navbar-toggler-icon"></span>
+	</div>
+	
+	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+<%
+	int i = 0;
+	
+	while(true) {
+		CategoryDto category1 = categories.get(i);
+		if(category1.getParent_id() != 0) {
+			break;
+		}
+%>
+		<a class="dropdown-item" href="/baseLayout.do?category_id=<%= category1.getCategory_id() %>"><%= category1.getName()%></a>
+<%
+	
+		i++;
+		int j = i;
+		
+		while(true) {
+			CategoryDto category2 = categories.get(j);
+			
+			boolean isCategory2 = category1.getCategory_id() == category2.getParent_id();
+			if(isCategory2) {
+%>
+			<a class="dropdown-item" href="/baseLayout.do?category_id=<%= category2.getCategory_id() %>">&nbsp;&nbsp;<%= category2.getName()%></a>
+<%
+			}
+			
+			j++;
+			
+			boolean isOverFlow = j >= categories.size();
+			if(isOverFlow){
+				break;
+			}
+		}
+%>
+		<hr class="dropdown-divider">
+<%
+	}
+%>
+	</div>
 
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-
-    
-  </head>
-<body>
-   <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
-      
-  		<div class="navbar-toggler" id="navbarDropdown" 
-  			role="button" data-toggle="dropdown" aria-haspopup="true" 
-  			aria-expanded="false" style ="display:block">
-	        <span class="navbar-toggler-icon"></span>
-	    </div>
-	    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	    	<c:forEach items="${hideCategories}" var="category">
-           	<a class="dropdown-item" href="#">${category.name}</a>
-           </c:forEach>
-	        
-	    </div>
-      
-            
-         <div class="collapse navbar-collapse" id="navbarsExample03">
-         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-         	<c:forEach items="${displayCategories}" var="category">
-           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/${category.category_id}">${category.name}</a>
-           </li>
-           </c:forEach>
-         </ul>
-         <form role="search">
-           <input class="form-control" type="search" placeholder="검색어를 입력해 주세요" aria-label="Search">
-         </form>
-        </div>
-      </div>
-     </nav>
-</body>
-</html>
+	<div class="collapse navbar-collapse" id="navbarsExample03">
+		<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+			<c:forEach items="${categories}" var="category">
+				<c:if test="${category.parent_id eq 0 }">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="/baseLayout.do?category_id=${category.category_id}">${category.name}</a>
+					</li>
+				</c:if>
+			</c:forEach>
+		</ul>
+		<form role="search">
+			<input class="form-control" type="search" placeholder="검색어를 입력해 주세요" aria-label="Search">
+		</form>
+	</div>
+</nav>
