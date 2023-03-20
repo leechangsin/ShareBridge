@@ -2,9 +2,9 @@ package com.sharebridge.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,9 +57,8 @@ public class ProductController {
 								@RequestParam(value="end", required=false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 								LocalDateTime edate,
 								Model model) {
-		
-		dto.setSdate(sdate);
-		dto.setEdate(edate);
+		dto.setSdate(Timestamp.valueOf(sdate));
+		dto.setEdate(Timestamp.valueOf(edate));
 		
 		// filename 취득(원본)
 		String filename = fileload.getOriginalFilename();
@@ -127,8 +126,8 @@ public class ProductController {
 								LocalDateTime edate,
 								Model model) {
 		
-		dto.setSdate(sdate);
-		dto.setEdate(edate);
+		dto.setSdate(Timestamp.valueOf(sdate));
+		dto.setEdate(Timestamp.valueOf(edate));
 		
 		// 사진 수정
 		if(fileload == null) {	// 기존의 사진 저장
