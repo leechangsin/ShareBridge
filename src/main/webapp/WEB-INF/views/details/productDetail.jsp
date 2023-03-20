@@ -202,6 +202,7 @@ let loadNewData = (product_id, page) => {
 				
 				// 질문을 한 사용자 아이디
 				let rentee_id = question.member_id;
+				let question_id = question.question_id;
 				
 				let stateHtml = "<td>";
 				if(state) {
@@ -228,7 +229,7 @@ let loadNewData = (product_id, page) => {
 				fullHtml += rdateHtml;
 				fullHtml += renteeNicknameHtml;
 				fullHtml += "</tr>";
-				fullHtml += "<tr class='question_con' style='display:none'>";
+				fullHtml += "<tr class='question_con' style='display:none' question_id='" + question_id + "'>";
 				fullHtml += "<td colspan='5'>";
 				fullHtml += "<p>"+content+"</p>";
 				fullHtml += "<div>";
@@ -253,7 +254,9 @@ let loadNewData = (product_id, page) => {
 			});
 			
 			$(".question_container > .question_list_wrap > .question_con > td > div > .question_reply_btn").on("click", function() {
-				goTo("/sharebridge/goWriteQuestion.do?product_id="+product_id+"&category_id="+category_id+"&status=reply");
+				let question_id = $(this).parent().parent().parent().attr("question_id");
+				
+				goTo("/sharebridge/goWriteQuestion.do?product_id="+product_id+"&category_id="+category_id+"&question_id="+question_id+"&status=reply");
 			});
 		},
 		error: function() {

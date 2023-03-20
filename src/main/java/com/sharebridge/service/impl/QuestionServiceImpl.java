@@ -30,4 +30,9 @@ public class QuestionServiceImpl implements QuestionService {
 	public int getQuestionCount(int product_id) {
 		return dao.getQuestionCount(product_id);
 	}
+
+	@Override
+	public void updateQstateTo1(int question_id) {
+		dao.updateQstateTo1(question_id);
+	}
 }

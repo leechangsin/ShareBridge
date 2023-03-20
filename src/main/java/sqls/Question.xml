@@ -19,9 +19,19 @@
 		limit #{limitStart}, 10
 	</select>
 	
+	<select id="getQuestionByQuestion_id" parameterType="int" resultType="com.sharebridge.dto.QuestionDto">
+		select *
+		from question
+		where question_id = #{question_id}
+	</select>
+	
 	<select id="getQuestionCount" parameterType="int" resultType="int">
 		select count(*) as cnt
 		from question
 		where product_id = #{product_id}
 	</select>
+	
+	<update id="updateQstateTo1" parameterType="int">
+		update question set qstate = b'1' where question_id = #{question_id}
+	</update>
 </mapper>
