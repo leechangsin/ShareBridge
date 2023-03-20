@@ -41,4 +41,14 @@ public class QuestionDaoImpl implements QuestionDao {
 	public void updateQstateTo1(int question_id) {
 		session.update(ns + "updateQstateTo1", question_id);
 	}
+
+	@Override
+	public void updateQuestion(QuestionDto questionInfo) {
+		session.update(ns + "updateQuestion", questionInfo);
+	}
+
+	@Override
+	public void deleteQuestion(int question_id) {
+		session.delete(ns + "deleteQuestion", question_id);
+	}
 }

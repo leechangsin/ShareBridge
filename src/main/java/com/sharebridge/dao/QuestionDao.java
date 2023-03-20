@@ -15,4 +15,8 @@ public interface QuestionDao {
 	QuestionDto getQuestionByQuestion_id(int question_id);
 	
 	void updateQstateTo1(int question_id);
+	
+	void updateQuestion(QuestionDto questionInfo);
+	
+	void deleteQuestion(int question_id);
 }
