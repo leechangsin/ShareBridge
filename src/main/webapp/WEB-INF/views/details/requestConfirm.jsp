@@ -74,7 +74,19 @@
 			<span>총금액</span>
 			<span>원</span>
 		</div>
-		<button type="button" id="productDetail?product_id=<%=req.getProduct_id()%>">돌아가기</button>
-		<button type="submit" id="regiBtn">수정하기</button>
+		<button type="button" id="backToDetail">돌아가기</button>
+		<button type="submit" id="updateBtn">수정하기</button>
 	</form>
 </div> 
+
+<script>
+$(document).ready(function() {
+	$("#backToDetail").click(function() {		
+		location.href="productDetail?product_id=<%=req.getProduct_id()%>";
+	});
+	
+	$("#updateBtn").click(function() {
+		location.href="goRequestUpdate.do?request_id=<%=req.getRequest_id()%>";
+	});
+});
+</script>
