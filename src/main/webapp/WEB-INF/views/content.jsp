@@ -6,12 +6,7 @@
 	MemberDto login = (MemberDto)session.getAttribute("login");
 %>
 
-<style>
-	#floating_btn {
-		position: absolute;
-		right: 425px;
-	}
-</style>
+<link rel="stylesheet" href="/sharebridge/css/main/product_list.css">
 
 <div class="album py-5 bg-light">
 	<div class="container">
@@ -19,9 +14,9 @@
 			<c:forEach items="${products }" var="product">
 				<div class="col" onclick="onClickProduct(${product.product_id}, ${product.category_id})">
 					<div class="card shadow-sm">
-						<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect>
-						<text x="50%" y="50%" fill="#eceeef" dy=".3em">상품사진</text></svg>
+						<div class="bd-placeholder-img card-img-top">
+							<img alt="${product.title }" src="/sharebridge/upload/product/${product.photo }">
+						</div>
 
 						<div class="card-body">
 							<div class="d-flex justify-content-between align-items-center">
@@ -41,12 +36,10 @@
 									</c:choose>
 								</div>
 							</div>
-							<p class="card-text">${product.price}원/일</p>
-
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group">
-									<button type="button" class="btn btn-sm btn-outline-secondary">대여가능</button>
-								</div>
+							
+							<div class="card-text">
+								<p>${product.price}원/일</p>
+								<p>대여 가능</p>
 							</div>
 						</div>
 					</div>

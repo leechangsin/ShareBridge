@@ -182,10 +182,11 @@ public class MemberController {
 	// 로그아웃
 	@GetMapping(value = "logout.do")
 	public String sessionOut(Model model, HttpSession session) {
-		String logout = "logout";
-		session.invalidate();
+		session.removeAttribute("login");
 		
+		String logout = "logout";
 		model.addAttribute("logout", logout);
+		
 		return "logMsg";
 	}
 }
