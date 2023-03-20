@@ -41,10 +41,11 @@ if(delProduct != null && !delProduct.equals("")) {
 }
 
 String updateProduct = (String)request.getAttribute("updateProduct");
-int pid = Integer.parseInt(request.getAttribute("pid").toString());
-int cid = Integer.parseInt(request.getAttribute("cid").toString());
 
 if(updateProduct != null && !updateProduct.equals("")) {
+	int pid = Integer.parseInt(request.getAttribute("pid").toString());
+	int cid = Integer.parseInt(request.getAttribute("cid").toString());
+	
 	if(updateProduct.equals("PRODUCT_UPDATE_OK")) {
 		%>
 		<script type="text/javascript">
@@ -63,9 +64,10 @@ if(updateProduct != null && !updateProduct.equals("")) {
 }
 
 String insertReq = (String)request.getAttribute("insertReq");
-int rid = Integer.parseInt(request.getAttribute("rid").toString());
 
 if(insertReq != null && !insertReq.equals("")) {
+	int rid = Integer.parseInt(request.getAttribute("rid").toString());
+	
 	if(insertReq.equals("REQUEST_INSERT_OK")) {
 		%>
 		<script type="text/javascript">
@@ -79,14 +81,16 @@ if(insertReq != null && !insertReq.equals("")) {
 			alert("대여 신청이 되지 않았습니다");
 			location.href = "rentalFrm.do";
 		</script>	
+		<%
 	}
 }
 
 String writeQuestion = (String)request.getAttribute("writeQuestion");
-int q_pid = (Integer)request.getAttribute("q_pid");
-int q_cid = (Integer)request.getAttribute("q_cid");
 
 if(writeQuestion != null && !writeQuestion.equals("")) {
+	int q_pid = (Integer)request.getAttribute("q_pid");
+	int q_cid = (Integer)request.getAttribute("q_cid");
+	
 	if(writeQuestion.equals("QUESTION_INSERT_OK")) {
 		%>
 		<script type="text/javascript">
