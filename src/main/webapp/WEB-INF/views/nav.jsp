@@ -22,7 +22,7 @@
 			break;
 		}
 %>
-		<a class="dropdown-item" href="/baseLayout.do?category_id=<%= category1.getCategory_id() %>"><%= category1.getName()%></a>
+		<a class="dropdown-item" href="/sharebridge/baseLayout.do?category_id=<%= category1.getCategory_id() %>"><%= category1.getName()%></a>
 <%
 	
 		i++;
@@ -34,7 +34,7 @@
 			boolean isCategory2 = category1.getCategory_id() == category2.getParent_id();
 			if(isCategory2) {
 %>
-			<a class="dropdown-item" href="/baseLayout.do?category_id=<%= category2.getCategory_id() %>">&nbsp;&nbsp;<%= category2.getName()%></a>
+			<a class="dropdown-item" href="/sharebridge/baseLayout.do?category_id=<%= category2.getCategory_id() %>">&nbsp;&nbsp;<%= category2.getName()%></a>
 <%
 			}
 			
@@ -57,7 +57,7 @@
 			<c:forEach items="${categories}" var="category">
 				<c:if test="${category.parent_id eq 0 }">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="/baseLayout.do?category_id=${category.category_id}">${category.name}</a>
+						<a class="nav-link active" aria-current="page" href="/sharebridge/baseLayout.do?category_id=${category.category_id}">${category.name}</a>
 					</li>
 				</c:if>
 			</c:forEach>
