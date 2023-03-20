@@ -1,0 +1,271 @@
+@charset "UTF-8";
+
+#main_contents {
+	width: 1000px;
+    margin: 0 auto;
+}
+
+/* product_desc */
+.product_info {
+	display: flex;
+	margin-top: 50px;
+}
+
+.preview {
+	width: 400px;
+}
+
+.product_desc {
+	margin-left: 50px;
+}
+
+.product_desc > table {
+	width: 400px;
+	margin-bottom: 100px;
+}
+
+#category {
+    border-bottom: 2px solid lightgray;
+}
+
+#category > td {
+	padding-bottom: 5px;
+}
+
+#title > td {
+	padding-top: 30px;
+	font-size: 32px;
+	font-weight: bold;
+}
+
+#s_e_date > td, #price > td {
+	padding-top: 10px;
+}
+
+#s_e_date > td {
+	font-size: 20px;
+}
+
+#price > td {
+	font-size: 28px;
+	font-weight: bold;
+}
+
+#price > td:nth-child(2) > i {
+	font-size: 20px;
+	cursor: pointer;
+}
+
+#btn_wrap {
+	text-align: right;
+}
+
+#btn_wrap > a {
+	color: black;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+#btn_wrap > a:nth-child(1) {
+	margin-right: 30px;
+}
+
+#requestFrmBtn {
+	width: 100%;
+	padding: 15px 0px;
+	background: lightgray;
+	border: none;
+	color: black;
+	font-size: 20px;
+	margin-top: 39px;
+}
+
+#requestFrmBtn:hover {
+	background: gray;
+	color: white;
+}
+
+
+/* renter_info */
+.renter_info {
+	margin-top: 50px;
+	display: flex;
+}
+
+.renter_profile {
+	margin-right: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.renter_profile > img {
+	width: 80px;
+}
+
+.renter_profile > span {
+	text-align: center;
+}
+
+.reviewlist {
+	display: flex;
+}
+
+.reviewlist > .reviewlist_item {
+	margin-left: 10px;
+}
+
+.reviewlist > .reviewlist_item > .review_rentee_info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.reviewlist > .reviewlist_item > .review_rentee_info > span {
+	display: inline-block;
+}
+
+#main_contents > div > div.renter_info > div.renter_review > .reviewlist > .reviewlist_item > .review_rentee_info > span:nth-child(1) {
+	width: 92px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#main_contents > div > div.renter_info > div.renter_review > .reviewlist > .reviewlist_item > .review_rentee_info > span:nth-child(2) {
+	width: 22px;
+}
+
+#main_contents > div > div.renter_info > div.renter_review > .reviewlist > .reviewlist_item > .review_rentee_info > span:nth-child(3) {
+	width: 84px;
+}
+
+.reviewlist > .reviewlist_item > .review_contents {
+	width: 212px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: box;
+	max-height:96px;
+	overflow:hidden;
+	vertical-align:top;
+	text-overflow: ellipsis;
+	word-break:break-all;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:4
+}
+
+#no_review_wrap{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 400px;
+	height: 104px;
+	text-align: center;
+}
+
+
+/* .content_and_question */
+/* tap */
+.content_and_question{
+	margin-top: 50px;
+}
+
+#tap_wrap {
+	display: flex;
+	font-size: 32px;
+}
+
+#tap_wrap > .tap {
+	border-bottom: 3px solid lightgray;
+	color: lightgray;
+	flex-grow: 1;
+	text-align: center;
+}
+
+#tap_wrap > .tap.active {
+	border-bottom: 3px solid black;
+	color: black;
+	cursor: default;
+}
+
+#tap_wrap > .tap:not(.active) {
+	cursor: pointer;
+}
+
+/* .content_and_question */
+/* contents_container */
+#contents_container {
+	padding: 50px;
+}
+
+/* .content_and_question */
+/* question_container */
+.question_container {
+	display: none;
+	margin: 50px 0;
+}
+
+.question_container .question_list_wrap {
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.question_container .question_list_wrap .no_question {
+	text-align: center;
+}
+
+.question_container .question_list_wrap .question_list td:nth-child(1), .question_container .question_list_wrap .question_list td:nth-child(5) {
+	width: 60px;
+	text-align: center;
+}
+
+.question_container .question_list_wrap .question_list td:nth-child(2) {
+	width: 35px;
+	text-align: center;
+}
+
+.question_container .question_list_wrap .question_list td:nth-child(4) {
+	width: 100px;
+	text-align: center;
+}
+
+.question_container .question_list_wrap .question_con p {
+	padding: 10px;
+}
+
+#question_pagination {
+	display: flex;
+	justify-content: center;
+}
+
+#question_pagination > .pagination > .page-item > .page-link {
+	border: none;
+	color: black;
+}
+
+#question_pagination > .pagination > .page-item > .page-link:hover {
+	background: gray;
+	color: white;
+}
+
+#question_pagination > .pagination > .page-item.active > .page-link {
+	color: white;
+}
+
+#question_btn_wrap {
+	text-align: right;
+}
+
+#question_btn_wrap > button {
+	background: lightgray;
+	width: 150px;
+	height: 45px;
+}
+
+#question_btn_wrap > button:hover {
+	background: gray;
+	color: white;
+}
+
+.trans {
+	transition: max-height 0.5s ease-out;
+}

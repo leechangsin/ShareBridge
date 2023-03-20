@@ -22,10 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.MemberDto;
 import com.sharebridge.dto.ProductDto;
-import com.sharebridge.dto.QuestionDto;
 import com.sharebridge.dto.ReviewDto;
 import com.sharebridge.service.MemberService;
 import com.sharebridge.service.ProductService;
+import com.sharebridge.service.QuestionService;
 import com.sharebridge.service.ReviewService;
 import com.sharebridge.util.FileUtil;
 
@@ -37,6 +37,8 @@ public class ProductController {
 	MemberService memberService;
 	@Autowired
 	ReviewService reviewService;
+	@Autowired
+	QuestionService questionService;
 	
 	// 상품등록
 	@GetMapping(value = "productRegi.do")
@@ -201,28 +203,14 @@ public class ProductController {
 			}
 		}
 		
-		// 문의 내역
-		List<QuestionDto> questionList = service.getQuestionList();
-		
-		// 문의한 렌티의 닉네임 취득
-		List<String> q_renteeNickList = new ArrayList<>();
-		System.out.println("size : "+ questionList.size());
-		if(questionList.size() != 0) {
-			for(int i=0; i<questionList.size(); i++) {
-				QuestionDto q = questionList.get(i);
-				String q_nick = reviewService.reviewListThree(q.getMember_id());
-				System.out.println("q_nick : "+ q_nick);
-				q_renteeNickList.add(q_nick);
-			}
-		}
+		int questionCount = questionService.getQuestionCount(product_id);
 		
 		model.addAttribute("detail", detail);
 		model.addAttribute("getCate", getCate);
 		model.addAttribute("renter", renter);
 		model.addAttribute("review", reviewList);
 		model.addAttribute("r_renteeNick", r_renteeNickList);
-		model.addAttribute("q_renteeNick", q_renteeNickList);
-		model.addAttribute("question", questionList);
+		model.addAttribute("questionCount", questionCount);
 		
 		return "productDetail";
 	}

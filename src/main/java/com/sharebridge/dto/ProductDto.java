@@ -40,7 +40,10 @@ public class ProductDto implements Serializable{
 	private LocalDateTime wdate;
 	private byte state;
 	private byte del;
+
+	// TODO 나중에 1:1 관계 변경 필요 
 	private int wish_member_id;
+	private int cart_id;
 	
 	
 	public ProductDto() {
@@ -48,7 +51,7 @@ public class ProductDto implements Serializable{
 	}
 
 	public ProductDto(int product_id, int category_id, int member_id, String title, String content, LocalDateTime sdate,
-			LocalDateTime edate, int price, String photo, LocalDateTime wdate, byte state, byte del,int wish_member_id) {
+			LocalDateTime edate, int price, String photo, LocalDateTime wdate, byte state, byte del,int wish_member_id, int cart_id) {
 
 		super();
 		this.product_id = product_id;
@@ -64,8 +67,17 @@ public class ProductDto implements Serializable{
 		this.state = state;
 		this.del = del;
 		this.wish_member_id = wish_member_id;
+		this.cart_id = cart_id;
 	}
 
+	public int getCart_id() {
+		return cart_id;
+	}
+
+	public void setCart_id(int cart_id) {
+		this.cart_id = cart_id;
+	}
+	
 	public int getWish_member_id() {
 		return wish_member_id;
 	}
