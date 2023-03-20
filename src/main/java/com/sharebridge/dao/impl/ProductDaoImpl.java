@@ -87,4 +87,9 @@ public class ProductDaoImpl implements ProductDao {
 	public List<QuestionDto> getQuestionList() {
 		return session.selectList(q_ns + "getQuestionList");
 	}
+
+	@Override
+	public List<ProductDto> getProductListForRenter(int member_id) {
+		return session.selectList(ns + "getProductListForRenter", member_id);
+	}
 }

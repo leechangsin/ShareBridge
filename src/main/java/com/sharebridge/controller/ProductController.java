@@ -249,4 +249,13 @@ public class ProductController {
 		
 		return "requestFrm";
 	}
+	
+	// 상품 관리 페이지
+	@PostMapping("/productManage.do")
+	public String productManage(int member_id, Model model) {
+		List<ProductDto> productList = service.getProductListForRenter(member_id);
+		model.addAttribute("productList", productList);
+		
+		return "productManage";
+	}
 }

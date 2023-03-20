@@ -69,4 +69,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<QuestionDto> getQuestionList() {
 		return dao.getQuestionList();
 	}
+
+	@Override
+	public List<ProductDto> getProductListForRenter(int member_id) {
+		return dao.getProductListForRenter(member_id);
+	}
 }

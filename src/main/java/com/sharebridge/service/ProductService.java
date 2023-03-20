@@ -27,4 +27,6 @@ public interface ProductService {
 	List<ReviewDto> getReviewList(int renter_id);
 	
 	List<QuestionDto> getQuestionList();
+	
+	List<ProductDto> getProductListForRenter(int member_id);
 }
