@@ -184,7 +184,7 @@ $("#requestFrmBtn").click(function() {
 });
 
 function loginChk(link) {
-	if(<%=login%> == null) {
+	if(<%=login == null%>) {
 		alert("로그인이 필요한 서비스입니다.");
 		location.href="login.do";
 	} else {
@@ -309,6 +309,12 @@ let loadNewData = (product_id, page) => {
 				let question_id = $(this).parent().parent().parent().attr("question_id");
 				
 				goTo("/sharebridge/goWriteQuestion.do?product_id="+product_id+"&category_id="+category_id+"&question_id="+question_id+"&status=reply");
+			});
+			
+			$(".question_container > .question_list_wrap > .question_con > td > div > .question_update_btn").on("click", function() {
+				let question_id = $(this).parent().parent().parent().attr("question_id");
+				
+				goTo("/sharebridge/goWriteQuestion.do?product_id="+product_id+"&category_id="+category_id+"&question_id="+question_id+"&status=update");
 			});
 		},
 		error: function() {

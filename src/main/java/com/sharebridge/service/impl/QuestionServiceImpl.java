@@ -35,4 +35,14 @@ public class QuestionServiceImpl implements QuestionService {
 	public void updateQstateTo1(int question_id) {
 		dao.updateQstateTo1(question_id);
 	}
+
+	@Override
+	public QuestionDto getQuestionByQuestion_id(int question_id) {
+		return dao.getQuestionByQuestion_id(question_id);
+	}
+
+	@Override
+	public void updateQuestion(QuestionDto questionInfo) {
+		dao.updateQuestion(questionInfo);
+	}
 }

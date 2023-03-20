@@ -2,12 +2,16 @@ package com.sharebridge.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sharebridge.dto.QuestionDto;
 import com.sharebridge.param.QuestionListParam;
@@ -31,9 +35,17 @@ public class QuestionController {
 	}
 	
 	@GetMapping("/goWriteQuestion.do")
-	public String goWriteQuestion(int product_id, int category_id, Model model) {
+	public String goWriteQuestion(
+			@RequestParam(required = false, defaultValue = "0") int question_id,
+			int product_id, int category_id, Model model) {
 		model.addAttribute("pid", product_id);
 		model.addAttribute("cid", category_id);
+		
+		if(question_id != 0) {
+			QuestionDto questionInfo = service.getQuestionByQuestion_id(question_id);
+			
+			model.addAttribute("questionInfo", questionInfo);
+		}
 		
 		return "questionWrite";
 	}
@@ -51,5 +63,21 @@ public class QuestionController {
 		model.addAttribute("q_cid", category_id);
 		
 		return "detailsMsg";
+	}
+	
+	@PostMapping("/updateQuestionAf.do")
+	public ResponseEntity<Void> updateQuestion(QuestionDto questionInfo, HttpSession session) {
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			
+			return ResponseEntity.status(HttpStatus.MULTIPLE_CHOICES).header("Location", "/sharebridge/login.do").build();
+		}
+		
+		System.out.println(questionInfo.getTitle().length());
+		System.out.println(questionInfo.getContent().length());
+		
+		service.updateQuestion(questionInfo);
+		
+		return ResponseEntity.ok(null);
 	}
 }

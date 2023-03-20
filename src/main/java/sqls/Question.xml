@@ -34,4 +34,15 @@
 	<update id="updateQstateTo1" parameterType="int">
 		update question set qstate = b'1' where question_id = #{question_id}
 	</update>
+	
+	<update id="updateQuestion" parameterType="com.sharebridge.dto.QuestionDto">
+		update question set title = #{title}, content = #{content}, 
+		<if test="private_question == true">
+			private_question = b'1'
+		</if>
+		<if test="private_question == false">
+			private_question = b'0'
+		</if>
+		where question_id = #{question_id}
+	</update>
 </mapper>
