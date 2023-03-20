@@ -1,5 +1,6 @@
 package com.sharebridge.controller;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +29,8 @@ public class RequestController {
 								LocalDateTime edate,
 								Model model) {
 		
-		dto.setSdate(sdate); 
-		dto.setEdate(edate); 
+		dto.setSdate(Timestamp.valueOf(sdate)); 
+		dto.setEdate(Timestamp.valueOf(edate)); 
 		
 		boolean isS = service.insertReq(dto);
 		int request_id = dto.getRequest_id();

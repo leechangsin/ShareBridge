@@ -98,12 +98,6 @@ public class RequestDto {
 	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
 	}
-	public void setSdate(LocalDateTime sdate) {
-		this.sdate = sdate;
-	}
-	public void setEdate(LocalDateTime edate) {
-		this.edate = edate;
-	}
 	public void setSdate(Timestamp sdate) {
 		this.sdate = sdate.toLocalDateTime();
 	}
