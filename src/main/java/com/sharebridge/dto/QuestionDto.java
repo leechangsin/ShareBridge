@@ -14,6 +14,8 @@ public class QuestionDto implements Serializable{
 	private boolean qstate;
 	private LocalDateTime rdate;
 	
+	private String renteeNickname;
+	
 	public QuestionDto() {
 		// TODO Auto-generated constructor stub
 	}
@@ -93,6 +95,14 @@ public class QuestionDto implements Serializable{
 
 	public void setRdate(Timestamp rdate) {
 		this.rdate = rdate.toLocalDateTime();
+	}
+
+	public String getRenteeNickname() {
+		return renteeNickname;
+	}
+
+	public void setRenteeNickname(String renteeNickname) {
+		this.renteeNickname = renteeNickname;
 	}
 
 	@Override

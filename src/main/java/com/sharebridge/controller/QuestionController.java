@@ -1,18 +1,34 @@
 package com.sharebridge.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sharebridge.dto.QuestionDto;
+import com.sharebridge.param.QuestionListParam;
 import com.sharebridge.service.QuestionService;
 
 @Controller
 public class QuestionController {
 	@Autowired
 	QuestionService service;
+	
+	@GetMapping("/question/question_list.do")
+	public ResponseEntity<List<QuestionDto>> getQuestionList(QuestionListParam qp) {
+		qp.setLimitStart((qp.getPage()-1)*10);
+		
+		// 문의 내역
+		List<QuestionDto> questionList = service.getQuestionListByProduct_id(qp);
+		
+		System.out.println("questionList = " + questionList);
+		
+		return ResponseEntity.status(200).body(questionList);
+	}
 	
 	@GetMapping("/goWriteQuestion.do")
 	public String goWriteQuestion(int product_id, int category_id, Model model) {
