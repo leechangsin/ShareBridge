@@ -111,6 +111,11 @@
 		<put-attribute name="content" value="/WEB-INF/views/details/productUpdate.jsp"></put-attribute>
 	</definition>
 	
+	<!-- product management -->
+	<definition name="productManage" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/productManage.jsp"></put-attribute>
+	</definition>
+	
 	<!-- request form -->
 	<definition name="requestFrm" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/details/requestFrm.jsp"></put-attribute>

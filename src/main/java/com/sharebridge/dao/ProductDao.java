@@ -29,5 +29,10 @@ public interface ProductDao {
 	void updateStateTo1(int product_id);
 	
 	void updateStateTo0(int product_id);
+	
 	List<ReviewDto> getReviewList(int renter_id);
+	
+	List<QuestionDto> getQuestionList();
+	
+	List<ProductDto> getProductListForRenter(int member_id);
 }
