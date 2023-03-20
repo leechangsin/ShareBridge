@@ -86,21 +86,21 @@ String edate = getProduct.getEdate().toString().substring(0,10);
 						<input type="button" onclick="findPostcode()" value="우편번호 찾기"><br>
 						<input type="text" class="addAddress" id="address" placeholder="주소"><br>
 						<input type="text" class="addAddress" id="detailAddress" placeholder="상세주소">
-						<input type="hidden" id="saveAddress" name="payment"> 
+						<input type="hidden" id="saveAddress" name="address"> 
 					</td>
 				</tr>
 			</table>
 		</div>
 		<!-- payment -->
 		<div class="payment">
-			<label><input type="radio" name="address" value="card" checked>신용카드</label>
-			<label><input type="radio" name="address" value="account">가상계좌</label>
+			<label><input type="radio" name="payment" value="card" checked>신용카드</label>
+			<label><input type="radio" name="payment" value="account">가상계좌</label>
 		</div>
 		<!-- total price -->
 		<div class="total_price">
 			<span>총금액</span>
 			<input type="hidden" id="price" value="<%=getProduct.getPrice() %>">
-			<input type="number" id="total" name="total" readonly="readonly">
+			<input type="number" id="total" readonly="readonly">
 			<span>원</span>
 		</div>
 		<button type="button" id="shopping_cart">장바구니</button>
