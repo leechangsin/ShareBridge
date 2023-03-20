@@ -158,8 +158,23 @@ int cid = getProduct.getCategory_id();
 <script src="/sharebridge/js/public/common.js"></script>
 <script type="text/javascript">
 $("#goWriteBtn").click(function() {
-	location.href="goWriteQuestion.do?product_id=<%=pid%>&category_id=<%=cid%>";
+	let link = "goWriteQuestion.do?product_id=<%=pid%>&category_id=<%=cid%>";
+	loginChk(link);
 });
+
+$("#requestFrmBtn").click(function() {
+	let link = "goRequestFrm.do?product_id=<%=pid%>"
+	loginChk(link);		
+});
+
+function loginChk(link) {
+	if(<%=login%> == null) {
+		alert("로그인이 필요한 서비스입니다.");
+		location.href="login.do";
+	} else {
+		location.href=link;
+	}
+}
 
 let loadNewData = (product_id, page) => {
 	$.ajax({
