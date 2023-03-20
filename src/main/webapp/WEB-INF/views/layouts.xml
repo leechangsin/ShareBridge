@@ -56,6 +56,21 @@
 	<definition name="review" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/review/review.jsp" />
 	</definition>
+	
+	<!-- 후기 작성 페이지 -->
+	<definition name="review_form" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/review_form.jsp" />
+	</definition>
+	
+	<!-- 후기 작성, 수정 후 -->
+	<definition name="revMsg" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/revMsg.jsp" />
+	</definition>
+	
+	<!-- 후기 수정 페이지 -->
+	<definition name="review_update_form" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/review_update_form.jsp" />
+	</definition>
 
 	<!-- mypage -->
 	<definition name="mypage_main" extends="baseLayout">

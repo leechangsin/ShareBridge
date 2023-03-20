@@ -64,27 +64,23 @@ if(rentalDate == null || rentalDate.size() == 0){
 			
 			<td><%-- <%=dto.getSdate() + "~" + dto.getEdate() %> --%>임시</td>
 			<td><%=prod.getPrice() %></td>
-			<td><button type="button">후기작성</button></td>
 			
-			<%-- <%
-			if(dto.getDel() == 0){
+			<%
+			if(dto.getIs_review() == 0){
 				%>			
 				<td>
-					<%=Utility.arrow(dto.getDepth()) %>
-					<a href="bbsdetail.do?seq=<%=dto.getSeq() %>">
-						<%=dto.getTitle() %>
-					</a>
+					<button type="button" onclick="writeReview(<%=prod.getProduct_id() %>, <%=dto.getRequest_id() %>)">후기작성</button>
 				</td>			
 				<%
-			}else if(dto.getDel() == 1){
+			}else if(dto.getIs_review() == 1){
 				%>
 				<td>
-					<%=Utility.arrow(dto.getDepth()) %>
-					<font color="#ff0000">*** 이 글은 작성자에 의해서 삭제되었습니다 ***</font>	
+					<button type="button" onclick="updateReview(<%=dto.getRequest_id() %>)">후기수정</button>
+					<button type="button" onclick="deleteReview(<%=dto.getRequest_id() %>)">후기삭제</button>
 				</td>
 				<%
 			}	
-			%> --%>
+			%>
 			
 		</tr>
 		<%
@@ -96,6 +92,20 @@ if(rentalDate == null || rentalDate.size() == 0){
 </table>
 
 </div>
+
+<script type="text/javascript">
+function writeReview(product_id, request_id) {
+	location.href="writeReview.do?product_id=" + product_id + "&request_id=" + request_id;
+}
+
+function updateReview(request_id) {	// 후기 수정
+	location.href="updateReview.do?request_id=" + request_id;
+}
+
+function deleteReview(request_id) {	// 후기 삭제
+	location.href="deleteReview.do?request_id=" + request_id;
+}
+</script>
 
 </body>
 </html>

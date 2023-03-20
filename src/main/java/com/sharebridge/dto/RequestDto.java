@@ -20,6 +20,7 @@ public class RequestDto {
 	private byte is_accept;
 	private LocalDateTime rdate;
 	private byte del;
+	private byte is_review;
 	
 	public RequestDto() {
 		// TODO Auto-generated constructor stub
@@ -30,10 +31,10 @@ public class RequestDto {
 		this.product_id = product_id;
 		this.member_id = member_id;
 	}
-
+	
 	public RequestDto(int request_id, int product_id, int member_id, String name, String email, String phone_number,
 			LocalDateTime sdate, LocalDateTime edate, String receiver, String receiver_phone, String address,
-			String payment, byte is_cancel, byte is_accept, LocalDateTime rdate, byte del) {
+			String payment, byte is_cancel, byte is_accept, LocalDateTime rdate, byte del, byte is_review) {
 		super();
 		this.request_id = request_id;
 		this.product_id = product_id;
@@ -51,8 +52,9 @@ public class RequestDto {
 		this.is_accept = is_accept;
 		this.rdate = rdate;
 		this.del = del;
+		this.is_review = is_review;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "RequestDto [request_id=" + request_id + ", product_id=" + product_id + ", member_id=" + member_id
@@ -166,5 +168,13 @@ public class RequestDto {
 
 	public LocalDateTime getRdate() {
 		return rdate;
+	}
+
+	public byte getIs_review() {
+		return is_review;
+	}
+
+	public void setIs_review(byte is_review) {
+		this.is_review = is_review;
 	}
 }
