@@ -107,4 +107,28 @@ if(writeQuestion != null && !writeQuestion.equals("")) {
 		<%
 	}
 }
+
+String updateReq = (String)request.getAttribute("updateReq");
+
+if(updateReq != null && !updateReq.equals("")) {
+	int r_rid = (Integer)request.getAttribute("r_rid");
+	int r_cid = (Integer)request.getAttribute("c_rid");
+	if(updateReq.equals("REQUEST_UPDATE_OK")) {
+		%>
+		<script type="text/javascript">
+			alert("대여신청서가 수정되었습니다");
+			location.href = "productDetail.do?product_id=<%=r_rid%>&category_id=<%=r_cid%>";
+		</script>
+		<%
+	} else {
+		%>
+		<script type="text/javascript">
+			alert("대여신청서가 수정되지않았습니다");
+			location.href = "goRequestUpdate.do?request_id=<%=r_rid%>";
+		</script>
+		<%
+	}
+}
+
+
 %>
