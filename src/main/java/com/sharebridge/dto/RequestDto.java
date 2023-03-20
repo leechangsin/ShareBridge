@@ -24,12 +24,6 @@ public class RequestDto {
 	public RequestDto() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public RequestDto(int product_id, int member_id) {
-		super();
-		this.product_id = product_id;
-		this.member_id = member_id;
-	}
 
 	public RequestDto(int request_id, int product_id, int member_id, String name, String email, String phone_number,
 			LocalDateTime sdate, LocalDateTime edate, String receiver, String receiver_phone, String address,
@@ -52,16 +46,13 @@ public class RequestDto {
 		this.rdate = rdate;
 		this.del = del;
 	}
-	
-	@Override
-	public String toString() {
-		return "RequestDto [request_id=" + request_id + ", product_id=" + product_id + ", member_id=" + member_id
-				+ ", name=" + name + ", email=" + email + ", phone_number=" + phone_number + ", sdate=" + sdate
-				+ ", edate=" + edate + ", receiver=" + receiver + ", receiver_phone=" + receiver_phone + ", address="
-				+ address + ", payment=" + payment + ", is_cancel=" + is_cancel + ", is_accept=" + is_accept
-				+ ", rdate=" + rdate + ", del=" + del + "]";
-	}
 
+	public RequestDto(int product_id, int member_id) {
+		super();
+		this.product_id = product_id;
+		this.member_id = member_id;
+	}
+	
 	public int getRequest_id() {
 		return request_id;
 	}
@@ -97,12 +88,6 @@ public class RequestDto {
 	}
 	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
-	}
-	public void setSdate(Timestamp sdate) {
-		this.sdate = sdate.toLocalDateTime();
-	}
-	public void setEdate(Timestamp edate) {
-		this.edate = edate.toLocalDateTime();
 	}
 	public String getReceiver() {
 		return receiver;
@@ -140,9 +125,7 @@ public class RequestDto {
 	public void setIs_accept(byte is_accept) {
 		this.is_accept = is_accept;
 	}
-	public void setRdate(Timestamp rdate) {
-		this.rdate = rdate.toLocalDateTime();
-	}
+
 	public byte getDel() {
 		return del;
 	}
@@ -160,5 +143,14 @@ public class RequestDto {
 
 	public LocalDateTime getRdate() {
 		return rdate;
+	}
+	public void setSdate(Timestamp sdate) {
+		this.sdate = sdate.toLocalDateTime();
+	}
+	public void setEdate(Timestamp edate) {
+		this.edate = edate.toLocalDateTime();
+	}
+	public void setRdate(Timestamp rdate) {
+		this.rdate = rdate.toLocalDateTime();
 	}
 }
