@@ -44,20 +44,20 @@ $(document).ready(function() {
 		$("#total").val(total);
 	});
 	
+	// 대여기간 설정
+	// 수정페이지에서 수정하지 않을 경우, 원래 입력값을 넣어준다
+	if($("#start").val() != undefined || $("#end").val() != undefined) {
+		setStartDate();
+		setEndDate();
+	}
+	
+	// 작성,수정 시 날짜에 변동이 있으면 변동된 입력값을 넣어준다
 	$("#start").change(function() {
-		let s = $("#start").val();	
-		
-		let convert_s = new Date(s).toISOString().slice(0,19);
-		
-		$("#startDate").val(convert_s);	
+		setStartDate();
 	});
 	
 	$("#end").change(function() {
-		let e = $("#end").val();	
-		
-		let convert_e = new Date(e).toISOString().slice(0,19);
-		
-		$("#endDate").val(convert_e);	
+		setEndDate();
 	});
 	
 	// 수령자 정보
@@ -75,12 +75,12 @@ $(document).ready(function() {
 	});
 	
 	// 입력된 주소 저장
-	$(".addAddress").change(function() {
-		let postcode = $('#postcode').val();
-		let address = $("#address").val();
-		let detail = $("#detailAddress").val();
-		
-		$("#saveAddress").val(postcode+"/"+address+"/"+detail);
+	if($(".addAddress") != undefined) {	// 입력값이 있을경우
+		setAddress();
+	}
+	
+	$(".addAddress").change(function() { // 입력값이 변할경우
+		setAddress();
 	});
 	
 	// 빈칸검사
@@ -167,4 +167,22 @@ function findPostcode() {
         }
     }).open();
     
+}
+
+function setAddress() {
+	let postcode = $('#postcode').val();
+	let address = $("#address").val();
+	let detail = $("#detailAddress").val();
+	
+	$("#saveAddress").val(postcode+"/"+address+"/"+detail);
+}
+
+function setStartDate() {
+	let convert_s = new Date($("#start").val()).toISOString().slice(0,19);
+	$("#startDate").val(convert_s);	
+}
+
+function setEndDate() {
+	let convert_e = new Date($("#end").val()).toISOString().slice(0,19);
+	$("#endDate").val(convert_e);	
 }

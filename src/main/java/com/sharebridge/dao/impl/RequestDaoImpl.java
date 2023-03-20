@@ -28,6 +28,11 @@ public class RequestDaoImpl implements RequestDao {
 	}
 
 	@Override
+	public RequestDto getReqFrmByRequest_id(int request_id) {
+		return session.selectOne(ns + "getReqFrmByRequest_id", request_id);
+	}
+	
+	@Override
 	public int getProductPrice(int product_id) {
 		return session.selectOne(p_ns + "getProductPrice", product_id);
 	}
@@ -38,8 +43,9 @@ public class RequestDaoImpl implements RequestDao {
 	}
 
 	@Override
-	public int updateReq(int request_id) {
-		return session.update(ns + "updateReq", request_id);
+	public int updateReq(RequestDto dto) {
+		return session.update(ns + "updateReq", dto);
 	}
+
 
 }

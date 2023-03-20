@@ -9,9 +9,11 @@ public interface RequestService {
 	
 	RequestDto getReqFrm(int member_id);
 	
+	RequestDto getReqFrmByRequest_id(int request_id);
+	
 	int getProductPrice(int product_id);
 	
 	int getProductCate(int product_id);
 	
-	boolean updateReq(int request_id);
+	boolean updateReq(RequestDto dto);
 }

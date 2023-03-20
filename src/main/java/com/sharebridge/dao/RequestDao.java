@@ -9,9 +9,11 @@ public interface RequestDao {
 	
 	RequestDto getReqFrm(int member_id);
 	
+	RequestDto getReqFrmByRequest_id(int request_id);
+	
 	int getProductPrice(int product_id);
 	
 	int getProductCate(int product_id);
 	
-	int updateReq(int request_id);
+	int updateReq(RequestDto dto);
 }

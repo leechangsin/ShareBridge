@@ -14,7 +14,7 @@
 
 <div class="request_from">
 <h2 class="request_title">대여 신청서 작성 완료</h2>
-	<form action="requestFrmAf.do" method="post" id="frm">
+	<div>
 		<!-- rentee_info -->
 		<div class="rentee_info_container">
 			<h3>대여자 정보</h3>
@@ -79,7 +79,7 @@
 		</div>
 		<button type="button" id="backToDetail">돌아가기</button>
 		<button type="submit" id="updateBtn">수정하기</button>
-	</form>
+	</div>
 </div> 
 
 <script>
@@ -89,7 +89,7 @@ $(document).ready(function() {
 	});
 	
 	$("#updateBtn").click(function() {
-		location.href="goRequestUpdate.do?request_id=<%=req.getRequest_id()%>&category_id=<%=cid%>&price<%=price%>";
+		location.href="goRequestUpdate.do?request_id=<%=req.getRequest_id()%>&category_id=<%=cid%>&price=<%=price%>";
 	});
 });
 </script>

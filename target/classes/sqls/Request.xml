@@ -17,4 +17,17 @@
 	from request
 	where member_id = ${member_id} and rdate = (select max(rdate) from request r)
 </select>
+<select id="getReqFrmByRequest_id" parameterType="Integer" resultType="com.sharebridge.dto.RequestDto">
+	select *
+	from request
+	where request_id = ${request_id}
+</select>
+
+<!-- 대여신청서 수정 -->
+<update id="updateReq" parameterType="com.sharebridge.dto.RequestDto">
+	update request
+	set name=#{name}, email=#{email}, phone_number=#{phone_number}, sdate=#{sdate}, edate=#{edate}, receiver=#{receiver}, 
+		receiver_phone=#{receiver_phone}, address=#{address}, payment=#{payment}, total_price=#{total_price}, rdate=now()
+	where request_id = ${request_id}
+</update>
 </mapper>

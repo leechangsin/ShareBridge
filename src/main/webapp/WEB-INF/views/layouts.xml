@@ -123,6 +123,9 @@
 	<definition name="requestConfirm" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/details/requestConfirm.jsp"></put-attribute>
 	</definition>
+	<definition name="requestUpdate" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/requestUpdate.jsp"></put-attribute>
+	</definition>
 	
 	<!-- question write -->
 	<definition name="questionWrite" extends="baseLayout">

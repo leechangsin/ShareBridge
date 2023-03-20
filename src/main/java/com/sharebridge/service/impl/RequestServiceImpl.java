@@ -26,6 +26,11 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
+	public RequestDto getReqFrmByRequest_id(int request_id) {
+		return dao.getReqFrmByRequest_id(request_id);
+	}
+	
+	@Override
 	public int getProductPrice(int product_id) {
 		return dao.getProductPrice(product_id);
 	}
@@ -36,8 +41,8 @@ public class RequestServiceImpl implements RequestService {
 	}
 	
 	@Override
-	public boolean updateReq(int request_id) {
-		int n = dao.updateReq(request_id);
+	public boolean updateReq(RequestDto dto) {
+		int n = dao.updateReq(dto);
 		return n>0?true:false;
 	}
 }
