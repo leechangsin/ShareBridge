@@ -184,7 +184,7 @@ let loadNewData = (product_id, page) => {
 			for(let i=0; i<questionList.length; i++) {
 				let question = questionList[i];
 				
-				let state = question.qstate;
+				let qstate = question.qstate;
 				let private_question = question.private_question;
 				let title = question.title;
 				let rdate = question.rdate;
@@ -204,13 +204,13 @@ let loadNewData = (product_id, page) => {
 				let rentee_id = question.member_id;
 				let question_id = question.question_id;
 				
-				let stateHtml = "<td>";
-				if(state) {
-					stateHtml += "답변완료";
+				let qstateHtml = "<td>";
+				if(qstate) {
+					qstateHtml += "답변완료";
 				} else {
-					stateHtml += "미답변"
+					qstateHtml += "미답변"
 				}
-				stateHtml += "</td>";
+				qstateHtml += "</td>";
 				
 				let privateQuestionHtml = "<td>";
 				if(private_question) {
@@ -223,17 +223,17 @@ let loadNewData = (product_id, page) => {
 				let renteeNicknameHtml = "<td>" + renteeNickname + "</td>";
 				
 				let fullHtml = "<tr class='question_list'>";
-				fullHtml += stateHtml;
+				fullHtml += qstateHtml;
 				fullHtml += privateQuestionHtml;
 				fullHtml += titleHtml;
 				fullHtml += rdateHtml;
 				fullHtml += renteeNicknameHtml;
 				fullHtml += "</tr>";
-				fullHtml += "<tr class='question_con' style='display:none' question_id='" + question_id + "'>";
+				fullHtml += "<tr class='question_con' style='display:none' question_id='" + question_id + "' reply_load='"+!qstate+"'>";
 				fullHtml += "<td colspan='5'>";
 				fullHtml += "<p>"+content+"</p>";
 				fullHtml += "<div>";
-				if(renter_id == user_id) {
+				if((renter_id == user_id) && !qstate) {
 					fullHtml += "<button class='btn question_reply_btn'>답변하기</button>";
 				}
 				if(user_id == rentee_id) {
@@ -248,10 +248,41 @@ let loadNewData = (product_id, page) => {
 			
 			// 문의글 내용
 			$(".question_list").click(function() {
-				$(this).next(".question_con").stop().slideToggle(300);
-				$(this).toggleClass("on").siblings().removeClass("on");
-				$(this).next(".question_con").siblings(".question_con").slideUp(300);
+				let $question_con = $(this).next();
+				
+				showQuestion($question_con);
+				loadReply($question_con);
 			});
+			
+			let showQuestion = ($now) => {
+				$(".question_con").removeClass("on");
+				
+				$now.show();
+				$now.addClass("on");
+				
+				$(".question_con:not(.on)").hide();
+			}
+			
+			let loadReply = ($now) => {
+				let reply_load = $now.attr("reply_load");
+				
+				if(reply_load == "false") {
+					let question_id = $now.attr("question_id");
+						
+					$.ajax({
+						url: "/sharebridge/reply",
+						type: "GET",
+						data: "question_id="+question_id,
+						success: function(reply) {
+							$now.attr("reply_load", true);
+							$question_con.children("p").after("<div><p class='reply_title'>"+reply.title+"</p><p class='reply_content'>"+reply.content+"</p></div>");
+						},
+						error: function() {
+							
+						}
+					});
+				}
+			}
 			
 			$(".question_container > .question_list_wrap > .question_con > td > div > .question_reply_btn").on("click", function() {
 				let question_id = $(this).parent().parent().parent().attr("question_id");
