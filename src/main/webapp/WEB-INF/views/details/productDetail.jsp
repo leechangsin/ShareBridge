@@ -184,7 +184,7 @@ $("#requestFrmBtn").click(function() {
 });
 
 function loginChk(link) {
-	if(<%=login == null%>) {
+	if(<%=login.getMember_id()%> == null) {
 		alert("로그인이 필요한 서비스입니다.");
 		location.href="login.do";
 	} else {
