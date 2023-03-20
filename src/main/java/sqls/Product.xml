@@ -13,13 +13,12 @@
 
 <!-- 상품메인화면에 보이게하기 -->
 <select id="getAllProducts" resultType="com.sharebridge.dto.ProductDto">
-	select p.*, w.member_id as wish_member_id
-	from product p
-	left join wish w on p.product_id = w.product_id
-	inner join member m on w.member_id = m.member_id
-	where p.del is null
+	select *
+	from product
+	where del is null
 	order by wdate desc
-</select>	
+</select>
+
 <!-- 상품등록 -->
 <insert id="insertProduct" parameterType="com.sharebridge.dto.ProductDto">
 	insert into product(product_id, category_id, member_id, title, content, 
