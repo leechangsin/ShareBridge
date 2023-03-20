@@ -5,10 +5,10 @@
 <mapper namespace="Request">
 <!-- 대여신청서 저장 -->
 <insert id="insertReq" parameterType="com.sharebridge.dto.RequestDto">
-	insert into request(product_id, member_id, name, email, phone_number, sdate, edate, receiver, 
-						receiver_phone, payment, total_price, address, rdate)
-	values(${product_id}, ${member_id}, #{name}, #{email}, #{phone_number}, #{sdate}, #{edate},
-			#{receiver}, #{receiver_phone}, #{payment}, #{total_price}, #{address}, now())
+	insert into request(product_id, member_id, name, email, phone_number, sdate, edate, receiver,
+						receiver_phone, address, payment, total_price, rdate)
+	values(#{product_id}, #{member_id}, #{name}, #{email}, #{phone_number}, #{sdate}, #{edate}, #{receiver},
+			#{receiver_phone}, #{address}, #{payment}, #{total_price}, now())
 </insert>
 
 <!-- 대여신청서 불러오기 -->
@@ -17,4 +17,12 @@
 	from request
 	where request_id = ${request_id}
 </select>
+
+<!-- 대여신청서 수정 -->
+<update id="updateReq" parameterType="Integer">
+	update request
+	set name=#{name}, email=#{email}, phone_number=#{phone_number}, sdate=#{sdate}, edate=#{edate}, receiver=#{receiver}, 
+		receiver_phone=#{receiver_phone}, address=#{address}, payment=#{payment}, total_price=#{total_price}, rdate=now()
+	where request_id = #{request_id}
+</update>
 </mapper>

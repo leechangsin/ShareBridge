@@ -59,4 +59,11 @@
 <update id="updateStateTo0" parameterType="int">
 	update product set state is null where product_id = #{product_id}
 </update>
+
+<!-- 상품의 1일 대여가격 & 카테고리 번호 -->
+<select id="getProductPriceAndCate" parameterType="Integer">
+	select price, category_id
+	from product 
+	where product_id = #{product_id}
+</select>
 </mapper>
