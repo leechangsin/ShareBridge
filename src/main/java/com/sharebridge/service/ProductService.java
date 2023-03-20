@@ -25,6 +25,4 @@ public interface ProductService {
 	boolean delProduct(int product_id);
 	
 	List<ReviewDto> getReviewList(int renter_id);
-	
-	List<QuestionDto> getQuestionList();
 }

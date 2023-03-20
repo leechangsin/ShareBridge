@@ -1,36 +1,25 @@
+<%@page import="com.sharebridge.util.HtmlUtil"%>
 <%@page import="com.sharebridge.dto.QuestionDto"%>
 <%@page import="com.sharebridge.dto.ReviewDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sharebridge.dto.MemberDto"%>
 <%@page import="com.sharebridge.dto.CategoryDto"%>
 <%@page import="com.sharebridge.dto.ProductDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 
-<style type="text/css">
-.product_info {
-	display: flex;
-}
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-.preview {
-	width: 400px;
-}
-.trans {
-	transition: max-height 0.5s ease-out;
-}
-</style>
-</head>
-<body>
+<link rel="stylesheet" href="/sharebridge/css/details/productDetail.css">
 
-<% 
+<%
+HtmlUtil hu = new HtmlUtil();
+
 ProductDto getProduct = (ProductDto)request.getAttribute("detail");
 CategoryDto getCate = (CategoryDto)request.getAttribute("getCate");
 MemberDto login = (MemberDto)session.getAttribute("login");
 MemberDto renter = (MemberDto)request.getAttribute("renter");
 List<ReviewDto> reviewList = (List<ReviewDto>)request.getAttribute("review");
 List<String> r_renteeNickList = (List<String>)request.getAttribute("r_renteeNick");
-List<String> q_renteeNickList = (List<String>)request.getAttribute("q_renteeNick");
-List<QuestionDto> questionList = (List<QuestionDto>)request.getAttribute("question");
+int questionCount = (int) request.getAttribute("questionCount");
 
 String sdate = getProduct.getSdate().toString();
 String edate = getProduct.getEdate().toString();
@@ -43,48 +32,49 @@ int cid = getProduct.getCategory_id();
 	<%-- 상품 정보(이미지, 카테고리, 상품명, 기간 등등) --%>
 	<div class="product_info">
 		<div class="product_photo">
-			<img src="<%=getProduct.getPhoto() %>" alt="상품이미지" class="preview">					
+			<img src="<%=getProduct.getPhoto() %>" alt="상품이미지" class="preview">                    
 		</div>
 		<div class="product_desc">
 			<table>
-				<tr>
+				<tr id="category">
 					<td><%=getCate.getName() %></td>
 				</tr>
-				<tr>
+				<tr id="title">
 					<td><%=getProduct.getTitle() %></td>
 				</tr>
-				<tr>
+				<tr id="s_e_date">
 					<td>
 						<span><%=sdate.substring(0, 10)%></span>
 						~
 						<span><%=edate.substring(0, 10)%></span>
 					</td>
 				</tr>
-				<tr>
+				<tr id="price">
 					<td><%=getProduct.getPrice() %><span>원 / 일</span></td>
+					<td><i class="fa-regular fa-heart"></i></td>
 				</tr>
 			</table>
+			<div id="btn_wrap">
 			<%
 				if(getProduct.getMember_id() == login.getMember_id()) { 
-					%>					
-					<div>
-						<a href="goUpdate.do?product_id=<%=pid%>&category_id=<%=cid%>">수정</a>
-						<a href="delProduct.do?product_id=<%=pid%>">삭제</a>
-					</div>
-					<%
+			%>					
+					<a href="goUpdate.do?product_id=<%=pid%>&category_id=<%=cid%>">수정</a>
+					<a href="delProduct.do?product_id=<%=pid%>">삭제</a>
+			<%
 				} else {
-					%>
-					<button type="button" id="requestFrmBtn">대여신청</button>
-					<%					
+			%>
+					<button type="button" class="btn btn-secondary" id="requestFrmBtn">대여신청</button>
+			<%					
 				}
 			%>
+			</div>
 		</div>
 	</div>
 	
 	<%-- 렌터 정보(프로필, 후기) --%>
 	<div class="renter_info">
 		<div class="renter_profile">
-			<img scr="" alt="profile">
+			<img src="/sharebridge/upload/profile/temp.png" alt="profile">
 			<span><%=renter.getNickname() %></span>
 		</div>
 		<div class="renter_review">
@@ -95,16 +85,20 @@ int cid = getProduct.getCategory_id();
 						String r_nick = r_renteeNickList.get(i);
 						%>
 						<div class="reviewlist">
-							<span><%=r_nick %></span>
-							<span><%=r.getRdate() %></span>
-							<span><%=r.getRating() %></span>
-							<p><%=r.getContent() %></p>
+							<div class="reviewlist_item">
+								<div class="review_rentee_info">
+									<span><%=r_nick %></span>
+									<span><%=r.getRating() %></span>
+									<span><%=r.getRdate() %></span>
+								</div>
+								<p class="review_contents"><%=r.getContent() %></p>
+							</div>
 						</div>
 						<%
 					}
 				} else {
 					%>
-					<span>**작성된 리뷰가 없습니다.</span>
+					<span id="no_review_wrap">**작성된 리뷰가 없습니다.</span>
 					<%
 				}
 			%>
@@ -113,69 +107,162 @@ int cid = getProduct.getCategory_id();
 	
 	<%-- 상품 내용, 문의 --%>
 	<div class="content_and_question">
-		<div class="question_container">
-			<table class="question">
+		<div id="tap_wrap">
+			<div class="tap active">상품정보</div>
+			<div class="tap">문의</div>
+		</div>
+		
+		<div id="contents_container">
+			<%= hu.strToHtml(getProduct.getContent()) %>
+		</div>
+		
+		<div class="question_container" load="<%= questionCount == 0%>">
+			<table class="question_list_wrap">
 				<%
-					if(questionList.size() == 0) {
-						%>
-						<span>**문의 내역이 없습니다<span>
-						<%
-					} else {
-						for(int i=0; i<questionList.size(); i++) {
-							QuestionDto q = questionList.get(i);
-							String q_nick = q_renteeNickList.get(i);
-							%>
-							<tr class="question_list">
-								<td><%
-									if(q.isQstate()) {
-										%>
-										답변완료
-										<%
-									} else {
-										%>
-										미답변
-										<%
-									}
-								%></td>
-								<td>
-									<%
-										if(q.isPrivate_question()) {
-											%>											
-											<img src="images/lock_icon.png" alt="private_question">
-											<%
-										}
-									%>
-								</td>
-								<td><%=q.getTitle() %></td>
-								<td><%=q.getRdate().toString().substring(0,10) %></td>
-								<td><%=q_nick.substring(0,1)%>***</td>
-							</tr>
-							<tr class="question_con" style="display:none">
-								<td colspan="4">
-									<p><%=q.getContent() %></p>
-								</td>
-							</tr>
-							<%
-						}
+					if(questionCount == 0) {
+				%>
+					<tr class="no_question">
+						<td><span>**문의 내역이 없습니다</span></td>
+					</tr>
+				<%
 					}
 				%>
 			</table>
+
+			<nav id="question_pagination">
+				<ul class="pagination">
+					<%
+						if(questionCount != 0) {
+							int roofAmount = (questionCount / 10) + 1;
+							
+							for(int i=1; i<=roofAmount; i++) {
+					%>
+								<li class="page-item <%= i== 1 ? "active" : "" %>"><a class="page-link" href="#">1</a></li>
+					<%
+							}
+						}
+					%>
+				</ul>
+			</nav>
+
+			<div id="question_btn_wrap">
+				<button type="button" class="btn" id="goWriteBtn">문의하기</button>
+			</div>
 		</div>
-		<button type="button" id="goWriteBtn">문의하기</button>
 	</div>
 </div>
 
+<script src="/sharebridge/js/public/common.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	// 문의글 내용
-	$(".question_list").click(function() {
-		$(this).next(".question_con").stop().slideToggle(300);
-		$(this).toggleClass("on").siblings().removeClass("on");
-		$(this).next(".question_con").siblings(".question_con").slideUp(300);
-	});
-	
-	$("#goWriteBtn").click(function() {
-		location.href="goWriteQuestion.do?product_id=<%=pid%>&category_id=<%=cid%>";
-	});
+$("#goWriteBtn").click(function() {
+	location.href="goWriteQuestion.do?product_id=<%=pid%>&category_id=<%=cid%>";
 });
+
+let transTap = () => {
+	let $this = $("#tap_wrap > .tap:not(.active)");
+	let $other = $("#tap_wrap > .tap.active");
+	
+	$this.addClass("active");
+	$this.off("click");
+	
+	$other.removeClass("active");
+	$other.on("click", activeTap);
+}
+
+let loadTapData = () => {
+	let $this = $("#tap_wrap > .tap.active");
+	let tapTitle = $this.text();
+	
+	if(tapTitle == "상품정보") {
+		$("#contents_container").css("display", "block");
+		$(".question_container").css("display", "none");
+	} else {
+		$("#contents_container").css("display", "none");
+		$(".question_container").css("display", "block");
+		
+		let load = $(".question_container").attr("load");
+		if(load == "false") {
+			let product_id = getParameter("product_id");
+			
+			$.ajax({
+				url: "/sharebridge/question/question_list.do",
+				type: "GET",
+				data: "product_id="+product_id+"&page=1",
+				success: function(questionList) {
+					let question_list_wrap = $(".question_container > .question_list_wrap");
+					
+					for(let i=0; i<questionList.length; i++) {
+						let question = questionList[i];
+						
+						let state = question.qstate;
+						let private_question = question.private_question;
+						let title = question.title;
+						let rdate = question.rdate;
+						if(rdate[1] < 10) {
+							rdate[1] = "0" + rdate[1];
+						}
+						if(rdate[2] < 10) {
+							rdate[2] = "0" + rdate[2];
+						}
+						rdate = rdate[0] + "-" + rdate[1] + "-" + rdate[2];
+						
+						let renteeNickname = question.renteeNickname.substring(0, 1) + "***";
+						let content = question.content;
+						content = content.replace("\r\n", "<br>");
+						
+						let stateHtml = "<td>";
+						if(state) {
+							stateHtml += "답변완료";
+						} else {
+							stateHtml += "미답변"
+						}
+						stateHtml += "</td>";
+						
+						let privateQuestionHtml = "<td>";
+						if(private_question) {
+							privateQuestionHtml += "<img src='/sharebridge/images/lock_icon.png' alt='private_question'>";
+						}
+						privateQuestionHtml += "</td>";
+						
+						let titleHtml = "<td>" + title + "</td>";
+						let rdateHtml = "<td>" + rdate + "</td>";
+						let renteeNicknameHtml = "<td>" + renteeNickname + "</td>";
+						
+						let fullHtml = "<tr class='question_list'>";
+						fullHtml += stateHtml;
+						fullHtml += privateQuestionHtml;
+						fullHtml += titleHtml;
+						fullHtml += rdateHtml;
+						fullHtml += renteeNicknameHtml;
+						fullHtml += "</tr>";
+						fullHtml += "<tr class='question_con' style='display:none'>";
+						fullHtml += "<td colspan='5'><p>"+content+"</p></td>";
+						fullHtml += "</tr>";
+						
+						question_list_wrap.append(fullHtml);
+					}
+					
+					// 문의글 내용
+					$(".question_list").click(function() {
+						$(this).next(".question_con").stop().slideToggle(300);
+						$(this).toggleClass("on").siblings().removeClass("on");
+						$(this).next(".question_con").siblings(".question_con").slideUp(300);
+					});
+					
+					$(".question_container").attr("load", "true");
+				},
+				error: function() {
+					
+				}
+			});
+		}
+	}
+}
+
+let activeTap = () => {
+	transTap();
+	loadTapData();
+}
+
+$("#tap_wrap > .tap:not(.active)").on("click", activeTap);
 </script>
