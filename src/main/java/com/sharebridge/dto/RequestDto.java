@@ -35,7 +35,7 @@ public class RequestDto {
 				+ address + ", payment=" + payment + ", total_price=" + total_price + ", is_cancel=" + is_cancel
 				+ ", is_accept=" + is_accept + ", rdate=" + rdate + ", del=" + del + ", is_review=" + is_review + "]";
 	}
-
+	
 	public RequestDto(int request_id, int product_id, int member_id, String name, String email, String phone_number,
 			LocalDateTime sdate, LocalDateTime edate, String receiver, String receiver_phone, String address,
 			String payment, int total_price, byte is_cancel, byte is_accept, LocalDateTime rdate, byte del,

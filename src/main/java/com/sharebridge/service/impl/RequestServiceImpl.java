@@ -19,8 +19,8 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public RequestDto getReqFrm(int request_id) {
-		return dao.getReqFrm(request_id);
+	public RequestDto getReqFrm(int member_id) {
+		return dao.getReqFrm(member_id);
 	}
 
 }

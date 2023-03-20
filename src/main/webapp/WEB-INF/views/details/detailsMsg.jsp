@@ -66,13 +66,13 @@ if(updateProduct != null && !updateProduct.equals("")) {
 String insertReq = (String)request.getAttribute("insertReq");
 
 if(insertReq != null && !insertReq.equals("")) {
-	int rid = Integer.parseInt(request.getAttribute("rid").toString());
+	int mid = (Integer)request.getAttribute("mid");
 	
 	if(insertReq.equals("REQUEST_INSERT_OK")) {
 		%>
 		<script type="text/javascript">
 			alert("대여 신청이 완료되었습니다");
-			location.href = "successReq.do?request_id=<%=rid%>";
+			location.href = "successReq.do?member_id=<%=mid%>";
 		</script>
 		<%
 	} else {

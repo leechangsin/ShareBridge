@@ -5,5 +5,5 @@ import com.sharebridge.dto.RequestDto;
 public interface RequestDao {
 	int insertReq(RequestDto dto);
 	
-	RequestDto getReqFrm(int request_id);
+	RequestDto getReqFrm(int member_id);
 }
