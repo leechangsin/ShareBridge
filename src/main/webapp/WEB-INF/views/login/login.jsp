@@ -13,7 +13,7 @@
 
 <link rel="stylesheet" href="/sharebridge/css/login/login.css">
 
-<div align="center">
+<div id="main_contents_wrap" align="center">
 	<h1>로그인</h1>
 	<br>
 
@@ -21,32 +21,31 @@
 		<table>
 			<tr>
 				<td>
-					<input type="text" id="id" name="email" size="35px" placeholder="Email Address">
+					<input type="email" class="form-control" id="id" name="email" placeholder="아이디(이메일)">
 				</td>
-				<td align="right">
+				<td>
 					<a href="idSearch.do">Forget?</a>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<input type="text" name="pwd" size="35px" placeholder="Password">
+					<input type="password" class="form-control" id="pwd" name="pwd" placeholder="비밀번호">
 				</td>
-				<td align="right">
+				<td>
 					<a href="pwdSearch.do">Forget?</a>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<input type="checkbox" id="id_save"> Remember me
+					<input type="checkbox" id="id_save"> 아이디(이메일) 기억하기
 				</td>
-				<td align="right">
+				<td>
 					<a href="regi.do">회원가입</a>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<br>
-					<button type="submit">로그인</button>
+					<button type="submit" class="btn light_gray_btn">로그인</button>
 				</td>
 			</tr>
 		</table>
@@ -54,14 +53,16 @@
 </div>
 
 <script type="text/javascript">
-	// 쿠키에 저장된 user_id를 user_id라는 변수에 대입
-	let user_id = $.cookie("user_id");
-	
-	// user_id라는 변수에 쿠키값이 들어가있을 경우 if문 실행
-	if(user_id != null){
-		$("#id").val(user_id);
-		$("#id_save").prop("checked", true);
-	}
+	$(function() {
+		// 쿠키에 저장된 user_id를 user_id라는 변수에 대입
+		let user_id = $.cookie("user_id");
+		
+		// user_id라는 변수에 쿠키값이 들어가있을 경우 if문 실행
+		if(user_id != null){
+			$("#id").val(user_id);
+			$("#id_save").prop("checked", true);
+		}
+	});
 	
 	// id 저장이라는 체크박스를 클릭했을 때 실행
 	$("#id_save").click(function(){
