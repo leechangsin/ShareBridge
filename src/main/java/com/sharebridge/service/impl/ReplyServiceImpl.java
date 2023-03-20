@@ -46,5 +46,4 @@ public class ReplyServiceImpl implements ReplyService {
 	public ReplyDto getReplyByQuestion_id(int question_id) {
 		return replyDao.getReplyByQuestion_id(question_id);
 	}
-
 }

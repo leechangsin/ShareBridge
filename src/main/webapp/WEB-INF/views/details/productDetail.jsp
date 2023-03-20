@@ -316,6 +316,23 @@ let loadNewData = (product_id, page) => {
 				
 				goTo("/sharebridge/goWriteQuestion.do?product_id="+product_id+"&category_id="+category_id+"&question_id="+question_id+"&status=update");
 			});
+			
+			$(".question_container > .question_list_wrap > .question_con > td > div > .question_delete_btn").on("click", function() {
+				let question_id = $(this).parent().parent().parent().attr("question_id");
+				
+				if(confirm("문의를 삭제하시겠습니까?\n삭제된 문의는 복구할 수 없습니다")) {
+					$.ajax({
+						url: "/sharebridge/question/delete.do",
+						type: "POST",
+						data: "question_id="+question_id,
+						success: function() {
+							alert("문의가 삭제됐습니다\n페이지를 새로고침합니다.");
+							
+							location.reload();
+						}
+					});
+				}
+			});
 		},
 		error: function() {
 			

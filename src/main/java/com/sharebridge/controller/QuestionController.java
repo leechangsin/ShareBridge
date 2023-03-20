@@ -73,10 +73,20 @@ public class QuestionController {
 			return ResponseEntity.status(HttpStatus.MULTIPLE_CHOICES).header("Location", "/sharebridge/login.do").build();
 		}
 		
-		System.out.println(questionInfo.getTitle().length());
-		System.out.println(questionInfo.getContent().length());
-		
 		service.updateQuestion(questionInfo);
+		
+		return ResponseEntity.ok(null);
+	}
+	
+	@PostMapping("/question/delete.do")
+	public ResponseEntity<Void> deleteQuestion(int question_id, HttpSession session) {
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			
+			return ResponseEntity.status(HttpStatus.MULTIPLE_CHOICES).header("Location", "/sharebridge/login.do").build();
+		}
+		
+		service.deleteQuestion(question_id);
 		
 		return ResponseEntity.ok(null);
 	}

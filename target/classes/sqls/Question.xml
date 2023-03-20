@@ -45,4 +45,8 @@
 		</if>
 		where question_id = #{question_id}
 	</update>
+	
+	<delete id="deleteQuestion" parameterType="int">
+		delete from question where question_id = #{question_id}
+	</delete>
 </mapper>

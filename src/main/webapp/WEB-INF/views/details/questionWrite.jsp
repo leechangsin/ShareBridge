@@ -103,13 +103,14 @@
 				let question_id = getParameter("question_id");
 				let title = $("#title").val();
 				let content = $("#content").val();
+				let privateQuestion = $("#private_question").prop("checked") ? 1 : 0;
 				
 				let category_id = getParameter("category_id");
 				
 				$.ajax({
 					url: $("#frm").attr("action"),
 					type: $("#frm").attr("method"),
-					data: {"product_id": product_id, "question_id": question_id, "title": title, "content": content},
+					data: {"product_id": product_id, "question_id": question_id, "title": title, "content": content, "private_question": privateQuestion},
 					success: function() {
 						alert("문의를 수정했습니다.\n상품 상세 페이지로 이동합니다");
 						goTo("/sharebridge/productDetail.do?product_id="+product_id+"&category_id="+category_id);

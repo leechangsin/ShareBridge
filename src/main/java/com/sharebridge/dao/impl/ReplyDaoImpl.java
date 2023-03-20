@@ -23,4 +23,9 @@ public class ReplyDaoImpl implements ReplyDao {
 	public ReplyDto getReplyByQuestion_id(int question_id) {
 		return session.selectOne(ns + "getReplyByQuestion_id", question_id);
 	}
+
+	@Override
+	public void deleteReplyByQuestion_id(int question_id) {
+		session.delete(ns + "deleteReplyByQuestion_id", question_id);
+	}
 }
