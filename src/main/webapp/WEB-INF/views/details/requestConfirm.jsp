@@ -72,7 +72,7 @@
 		<!-- total price -->
 		<div class="total_price">
 			<span>총금액</span>
-			<span>원</span>
+			<span><%=req.getTotal_price() %>원</span>
 		</div>
 		<button type="button" id="backToDetail">돌아가기</button>
 		<button type="submit" id="updateBtn">수정하기</button>
