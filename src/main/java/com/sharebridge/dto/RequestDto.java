@@ -16,6 +16,7 @@ public class RequestDto {
 	private String receiver_phone;
 	private String address;
 	private String payment;
+	private int total_price;
 	private byte is_cancel;
 	private byte is_accept;
 	private LocalDateTime rdate;
@@ -30,10 +31,10 @@ public class RequestDto {
 		this.product_id = product_id;
 		this.member_id = member_id;
 	}
-
+	
 	public RequestDto(int request_id, int product_id, int member_id, String name, String email, String phone_number,
 			LocalDateTime sdate, LocalDateTime edate, String receiver, String receiver_phone, String address,
-			String payment, byte is_cancel, byte is_accept, LocalDateTime rdate, byte del) {
+			String payment, int total_price, byte is_cancel, byte is_accept, LocalDateTime rdate, byte del) {
 		super();
 		this.request_id = request_id;
 		this.product_id = product_id;
@@ -47,12 +48,13 @@ public class RequestDto {
 		this.receiver_phone = receiver_phone;
 		this.address = address;
 		this.payment = payment;
+		this.total_price = total_price;
 		this.is_cancel = is_cancel;
 		this.is_accept = is_accept;
 		this.rdate = rdate;
 		this.del = del;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "RequestDto [request_id=" + request_id + ", product_id=" + product_id + ", member_id=" + member_id
@@ -134,6 +136,15 @@ public class RequestDto {
 	public void setPayment(String payment) {
 		this.payment = payment;
 	}
+	
+	public int getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(int total_price) {
+		this.total_price = total_price;
+	}
+
 	public byte getIs_cancel() {
 		return is_cancel;
 	}
