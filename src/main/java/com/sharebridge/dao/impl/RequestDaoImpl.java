@@ -20,7 +20,7 @@ public class RequestDaoImpl implements RequestDao {
 	}
 
 	@Override
-	public RequestDto getReqFrm(int request_id) {
-		return session.selectOne(ns + "getReqFrm", request_id);
+	public RequestDto getReqFrm(int member_id) {
+		return session.selectOne(ns + "getReqFrm", member_id);
 	}
 }

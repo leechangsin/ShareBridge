@@ -32,23 +32,23 @@ public class RequestController {
 		dto.setEdate(edate); 
 		
 		boolean isS = service.insertReq(dto);
-		int request_id = dto.getRequest_id();
+		int mid = dto.getMember_id();
 		
 		String msg = "REQUEST_INSERT_OK";
 		if(!isS) {
 			msg = "REQUEST_INSERT_NO";
 		}
 		
-		System.out.println(msg);
+		System.out.println(dto.toString());
 		model.addAttribute("insertReq", msg);
-		model.addAttribute("rid", request_id);
+		model.addAttribute("mid", mid);
 		
 		return "detailsMsg";
 	}
 	
 	@GetMapping("/successReq.do")
-	public String successReq(int request_id, Model model) {
-		RequestDto req = service.getReqFrm(request_id);
+	public String successReq(int member_id, Model model) {
+		RequestDto req = service.getReqFrm(member_id);
 		
 		model.addAttribute("req", req);
 		

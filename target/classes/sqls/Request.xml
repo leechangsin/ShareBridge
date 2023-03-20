@@ -15,6 +15,6 @@
 <select id="getReqFrm" parameterType="Integer" resultType="com.sharebridge.dto.RequestDto">
 	select *
 	from request
-	where request_id = ${request_id}
+	where member_id = ${member_id} and rdate = (select max(rdate) from request r)
 </select>
 </mapper>

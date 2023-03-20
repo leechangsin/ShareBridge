@@ -18,7 +18,7 @@
 			<table class="rentee_info">
 				<tr>
 					<th>이름</th>
-					<td><%=req.getName() %>"</td>
+					<td><%=req.getName() %></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
