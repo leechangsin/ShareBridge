@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="Reply">
+	<insert id="insertReply" parameterType="com.sharebridge.dto.ReplyDto">
+		insert into reply(member_id, question_id, title, content) VALUES(#{member_id}, #{question_id}, #{title}, #{content})
+	</insert>
+	
+	<select id="getReplyByQuestion_id" parameterType="int" resultType="com.sharebridge.dto.ReplyDto">
+		select * from reply where question_id = #{question_id}
+	</select>
+</mapper>
