@@ -50,6 +50,7 @@ public class MypageMainController {
 //		로그인한 사용자의 후기 개수 가져오기
 		int reviewCount = reviewService.getReviewCountByMemberId(member_id);
 		System.out.println("reviewCount = " + reviewCount);
+		
 		// 렌터의 별점 계산
 		List<ReviewDto> list = reviewService.revListAnsOrder(reviewCount);
 		System.out.println(list.size());
@@ -67,7 +68,7 @@ public class MypageMainController {
 		}else {
 			rateAvg = rate / (list.size()-1);
 		}
-		
+		memberInfo.setRating((float) rateAvg);
 		
 //		로그인한 사용자의 알림 개수 가져오기
 		int notiCount = notificationService.getNotificationCountByMemberId(member_id);
