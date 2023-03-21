@@ -6,11 +6,11 @@
 <mapper namespace="RenterRequest">
 
 <select id="selectAllByMemberId" parameterType="com.sharebridge.param.MypageParam" resultType="com.sharebridge.dto.RequestDto">
-	select *
+	select *, p.title as productName, p.price as dailyPrice
 	from request as r
 	join product as p
 	on r.product_id = p.product_id
-	where p.member_id = #{memberId} AND r.del IS NULL
+	where p.member_id = #{memberId} and r.del is null
 	order by r.rdate desc
 	<if test="limitEnd != 0">
 		limit #{limitStart}, #{limitEnd}
