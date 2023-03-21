@@ -39,7 +39,14 @@
 							
 							<div class="card-text">
 								<p>${product.price}원/일</p>
-								<p>대여 가능</p>
+								<p>
+									<c:set var="state" value="대여 가능" />
+									<c:if test="${product.state eq 1 }">
+										<c:set var="state" value="대여 불가" />
+									</c:if>
+									
+									${state }
+								</p>
 							</div>
 						</div>
 					</div>
