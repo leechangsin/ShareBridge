@@ -38,7 +38,7 @@
 <select id="getReviewList" parameterType="Integer" resultType="com.sharebridge.dto.ReviewDto">
 	select *
 	from review
-	where renter_id = #{renter_id}
+	where renter_id = #{renter_id} and (step = 0 and depth = 0)
 	order by rdate desc;
 </select>
 
