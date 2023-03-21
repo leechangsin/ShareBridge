@@ -77,6 +77,7 @@ int user_id = login.getMember_id();
 	</div>
 	
 	<%-- 렌터 정보(프로필, 후기) --%>
+	<div class="renter_container">
 	<div class="renter_info">
 		<div class="renter_profile">
 			
@@ -88,7 +89,7 @@ int user_id = login.getMember_id();
 		<div class="renter_review">
 			<%	
 				if(reviewList.size() != 0) {
-					for(int i=0; i<=4; i++) {
+					for(int i=0; i<reviewList.size(); i++) {
 						ReviewDto r = reviewList.get(i);
 						String r_nick = r_renteeNickList.get(i);
 						%>
@@ -111,6 +112,7 @@ int user_id = login.getMember_id();
 				}
 			%>
 		</div>
+	</div>
 	</div>
 	
 	<%-- 상품 내용, 문의 --%>
