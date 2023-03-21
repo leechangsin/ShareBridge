@@ -19,3 +19,12 @@
 .text_align {
 	text-align: center;
 }
+
+.dropdown-divider {
+	border-color: gray;
+}
+
+body > div > table > tbody > tr:nth-child(2) > td > nav > div.dropdown-menu.show > hr:last-child {
+	border: none;
+	margin: 0;
+}
