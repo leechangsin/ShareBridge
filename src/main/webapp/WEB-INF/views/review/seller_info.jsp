@@ -109,8 +109,8 @@ List<ProductDto> prodList = (List<ProductDto>)request.getAttribute("prodList");
 									<%
 									if(login.getMember_id() == mem.getMember_id()) {
 										%>
-										<a href="updateReview.do?request_id=<%=list.get(i).getRequest_id() %>">수정</a>&nbsp;
-										<a href="deleteReview.do?request_id=<%=list.get(i).getRequest_id() %>">삭제</a>
+										<a href="upDateReview.do?review_id=<%=list.get(i).getReview_id() %>">수정</a>&nbsp;
+										<a href="deLeteReview.do?review_id=<%=list.get(i).getReview_id() %>">삭제</a>
 										<%
 									}
 									%>

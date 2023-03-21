@@ -102,4 +102,11 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return dao.revListAnsOrder(renter_id);
 	}
+
+	// 답글 삭제
+	@Override
+	public boolean deleteAns(int review_id) {
+		int n = dao.deleteAns(review_id);
+		return n>0?true:false;
+	}
 }
