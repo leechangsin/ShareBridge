@@ -45,7 +45,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<button type="submit" class="btn light_gray_btn">로그인</button>
+					<button type="button" class="btn light_gray_btn">로그인</button>
 				</td>
 			</tr>
 		</table>
@@ -61,6 +61,21 @@
 		if(user_id != null){
 			$("#id").val(user_id);
 			$("#id_save").prop("checked", true);
+		}
+	});
+	
+	$("#main_contents_wrap > form > table > tbody > tr:nth-child(4) > td > button").on("click", function(){
+		let id = $("#id").val().trim();
+		let pw = $("#pwd").val().trim();
+		
+		if(id.length == 0) {
+			alert("아이디를 입력해주세요");
+			$("#id").focus();
+		} else if(pw.length == 0) {
+			alert("비밀번호를 입력해주세요");
+			$("#pwd").focus();
+		} else {
+			$("#main_contents_wrap form").submit();
 		}
 	});
 </script>
