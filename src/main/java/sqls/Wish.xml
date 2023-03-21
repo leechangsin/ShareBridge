@@ -3,13 +3,12 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Wish">
 	<!-- wish -->
-	<select id="getAllWishByMemberId"
-		parameterType="int"
-		resultType="com.sharebridge.dto.ProductDto">
+	<select id="getAllWishByMemberId" parameterType="int" resultType="com.sharebridge.dto.ProductDto">
 		select p.*, w.member_id as wish_member_id
 		from product p
 		left join wish w on p.product_id = w.product_id
 		where w.member_id = #{memberId}
+		order by rdate desc
 	</select>
 
 	<insert id="addWish" parameterType="com.sharebridge.dto.WishDto">
