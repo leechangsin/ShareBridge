@@ -1,24 +1,9 @@
 @charset "UTF-8";
 
-.text_align {
-	text-align: center;
-}
-
 /* 타이틀 */
 #page_title {
     margin-top: 50px;
    	margin-bottom: 30px;
    	font-size: 32px;
    	font-weight: bold;
-}
-
-.light_gray_btn {
-    border: none;
-    background: lightgray;
-    color: black;
-}
-
-.light_gray_btn:hover {
-	background: gray;
-	color: white;
 }

@@ -4,3 +4,18 @@
 	display: flex;
     justify-content: center;
 }
+
+.light_gray_btn {
+    border: none;
+    background: lightgray;
+    color: black;
+}
+
+.light_gray_btn:hover {
+	background: gray;
+	color: white;
+}
+
+.text_align {
+	text-align: center;
+}

@@ -1,53 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>비밀번호 찾기 : sharebridge</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
-<style type="text/css">
-a {
-  text-decoration: none;
-  color: gray;
-}
-div {
-	padding-top: 40px;
-	padding-bottom: 40px;
-}
-</style>
-
-</head>
-<body>
-
-<div align="center">
+<link rel="stylesheet" href="/sharebridge/css/login/id_pw_search.css">
 
 <table>
-<tr>
-	<th style="border-bottom: 2px solid gray;">
-		<a href="idSearch.do">아이디 찾기</a>
-	</th>
-	<th style="border-bottom: 2px solid black;">비밀번호 찾기</th>
-</tr>
-<tr>
-	<td colspan="2"><br>이메일 입력</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<input type="text" id="email" size="35px">
-	</td>
-</tr>
-<tr>
-	<td colspan="2" align="center">
-		<br>
-		<button type="button" id="find">조회</button>
-	</td>
-</tr>
+	<tr id="tap_wrap">
+		<td class="non_active">
+			<a href="idSearch.do">아이디 찾기</a>
+		</td>
+		<td>비밀번호 찾기</td>
+	</tr>
+	<tr>
+		<td colspan="2"><label for="email" class="form-label">이메일 입력</label></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="email" id="email" class="form-control">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<button type="button" id="find" class="btn light_gray_btn">조회</button>
+		</td>
+	</tr>
 </table>
-
-</div>
 
 <script>
 $(document).ready(function() {
