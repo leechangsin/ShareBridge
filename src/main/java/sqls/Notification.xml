@@ -40,4 +40,9 @@
 	delete from notification where notification_id = #{notification_id}
 </delete>
 
+<!-- 대여신청 알림 -->
+<insert id="requestNoti" parameterType="Integer">
+	insert into notification(request_id, rdate)
+	values(${request_id}, now())
+</insert>
 </mapper>

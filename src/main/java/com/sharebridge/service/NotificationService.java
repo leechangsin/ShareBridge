@@ -10,4 +10,6 @@ public interface NotificationService {
 	List<NotificationDto> getNotificationList(NotificationListParam nlp);
 	void readNotification(int notification_id);
 	void deleteNotificationByNotification_id(int notification_id);
+	
+	boolean requestNoti(int request_id);
 }

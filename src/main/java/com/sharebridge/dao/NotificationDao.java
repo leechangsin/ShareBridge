@@ -10,4 +10,7 @@ public interface NotificationDao {
 	List<NotificationDto> getNotificationList(NotificationListParam nlp);
 	void readNotification(int notification_id);
 	void deleteNotificationByNotification_id(int notification_id);
+	
+	int requestNoti(int request_id);
 }
+
