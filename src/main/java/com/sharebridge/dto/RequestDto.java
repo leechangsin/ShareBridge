@@ -23,6 +23,9 @@ public class RequestDto {
 	private byte del;
 	private byte is_review;
 	
+	private String productName;
+	private int dailyPrice;
+	
 	public RequestDto() {
 		// TODO Auto-generated constructor stub
 	}
@@ -184,5 +187,17 @@ public class RequestDto {
 	}
 	public void setRdate(Timestamp rdate) {
 		this.rdate = rdate.toLocalDateTime();
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public int getDailyPrice() {
+		return dailyPrice;
+	}
+	public void setDailyPrice(int dailyPrice) {
+		this.dailyPrice = dailyPrice;
 	}
 }

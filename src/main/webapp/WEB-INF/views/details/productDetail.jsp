@@ -79,8 +79,11 @@ int user_id = login.getMember_id();
 	<%-- 렌터 정보(프로필, 후기) --%>
 	<div class="renter_info">
 		<div class="renter_profile">
+			
 			<img src="/sharebridge/upload/profile/temp.png" alt="profile">
+			<a href="sellerInfo.do?renterId=<%=renter.getMember_id() %>">
 			<span><%=renter.getNickname() %></span>
+			</a>
 		</div>
 		<div class="renter_review">
 			<%	

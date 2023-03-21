@@ -12,7 +12,7 @@
 	<div id="contents_wrap">
 		<form action="deleteAf.do" method="POST">
 			<div id="select_wrap">
-				<select class="form-select">
+				<select class="form-control">
 					<option value="">선택해주세요</option>
 					<option value="사유1">사유1</option>
 					<option value="사유2">사유2</option>
