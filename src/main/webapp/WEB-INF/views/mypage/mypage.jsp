@@ -238,6 +238,7 @@
 				}
 				
 				$this.parent().prev().html("<span>대여 수락</span>");
+				$this.next().remove();
 				$this.remove();
 			},
 			error: function(xhr) {
@@ -267,6 +268,7 @@
 				}
 				
 				$this.parent().prev().html("<span>대여 거절</span>");
+				$this.prev().remove();
 				$this.remove();
 			},
 			error: function(xhr) {
