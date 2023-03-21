@@ -63,7 +63,7 @@ List<String> nickname = (List<String>)request.getAttribute("nickname");
 							<%
 						}else if(dto.getIs_review() == 1){
 							%>
-							<td>
+							<td onclick="event.cancelBubble = true;">
 								<button type="button" class="btn light_gray_btn" onclick="updateReview(<%=dto.getRequest_id() %>)">후기수정</button>
 								<button type="button" class="btn light_gray_btn" onclick="deleteReview(<%=dto.getRequest_id() %>)">후기삭제</button>
 							</td>
