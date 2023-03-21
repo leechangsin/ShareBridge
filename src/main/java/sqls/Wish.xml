@@ -10,6 +10,12 @@
 		where w.member_id = #{memberId}
 		order by rdate desc
 	</select>
+	
+	<select id="selectOneWish" parameterType="com.sharebridge.dto.WishDto" resultType="com.sharebridge.dto.WishDto">
+		select *
+		from wish
+		where product_id = #{product_id} and member_id = #{member_id}
+	</select>
 
 	<insert id="addWish" parameterType="com.sharebridge.dto.WishDto">
 		insert into wish(product_id, member_id, rdate)

@@ -68,7 +68,7 @@ function onClickProduct(pid,cid){
 }
 
 function onClickWish(productId, hasWish){
-	if("${login == null}" === 'false'){
+	if("<%=login == null%>" === 'false'){
 		$.ajax({
 			type:"post",
 			url: hasWish ? "addWish.do" : "removeWish.do",
@@ -83,6 +83,5 @@ function onClickWish(productId, hasWish){
 	}else{
 		alert('로그인을 해주세요.');
 	}
-	
 }
 </script>

@@ -7,6 +7,7 @@
 <%@page import="com.sharebridge.dto.ProductDto"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="/sharebridge/css/details/productDetail.css">
 
@@ -56,7 +57,16 @@ int user_id = login.getMember_id();
 				</tr>
 				<tr id="price">
 					<td><%=getProduct.getPrice() %><span>원 / 일</span></td>
-					<td><i class="fa-regular fa-heart"></i></td>
+					<td>
+						<c:choose>
+							<c:when test="${isWish}">
+								<img onclick="clickWish(false)" id="wish" src="/sharebridge/images/has_wish_icon.png" alt="wish">
+							</c:when>
+							<c:otherwise>
+								<img onclick="clickWish(true)" id="wish" src="/sharebridge/images/nohas_wish_icon.png" alt="wish">
+							</c:otherwise>
+						</c:choose>
+					</td>
 				</tr>
 			</table>
 			<div id="btn_wrap">
@@ -176,6 +186,20 @@ let product_id = <%= pid %>;
 let category_id = <%= cid %>;
 let renter_id = <%= renter_id %>;
 let user_id = <%= user_id %>;
+
+function clickWish(hasWish){
+	$.ajax({
+		type:"post",
+		url: hasWish ? "addWish.do" : "removeWish.do",
+		data:{ "member_id":user_id, "product_id":product_id },
+		success:function(msg){
+			location.reload();
+		},
+		error:function(e){
+			alert('error',e);
+		}
+	});
+}
 
 $("#goWriteBtn").click(function() {
 	let link = "goWriteQuestion.do?product_id=<%=pid%>&category_id=<%=cid%>";

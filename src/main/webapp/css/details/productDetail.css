@@ -58,6 +58,10 @@
 	cursor: pointer;
 }
 
+#wish {
+	cursor: pointer;
+}
+
 #btn_wrap {
 	text-align: right;
 }
