@@ -34,6 +34,9 @@ public class ReviewDto implements Serializable {
 	private String photo;
 	private LocalDateTime rdate;
 	private int request_id;
+	private int ref;
+	private int step;
+	private int depth;
 	
 	public ReviewDto() {
 		// TODO Auto-generated constructor stub
@@ -47,9 +50,9 @@ public class ReviewDto implements Serializable {
 		this.rating = rating;
 		this.photo = photo;
 	}
-	
+
 	public ReviewDto(int review_id, int product_id, int renter_id, int rentee_id, String content, int rating,
-			String photo, LocalDateTime rdate, int request_id) {
+			String photo, LocalDateTime rdate, int request_id, int ref, int step, int depth) {
 		super();
 		this.review_id = review_id;
 		this.product_id = product_id;
@@ -60,13 +63,17 @@ public class ReviewDto implements Serializable {
 		this.photo = photo;
 		this.rdate = rdate;
 		this.request_id = request_id;
+		this.ref = ref;
+		this.step = step;
+		this.depth = depth;
 	}
 
 	@Override
 	public String toString() {
 		return "ReviewDto [review_id=" + review_id + ", product_id=" + product_id + ", renter_id=" + renter_id
 				+ ", rentee_id=" + rentee_id + ", content=" + content + ", rating=" + rating + ", photo=" + photo
-				+ ", rdate=" + rdate + "]";
+				+ ", rdate=" + rdate + ", request_id=" + request_id + ", ref=" + ref + ", step=" + step + ", depth="
+				+ depth + "]";
 	}
 
 	public int getReview_id() {
@@ -124,5 +131,29 @@ public class ReviewDto implements Serializable {
 
 	public void setRequest_id(int request_id) {
 		this.request_id = request_id;
+	}
+
+	public int getRef() {
+		return ref;
+	}
+
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+
+	public int getStep() {
+		return step;
+	}
+
+	public void setStep(int step) {
+		this.step = step;
+	}
+
+	public int getDepth() {
+		return depth;
+	}
+
+	public void setDepth(int depth) {
+		this.depth = depth;
 	}
 }

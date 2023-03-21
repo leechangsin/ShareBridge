@@ -88,4 +88,18 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return dao.selecAllRev(review_id);
 	}
+
+	// 후기 답글
+	@Override
+	public boolean answerRev(ReviewDto dto) {
+		int n = dao.answerRev(dto);
+		return n>0?true:false;
+	}
+
+	// 렌터번호로 후기 가져오기(답글 순서 고려)
+	@Override
+	public List<ReviewDto> revListAnsOrder(int renter_id) {
+		
+		return dao.revListAnsOrder(renter_id);
+	}
 }

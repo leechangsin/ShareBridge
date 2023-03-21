@@ -36,4 +36,10 @@ public interface ReviewService {
 	
 	// 후기 번호로 후기 데이터 가져오기
 	ReviewDto selecAllRev(int review_id);
+	
+	// 후기 답글
+	boolean answerRev(ReviewDto dto);
+	
+	// 렌터번호로 후기 가져오기(답글 순서 고려)
+	List<ReviewDto> revListAnsOrder(int renter_id);
 }

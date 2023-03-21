@@ -123,4 +123,15 @@
 	<definition name="questionWrite" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/details/questionWrite.jsp"></put-attribute>
 	</definition>
+	
+	<!-- 렌터 상세페이지 -->
+	<definition name="seller_info" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/seller_info.jsp" />
+	</definition>
+	
+	<!-- 후기 답글 -->
+	<definition name="answerRev" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/answerRev.jsp" />
+	</definition>
+	
 </tiles-definitions>
