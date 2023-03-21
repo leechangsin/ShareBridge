@@ -67,8 +67,8 @@
 
 <!-- 회원가입 별점은 일단 0으로 -->
 <insert id="addmember" parameterType="com.sharebridge.dto.MemberDto">
-	insert into member(member_id, email, pwd, nickname, name, phone_number, profile, rdate, auth, rating)
-	values((select ifnull(max(member_id), 0)+1 from member b), #{email}, #{pwd}, #{nickname}, #{name}, #{phone_number}, null, now(), 3, 0)
+	insert into member(email, pwd, nickname, name, phone_number, profile, rdate, auth, rating)
+	values(#{email}, #{pwd}, #{nickname}, #{name}, #{phone_number}, #{profile}, now(), 3, 0)
 </insert>
 
 <!-- 로그인 -->

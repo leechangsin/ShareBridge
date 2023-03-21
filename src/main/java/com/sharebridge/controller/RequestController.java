@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.RequestDto;
+import com.sharebridge.service.NotificationService;
 import com.sharebridge.service.ProductService;
 import com.sharebridge.service.RequestService;
 
@@ -25,6 +26,8 @@ public class RequestController {
 	RequestService service;
 	@Autowired
 	ProductService productService;
+	@Autowired
+	NotificationService notiService;
 	
 	// 대여신청서 작성 성공
 	@PostMapping("/requestFrmAf.do")
@@ -43,8 +46,8 @@ public class RequestController {
 		
 		String msg = "REQUEST_INSERT_OK";
 		if(!isS) {
-			msg = "REQUEST_INSERT_NO";
-		}
+			msg = "REQUEST_INSERT_NO";			
+		} 
 		
 		System.out.println(dto.toString());
 		model.addAttribute("insertReq", msg);
@@ -60,6 +63,15 @@ public class RequestController {
 		int price = service.getProductPrice(member_id);
 		int cid = service.getProductCate(member_id);
 		
+		// 대여신청 알림 -> 해당 상품의 렌터에게 감
+		// 알림 추가
+		boolean reqNoti = notiService.requestNoti(req.getRequest_id());
+		if(reqNoti) {
+			System.out.println("send notification succcess");
+ 		} else {
+ 			System.out.println("send notification fail"); 			
+ 		}
+ 		
 		model.addAttribute("req", req);
 		model.addAttribute("price", price);
 		model.addAttribute("cid", cid);

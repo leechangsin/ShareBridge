@@ -8,7 +8,7 @@
 	<h1 id="page_title">회원가입</h1>
 
 	<div class="container">
-		<form action="regiAf.do" method="post">
+		<form action="regiAf.do" method="post" enctype="multipart/form-data">
 			<div class="mb-3">
 				<label for="id" class="form-label">아이디(이메일)</label>
 				<input type="email" class="form-control" id="regi_id" name="email">
@@ -40,6 +40,10 @@
 				<label for="phone_number" class="form-label">휴대전화</label>
 				<input type="tel" class="form-control" id="phone_number" name="phone_number">
 			</div>
+			<div class="mb-3">
+				<label for="profile" class="form-label">프로필 이미지</label>
+				<input type="file" class="form-control" id="profile" name="fileload">
+			</div>
 			
 			<div class="mb-3">
 				<button type="button" id="join_btn" class="btn btn-secondary">회원가입</button>
@@ -61,6 +65,7 @@
 				}else{
 					$("#yes_email").css("display", "none");
 					$("#no_email").css("display", "block");
+					$("#regi_id").val("");
 				}
 			},
 			error:function(){
@@ -81,6 +86,7 @@
 				}else{
 					$("#yes_nickname").css("display", "none");
 					$("#no_nickname").css("display", "block");
+					$("#nickname").val("");
 				}
 			},
 			error:function(){

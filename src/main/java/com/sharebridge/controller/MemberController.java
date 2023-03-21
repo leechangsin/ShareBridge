@@ -1,11 +1,15 @@
 package com.sharebridge.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sharebridge.dto.MemberDto;
 import com.sharebridge.service.MemberService;
+import com.sharebridge.util.FileUtil;
 
 @Controller
 public class MemberController {
@@ -140,11 +146,49 @@ public class MemberController {
 	@RequestMapping(value = "regiAf.do",
 					method = RequestMethod.POST,
 					produces="application/String; charset=utf-8")
-	public String regiAf(Model model, MemberDto mem) {
+	public String regiAf(MemberDto mem,
+						@RequestParam(value = "fileload", required = false)
+						MultipartFile fileload,
+						HttpServletRequest req,
+						Model model) {
 		System.out.println("MemberController regiAf " + new Date());
 		
-		boolean isS = service.addmember(mem);
 		String msg = "MEM_ADD_NO";
+		if(mem.getEmail().equals("") || mem.getNickname().equals("") || mem.getName().equals("") || mem.getPhone_number().equals("")) {
+			model.addAttribute("msg", msg);
+			return "logMsg";
+		}
+		
+		boolean isS = false;
+		
+		// filename 취득
+		String filename = fileload.getOriginalFilename();	// 원본 파일명
+		
+		mem.setProfile(filename);	// 원본 파일명(DB)
+		
+		// upload의 경로 설정
+		// 폴더
+		String fupload = "C:\\springSamples\\ShareBridge\\src\\main\\webapp\\upload\\profile";
+		
+		System.out.println("fupload:" + fupload);
+		
+		// 파일명을 충돌되지 않는 명칭(Date)으로 변경
+		String newfilename = FileUtil.getNewFileName(filename);
+		mem.setProfile(newfilename);	// 변경된 파일명
+		
+		File file = new File(fupload + "/" + newfilename);
+		
+		try {
+			// 실제로 파일 생성 + 기입 = 업로드
+			FileUtils.writeByteArrayToFile(file, fileload.getBytes());
+			
+			// db에 저장
+			isS = service.addmember(mem);
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		
 		if(isS) {
 			msg = "MEM_ADD_OK";

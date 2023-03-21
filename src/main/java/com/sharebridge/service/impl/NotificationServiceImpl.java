@@ -35,4 +35,10 @@ public class NotificationServiceImpl implements NotificationService {
 	public void deleteNotificationByNotification_id(int notification_id) {
 		dao.deleteNotificationByNotification_id(notification_id);
 	}
+
+	@Override
+	public boolean requestNoti(int request_id) {
+		int n = dao.requestNoti(request_id);
+		return n>0?true:false;
+	}
 }
