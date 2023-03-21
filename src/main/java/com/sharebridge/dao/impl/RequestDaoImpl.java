@@ -1,7 +1,5 @@
 package com.sharebridge.dao.impl;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -47,5 +45,8 @@ public class RequestDaoImpl implements RequestDao {
 		return session.update(ns + "updateReq", dto);
 	}
 
-
+	@Override
+	public RequestDto getRequestFormByRequest_id(int request_id) {
+		return session.selectOne(ns + "getReqFrmByRequest_id", request_id);
+	}
 }

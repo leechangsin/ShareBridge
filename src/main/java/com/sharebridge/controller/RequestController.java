@@ -2,9 +2,8 @@ package com.sharebridge.controller;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -76,6 +75,19 @@ public class RequestController {
 		model.addAttribute("price", price);
 		model.addAttribute("cid", cid);
 
+		return "requestConfirm";
+	}
+	
+	@GetMapping("/checkReq.do")
+	public String checkReq(int request_id, HttpSession session, Model model) {
+		RequestDto request = service.getRequestFormByRequest_id(request_id);
+		ProductDto product = productService.getProduct(request.getProduct_id());
+		
+		model.addAttribute("req", request);
+		model.addAttribute("price", request.getTotal_price());
+		model.addAttribute("cid", product.getCategory_id());
+		model.addAttribute("status", "check");
+		
 		return "requestConfirm";
 	}
 	

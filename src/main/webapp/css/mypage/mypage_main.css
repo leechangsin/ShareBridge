@@ -131,6 +131,10 @@ a:hover {
 	margin-bottom: 10px;
 }
 
+#rentee > table > tbody > tr, #renter > table > tbody > tr {
+	cursor: pointer;
+}
+
 .request_list table td:last-child {
 	text-align: center;
 }

@@ -1,7 +1,5 @@
 package com.sharebridge.service;
 
-import java.util.List;
-
 import com.sharebridge.dto.RequestDto;
 
 public interface RequestService {
@@ -16,4 +14,6 @@ public interface RequestService {
 	int getProductCate(int product_id);
 	
 	boolean updateReq(RequestDto dto);
+	
+	RequestDto getRequestFormByRequest_id(int request_id);
 }

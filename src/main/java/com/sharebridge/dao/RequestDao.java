@@ -1,7 +1,5 @@
 package com.sharebridge.dao;
 
-import java.util.List;
-
 import com.sharebridge.dto.RequestDto;
 
 public interface RequestDao {
@@ -16,4 +14,6 @@ public interface RequestDao {
 	int getProductCate(int product_id);
 	
 	int updateReq(RequestDto dto);
+	
+	RequestDto getRequestFormByRequest_id(int request_id);
 }
