@@ -2,16 +2,9 @@
 <%@page import="com.sharebridge.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
 <title>후기 수정 : sharebridge</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
@@ -53,8 +46,7 @@
 }
 </style>
 
-</head>
-<body>
+
 
 <%
 MemberDto login = (MemberDto)session.getAttribute("login");
@@ -176,6 +168,3 @@ String title = (String)request.getAttribute("title");
 </form>
 
 </div>
-
-</body>
-</html>
