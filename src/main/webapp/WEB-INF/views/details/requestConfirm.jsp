@@ -3,6 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<!-- css -->
+<link rel="stylesheet" href="css/details/requestCommon.css">
+
 <% 
 	RequestDto req = (RequestDto)request.getAttribute("req");
 	int price = (Integer)request.getAttribute("price");
@@ -12,48 +15,48 @@
 	String edate = req.getEdate().toString().substring(0,10);
 %>
 
-<div class="request_from">
+<div class="request_form">
 <h2 class="request_title">대여 신청서 작성 완료</h2>
 	<div>
 		<!-- rentee_info -->
-		<div class="rentee_info_container">
+		<div class="container">
 			<h3>대여자 정보</h3>
 			<table class="rentee_info">
-				<tr>
-					<th>이름</th>
-					<td><%=req.getName() %></td>
+				<tr class="form-group row">
+					<th class="col-sm-4 col-form-label">이름</th>
+					<td class="col-sm-4"><%=req.getName() %></td>
 				</tr>
-				<tr>
-					<th>이메일</th>
-					<td><%=req.getEmail() %></td>
+				<tr class="form-group row">
+					<th class="col-sm-4 col-form-label">이메일</th>
+					<td class="col-sm-4"><%=req.getEmail() %></td>
 				</tr>
-				<tr>
-					<td>휴대전화</td>
-					<td><%=req.getPhone_number() %></td>
+				<tr class="form-group row">
+					<td class="col-sm-4 col-form-label">휴대전화</td>
+					<td class="col-sm-4"><%=req.getPhone_number() %></td>
 				</tr>
-				<tr>
-					<th>대여기간</th>
-					<td>
+				<tr class="form-group row">
+					<th class="col-sm-4 col-form-label">대여기간</th>
+					<td class="col-sm-8">
 						<%=sdate %> ~ <%=edate %>
 					</td>
 				</tr>
 			</table>
 		</div>
 		<!-- address_info -->
-		<div class="address_info_container">
+		<div class="container">
 		<h3>배송지 정보</h3>
 		<table class="adderss_info">
-				<tr>
-					<th>수령자</th>
-					<td><%=req.getReceiver() %></td>
+				<tr class="form-group row">
+					<th class="col-sm-4 col-form-label">수령자</th>
+					<td class="col-sm-4"><%=req.getReceiver() %></td>
 				</tr>
-				<tr>
-					<th>휴대전화</th>
-					<td><%=req.getReceiver_phone() %></td>
+				<tr class="form-group row">
+					<th class="col-sm-4 col-form-label">휴대전화</th>
+					<td class="col-sm-4"><%=req.getReceiver_phone() %></td>
 				</tr>
-				<tr>
-					<th>주소</th>
-					<td>
+				<tr class="form-group row">
+					<th class="col-sm-4 col-form-label">주소</th>
+					<td class="col-sm-8" style="line-height:2.0">
 						<%
 							String[] address = req.getAddress().split("/");	
 						
@@ -68,17 +71,19 @@
 			</table>
 		</div>
 		<!-- payment -->
-		<div class="payment">
+		<div class="container">
 			<h3>결제수단</h3>
-			<p><%=req.getPayment() %></p>
+			<p class="col-sm-4"><%=req.getPayment().equals("card")?"신용카드":"가상계좌" %></p>
 		</div>
 		<!-- total price -->
-		<div class="total_price">
-			<span>총금액</span>
-			<span><%=req.getTotal_price() %>원</span>
+		<div class="container total_price">
+			<span class="col-3 col-form-label">총금액</span>
+			<span class="col-4" style="line-height:38px"><%=req.getTotal_price() %>원</span>
 		</div>
-		<button type="button" id="backToDetail">돌아가기</button>
-		<button type="submit" id="updateBtn">수정하기</button>
+		<div class="center">
+			<button type="button" class="btn-lg text-white" id="backToDetail">돌아가기</button>
+			<button type="submit" class="btn-lg text-white" id="updateBtn">수정하기</button>
+		</div>
 	</div>
 </div> 
 
