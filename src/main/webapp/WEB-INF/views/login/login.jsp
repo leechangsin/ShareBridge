@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="checkbox" id="id_save"> 아이디(이메일) 기억하기
+					<input type="checkbox" id="id_save" name="id_save" value="true"> 아이디(이메일) 기억하기
 				</td>
 				<td>
 					<a href="regi.do">회원가입</a>
@@ -53,7 +53,7 @@
 </div>
 
 <script type="text/javascript">
-	$(function() {
+	$(document).ready(function() {
 		// 쿠키에 저장된 user_id를 user_id라는 변수에 대입
 		let user_id = $.cookie("user_id");
 		

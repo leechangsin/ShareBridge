@@ -15,7 +15,7 @@ if(message != null && !message.equals("")){
 	}else{
 		%>
 		<script type="text/javascript">
-		alert("가입되지 않았습니다 다시 가입해주세요");
+		alert("회원정보를 빠짐없이 입력해주세요.");
 		location.href = "regi.do";
 		</script>
 		<%
