@@ -188,9 +188,13 @@ public class ProductController {
 		
 		// 리뷰를 작성한 렌티 닉네임 취득
 		List<String> r_renteeNickList = new ArrayList<>();
-		System.out.println("size : "+ reviewList.size());
 		if(reviewList.size() != 0) {
-			for(int i=0; i<4; i++) {
+			int size = 4;
+			if(reviewList.size() < 4) {
+				size = reviewList.size();
+			}
+			
+			for(int i=0; i<size; i++) {
 				ReviewDto r = reviewList.get(i);
 				String r_nick = reviewService.reviewListThree(r.getRentee_id());
 				r_renteeNickList.add(r_nick);
