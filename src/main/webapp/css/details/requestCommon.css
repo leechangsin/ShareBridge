@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+h2 {
+	margin-bottom: 30px;
+	font-weight: bold;
+	font-size:27px;
+}
+
+.request_form {
+	margin: 100px 0 100px 0;
+}
+
+.rentalDate {
+	display: flex;
+}
+
+#start {
+	margin-right: 20px;
+}
+
+
+.container {
+	padding: 50px;
+	border : 1px solid #949292;
+	margin-bottom: 30px;
+	width: 1000px;
+}
+
+h3 {
+	border-bottom: 1px solid #949292;
+	padding-bottom: 20px;
+	margin-bottom: 50px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.form-group {
+	width: 600px;
+}
+
+.address {
+	position: relative;	
+}
+
+.same_chk {
+	position: absolute;
+	top: 50px;
+	right: 50px;
+}
+
+
+.postcode {
+	display: flex;
+	height: 62px;
+}
+
+.postcodeBtn {
+	height: 35px;
+	margin-left: 10px;
+}
+
+.total_price {
+	display: flex;
+}
+
+.center {
+	text-align: center;
+}
+
+.btn-lg {
+	background-color: #505D58;
+}
