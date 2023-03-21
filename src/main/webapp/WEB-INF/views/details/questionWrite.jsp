@@ -18,7 +18,7 @@
 %>
 
 <c:set var="title" value="문의하기" />
-<c:set var="action" value="writeQuestionAf.do?category_id=${category_id }" />
+<c:set var="action" value="writeQuestionAf.do?category_id=${param.category_id }" />
 
 <c:if test="${param.status eq 'reply' }">
 	<c:set var="title" value="답변하기" />
