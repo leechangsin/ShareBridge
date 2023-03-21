@@ -142,4 +142,9 @@
 		<put-attribute name="content" value="/WEB-INF/views/review/answerRev.jsp" />
 	</definition>
 	
+	<!-- 후기 답글 수정 -->
+	<definition name="upDateRev" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/upDateRev.jsp" />
+	</definition>
+	
 </tiles-definitions>

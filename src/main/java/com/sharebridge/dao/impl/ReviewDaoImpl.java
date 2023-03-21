@@ -104,4 +104,11 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		return session.selectList(ns + "revListAnsOrder", renter_id);
 	}
+
+	// 답글 삭제
+	@Override
+	public int deleteAns(int review_id) {
+		
+		return session.delete(ns + "deleteAns", review_id);
+	}
 }

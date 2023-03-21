@@ -88,4 +88,47 @@ public class SellerInfoController {
 		
 		return "revMsg";
 	}
+	
+	@GetMapping(value = "upDateReview.do")
+	public String upDateReview(int review_id, Model model) {
+		System.out.println("SellerInfoController upDateReview " + new Date());
+		
+		ReviewDto dto = revserv.selecAllRev(review_id);
+		ProductDto prodInfo = proserv.getProduct(dto.getProduct_id());
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("prodInfo", prodInfo);
+		
+		return "upDateRev";
+	}
+	
+	@PostMapping(value = "upDateRevAf.do")
+	public String upDateRevAf(ReviewDto dto, Model model) {
+		System.out.println("SellerInfoController upDateRevAf " + new Date());
+		
+		boolean isS = revserv.updateRev(dto);
+		String msg = "ANS_UP_NO";
+		if(isS) {
+			msg = "ANS_UP_OK";
+		}
+		
+		model.addAttribute("ansUp", msg);
+		
+		return "revMsg";
+	}
+	
+	@GetMapping(value = "deLeteReview.do")
+	public String deLeteReview(int review_id, Model model) {
+		System.out.println("SellerInfoController deLeteReview " + new Date());
+		
+		boolean isS = revserv.deleteAns(review_id);
+		String msg = "ANS_DEL_NO";
+		if(isS) {
+			msg = "ANS_DEL_OK";
+		}
+		
+		model.addAttribute("ansDel", msg);
+		
+		return "revMsg";
+	}
 }

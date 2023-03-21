@@ -42,4 +42,7 @@ public interface ReviewService {
 	
 	// 렌터번호로 후기 가져오기(답글 순서 고려)
 	List<ReviewDto> revListAnsOrder(int renter_id);
+	
+	// 답글 삭제
+	boolean deleteAns(int review_id);
 }

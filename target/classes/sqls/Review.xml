@@ -114,4 +114,10 @@
 	order by ref desc, step asc
 </select>
 
+<!-- 답글 삭제 -->
+<delete id="deleteAns" parameterType="Integer">
+	delete from review
+	where review_id=#{review_id}
+</delete>
+
 </mapper>
