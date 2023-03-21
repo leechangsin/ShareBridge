@@ -218,6 +218,7 @@ public class MemberController {
 					cookie = new Cookie("user_id", "");
 					cookie.setMaxAge(0);
 				}
+				
 				response.addCookie(cookie);
 				
 				msg = "LOGIN_OK";
