@@ -3,10 +3,6 @@
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_common.css">
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_update.css">
 
-<style>
-	
-</style>
-
 <main class="container">
 	<h1 id="page_title">회원 정보 수정</h1>
 	

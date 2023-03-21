@@ -30,6 +30,7 @@
 	<link rel="stylesheet" href="/sharebridge/css/public/footer.css">
 	
 	<!-- jquery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 	<script src="https://kit.fontawesome.com/7ad71aac2c.js" crossorigin="anonymous"></script>
 	

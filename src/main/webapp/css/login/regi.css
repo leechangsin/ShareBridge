@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+label {
+	display: block;
+}
+
+.form-control {
+	display: inline-block;
+	width: 80%;
+}
+
+#emailChkBtn, #nickChkBtn {
+	margin-bottom: 5px;
+}
+
+.alert-danger, .alert-primary {
+	display: none;
+}
+
+#no_pwdchk {
+	margin-top: 4px;
+}

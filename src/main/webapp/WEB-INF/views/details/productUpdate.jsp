@@ -63,8 +63,8 @@
 				<td>
 					<input class="selector form-control" id="start" placeholder="시작 날짜" value="<%=sdate %>"/>
 					<input class="selector form-control" id="end" placeholder="마지막 날짜" value="<%=edate %>"/>
-					<input type="hidden" id="startDate" name="start" />
-					<input type="hidden" id="endDate" name="end" />
+					<input type="hidden" id="startDate" name="start" value="<%=sdate %>"/>
+					<input type="hidden" id="endDate" name="end" value="<%=edate %>"/>
 				</td>
 			</tr>
 			<tr>
@@ -85,12 +85,12 @@
 				<td class="photo_regi">
 					<div>
 					    <label for="file" class="upload-btn">
-					    	<input id="file" type="file" accept="image/*" name="file" onchange="changeImg()"/>
+					    	<input id="file" type="file" accept="image/*" name="fileload" onchange="changeImg()"/>
 					    	<span>+</span>
 					    </label>
 					</div>
 					<div>
-						<img src="<%=getProduct.getPhoto() %>" id="preview" class="image-box" />
+						<img src="/sharebridge/upload/product/<%=getProduct.getPhoto() %>" id="preview" class="image-box" />
 					    <button type="button" class="deleteBtn" onclick="deleteImg()">
 					    	<img src="images/delete_icon.png" />
 					    </button>
