@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sharebridge.dto.MemberDto;
@@ -156,7 +157,8 @@ public class MemberController {
 	
 	// 로그인 후
 	@PostMapping(value = "loginAf.do")
-	public String loginAf(HttpSession session, Model model, MemberDto mem, HttpServletResponse response) {
+	public String loginAf(HttpSession session, Model model, MemberDto mem, HttpServletResponse response,
+			@RequestParam(required = false, defaultValue = "false") boolean id_save) {
 		MemberDto dto = service.login(mem);
 		String msg = "LOGIN_FAIL";
 		
@@ -165,7 +167,13 @@ public class MemberController {
 				session.setAttribute("login", dto);
 				session.setMaxInactiveInterval(60 * 60 * 2);
 				
-				Cookie cookie = new Cookie("user_id", mem.getEmail());
+				Cookie cookie;
+				if(id_save) {
+					cookie = new Cookie("user_id", mem.getEmail());
+				} else {
+					cookie = new Cookie("user_id", "");
+					cookie.setMaxAge(0);
+				}
 				response.addCookie(cookie);
 				
 				msg = "LOGIN_OK";

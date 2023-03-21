@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="checkbox" id="id_save"> 아이디(이메일) 기억하기
+					<input type="checkbox" id="id_save" name="id_save" value="true"> 아이디(이메일) 기억하기
 				</td>
 				<td>
 					<a href="regi.do">회원가입</a>
