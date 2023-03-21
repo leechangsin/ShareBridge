@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -177,7 +178,12 @@ public class ProductController {
 		
 	// 상품 상세 보기
 	@GetMapping("/productDetail.do")
-	public String productDetail(int product_id, int category_id, Model model) {
+	public String productDetail(int product_id, int category_id, Model model, HttpSession session) {
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			return "redirect:/login.do";
+		}
+		
 		// 상품 정보
 		ProductDto detail = service.getProduct(product_id);
 		CategoryDto getCate = service.getCate(category_id);
