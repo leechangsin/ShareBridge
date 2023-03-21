@@ -85,7 +85,7 @@
 		</table>
 		
 		<div id="btn_wrap">
-			<button type="submit" id="writeBtn" class="btn">등록하기</button>
+			<button type="submit" id="regiBtn" class="btn">등록하기</button>
 		</div>
 	</form>
 </div> 
