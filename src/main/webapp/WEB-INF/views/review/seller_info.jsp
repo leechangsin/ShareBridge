@@ -3,20 +3,9 @@
 <%@page import="com.sharebridge.dto.ReviewDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sharebridge.dto.MemberDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<title>렌터 정보 : sharebridge</title>
-
-<link rel="stylesheet" href="/sharebridge/css/mypage/mypage_common.css">
-<link rel="stylesheet" href="/sharebridge/css/mypage/mypage_main.css">
-
-<style type="text/css">
-	.line{
-		border-bottom:1px solid black;
-		padding: 10px;
-	}
-</style>
+<link rel="stylesheet" href="/sharebridge/css/review/sellerInfo.css">
 
 <%
 MemberDto login = (MemberDto)session.getAttribute("login");
@@ -26,29 +15,25 @@ List<MemberDto> renteeList = (List<MemberDto>)request.getAttribute("renteeList")
 List<ProductDto> prodList = (List<ProductDto>)request.getAttribute("prodList");
 %>
 <main>
-	<h1 id="renter_info">렌터정보</h1>
+	<h1 id="renter_info_title">렌터정보</h1>
 	
 	<!-- 회원 정보 -->
-	<div id="mrnp_wrap">
-		<div id="member_wrap">
-			<div id="member_wrap_1">
-				<div>
-					<img alt="test" src="/sharebridge/upload/profile/temp.png">
-				</div>
+	<div id="renter_outter_wrap">
+		<div id="renter_innter_wrap">
+			<div id="renter_profile_wrap">
+				<img alt="test" src="/sharebridge/upload/profile/temp.png">
 			</div>
-			<div id="member_wrap_2">
-				<div>
-					<p><span id="nickname"><%=mem.getNickname() %></span> 님</p>
-					<p><%=mem.getEmail() %></p>
-					<p>별점</p>
-				</div>
+			<div id="renter_text_wrap">
+				<p><span id="nickname"><%=mem.getNickname() %></span> 님</p>
+				<p><%=mem.getEmail() %></p>
+				<p>별점 <%=mem.getRating() %> / 5</p>
 			</div>
 		</div>
 	</div>
 	
 	<!-- 렌터에게 작성된 후기 목록 -->
 	<div id="review" class="request_list">
-		<h2 class="sub_title">후기 <%=list.size() %></h2>
+		<h2 id="review_title">후기 <%=list.size() %></h2>
 		<table class="table">
 			<tbody>
 			<%
