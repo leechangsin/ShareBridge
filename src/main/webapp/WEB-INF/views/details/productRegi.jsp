@@ -46,8 +46,8 @@
 			<tr>
 				<th><label class="form-label">대여기간</label></th>
 				<td>
-					<input class="selector form-control" id="start" placeholder="시작 날짜" />
-					<input class="selector form-control" id="end" placeholder="마지막 날짜" />
+					<input class="selector form-control" id="start" placeholder="시작 날짜" autocomplete="off" />
+					<input class="selector form-control" id="end" placeholder="마지막 날짜" autocomplete="off" />
 					<input type="hidden" id="startDate" name="start" />
 					<input type="hidden" id="endDate" name="end" />
 				</td>	
@@ -85,7 +85,7 @@
 		</table>
 		
 		<div id="btn_wrap">
-			<button type="submit" id="writeBtn" class="btn">등록하기</button>
+			<button type="submit" id="regiBtn" class="btn">등록하기</button>
 		</div>
 	</form>
 </div> 

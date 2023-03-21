@@ -10,34 +10,52 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.sharebridge.dto.CategoryDto;
+import com.sharebridge.dto.MemberDto;
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.service.CategoryService;
 import com.sharebridge.service.ProductService;
+import com.sharebridge.service.WishService;
 
 @Controller
 public class HomeController {
 
 	@Autowired
 	CategoryService categoryService;
-	
+
 	@Autowired
 	ProductService productService;
 
-	//category
+	@Autowired
+	WishService wishService;
+
+	// category
 	@GetMapping(value = "baseLayout.do")
 	public String baseLayout(HttpSession session, Model model) {
 		List<CategoryDto> categories = categoryService.getAllCategory();
-		
-		//상품을 메인화면에 불러오기
+
+		MemberDto memberDto = (MemberDto) session.getAttribute("login");
 		List<ProductDto> products = productService.getAllProducts();
-		for (ProductDto x : products) { //객체가져오기
+		if (memberDto != null && memberDto.getMember_id() > 0) {
+			List<ProductDto> wishProducts = wishService.getAllWishByMemberId(memberDto.getMember_id());
+			for (ProductDto wishProduct : wishProducts) {
+				ProductDto temp = products.stream()
+						.filter(x -> x.getProduct_id() == wishProduct.getProduct_id())
+						.findFirst()
+						.orElse(null);
+				if (temp != null) {
+					temp.setWish_member_id(wishProduct.getWish_member_id());
+				}
+			}
+		}
+
+		for (ProductDto x : products) { // 객체가져오기
 			System.out.println(x);
 		}
-		
+
 		System.out.println(categories.toString());
 		session.setAttribute("categories", categories);
 		model.addAttribute("products", products);
-		
+
 		return "baseLayout";
 	}
 }

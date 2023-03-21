@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="checkbox" id="id_save"> 아이디(이메일) 기억하기
+					<input type="checkbox" id="id_save" name="id_save" value="true"> 아이디(이메일) 기억하기
 				</td>
 				<td>
 					<a href="regi.do">회원가입</a>
@@ -45,7 +45,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<button type="submit" class="btn light_gray_btn">로그인</button>
+					<button type="button" class="btn light_gray_btn">로그인</button>
 				</td>
 			</tr>
 		</table>
@@ -64,20 +64,18 @@
 		}
 	});
 	
-	// id 저장이라는 체크박스를 클릭했을 때 실행
-	$("#id_save").click(function(){
-		if($("#id_save").is(":checked")){
-			
-			if($("#id").val().trim() == ""){
-				alert('id를 입력해주세요');
-				$("#id_save").prop("checked", false);
-			}else{
-				// cookie를 저장
-				$.cookie("user_id", $("#id").val().trim(), {expires:7, path:'./'})
-			}
-		}else{
-			
-			$.removeCookie("user_id", {path:'./'});
+	$("#main_contents_wrap > form > table > tbody > tr:nth-child(4) > td > button").on("click", function(){
+		let id = $("#id").val().trim();
+		let pw = $("#pwd").val().trim();
+		
+		if(id.length == 0) {
+			alert("아이디를 입력해주세요");
+			$("#id").focus();
+		} else if(pw.length == 0) {
+			alert("비밀번호를 입력해주세요");
+			$("#pwd").focus();
+		} else {
+			$("#main_contents_wrap form").submit();
 		}
 	});
 </script>

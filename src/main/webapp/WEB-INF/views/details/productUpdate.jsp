@@ -61,8 +61,8 @@
 			<tr>
 				<th><label class="form-label">대여기간</label></th>
 				<td>
-					<input class="selector form-control" id="start" placeholder="시작 날짜" value="<%=sdate %>"/>
-					<input class="selector form-control" id="end" placeholder="마지막 날짜" value="<%=edate %>"/>
+					<input class="selector form-control" id="start" placeholder="시작 날짜" value="<%=sdate %>" autocomplete="off" />
+					<input class="selector form-control" id="end" placeholder="마지막 날짜" value="<%=edate %>" autocomplete="off" />
 					<input type="hidden" id="startDate" name="start" value="<%=sdate %>"/>
 					<input type="hidden" id="endDate" name="end" value="<%=edate %>"/>
 				</td>

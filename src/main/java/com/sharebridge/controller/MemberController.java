@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -199,19 +200,25 @@ public class MemberController {
 	
 	// 로그인 후
 	@PostMapping(value = "loginAf.do")
-	public String loginAf(HttpSession session, Model model, MemberDto mem) {
-		System.out.println("MemberController loginAf " + new Date());
-		
+	public String loginAf(HttpSession session, Model model, MemberDto mem, HttpServletResponse response,
+			@RequestParam(required = false, defaultValue = "false") boolean id_save) {
 		MemberDto dto = service.login(mem);
 		String msg = "LOGIN_FAIL";
 		
 		if(dto != null) {
-			session.setAttribute("login", dto);
-			session.setMaxInactiveInterval(60 * 60 * 2);
-			msg = "LOGIN_OK";
 			if(dto.getDel() == 0) {
 				session.setAttribute("login", dto);
 				session.setMaxInactiveInterval(60 * 60 * 2);
+				
+				Cookie cookie;
+				if(id_save) {
+					cookie = new Cookie("user_id", mem.getEmail());
+				} else {
+					cookie = new Cookie("user_id", "");
+					cookie.setMaxAge(0);
+				}
+				response.addCookie(cookie);
+				
 				msg = "LOGIN_OK";
 			} else {
 				msg = "DELETE";

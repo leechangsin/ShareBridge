@@ -47,17 +47,18 @@ $(document).ready(function() {
 	// 대여기간 설정
 	// 수정페이지에서 수정하지 않을 경우, 원래 입력값을 넣어준다
 	if($("#start").val() != undefined || $("#end").val() != undefined) {
-		setStartDate();
-		setEndDate();
+		setStartDate($("#start"));
+		setEndDate($("#end"));
 	}
 	
 	// 작성,수정 시 날짜에 변동이 있으면 변동된 입력값을 넣어준다
 	$("#start").change(function() {
-		setStartDate();
+		 setStartDate($("#start").val());
+
 	});
 	
 	$("#end").change(function() {
-		setEndDate();
+		setEndDate($("#end"));	
 	});
 	
 	// 수령자 정보
@@ -177,12 +178,13 @@ function setAddress() {
 	$("#saveAddress").val(postcode+"/"+address+"/"+detail);
 }
 
-function setStartDate() {
-	let convert_s = new Date($("#start").val()).toISOString().slice(0,19);
-	$("#startDate").val(convert_s);	
+function setStartDate(sday) {
+	let convert_s = new Date(sdate).toISOString().slice(0,19);
+	let a = $("#startDate").val(convert_s);
+	console.log(convert_s);
 }
 
-function setEndDate() {
-	let convert_e = new Date($("#end").val()).toISOString().slice(0,19);
+function setEndDate(eday) {
+	let convert_e = new Date(edate).toISOString().slice(0,19);
 	$("#endDate").val(convert_e);	
 }
