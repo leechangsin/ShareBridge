@@ -90,7 +90,7 @@
 <script>
 $(document).ready(function() {
 	$("#backToDetail").click(function() {		
-		location.href="productDetail?product_id=<%=req.getProduct_id()%>&category_id=<%=cid%>";
+		location.href="productDetail.do?product_id=<%=req.getProduct_id()%>&category_id=<%=cid%>";
 	});
 	
 	$("#updateBtn").click(function() {
