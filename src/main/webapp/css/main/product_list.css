@@ -16,6 +16,11 @@
 	cursor: pointer;
 }
 
+.album > .container > .row > .col > .card > .bd-placeholder-img {
+	width: 322px;
+	height: 225px;
+}
+
 #main_contents > div > div.container > div > div > div > div.bd-placeholder-img.card-img-top > img {
 	height: 225px;
 }

@@ -63,21 +63,4 @@
 			$("#id_save").prop("checked", true);
 		}
 	});
-	
-	// id 저장이라는 체크박스를 클릭했을 때 실행
-	$("#id_save").click(function(){
-		if($("#id_save").is(":checked")){
-			
-			if($("#id").val().trim() == ""){
-				alert('id를 입력해주세요');
-				$("#id_save").prop("checked", false);
-			}else{
-				// cookie를 저장
-				$.cookie("user_id", $("#id").val().trim(), {expires:7, path:'./'})
-			}
-		}else{
-			
-			$.removeCookie("user_id", {path:'./'});
-		}
-	});
 </script>

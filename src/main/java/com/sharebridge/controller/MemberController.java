@@ -2,7 +2,8 @@ package com.sharebridge.controller;
 
 import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,19 +156,18 @@ public class MemberController {
 	
 	// 로그인 후
 	@PostMapping(value = "loginAf.do")
-	public String loginAf(HttpSession session, Model model, MemberDto mem) {
-		System.out.println("MemberController loginAf " + new Date());
-		
+	public String loginAf(HttpSession session, Model model, MemberDto mem, HttpServletResponse response) {
 		MemberDto dto = service.login(mem);
 		String msg = "LOGIN_FAIL";
 		
 		if(dto != null) {
-			session.setAttribute("login", dto);
-			session.setMaxInactiveInterval(60 * 60 * 2);
-			msg = "LOGIN_OK";
 			if(dto.getDel() == 0) {
 				session.setAttribute("login", dto);
 				session.setMaxInactiveInterval(60 * 60 * 2);
+				
+				Cookie cookie = new Cookie("user_id", mem.getEmail());
+				response.addCookie(cookie);
+				
 				msg = "LOGIN_OK";
 			} else {
 				msg = "DELETE";

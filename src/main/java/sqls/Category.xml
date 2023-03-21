@@ -5,7 +5,7 @@
 	<!-- Category -->
 	<select id="getAllCategory" resultType="com.sharebridge.dto.CategoryDto">
 		select *
-		from category
+		from category order by parent_id asc, category_id asc 
 	</select>
 	
 	<!-- 해당 상품의 카테고리 -->
