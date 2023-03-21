@@ -32,6 +32,10 @@
 	<!-- jquery library -->
 	<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 	<script src="https://kit.fontawesome.com/7ad71aac2c.js" crossorigin="anonymous"></script>
+	
+	<!-- flatpickr -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
 	<div align="center">

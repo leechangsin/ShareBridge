@@ -31,7 +31,7 @@
 <select id="getProduct" parameterType="Integer" resultType="com.sharebridge.dto.ProductDto">
 	select *
 	from product
-	where product_id = ${product_id} and del != 1;
+	where product_id = ${product_id} and del is null;
 </select>
 
 <!-- 상품 수정 -->
