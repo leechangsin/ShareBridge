@@ -7,11 +7,12 @@
 
 <title>후기 관리 : sharebridge</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<style type="text/css">
+.margin {
+	padding-bottom: 200px;
+	padding-top: 200px;
+}
+</style>
 
 <%
 MemberDto mem = (MemberDto)session.getAttribute("login");
@@ -19,7 +20,7 @@ List<RequestDto> rentalDate = (List<RequestDto>)request.getAttribute("rentalDate
 List<ProductDto> product = (List<ProductDto>)request.getAttribute("product");
 List<String> nickname = (List<String>)request.getAttribute("nickname");
 %>
-<main>
+<main class="margin">
 	<h1>후기 관리</h1>
 	
 	<div align="center">
