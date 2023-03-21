@@ -15,19 +15,15 @@ $(document).ready(function() {
 	$(".selector").prop('readonly', false);	
 	
 	// 대여기간 설정
-	// 수정페이지에서 수정하지 않을 경우, 원래 입력값을 넣어준다
-	if($("#start").val() != undefined || $("#end").val() != undefined) {
-		setStartDate();
-		setEndDate();
-	}
-	
 	// 작성,수정 시 날짜에 변동이 있으면 변동된 입력값을 넣어준다
 	$("#start").change(function() {
-		setStartDate();
+		let convert_s = new Date($("#start").val()).toISOString().slice(0,19);
+		$("#startDate").val(convert_s);
 	});
 	
 	$("#end").change(function() {
-		setEndDate();
+		let convert_e = new Date($("#end").val()).toISOString().slice(0,19);
+		$("#endDate").val(convert_e);	
 	});
 	    
 	// 빈칸검사
@@ -86,13 +82,3 @@ function deleteImg() {
     	preview.src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg";
     }  
 }
-
-function setStartDate() {
-	let convert_s = new Date($("#start").val()).toISOString().slice(0,19);
-	$("#startDate").val(convert_s);	
-}
-
-function setEndDate() {
-	let convert_e = new Date($("#end").val()).toISOString().slice(0,19);
-	$("#endDate").val(convert_e);	
-}	

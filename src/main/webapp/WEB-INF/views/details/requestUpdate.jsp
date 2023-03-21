@@ -11,6 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <!-- js -->
 <script src="js/requestFrm.js" defer></script>
+<script src="js/updateRegiAndReq.js" defer></script>
 
 <!-- address -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

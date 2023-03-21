@@ -9,6 +9,7 @@
 
 <!-- js -->
 <script src="js/productRegi.js" defer></script>
+<script src="js/updateRegiAndReq.js" defer></script>
 
 <% 
 	MemberDto login = (MemberDto)session.getAttribute("login");
