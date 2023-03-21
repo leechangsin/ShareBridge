@@ -24,7 +24,7 @@ ProductDto prodInfo = (ProductDto)request.getAttribute("prodInfo");
 		<input type="hidden" name="rating" value="<%=dto.getRating() %>">
 		<input type="hidden" name="photo" value="">
 		
-		<table border="1">
+		<table>
 			<tr>
 				<th><label for="title" class="form-label">상품명</label></th>
 				<td>
