@@ -80,10 +80,9 @@ int user_id = login.getMember_id();
 	<div class="renter_container">
 	<div class="renter_info">
 		<div class="renter_profile">
-			
-			<img src="/sharebridge/upload/profile/temp.png" alt="profile">
 			<a href="sellerInfo.do?renterId=<%=renter.getMember_id() %>">
-			<span><%=renter.getNickname() %></span>
+				<img src="/sharebridge/upload/profile/temp.png" alt="profile">
+				<span><%=renter.getNickname() %></span>
 			</a>
 		</div>
 		<div class="renter_review">
@@ -98,7 +97,7 @@ int user_id = login.getMember_id();
 								<div class="review_rentee_info">
 									<span><%=r_nick %></span>
 									<span><%=r.getRating() %></span>
-									<span><%=r.getRdate() %></span>
+									<span><%=r.getRdate().toString().substring(0, 10) %></span>
 								</div>
 								<p class="review_contents"><%=r.getContent() %></p>
 							</div>

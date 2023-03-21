@@ -96,16 +96,18 @@
 
 .renter_profile {
 	margin-right: 30px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 }
 
-.renter_profile > img {
+.renter_profile > a {
+	display: flex;
+	flex-direction: column;
+}
+
+.renter_profile > a > img {
 	width: 80px;
 }
 
-.renter_profile > span {
+.renter_profile > a > span {
 	text-align: center;
 }
 
@@ -181,6 +183,7 @@
 	color: lightgray;
 	flex-grow: 1;
 	text-align: center;
+	padding-bottom: 10px;
 }
 
 #tap_wrap > .tap.active {
