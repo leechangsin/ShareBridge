@@ -48,12 +48,18 @@
 	$(".noread").on("click", function() {
 		let notification_id = $(this).attr("notification_id");
 		
+		let $this = $(this);
+		
 		$.ajax({
 			url: "/sharebridge/notification/read_notification.do",
 			type: "POST",
 			data: "notification_id="+notification_id,
 			success: function() {
-				$(this).removeClass("noread");
+				$this.removeClass("noread");
+				$this.off("click");
+				
+				let $readText = $this.children("#text_button_wrap").children("#button_wrap").children().eq(0);
+				$readText.html("읽음");
 			},
 			error: function(xhr){
 				if(xhr.status == 300) {
