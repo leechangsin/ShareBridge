@@ -26,6 +26,20 @@
 	order by wdate desc
 </select>
 
+<select id="getTermProducts" parameterType="String" resultType="com.sharebridge.dto.ProductDto">
+	select *
+	from product
+	where title like concat('%', #{term}, '%') and del is null
+	order by wdate desc
+</select>
+
+<select id="getCategoryTermProducts" parameterType="com.sharebridge.param.BaseLayoutParam" resultType="com.sharebridge.dto.ProductDto">
+	select *
+	from product
+	where category_id = #{category_id} and title like concat('%', #{term}, '%') and del is null
+	order by wdate desc
+</select>
+
 <!-- 상품등록 -->
 <insert id="insertProduct" parameterType="com.sharebridge.dto.ProductDto">
 	insert into product(product_id, category_id, member_id, title, content, 

@@ -6,6 +6,7 @@ import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.QuestionDto;
 import com.sharebridge.dto.ReviewDto;
+import com.sharebridge.param.BaseLayoutParam;
 
 public interface ProductService {
 	List<CategoryDto> getAllCategory();
@@ -14,7 +15,7 @@ public interface ProductService {
 	
 	int getProductCountByMemberId(int memberId);
 	
-	List<ProductDto> getAllProducts(int category_id);
+	List<ProductDto> getAllProducts(BaseLayoutParam bp);
 	
 	boolean updateProduct(ProductDto dto);
 	

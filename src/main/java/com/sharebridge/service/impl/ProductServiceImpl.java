@@ -10,6 +10,7 @@ import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.QuestionDto;
 import com.sharebridge.dto.ReviewDto;
+import com.sharebridge.param.BaseLayoutParam;
 import com.sharebridge.service.ProductService;
 
 @Service
@@ -34,11 +35,18 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductDto> getAllProducts(int category_id) {
-		if(category_id == 0) {
+	public List<ProductDto> getAllProducts(BaseLayoutParam bp) {
+		int category_id = bp.getCategory_id();
+		String term = bp.getTerm();
+		
+		if(category_id == 0 && term == null) {
 			return dao.getAllProducts();
-		} else {
+		} else if(category_id != 0 && term == null) {
 			return dao.getCategoryProducts(category_id);
+		} else if(category_id == 0 && term != null) {
+			return dao.getTermProducts(term);
+		} else {
+			return dao.getCategoryTermProducts(bp);
 		}
 	}
 	

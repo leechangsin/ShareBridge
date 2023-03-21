@@ -63,7 +63,7 @@
 			</c:forEach>
 		</ul>
 		<form role="search">
-			<input class="form-control" type="search" placeholder="검색어를 입력해 주세요" aria-label="Search">
+			<input class="form-control" type="search" name="term" placeholder="검색어를 입력해 주세요" aria-label="Search" value="${param.term }">
 		</form>
 	</div>
 </nav>

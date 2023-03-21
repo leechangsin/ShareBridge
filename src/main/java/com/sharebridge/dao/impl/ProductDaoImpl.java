@@ -12,6 +12,7 @@ import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.QuestionDto;
 import com.sharebridge.dto.ReviewDto;
+import com.sharebridge.param.BaseLayoutParam;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
@@ -46,6 +47,16 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<ProductDto> getCategoryProducts(int category_id) {
 		return session.selectList(ns + "getCategoryProducts", category_id);
+	}
+	
+	@Override
+	public List<ProductDto> getTermProducts(String term) {
+		return session.selectList(ns + "getTermProducts", term);
+	}
+
+	@Override
+	public List<ProductDto> getCategoryTermProducts(BaseLayoutParam bp) {
+		return session.selectList(ns + "getCategoryTermProducts", bp);
 	}
 
 	@Override

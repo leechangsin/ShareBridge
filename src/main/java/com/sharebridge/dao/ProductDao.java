@@ -6,6 +6,7 @@ import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.QuestionDto;
 import com.sharebridge.dto.ReviewDto;
+import com.sharebridge.param.BaseLayoutParam;
 
 public interface ProductDao {
 	List<CategoryDto> getAllCategory();
@@ -17,6 +18,10 @@ public interface ProductDao {
 	List<ProductDto> getAllProducts();
 	
 	List<ProductDto> getCategoryProducts(int category_id);
+	
+	List<ProductDto> getTermProducts(String term);
+	
+	List<ProductDto> getCategoryTermProducts(BaseLayoutParam bp);
 		
 	int updateProduct(ProductDto dto);
 	
