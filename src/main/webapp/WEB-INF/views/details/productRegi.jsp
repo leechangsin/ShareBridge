@@ -6,10 +6,6 @@
 <!-- css -->
 <link rel="stylesheet" href="/sharebridge/css/details/productRegi.css">
 
-<!-- flatpickr -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
 <!-- js -->
 <script src="js/productRegi.js" defer></script>
 
@@ -21,11 +17,12 @@
 <div class="regi_container">
 	<h3 class="title">상품등록</h3>
 	<form action="productRegiAf.do" method="post" id="frm" enctype="multipart/form-data">
+		<input type="hidden" value="<%=login.getMember_id() %>" name="member_id" />
 		<table>
 			<tr>
 				<th><label for="category" class="form-label">카테고리</label></th>
 				<td>
-					<select id="choice" name="category_id" id="category" class="custom-select">
+					<select id="choice" name="category_id" class="custom-select">
 						<option value="">카테고리를 선택하세요.</option>
 						<%
 							for(int i = 0;i < cateList.size();i++) {
@@ -38,7 +35,6 @@
 							}
 						%>
 					</select>
-					<input type="hidden" value="<%=login.getMember_id() %>" name="member_id" />
 				</td>
 			</tr>
 			<tr>
@@ -66,7 +62,7 @@
 			<tr>
 				<th><label for="content" class="form-label">내용</label></th>
 				<td>
-					<textarea maxlength="1000" rows="30" cols="50"  class="form-control" name="content" id="content"></textarea>
+					<textarea maxlength="1000" rows="30" cols="50" class="form-control" name="content" id="content"></textarea>
 				</td>
 			</tr>
 			<tr>

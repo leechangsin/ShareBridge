@@ -90,7 +90,7 @@ public class ReviewController {
 		
 		// upload의 경로 설정
 		// 폴더
-		String fupload = "C:\\springSamples\\sharebridgeBackup\\src\\main\\webapp\\upload\\review";
+		String fupload = "C:\\springSamples\\ShareBridge\\src\\main\\webapp\\upload\\review";
 		
 		System.out.println("fupload:" + fupload);
 		
@@ -163,7 +163,7 @@ public class ReviewController {
 			
 			// upload의 경로 설정
 			// 폴더
-			String fupload = "C:\\springSamples\\sharebridgeBackup\\src\\main\\webapp\\upload\\review";
+			String fupload = "C:\\springSamples\\ShareBridge\\src\\main\\webapp\\upload\\review";
 			
 			System.out.println("fupload:" + fupload);
 			

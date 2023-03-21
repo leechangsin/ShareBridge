@@ -90,4 +90,25 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		return session.selectOne(ns + "selecAllRev", review_id);
 	}
+
+	// 후기 답글
+	@Override
+	public int answerRev(ReviewDto dto) {
+		session.update(ns + "answerOne", dto);
+		return session.insert(ns + "answerTwo", dto);
+	}
+
+	// 렌터번호로 후기 가져오기(답글 순서 고려)
+	@Override
+	public List<ReviewDto> revListAnsOrder(int renter_id) {
+		
+		return session.selectList(ns + "revListAnsOrder", renter_id);
+	}
+
+	// 답글 삭제
+	@Override
+	public int deleteAns(int review_id) {
+		
+		return session.delete(ns + "deleteAns", review_id);
+	}
 }

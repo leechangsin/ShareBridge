@@ -2,22 +2,17 @@
 <%@page import="com.sharebridge.dto.CategoryDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sharebridge.dto.ProductDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<!-- jquery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<!-- flatpickr -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!-- css -->
+<link rel="stylesheet" href="/sharebridge/css/details/productRegi.css">
+
 <!-- js -->
 <script src="js/productRegi.js" defer></script>
-<!-- css -->
-<link rel="stylesheet" href="css/details/productRegi.css">
 
-<% 	
+<% 
 	MemberDto login = (MemberDto)session.getAttribute("login");
-	List<CategoryDto> cateList = (List<CategoryDto>)request.getAttribute("allCategory");
+	List<CategoryDto> cateList = (List<CategoryDto>)session.getAttribute("categories");
 	ProductDto getProduct = (ProductDto)request.getAttribute("detail");
 	
 	int pid = getProduct.getProduct_id();
@@ -28,14 +23,15 @@
 %>
 
 <div class="regi_container">
-<h2 class="regi_title">상품 등록 수정</h2>
+	<h2 class="title">상품 정보 수정</h2>
+	
 	<form action="updateProduct.do" method="post" id="frm" enctype="multipart/form-data">
-	<input type="hidden" value="<%=pid%>" name="product_id" />
+		<input type="hidden" value="<%=pid%>" name="product_id" />
 		<table>
 			<tr>
-				<th>카테고리</th>
+				<th><label for="category" class="form-label">카테고리</label></th>
 				<td>
-					<select id="choice" name="category_id">
+					<select id="choice" name="category_id" class="custom-select">
 						<option value="">카테고리</option>
 						<%
 							for(int i = 0;i < cateList.size();i++) {
@@ -57,53 +53,57 @@
 				</td>
 			</tr>
 			<tr>
-				<th>제목</th>
+				<th><label for="title" class="form-label">제목</label></th>
 				<td>
-					<input type="text" id="title" name="title" value="<%=getProduct.getTitle()%>">
+					<input type="text" maxlength="200" class="form-control" id="title" name="title" value="<%=getProduct.getTitle()%>">
 				</td>
 			</tr>
 			<tr>
-				<th>대여기간</th>
+				<th><label class="form-label">대여기간</label></th>
 				<td>
-					<input class="selector" id="start" placeholder="시작 날짜" value="<%=sdate %>"/>
-					<input class="selector" id="end" placeholder="마지막 날짜" value="<%=edate %>"/>
-					<input type="hidden" id="startDate" name="start" />
-					<input type="hidden" id="endDate" name="end" />
+					<input class="selector form-control" id="start" placeholder="시작 날짜" value="<%=sdate %>"/>
+					<input class="selector form-control" id="end" placeholder="마지막 날짜" value="<%=edate %>"/>
+					<input type="hidden" id="startDate" name="start" value="<%=sdate %>"/>
+					<input type="hidden" id="endDate" name="end" value="<%=edate %>"/>
 				</td>
 			</tr>
 			<tr>
-				<th>가격</th>
+				<th><label for="price" class="form-label">가격</label></th>
 				<td>
-					<input type="text" id="price" name="price" value="<%=getProduct.getPrice() %>">
+					<input type="number" class="form-control" id="price" name="price" value="<%=getProduct.getPrice() %>">
 					<span>원 / 일</span>
 				</td>
 			</tr>
 			<tr>
-				<th>내용</th>
+				<th><label for="content" class="form-label">내용</label></th>
 				<td>
-					<textarea rows="30" cols="50" name="content" id="content"><%=getProduct.getContent() %></textarea>	
+					<textarea maxlength="1000" rows="30" cols="50" class="form-control" name="content" id="content"><%=getProduct.getContent() %></textarea>	
 				</td>
 			</tr>
 			<tr>
-				<th>사진등록</th>
+				<th><label for="file" class="form-label">사진 등록</label></th>
 				<td class="photo_regi">
-				    <label for="file" class="upload-btn">
-				    	<input id="file" type="file" accept="image/*" name="file" onchange="changeImg()"/>
-				    	<span>+</span>
-				    </label>
-				    <img src="<%=getProduct.getPhoto() %>" id="preview" class="image-box" />
-				    <button type="button" class="deleteBtn" onclick="deleteImg()">
-				    	<img src="images/delete_icon.png" />
-				    </button>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="button" value="돌아가기" id="backBtn">
-					<input type="submit" value="수정하기" id="regiBtn">
+					<div>
+					    <label for="file" class="upload-btn">
+					    	<input id="file" type="file" accept="image/*" name="fileload" onchange="changeImg()"/>
+					    	<span>+</span>
+					    </label>
+					</div>
+					<div>
+						<img src="/sharebridge/upload/product/<%=getProduct.getPhoto() %>" id="preview" class="image-box" />
+					    <button type="button" class="deleteBtn" onclick="deleteImg()">
+					    	<img src="images/delete_icon.png" />
+					    </button>
+					</div>
+
 				</td>
 			</tr>
 		</table>
+		
+		<div id="btn_wrap">
+			<button type="button" class="btn" id="backBtn">돌아가기</button>
+			<button type="submit" class="btn" id="regiBtn">수정하기</button>
+		</div>
 	</form>
 </div> 
 
