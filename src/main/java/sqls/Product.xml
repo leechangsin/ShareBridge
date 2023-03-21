@@ -8,7 +8,7 @@
 <select id="getProductCountByMemberId" parameterType="int" resultType="int">
 	select COUNT(*)
 	from product
-	where member_id = #{memberId} AND del IS NULL
+	where member_id = #{memberId} and del is null
 </select>
 
 <!-- 상품메인화면에 보이게하기 -->
