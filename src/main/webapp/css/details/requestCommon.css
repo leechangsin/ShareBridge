@@ -69,4 +69,9 @@ h3 {
 
 .btn-lg {
 	background-color: #505D58;
+	border: none;
+}
+
+.btn-lg:hover {
+	background-color: #969F95;
 }
