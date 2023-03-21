@@ -1,6 +1,7 @@
 <%@page import="com.sharebridge.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_common.css">
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_main.css">
@@ -76,9 +77,9 @@
 					<c:otherwise>
 						<c:forEach items="${requestSendList }" var="request">
 							<tr request_id="${request.request_id }">
-								<th scope="row">${request.name }</th>
-								<td>${request.sdate } ~ ${request.edate }</td>
-								<td>10,000원/일</td>
+								<th scope="row">${request.productName }</th>
+								<td>${fn:substring(request.sdate, 0, 10) } ~ ${fn:substring(request.edate, 0, 10) }</td>
+								<td>${request.dailyPrice }원/일</td>
 								<td>
 									<c:choose>
 <%-- 									신청한 상태(request.is_cancel eq 0)이고 --%>
@@ -141,9 +142,9 @@
 					<c:otherwise>
 						<c:forEach items="${requestReceiveList }" var="request" >
 							<tr request_id="${request.request_id }">
-								<th scope="row">${request.name }</th>
-								<td>${request.sdate } ~ ${request.edate }</td>
-								<td>10,000원/일</td>
+								<th scope="row">${request.productName }</th>
+								<td>${fn:substring(request.sdate, 0, 10) } ~ ${fn:substring(request.edate, 0, 10) }</td>
+								<td>${request.dailyPrice }원/일</td>
 								<td>
 									<c:choose>
 <%-- 									신청한 상태(request.is_cancel eq 0)이고 --%>
