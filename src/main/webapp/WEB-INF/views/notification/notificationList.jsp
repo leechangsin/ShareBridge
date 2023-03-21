@@ -15,131 +15,31 @@
 	</div>
 	
 	<div id="list_wrap">
-<%-- 		<c:if test="${empty notificationList }"> --%>
-<!-- 			<p id="no_notification">내개 온 알림이 없습니다</p> -->
-<%-- 		</c:if> --%>
-<%-- 		<c:if test="${not empty notificationList }"> --%>
+		<c:if test="${empty notificationList }">
+			<p id="no_notification">**내개 온 알림이 없습니다</p>
+		</c:if>
+		<c:if test="${not empty notificationList }">
+			<c:forEach items="${notificationList }" var="notification">
 			
-<%-- 		</c:if> --%>
-		<div class="list noread" notification_id="1">
-			<h3>대여신청</h3>
-			<p>2023-03-08</p>
-			<div id="text_button_wrap">
-				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
-				<div id="button_wrap">
-					<span>안읽음</span>
-					<span class="delete_btn">X</span>
+				<c:set var="readText" value="읽음" />
+				<c:if test="${notification.read eq 0 }">
+					<c:set var="className" value="noread" />
+					<c:set var="readText" value="안읽음" />
+				</c:if>
+			
+			<div class="list ${className }" notification_id="${notification.notification_id }">
+				<h3>대여신청</h3>
+				<p>${notification.rdate }</p>
+				<div id="text_button_wrap">
+					<p>'${notification.renteeNickname }'님이 '${notification.productName }' 대여를 희망합니다</p>
+					<div id="button_wrap">
+						<span>${readText }</span>
+						<span class="delete_btn">X</span>
+					</div>
 				</div>
 			</div>
-		</div>
-		
-		<div class="list noread" notification_id="2">
-			<h3>대여신청</h3>
-			<p>2023-03-08</p>
-			<div id="text_button_wrap">
-				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
-				<div id="button_wrap">
-					<span>안읽음</span>
-					<span class="delete_btn">X</span>
-				</div>
-			</div>
-		</div>
-		
-		<div class="list">
-			<h3>대여신청</h3>
-			<p>2023-03-08</p>
-			<div id="text_button_wrap">
-				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
-				<div id="button_wrap">
-					<span>읽음</span>
-					<span class="delete_btn">X</span>
-				</div>
-			</div>
-		</div>
-		
-		<div class="list">
-			<h3>대여신청</h3>
-			<p>2023-03-08</p>
-			<div id="text_button_wrap">
-				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
-				<div id="button_wrap">
-					<span>읽음</span>
-					<span class="delete_btn">X</span>
-				</div>
-			</div>
-		</div>
-		
-		<div class="list">
-			<h3>대여신청</h3>
-			<p>2023-03-08</p>
-			<div id="text_button_wrap">
-				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
-				<div id="button_wrap">
-					<span>읽음</span>
-					<span class="delete_btn">X</span>
-				</div>
-			</div>
-		</div>
-		
-		<div class="list">
-			<h3>대여신청</h3>
-			<p>2023-03-08</p>
-			<div id="text_button_wrap">
-				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
-				<div id="button_wrap">
-					<span>읽음</span>
-					<span class="delete_btn">X</span>
-				</div>
-			</div>
-		</div>
-		
-		<div class="list">
-			<h3>대여신청</h3>
-			<p>2023-03-08</p>
-			<div id="text_button_wrap">
-				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
-				<div id="button_wrap">
-					<span>읽음</span>
-					<span class="delete_btn">X</span>
-				</div>
-			</div>
-		</div>
-		
-		<div class="list">
-			<h3>대여신청</h3>
-			<p>2023-03-08</p>
-			<div id="text_button_wrap">
-				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
-				<div id="button_wrap">
-					<span>읽음</span>
-					<span class="delete_btn">X</span>
-				</div>
-			</div>
-		</div>
-		
-		<div class="list">
-			<h3>대여신청</h3>
-			<p>2023-03-08</p>
-			<div id="text_button_wrap">
-				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
-				<div id="button_wrap">
-					<span>읽음</span>
-					<span class="delete_btn">X</span>
-				</div>
-			</div>
-		</div>
-		
-		<div class="list">
-			<h3>대여신청</h3>
-			<p>2023-03-08</p>
-			<div id="text_button_wrap">
-				<p>'닉네임'님이 '상품명' 대여를 희망합니다</p>
-				<div id="button_wrap">
-					<span>읽음</span>
-					<span class="delete_btn">X</span>
-				</div>
-			</div>
-		</div>
+			</c:forEach>
+		</c:if>
 	</div>
 </main>
 

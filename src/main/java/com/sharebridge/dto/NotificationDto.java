@@ -7,9 +7,17 @@ public class NotificationDto {
 	private int notification_id;
 	private int request_id;
 	private byte read;
-	private LocalDateTime rdate;
+	private Timestamp rdate;
 	
-	public NotificationDto(int notification_id, int request_id, byte read, LocalDateTime rdate) {
+	// 알람을 보여줄 때 필요한 멤버 변수
+	private String renteeNickname;
+	private String productName;
+	
+	public NotificationDto() {
+		
+	}
+	
+	public NotificationDto(int notification_id, int request_id, byte read, Timestamp rdate) {
 		super();
 		this.notification_id = notification_id;
 		this.request_id = request_id;
@@ -41,10 +49,22 @@ public class NotificationDto {
 	public void setRead(byte read) {
 		this.read = read;
 	}
-	public LocalDateTime getRdate() {
+	public Timestamp getRdate() {
 		return rdate;
 	}
 	public void setRdate(Timestamp rdate) {
-		this.rdate = rdate.toLocalDateTime();
+		this.rdate = rdate;
+	}
+	public String getRenteeNickname() {
+		return renteeNickname;
+	}
+	public void setRenteeNickname(String renteeNickname) {
+		this.renteeNickname = renteeNickname;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 }
