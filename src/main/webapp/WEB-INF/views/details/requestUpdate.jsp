@@ -83,7 +83,7 @@ String[] address = req.getAddress().split("/");
 				<tr class="form-group row">
 					<th class="col-sm-4 col-form-label">수령자</th>
 					<td class="col-sm-4">
-						<input type="text" id="receiver" name="receiver" value="<%=req.getReceiver() %>">
+						<input type="text" id="receiver" name="receiver" class="form-control" value="<%=req.getReceiver() %>">
 					</td>
 				</tr>
 				<tr class="form-group row">
@@ -133,7 +133,7 @@ String[] address = req.getAddress().split("/");
 				<div class="col-5">
 					<input type="number" id="total" name="total_price" class="form-control" readonly="readonly" value="<%=req.getTotal_price() %>">
 				</div>
-				<span class="col-2">원</span>
+				<span class="col-2" style="line-height:38px">원</span>
 			</div>
 		</div>
 		<div class="center">
