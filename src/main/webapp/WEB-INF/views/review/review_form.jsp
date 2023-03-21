@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!-- js -->
-<script src="js/productRegi.js" defer></script>
+<script src="js/productRegi.js"></script>
 
 <!-- css -->
 <link rel="stylesheet" href="css/details/productRegi.css">
@@ -49,7 +49,7 @@ int requestId = (Integer)request.getAttribute("requestId");
 				</td>
 			</tr>
 			<tr>
-				<th><label class="form-check-label" for="content">상품명</label></th>
+				<th><label class="form-check-label" for="content">내용</label></th>
 				<td>
 					<textarea class="form-control" rows="10" cols="50" name="content" id="content"></textarea>
 				</td>
