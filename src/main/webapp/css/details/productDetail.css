@@ -9,6 +9,7 @@
 .product_info {
 	display: flex;
 	margin-top: 50px;
+	padding: 50px
 }
 
 .preview {
@@ -34,21 +35,22 @@
 
 #title > td {
 	padding-top: 30px;
-	font-size: 32px;
+	font-size: 22px;
 	font-weight: bold;
 }
 
 #s_e_date > td, #price > td {
-	padding-top: 10px;
+	padding-top: 15px;
 }
 
 #s_e_date > td {
-	font-size: 20px;
+	font-size: 14px;
+	padding-top: 11px;
 }
 
 #price > td {
-	font-size: 28px;
-	font-weight: bold;
+	font-size: 16px;
+	font-weight: 400;
 }
 
 #price > td:nth-child(2) > i {
