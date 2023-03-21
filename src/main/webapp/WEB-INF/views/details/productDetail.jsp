@@ -88,7 +88,7 @@ int user_id = login.getMember_id();
 		<div class="renter_review">
 			<%	
 				if(reviewList.size() != 0) {
-					for(int i=0; i<=4; i++) {
+					for(int i=0; i<reviewList.size(); i++) {
 						ReviewDto r = reviewList.get(i);
 						String r_nick = r_renteeNickList.get(i);
 						%>
