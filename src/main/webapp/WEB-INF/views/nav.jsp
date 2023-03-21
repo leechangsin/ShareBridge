@@ -7,7 +7,7 @@
 	List<CategoryDto> categories = (List<CategoryDto>) session.getAttribute("categories");
 %>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+<nav class="navbar navbar-expand-sm navbar-dark" aria-label="Third navbar example" style="background-color:#969F95"> 
 	<div class="navbar-toggler" id="navbarDropdown"  role="button" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false" style ="display:block">
 		<span class="navbar-toggler-icon"></span>
 	</div>

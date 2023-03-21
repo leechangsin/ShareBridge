@@ -20,28 +20,28 @@
 	<form action="loginAf.do" method="post">
 		<table>
 			<tr>
-				<td>
+				<td class="email_box">
 					<input type="email" class="form-control" id="id" name="email" placeholder="아이디(이메일)">
+					<a href="idSearch.do" class="forget_email">Forget?</a>
 				</td>
-				<td>
-					<a href="idSearch.do">Forget?</a>
-				</td>
+				<!-- <td>
+				</td> -->
 			</tr>
 			<tr>
-				<td>
+				<td class="pwd_box">
 					<input type="password" class="form-control" id="pwd" name="pwd" placeholder="비밀번호">
+					<a href="pwdSearch.do" class="forget_pwd">Forget?</a>
 				</td>
-				<td>
-					<a href="pwdSearch.do">Forget?</a>
-				</td>
+<!-- 				<td>
+				</td> -->
 			</tr>
 			<tr>
 				<td>
 					<input type="checkbox" id="id_save" name="id_save" value="true"> 아이디(이메일) 기억하기
+					<a href="regi.do" class="regi">회원가입</a>
 				</td>
-				<td>
-					<a href="regi.do">회원가입</a>
-				</td>
+				<!-- <td>
+				</td> -->
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

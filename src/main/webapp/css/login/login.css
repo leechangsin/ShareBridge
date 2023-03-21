@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+a {
+	color : #495057;
+}
+
 #main_contents > div > h1 {
 	font-size: 32px;
 	font-weight: bold;
@@ -14,6 +18,7 @@
 
 #main_contents_wrap {
 	width: 1000px;
+	margin: 100px 0 100px 0;
 }
 
 #main_contents_wrap > form > table {
@@ -31,6 +36,20 @@
 
 #main_contents_wrap > form > table > tbody > tr:nth-child(4) > td {
 	padding-top: 30px;
+}
+
+.email_box, .pwd_box {
+	position: relative;
+}
+
+.forget_email, .forget_pwd {
+	position: absolute;
+	top: 9px;
+	right: 12px;
+}
+
+.regi {
+	float:right;
 }
 
 .light_gray_btn {
