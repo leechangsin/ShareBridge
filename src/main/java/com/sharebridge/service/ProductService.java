@@ -14,7 +14,7 @@ public interface ProductService {
 	
 	int getProductCountByMemberId(int memberId);
 	
-	List<ProductDto> getAllProducts();
+	List<ProductDto> getAllProducts(int category_id);
 	
 	boolean updateProduct(ProductDto dto);
 	

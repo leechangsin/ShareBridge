@@ -34,8 +34,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductDto> getAllProducts() {
-		return dao.getAllProducts();
+	public List<ProductDto> getAllProducts(int category_id) {
+		if(category_id == 0) {
+			return dao.getAllProducts();
+		} else {
+			return dao.getCategoryProducts(category_id);
+		}
 	}
 	
 	@Override

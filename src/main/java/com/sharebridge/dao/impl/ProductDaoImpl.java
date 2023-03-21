@@ -40,7 +40,12 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List<ProductDto> getAllProducts() {
-		return session.selectList("Product.getAllProducts");
+		return session.selectList(ns + "getAllProducts");
+	}
+	
+	@Override
+	public List<ProductDto> getCategoryProducts(int category_id) {
+		return session.selectList(ns + "getCategoryProducts", category_id);
 	}
 
 	@Override

@@ -15,6 +15,8 @@ public interface ProductDao {
 	int getProductCountByMemberId(int memberId);
 	
 	List<ProductDto> getAllProducts();
+	
+	List<ProductDto> getCategoryProducts(int category_id);
 		
 	int updateProduct(ProductDto dto);
 	
