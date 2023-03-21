@@ -35,7 +35,7 @@ h3 {
 }
 
 .form-group {
-	width: 600px;
+	width: 700px;
 }
 
 .address {
@@ -51,11 +51,11 @@ h3 {
 
 .postcode {
 	display: flex;
-	height: 62px;
+	height: 54px;
 }
 
 .postcodeBtn {
-	height: 35px;
+	height: 38px;
 	margin-left: 10px;
 }
 

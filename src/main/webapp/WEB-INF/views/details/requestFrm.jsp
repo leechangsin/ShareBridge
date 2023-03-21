@@ -49,7 +49,7 @@ String edate = getProduct.getEdate().toString().substring(0,10);
 				<tr class="form-group row">
 					<td class="col-sm-4 col-form-label">휴대전화</td>
 					<td class="col-sm-4">
-						<input type="number" class="form-control" id="phone_number" name="phone_number" value="<%=login.getPhone_number()%>">
+						<input type="tel" maxlength="11" placeholder="-를 제외하고 입력하세요" class="form-control" id="phone_number" name="phone_number" value="<%=login.getPhone_number()%>">
 					</td>
 				</tr>
 				<tr class="form-group row">
@@ -79,7 +79,7 @@ String edate = getProduct.getEdate().toString().substring(0,10);
 				<tr class="form-group row">
 					<th class="col-sm-4 col-form-label">휴대전화</th>
 					<td class="col-sm-4">
-						<input type="number" class="form-control" id="receiver_phone" name="receiver_phone" value="">	
+						<input type="tel" maxlength="11" placeholder="-를 제외하고 입력하세요" class="form-control" id="receiver_phone" name="receiver_phone" value="">	
 					</td>
 				</tr>
 				<tr class="form-group row">
