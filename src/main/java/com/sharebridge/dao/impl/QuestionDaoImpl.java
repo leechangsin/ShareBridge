@@ -31,4 +31,24 @@ public class QuestionDaoImpl implements QuestionDao {
 	public int getQuestionCount(int product_id) {
 		return session.selectOne(ns + "getQuestionCount", product_id);
 	}
+
+	@Override
+	public QuestionDto getQuestionByQuestion_id(int question_id) {
+		return session.selectOne(ns + "getQuestionByQuestion_id", question_id);
+	}
+
+	@Override
+	public void updateQstateTo1(int question_id) {
+		session.update(ns + "updateQstateTo1", question_id);
+	}
+
+	@Override
+	public void updateQuestion(QuestionDto questionInfo) {
+		session.update(ns + "updateQuestion", questionInfo);
+	}
+
+	@Override
+	public void deleteQuestion(int question_id) {
+		session.delete(ns + "deleteQuestion", question_id);
+	}
 }

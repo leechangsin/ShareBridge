@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.navbar {
+	justify-content: center;
+}
+
+body > div > table > tbody > tr:nth-child(2) > td > nav > div.dropdown-menu.show {
+	left: 420px;
+}
+
+.navbar-collapse {
+	flex-grow: unset;
+}
+
+.navbar-nav {
+	margin-right: 30px;
+}
+
+form[role="search"] {
+	width: 215px;
+}

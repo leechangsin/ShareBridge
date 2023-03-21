@@ -26,13 +26,18 @@ String edate = getProduct.getEdate().toString();
 
 int pid = getProduct.getProduct_id();
 int cid = getProduct.getCategory_id();
+
+// 상품을 등록한 사용자 아이디
+int renter_id = getProduct.getMember_id();
+// 현재 페이지를 보고 있는 사용자 아이디
+int user_id = login.getMember_id();
 %>
 
 <div>
 	<%-- 상품 정보(이미지, 카테고리, 상품명, 기간 등등) --%>
 	<div class="product_info">
 		<div class="product_photo">
-			<img src="<%=getProduct.getPhoto() %>" alt="상품이미지" class="preview">                    
+			<img src="/sharebridge/upload/product/<%=getProduct.getPhoto() %>" alt="상품이미지" class="preview">                    
 		</div>
 		<div class="product_desc">
 			<table>
@@ -56,14 +61,14 @@ int cid = getProduct.getCategory_id();
 			</table>
 			<div id="btn_wrap">
 			<%
-				if(getProduct.getMember_id() == login.getMember_id()) { 
+				if(login == null || login.getMember_id() != getProduct.getMember_id()) { 
 			%>					
-					<a href="goUpdate.do?product_id=<%=pid%>&category_id=<%=cid%>">수정</a>
-					<a href="delProduct.do?product_id=<%=pid%>">삭제</a>
+					<button type="button" class="btn btn-secondary" id="requestFrmBtn">대여신청</button>
 			<%
 				} else {
 			%>
-					<button type="button" class="btn btn-secondary" id="requestFrmBtn">대여신청</button>
+					<a href="goUpdate.do?product_id=<%=pid%>&category_id=<%=cid%>">수정</a>
+					<a href="delProduct.do?product_id=<%=pid%>">삭제</a>
 			<%					
 				}
 			%>
@@ -148,18 +153,44 @@ int cid = getProduct.getCategory_id();
 				</ul>
 			</nav>
 			
-			<div id="question_btn_wrap">
-				<button type="button" class="btn" id="goWriteBtn">문의하기</button>
-			</div>
+			<%
+				if(renter_id != user_id) {
+			%>
+				<div id="question_btn_wrap">
+					<button type="button" class="btn" id="goWriteBtn">문의하기</button>
+				</div>
+			<%
+				}
+			%>
 		</div>
 	</div>
 </div>
 
 <script src="/sharebridge/js/public/common.js"></script>
 <script type="text/javascript">
+let product_id = <%= pid %>;
+let category_id = <%= cid %>;
+let renter_id = <%= renter_id %>;
+let user_id = <%= user_id %>;
+
 $("#goWriteBtn").click(function() {
-	location.href="goWriteQuestion.do?product_id=<%=pid%>&category_id=<%=cid%>";
+	let link = "goWriteQuestion.do?product_id=<%=pid%>&category_id=<%=cid%>";
+	loginChk(link);
 });
+
+$("#requestFrmBtn").click(function() {
+	let link = "goRequestFrm.do?product_id=<%=pid%>"
+	loginChk(link);		
+});
+
+function loginChk(link) {
+	if(<%=login.getMember_id()%> == null) {
+		alert("로그인이 필요한 서비스입니다.");
+		location.href="login.do";
+	} else {
+		location.href=link;
+	}
+}
 
 let loadNewData = (product_id, page) => {
 	$.ajax({
@@ -174,7 +205,7 @@ let loadNewData = (product_id, page) => {
 			for(let i=0; i<questionList.length; i++) {
 				let question = questionList[i];
 				
-				let state = question.qstate;
+				let qstate = question.qstate;
 				let private_question = question.private_question;
 				let title = question.title;
 				let rdate = question.rdate;
@@ -188,15 +219,19 @@ let loadNewData = (product_id, page) => {
 				
 				let renteeNickname = question.renteeNickname.substring(0, 1) + "***";
 				let content = question.content;
-				content = content.replace("\r\n", "<br>");
+				content = content.replace(/\r\n/gi, "<br>");
 				
-				let stateHtml = "<td>";
-				if(state) {
-					stateHtml += "답변완료";
+				// 질문을 한 사용자 아이디
+				let rentee_id = question.member_id;
+				let question_id = question.question_id;
+				
+				let qstateHtml = "<td>";
+				if(qstate) {
+					qstateHtml += "답변완료";
 				} else {
-					stateHtml += "미답변"
+					qstateHtml += "미답변"
 				}
-				stateHtml += "</td>";
+				qstateHtml += "</td>";
 				
 				let privateQuestionHtml = "<td>";
 				if(private_question) {
@@ -209,14 +244,24 @@ let loadNewData = (product_id, page) => {
 				let renteeNicknameHtml = "<td>" + renteeNickname + "</td>";
 				
 				let fullHtml = "<tr class='question_list'>";
-				fullHtml += stateHtml;
+				fullHtml += qstateHtml;
 				fullHtml += privateQuestionHtml;
 				fullHtml += titleHtml;
 				fullHtml += rdateHtml;
 				fullHtml += renteeNicknameHtml;
 				fullHtml += "</tr>";
-				fullHtml += "<tr class='question_con' style='display:none'>";
-				fullHtml += "<td colspan='5'><p>"+content+"</p></td>";
+				fullHtml += "<tr class='question_con' style='display:none' question_id='" + question_id + "' reply_load='"+!qstate+"'>";
+				fullHtml += "<td colspan='5'>";
+				fullHtml += "<p>"+content+"</p>";
+				fullHtml += "<div class='btn_wrap'>";
+				if((renter_id == user_id) && !qstate) {
+					fullHtml += "<button class='btn question_reply_btn'>답변하기</button>";
+				}
+				if(user_id == rentee_id) {
+					fullHtml += "<button class='btn question_update_btn'>수정</button><button class='btn question_delete_btn'>삭제</button>";
+				}
+				fullHtml += "</div>";
+				fullHtml += "</td>";
 				fullHtml += "</tr>";
 				
 				question_list_wrap.append(fullHtml);
@@ -224,9 +269,69 @@ let loadNewData = (product_id, page) => {
 			
 			// 문의글 내용
 			$(".question_list").click(function() {
-				$(this).next(".question_con").stop().slideToggle(300);
-				$(this).toggleClass("on").siblings().removeClass("on");
-				$(this).next(".question_con").siblings(".question_con").slideUp(300);
+				let $question_con = $(this).next();
+				
+				showQuestion($question_con);
+				loadReply($question_con);
+			});
+			
+			let showQuestion = ($now) => {
+				$(".question_con").removeClass("on");
+				
+				$now.show();
+				$now.addClass("on");
+				
+				$(".question_con:not(.on)").hide();
+			}
+			
+			let loadReply = ($now) => {
+				let reply_load = $now.attr("reply_load");
+				
+				if(reply_load == "false") {
+					let question_id = $now.attr("question_id");
+						
+					$.ajax({
+						url: "/sharebridge/reply.do",
+						type: "GET",
+						data: "question_id="+question_id,
+						success: function(reply) {
+							$now.attr("reply_load", true);
+							$now.children().children("p").after("<div class='reply_wrap'><img src='/sharebridge/images/arrow_icon.png'><div class='reply_title_content_wrap'><p class='reply_title'>"+reply.title+"</p><p class='reply_content'>"+reply.content+"</p><div></div>");
+						},
+						error: function() {
+							
+						}
+					});
+				}
+			}
+			
+			$(".question_container > .question_list_wrap > .question_con > td > div > .question_reply_btn").on("click", function() {
+				let question_id = $(this).parent().parent().parent().attr("question_id");
+				
+				goTo("/sharebridge/goWriteQuestion.do?product_id="+product_id+"&category_id="+category_id+"&question_id="+question_id+"&status=reply");
+			});
+			
+			$(".question_container > .question_list_wrap > .question_con > td > div > .question_update_btn").on("click", function() {
+				let question_id = $(this).parent().parent().parent().attr("question_id");
+				
+				goTo("/sharebridge/goWriteQuestion.do?product_id="+product_id+"&category_id="+category_id+"&question_id="+question_id+"&status=update");
+			});
+			
+			$(".question_container > .question_list_wrap > .question_con > td > div > .question_delete_btn").on("click", function() {
+				let question_id = $(this).parent().parent().parent().attr("question_id");
+				
+				if(confirm("문의를 삭제하시겠습니까?\n삭제된 문의는 복구할 수 없습니다")) {
+					$.ajax({
+						url: "/sharebridge/question/delete.do",
+						type: "POST",
+						data: "question_id="+question_id,
+						success: function() {
+							alert("문의가 삭제됐습니다\n페이지를 새로고침합니다.");
+							
+							location.reload();
+						}
+					});
+				}
 			});
 		},
 		error: function() {

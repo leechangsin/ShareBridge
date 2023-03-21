@@ -1,5 +1,7 @@
 package com.sharebridge.dao.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,6 +15,7 @@ public class RequestDaoImpl implements RequestDao {
 	SqlSession session;
 
 	String ns = "Request.";
+	String p_ns = "Product.";
 	
 	@Override
 	public int insertReq(RequestDto dto) {
@@ -20,7 +23,29 @@ public class RequestDaoImpl implements RequestDao {
 	}
 
 	@Override
-	public RequestDto getReqFrm(int request_id) {
-		return session.selectOne(ns + "getReqFrm", request_id);
+	public RequestDto getReqFrm(int member_id) {
+		return session.selectOne(ns + "getReqFrm", member_id);
 	}
+
+	@Override
+	public RequestDto getReqFrmByRequest_id(int request_id) {
+		return session.selectOne(ns + "getReqFrmByRequest_id", request_id);
+	}
+	
+	@Override
+	public int getProductPrice(int product_id) {
+		return session.selectOne(p_ns + "getProductPrice", product_id);
+	}
+	
+	@Override
+	public int getProductCate(int product_id) {
+		return session.selectOne(p_ns + "getProductCate", product_id);
+	}
+
+	@Override
+	public int updateReq(RequestDto dto) {
+		return session.update(ns + "updateReq", dto);
+	}
+
+
 }

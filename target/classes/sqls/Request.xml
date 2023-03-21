@@ -6,15 +6,28 @@
 <!-- 대여신청서 저장 -->
 <insert id="insertReq" parameterType="com.sharebridge.dto.RequestDto">
 	insert into request(product_id, member_id, name, email, phone_number, sdate, edate, receiver, 
-						receiver_phone, payment, address, rdate)
+						receiver_phone, address, payment, total_price, rdate)
 	values(${product_id}, ${member_id}, #{name}, #{email}, #{phone_number}, #{sdate}, #{edate},
-			#{receiver}, #{receiver_phone}, #{address}, #{payment}, now())
+			#{receiver}, #{receiver_phone}, #{address}, #{payment}, #{total_price}, now())
 </insert>
 
 <!-- 대여신청서 불러오기 -->
 <select id="getReqFrm" parameterType="Integer" resultType="com.sharebridge.dto.RequestDto">
 	select *
 	from request
+	where member_id = ${member_id} and rdate = (select max(rdate) from request r)
+</select>
+<select id="getReqFrmByRequest_id" parameterType="Integer" resultType="com.sharebridge.dto.RequestDto">
+	select *
+	from request
 	where request_id = ${request_id}
 </select>
+
+<!-- 대여신청서 수정 -->
+<update id="updateReq" parameterType="com.sharebridge.dto.RequestDto">
+	update request
+	set name=#{name}, email=#{email}, phone_number=#{phone_number}, sdate=#{sdate}, edate=#{edate}, receiver=#{receiver}, 
+		receiver_phone=#{receiver_phone}, address=#{address}, payment=#{payment}, total_price=#{total_price}, rdate=now()
+	where request_id = ${request_id}
+</update>
 </mapper>

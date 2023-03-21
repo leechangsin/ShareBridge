@@ -1,9 +1,12 @@
+<%@page import="java.util.List"%>
 <%@page import="com.sharebridge.dto.RequestDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <% 
 	RequestDto req = (RequestDto)request.getAttribute("req");
+	int price = (Integer)request.getAttribute("price");
+	int cid = (Integer)request.getAttribute("cid");
 
 	String sdate = req.getSdate().toString().substring(0,10);
 	String edate = req.getEdate().toString().substring(0,10);
@@ -11,14 +14,14 @@
 
 <div class="request_from">
 <h2 class="request_title">대여 신청서 작성 완료</h2>
-	<form action="requestFrmAf.do" method="post" id="frm">
+	<div>
 		<!-- rentee_info -->
 		<div class="rentee_info_container">
 			<h3>대여자 정보</h3>
 			<table class="rentee_info">
 				<tr>
 					<th>이름</th>
-					<td><%=req.getName() %>"</td>
+					<td><%=req.getName() %></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
@@ -72,9 +75,21 @@
 		<!-- total price -->
 		<div class="total_price">
 			<span>총금액</span>
-			<span>원</span>
+			<span><%=req.getTotal_price() %>원</span>
 		</div>
-		<button type="button" id="productDetail?product_id=<%=req.getProduct_id()%>">돌아가기</button>
-		<button type="submit" id="regiBtn">수정하기</button>
-	</form>
+		<button type="button" id="backToDetail">돌아가기</button>
+		<button type="submit" id="updateBtn">수정하기</button>
+	</div>
 </div> 
+
+<script>
+$(document).ready(function() {
+	$("#backToDetail").click(function() {		
+		location.href="productDetail?product_id=<%=req.getProduct_id()%>&category_id=<%=cid%>";
+	});
+	
+	$("#updateBtn").click(function() {
+		location.href="goRequestUpdate.do?request_id=<%=req.getRequest_id()%>&category_id=<%=cid%>&price=<%=price%>";
+	});
+});
+</script>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <% 
 String insertProduct = (String)request.getAttribute("insertProduct");
@@ -66,13 +65,13 @@ if(updateProduct != null && !updateProduct.equals("")) {
 String insertReq = (String)request.getAttribute("insertReq");
 
 if(insertReq != null && !insertReq.equals("")) {
-	int rid = Integer.parseInt(request.getAttribute("rid").toString());
+	int mid = (Integer)request.getAttribute("mid");
 	
 	if(insertReq.equals("REQUEST_INSERT_OK")) {
 		%>
 		<script type="text/javascript">
 			alert("대여 신청이 완료되었습니다");
-			location.href = "successReq.do?request_id=<%=rid%>";
+			location.href = "successReq.do?member_id=<%=mid%>";
 		</script>
 		<%
 	} else {
@@ -107,4 +106,29 @@ if(writeQuestion != null && !writeQuestion.equals("")) {
 		<%
 	}
 }
+
+String updateReq = (String)request.getAttribute("updateReq");
+
+if(updateReq != null && !updateReq.equals("")) {
+	int r_rid = (Integer)request.getAttribute("r_rid");
+	int r_pid = (Integer)request.getAttribute("r_pid");
+	int r_cid = (Integer)request.getAttribute("r_cid");
+	if(updateReq.equals("REQUEST_UPDATE_OK")) {
+		%>
+		<script type="text/javascript">
+			alert("대여신청서가 수정되었습니다");
+			location.href = "productDetail.do?product_id=<%=r_pid%>&category_id=<%=r_cid%>";
+		</script>
+		<%
+	} else {
+		%>
+		<script type="text/javascript">
+			alert("대여신청서가 수정되지않았습니다");
+			location.href = "goRequestUpdate.do?request_id=<%=r_rid%>";
+		</script>
+		<%
+	}
+}
+
+
 %>

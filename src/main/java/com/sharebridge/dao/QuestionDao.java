@@ -11,4 +11,12 @@ public interface QuestionDao {
 	List<QuestionDto> getQuestionListByProduct_id(QuestionListParam qp);
 	
 	int getQuestionCount(int product_id);
+	
+	QuestionDto getQuestionByQuestion_id(int question_id);
+	
+	void updateQstateTo1(int question_id);
+	
+	void updateQuestion(QuestionDto questionInfo);
+	
+	void deleteQuestion(int question_id);
 }

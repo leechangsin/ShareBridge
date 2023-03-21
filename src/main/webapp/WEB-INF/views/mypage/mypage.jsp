@@ -48,7 +48,7 @@
 		<div class="vertical_line"></div>
 		<div id="product_wrap">
 			<div>
-				<a href="#"><i class="fa-solid fa-inbox"></i></a>
+				<a href="/sharebridge/productList.do?member_id=${memberInfo.member_id }"><i class="fa-solid fa-inbox"></i></a>
 			</div>
 			<h1>등록상품</h1>
 			<p><span>${productCount }</span>건</p>

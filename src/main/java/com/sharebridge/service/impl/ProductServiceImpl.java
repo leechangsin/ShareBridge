@@ -64,4 +64,14 @@ public class ProductServiceImpl implements ProductService {
 	public List<ReviewDto> getReviewList(int renter_id) {
 		return dao.getReviewList(renter_id);
 	}
+
+	@Override
+	public List<QuestionDto> getQuestionList() {
+		return dao.getQuestionList();
+	}
+
+	@Override
+	public List<ProductDto> getProductListForRenter(int member_id) {
+		return dao.getProductListForRenter(member_id);
+	}
 }

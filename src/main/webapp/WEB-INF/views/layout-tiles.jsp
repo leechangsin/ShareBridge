@@ -24,16 +24,14 @@
 	
 	<!-- Header CSS -->
 	<link rel="stylesheet" href="/sharebridge/css/public/header.css">
+	<link rel="stylesheet" href="/sharebridge/css/main/nav.css">
 	
 	<!-- Footer CSS -->
 	<link rel="stylesheet" href="/sharebridge/css/public/footer.css">
 	
-	<script src="https://kit.fontawesome.com/7ad71aac2c.js" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<!-- jquery library -->
 	<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
-	
-	<!-- jquery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/7ad71aac2c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div align="center">
@@ -46,7 +44,7 @@
 			</tr>
 			
 			<!-- nav -->
-			<tr height="83px" style="background-color:#969F95">
+			<tr>
 				<td>
 					<tiles:insertAttribute name="nav"/>
 				</td>		

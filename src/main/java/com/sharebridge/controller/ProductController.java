@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,9 +45,6 @@ public class ProductController {
 	// 상품등록
 	@GetMapping(value = "productRegi.do")
 	public String productRegi(Model model) {
-		List<CategoryDto> allCategory = service.getAllCategory();
-		model.addAttribute("allCategory", allCategory);
-		
 		return "productRegi";
 	}
 	
@@ -67,20 +66,16 @@ public class ProductController {
 		
 		// upload 경로
 		// folder -> 일단 로컬에 저장, 나중에 서버에 저장으로 변경할 것
-		String fupload = "C:\\upload";
+//		String fupload = "C:\\upload";
 		
 		// server
-		// String fupload = req.getServletContext().getRealPath("/upload/product");
-		
-		System.out.println("fupload: " + fupload);
+		 String fupload = req.getServletContext().getRealPath("/upload/product");
 		
 		// 파일명을 충돌되지 않는 명칭으로 변경
 		String newfilename = FileUtil.getNewFileName(filename);
 		
-		String photoPath = fupload + "/" + newfilename;
-		dto.setPhoto(photoPath);	// DB에 파일 경로 저장 
+		dto.setPhoto(newfilename);	// DB에 파일 경로 저장 
 		
-		System.out.println(dto.getPhoto());
 		// 파일 생성
 		File file = new File(fupload + "/" + newfilename);
 
@@ -144,10 +139,10 @@ public class ProductController {
 			
 			// upload 경로
 			// folder -> 일단 로컬에 저장, 나중에 서버에 저장으로 변경할 것
-			String fupload = "C:\\upload";
+			//String fupload = "C:\\upload";
 			
 			// server
-			// String fupload = req.getServletContext().getRealPath("/upload/product");
+			String fupload = req.getServletContext().getRealPath("/upload/product");
 			
 			// 파일명을 충돌되지 않는 명칭으로 변경
 			String newfilename = FileUtil.getNewFileName(filename);
@@ -236,5 +231,14 @@ public class ProductController {
 		model.addAttribute("detail", detail);
 		
 		return "requestFrm";
+	}
+	
+	// 상품 관리 페이지
+	@RequestMapping(value="productList.do", method=RequestMethod.GET)
+	public String productManage(int member_id, Model model) {
+		List<ProductDto> productList = service.getProductListForRenter(member_id);
+		model.addAttribute("productList", productList);
+		
+		return "productManage";
 	}
 }
