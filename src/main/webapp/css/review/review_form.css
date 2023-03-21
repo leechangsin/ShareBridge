@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+#review_container {
+	width: 1000px;
+}
+
+#page_title {
+	margin-top: 50px;
+	margin-bottom: 30px;
+	border-bottom: 2px solid;
+	padding-bottom: 20px;
+	font-size: 32px;
+	font-weight: bold;
+}
+
+#review_container > form > table {
+	width: 100%;
+}
+
+#review_container > form > table > tbody > tr > th {
+	text-align: right;
+}
+
+#review_container > form > table > tbody > tr > th > label {
+	margin-right: 10px;
+	margin-bottom: 15px;
+}
+
+#review_container > form > table > tbody > tr:nth-child(4) > th > label {
+	margin-top: 15px;
+}
+
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+  margin-left: 10px;
+}
+ 
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
+
+#review_container > form > table > tbody > tr:nth-child(4) > td {
+	display: flex;
+}
+
+#review_container > form > table > tbody > tr:nth-child(4) > td > div:nth-child(1) {
+	margin-right: 10px;
+}
+
+#review_container > form > table > tbody > tr:nth-child(4) > td > div:nth-child(2) {
+	display: flex;
+}
+
+#review_container > form > table > tbody > tr:nth-child(4) > td > div:nth-child(2) > button {
+	height: 25px;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    margin-left: 5px;
+}
+
+#btn_wrap {
+	display: flex;
+	justify-content: center;
+	margin: 50px 0;
+}
+
+#btn_wrap > button {
+	background: lightgray;
+	font-size: 18px;
+	width: 200px;
+	height: 60px;
+}
+
+#btn_wrap > button:hover {
+	background: gray;
+	color: white;
+}
