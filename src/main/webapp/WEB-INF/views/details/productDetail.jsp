@@ -61,7 +61,7 @@ int user_id = login.getMember_id();
 			</table>
 			<div id="btn_wrap">
 			<%
-				if(login == null || login.getMember_id() != getProduct.getMember_id()) { 
+				if(login.getMember_id() != getProduct.getMember_id()) { 
 			%>					
 					<button type="button" class="btn btn-secondary" id="requestFrmBtn">대여신청</button>
 			<%

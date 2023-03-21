@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sharebridge.dto.CategoryDto;
@@ -45,7 +47,12 @@ public class ProductController {
 	
 	// 상품등록
 	@GetMapping(value = "productRegi.do")
-	public String productRegi(Model model) {
+	public String productRegi(Model model, HttpSession session) {
+		if(session.getAttribute("login") == null) {
+			session.setAttribute("required", true);
+			return "redirect:/login.do";
+		}
+		
 		return "productRegi";
 	}
 	
