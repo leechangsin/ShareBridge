@@ -94,12 +94,21 @@
 
 /* renter_info */
 .renter_info {
-	margin-top: 50px;
+	/*margin-top: 50px;*/
 	display: flex;
+	margin-bottom: 50px;
 }
 
 .renter_profile {
 	margin-right: 30px;
+	
+}
+
+.renter_profile, .reviewlist {
+	width: 170px;
+	margin: 15px;
+	height: 175px;
+	background-color: #eee;
 }
 
 .renter_profile > a {
@@ -109,6 +118,7 @@
 
 .renter_profile > a > img {
 	width: 80px;
+
 }
 
 .renter_profile > a > span {
@@ -126,6 +136,7 @@
 .reviewlist > .reviewlist_item > .review_rentee_info {
 	display: flex;
 	justify-content: space-between;
+	flex-direction: column;
 }
 
 .reviewlist > .reviewlist_item > .review_rentee_info > span {
@@ -175,6 +186,7 @@
 /* tap */
 .content_and_question{
 	margin-top: 50px;
+	height: 500px;
 }
 
 #tap_wrap {
