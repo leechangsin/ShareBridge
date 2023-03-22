@@ -20,18 +20,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.MemberDto;
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.ReviewDto;
+import com.sharebridge.dto.WishDto;
 import com.sharebridge.service.MemberService;
 import com.sharebridge.service.ProductService;
 import com.sharebridge.service.QuestionService;
 import com.sharebridge.service.ReviewService;
+import com.sharebridge.service.WishService;
 import com.sharebridge.util.FileUtil;
 
 @Controller
@@ -44,6 +44,8 @@ public class ProductController {
 	ReviewService reviewService;
 	@Autowired
 	QuestionService questionService;
+	@Autowired
+	WishService wishService;
 	
 	// 상품등록
 	@GetMapping(value = "productRegi.do")
@@ -191,9 +193,17 @@ public class ProductController {
 			return "redirect:/login.do";
 		}
 		
+		MemberDto login = (MemberDto) session.getAttribute("login");
+		
 		// 상품 정보
 		ProductDto detail = service.getProduct(product_id);
 		CategoryDto getCate = service.getCate(category_id);
+		
+		// 위시 정보
+		WishDto wishDto = new WishDto(product_id, login.getMember_id(), null);
+		// 로그인한 사용자가 이제 보게 될 상품을 위시리스트에 등록했다면 WishDto가 반환됨
+		// 로그인한 사용자가 이제 보게 될 상품을 위시리스트에 등록하지 않았다면 null이 반환됨
+		wishDto = wishService.selectOneWish(wishDto);
 		
 		// 렌터 정보
 		MemberDto renter = memberService.selectOneByMemberId(detail.getMember_id());
@@ -222,6 +232,7 @@ public class ProductController {
 		model.addAttribute("review", reviewList);
 		model.addAttribute("r_renteeNick", r_renteeNickList);
 		model.addAttribute("questionCount", questionCount);
+		model.addAttribute("isWish", wishDto != null);
 		
 		return "productDetail";
 	}

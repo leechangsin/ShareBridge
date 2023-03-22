@@ -105,7 +105,7 @@
 										</c:when>
 									</c:choose>
 								</td>
-								<td>
+								<td onclick="event.cancelBubble = true;">
 									<c:choose>
 										<c:when test="${request.is_cancel eq 0 and request.is_accept eq 0 }">
 											<button type="button" class="btn btn-secondary cancel_btn">취소</button>
@@ -170,7 +170,7 @@
 										</c:when>
 									</c:choose>
 								</td>
-								<td>
+								<td onclick="event.cancelBubble = true;">
 									<c:if test="${request.is_cancel eq 0 and request.is_accept eq 0 }">
 										<button type="button" class="btn btn-secondary accept_btn">수락</button>
 										<button type="button" class="btn btn-secondary reject_btn">거절</button>
@@ -187,6 +187,11 @@
 
 <script src="/sharebridge/js/public/common.js"></script>
 <script>
+	$(".request_list tr").on("click", function() {
+		let request_id = $(this).attr("request_id");
+		goTo("/sharebridge/checkReq.do?request_id="+request_id);
+	});
+	
 	$(".cancel_btn").on("click", function() {
 		let request_id = $(this).parent().parent().attr("request_id");
 		
@@ -233,6 +238,7 @@
 				}
 				
 				$this.parent().prev().html("<span>대여 수락</span>");
+				$this.next().remove();
 				$this.remove();
 			},
 			error: function(xhr) {
@@ -262,6 +268,7 @@
 				}
 				
 				$this.parent().prev().html("<span>대여 거절</span>");
+				$this.prev().remove();
 				$this.remove();
 			},
 			error: function(xhr) {

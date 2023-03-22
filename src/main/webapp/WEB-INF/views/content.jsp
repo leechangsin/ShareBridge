@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" href="/sharebridge/css/main/product_list.css">
 
-<div class="album py-5 bg-light">
+<div class="album py-5">
 	<div class="container">
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<c:forEach items="${products }" var="product">
@@ -24,14 +24,10 @@
 								<div>
 									<c:choose>
 										<c:when test="${product.wish_member_id > 0}">
-											<img onclick="event.stopPropagation(); onClickWish(${product.product_id}, false)"
-										id="wish_${product.product_id}"
-										src="/sharebridge/images/has_wish_icon.png" alt="cart">
+											<img onclick="event.stopPropagation(); onClickWish(${product.product_id}, false)" id="wish_${product.product_id}" src="/sharebridge/images/has_wish_icon.png" alt="cart">
 										</c:when>
 										<c:otherwise>
-											<img onclick="event.stopPropagation(); onClickWish(${product.product_id}, true)"
-										id="wish_${product.product_id}"
-										src="/sharebridge/images/nohas_wish_icon.png" alt="cart">
+											<img onclick="event.stopPropagation(); onClickWish(${product.product_id}, true)" id="wish_${product.product_id}" src="/sharebridge/images/nohas_wish_icon.png" alt="cart">
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -39,7 +35,14 @@
 							
 							<div class="card-text">
 								<p>${product.price}원/일</p>
-								<p>대여 가능</p>
+								<p>
+									<c:set var="state" value="대여 가능" />
+									<c:if test="${product.state eq 1 }">
+										<c:set var="state" value="대여 불가" />
+									</c:if>
+									
+									${state }
+								</p>
 							</div>
 						</div>
 					</div>
@@ -65,7 +68,7 @@ function onClickProduct(pid,cid){
 }
 
 function onClickWish(productId, hasWish){
-	if("${login == null}" === 'false'){
+	if("<%=login == null%>" === 'false'){
 		$.ajax({
 			type:"post",
 			url: hasWish ? "addWish.do" : "removeWish.do",
@@ -80,6 +83,5 @@ function onClickWish(productId, hasWish){
 	}else{
 		alert('로그인을 해주세요.');
 	}
-	
 }
 </script>

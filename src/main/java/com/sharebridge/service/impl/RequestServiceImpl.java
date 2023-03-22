@@ -1,7 +1,5 @@
 package com.sharebridge.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +42,10 @@ public class RequestServiceImpl implements RequestService {
 	public boolean updateReq(RequestDto dto) {
 		int n = dao.updateReq(dto);
 		return n>0?true:false;
+	}
+
+	@Override
+	public RequestDto getRequestFormByRequest_id(int request_id) {
+		return dao.getRequestFormByRequest_id(request_id);
 	}
 }

@@ -20,6 +20,11 @@ public class WishDaoImpl implements WishDao {
 	public List<ProductDto> getAllWishByMemberId(int memberId) {
 		return session.selectList(ns + "getAllWishByMemberId", memberId);
 	}
+	
+	@Override
+	public WishDto selectOneWish(WishDto wishDto) {
+		return session.selectOne(ns + "selectOneWish", wishDto);
+	}
 
 	public int addWish(WishDto wishDto) {
 		return session.insert(ns + "addWish", wishDto);
@@ -29,5 +34,4 @@ public class WishDaoImpl implements WishDao {
 	public int removeWish(WishDto wishDto) {
 		return session.delete("Wish.removeWish", wishDto);
 	}
-
 }

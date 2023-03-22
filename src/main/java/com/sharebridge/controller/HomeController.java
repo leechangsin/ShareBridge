@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.MemberDto;
 import com.sharebridge.dto.ProductDto;
+import com.sharebridge.param.BaseLayoutParam;
 import com.sharebridge.service.CategoryService;
 import com.sharebridge.service.ProductService;
 import com.sharebridge.service.WishService;
@@ -30,11 +32,11 @@ public class HomeController {
 
 	// category
 	@GetMapping(value = "baseLayout.do")
-	public String baseLayout(HttpSession session, Model model) {
+	public String baseLayout(HttpSession session, Model model, BaseLayoutParam bp) {
 		List<CategoryDto> categories = categoryService.getAllCategory();
 
 		MemberDto memberDto = (MemberDto) session.getAttribute("login");
-		List<ProductDto> products = productService.getAllProducts();
+		List<ProductDto> products = productService.getAllProducts(bp);
 		if (memberDto != null && memberDto.getMember_id() > 0) {
 			List<ProductDto> wishProducts = wishService.getAllWishByMemberId(memberDto.getMember_id());
 			for (ProductDto wishProduct : wishProducts) {

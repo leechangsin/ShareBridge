@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+#main_contents {
+	padding: 0;
+}
+
+.album {
+	padding-top:0!important;
+}
+
+#page_title {
+	font-size: 32px;
+	font-weight: bold;
+	margin: 50px 0;
+	border-bottom: 3px solid black;
+	padding-bottom: 15px;
+}

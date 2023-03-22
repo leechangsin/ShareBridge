@@ -45,7 +45,6 @@ public class ProductDto implements Serializable{
 	private int wish_member_id;
 	private int cart_id;
 	
-	
 	public ProductDto() {
 		// TODO Auto-generated constructor stub
 	}

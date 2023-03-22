@@ -12,13 +12,17 @@ import com.sharebridge.service.WishService;
 
 @Service
 public class WishServiceImpl implements WishService {
-
 	@Autowired
 	WishDao dao;
 
 	@Override
 	public List<ProductDto> getAllWishByMemberId(int memberId) {
 		return dao.getAllWishByMemberId(memberId);
+	}
+	
+	@Override
+	public WishDto selectOneWish(WishDto wishDto) {
+		return dao.selectOneWish(wishDto);
 	}
 
 	@Override
@@ -30,5 +34,4 @@ public class WishServiceImpl implements WishService {
 	public int removeWish(WishDto wishDto) {
 		return dao.removeWish(wishDto);
 	}
-
 }

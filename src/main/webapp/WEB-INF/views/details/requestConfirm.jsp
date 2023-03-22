@@ -1,22 +1,31 @@
+<%@page import="com.sharebridge.dto.MemberDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sharebridge.dto.RequestDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- css -->
 <link rel="stylesheet" href="css/details/requestCommon.css">
 
-<% 
+<%
+	MemberDto login = (MemberDto)session.getAttribute("login");
 	RequestDto req = (RequestDto)request.getAttribute("req");
 	int price = (Integer)request.getAttribute("price");
 	int cid = (Integer)request.getAttribute("cid");
 
 	String sdate = req.getSdate().toString().substring(0,10);
 	String edate = req.getEdate().toString().substring(0,10);
+	
+	pageContext.setAttribute("mine", login.getMember_id() == req.getMember_id());
 %>
 
+<c:set var="title" value="대여 신청서 작성 완료" />
+<c:if test="${status eq 'check' }">
+	<c:set var="title" value="대여 신청서 확인" />
+</c:if>
+
 <div class="request_form">
-<h2 class="request_title">대여 신청서 작성 완료</h2>
+<h2 class="request_title">${title }</h2>
 	<div>
 		<!-- rentee_info -->
 		<div class="container">
@@ -82,15 +91,23 @@
 		</div>
 		<div class="center">
 			<button type="button" class="btn-lg text-white" id="backToDetail">돌아가기</button>
+		<c:if test="${mine }">
 			<button type="submit" class="btn-lg text-white" id="updateBtn">수정하기</button>
+		</c:if>
 		</div>
 	</div>
 </div> 
 
 <script>
 $(document).ready(function() {
-	$("#backToDetail").click(function() {		
-		location.href="productDetail?product_id=<%=req.getProduct_id()%>&category_id=<%=cid%>";
+	let status = "${status}";
+	
+	$("#backToDetail").click(function() {
+		if(status == "") {
+			location.href="productDetail.do?product_id=<%=req.getProduct_id()%>&category_id=<%=cid%>";
+		} else {
+			location.href = "/sharebridge/mypage/mypage.do";
+		}
 	});
 	
 	$("#updateBtn").click(function() {

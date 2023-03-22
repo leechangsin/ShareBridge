@@ -6,24 +6,17 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.sharebridge.dto.CategoryDto;
 import com.sharebridge.dto.MemberDto;
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.WishDto;
-import com.sharebridge.service.CategoryService;
-import com.sharebridge.service.ProductService;
 import com.sharebridge.service.WishService;
-import com.sharebridge.service.impl.CategoryServiceImpl;
 
 @Controller
 public class WishController {
