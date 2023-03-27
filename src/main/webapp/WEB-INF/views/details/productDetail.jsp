@@ -107,7 +107,7 @@ int user_id = login.getMember_id();
 								<div class="review_rentee_info">
 									<span><%=r_nick %></span>
 									<span><%=r.getRdate().toString().substring(0, 10) %></span>
-									<span><%=r.getRating() %></span>
+									<span>평점 : <%=r.getRating() %> / 5</span>
 								</div>
 								<p class="review_contents"><%=r.getContent() %></p>
 							</div>

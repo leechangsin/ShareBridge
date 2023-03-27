@@ -79,7 +79,7 @@ public class ProductController {
 //		String fupload = "C:\\upload";
 		
 		// server
-		 String fupload = req.getServletContext().getRealPath("/upload/product");
+		String fupload = req.getServletContext().getRealPath("/upload/product");
 		
 		// 파일명을 충돌되지 않는 명칭으로 변경
 		String newfilename = FileUtil.getNewFileName(filename);
@@ -88,6 +88,7 @@ public class ProductController {
 		
 		// 파일 생성
 		File file = new File(fupload + "/" + newfilename);
+		System.out.println("file path: " + file);
 
 		try {			
 			// DB에 저장
@@ -137,13 +138,13 @@ public class ProductController {
 		dto.setEdate(Timestamp.valueOf(edate));
 		
 		// 사진 수정
-		if(fileload == null) {	// 기존의 사진 저장
-			System.out.println("fileload is null");
-			ProductDto getProduct = service.getProduct(dto.getProduct_id());
-			dto.setPhoto(getProduct.getPhoto());
+		if(fileload.isEmpty()) {	// 기존의 사진
+			System.out.println("fileload is empty");
+			String originalFile = service.getProductImg(dto.getProduct_id());
+			dto.setPhoto(originalFile);
 			
 		} else {	// 수정된 사진 저장
-			System.out.println("fileload is not null");
+			System.out.println("fileload is not empty");
 			// filename 취득(원본)
 			String filename = fileload.getOriginalFilename();
 			

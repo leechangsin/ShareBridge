@@ -20,7 +20,7 @@
 	int cid = Integer.parseInt(request.getAttribute("cid").toString());
 	
 	String sdate = getProduct.getSdate().toString().substring(0,10);
-	String edate = getProduct.getSdate().toString().substring(0,10);
+	String edate = getProduct.getEdate().toString().substring(0,10);
 %>
 
 <div class="regi_container">

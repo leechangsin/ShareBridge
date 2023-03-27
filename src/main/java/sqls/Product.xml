@@ -59,7 +59,7 @@
 <update id="updateProduct" parameterType="com.sharebridge.dto.ProductDto">
 	update product
 	set category_id=${category_id}, title=#{title}, content=#{content}, sdate=timestamp(#{sdate}), edate=timestamp(#{edate}),
-		photo=#{photo}, wdate=now()
+		price=${price}, photo=#{photo}, wdate=now()
 	where product_id = ${product_id}
 </update>
 
@@ -96,6 +96,13 @@
 <select id="getProductCate" parameterType="Integer" resultType="Integer">
 	select category_id
 	from product 
+	where product_id = #{product_id}
+</select>
+
+<!-- 파일 불러오기 -->
+<select id="getProductImg" parameterType="Integer" resultType="String">
+	select photo
+	from product
 	where product_id = #{product_id}
 </select>
 </mapper>

@@ -30,4 +30,6 @@ public interface ProductService {
 	List<QuestionDto> getQuestionList();
 	
 	List<ProductDto> getProductListForRenter(int member_id);
+	
+	String getProductImg(int product_id);
 }
