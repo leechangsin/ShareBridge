@@ -39,4 +39,14 @@ public class CartDaoImpl implements CartDao {
 		System.out.println("test ; "+tmp);
 		return tmp;
 	}
+
+	@Override
+	public int addCart(CartDto dto) {
+		return session.insert("Cart.addCart", dto);
+	}
+
+	@Override
+	public List<CartDto> getCartList(int member_id) {
+		return session.selectList("Cart.getCartList", member_id);
+	}
 }

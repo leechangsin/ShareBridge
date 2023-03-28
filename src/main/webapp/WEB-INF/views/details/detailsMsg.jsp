@@ -66,12 +66,24 @@ String insertReq = (String)request.getAttribute("insertReq");
 
 if(insertReq != null && !insertReq.equals("")) {
 	int mid = (Integer)request.getAttribute("mid");
+	String choice = (String)request.getAttribute("choice");
 	
 	if(insertReq.equals("REQUEST_INSERT_OK")) {
 		%>
 		<script type="text/javascript">
-			alert("대여 신청이 완료되었습니다");
-			location.href = "successReq.do?member_id=<%=mid%>";
+			<%
+			if(choice.equals("req")) {
+			%>
+				alert("대여 신청이 완료되었습니다");
+				location.href = "successReq.do?member_id=<%=mid%>";
+			<%
+			} else {
+			%>
+				alert("장바구니에 추가되었습니다.");
+				location.href = "addCart.do?member_id=<%=mid%>";
+			<%
+			}
+			%>
 		</script>
 		<%
 	} else {

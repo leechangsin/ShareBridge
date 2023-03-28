@@ -25,4 +25,14 @@ public class CartServiceImpl implements CartService{
 	public int removeCarts(List<CartDto> carts) {
 		return dao.removeCarts(carts);
 	}
+
+	@Override
+	public void addCart(CartDto dto) {
+		dao.addCart(dto);
+	}
+
+	@Override
+	public List<CartDto> getCartList(int member_id) {
+		return dao.getCartList(member_id);
+	}
 }

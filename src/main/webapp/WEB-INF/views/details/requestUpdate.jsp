@@ -116,12 +116,12 @@ String[] address = req.getAddress().split("/");
 			<h3>결제수단</h3>
 			<div class="form-check form-check-inline">
 				<label class="form-check-label">
-					<input class="form-check-input" type="radio" name="payment" value="card" checked=<%=req.getPayment().equals("card")?"checked":"" %>>신용카드
+					<input class="form-check-input" type="radio" name="payment" value="card" <%=req.getPayment().equals("card")?"checked":"" %>>신용카드
 				</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<label class="form-check-label">
-					<input class="form-check-input" type="radio" name="payment" value="account" checked=<%=req.getPayment().equals("account")?"checked":"" %>>가상계좌
+					<input class="form-check-input" type="radio" name="payment" value="account" <%=req.getPayment().equals("account")?"checked":false %>>가상계좌
 				</label>
 			</div>	
 		</div>
@@ -146,7 +146,7 @@ String[] address = req.getAddress().split("/");
 <script>
 $(document).ready(function() {
 	$("#backToDetail").click(function() {		
-		location.href="productDetail?product_id=<%=req.getProduct_id()%>&category_id=<%=cid%>";
+		location.href="productDetail.do?product_id=<%=req.getProduct_id()%>&category_id=<%=cid%>";
 	});
 });
 </script>

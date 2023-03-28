@@ -30,7 +30,7 @@ public class RequestController {
 	
 	// 대여신청서 작성 성공
 	@PostMapping("/requestFrmAf.do")
-	public String requestFrmAf(RequestDto dto, 
+	public String requestFrmAf(RequestDto dto, String choice,
 								@RequestParam(value="start", required=false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 								LocalDateTime sdate,
 								@RequestParam(value="end", required=false)@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -51,6 +51,7 @@ public class RequestController {
 		System.out.println(dto.toString());
 		model.addAttribute("insertReq", msg);
 		model.addAttribute("mid", mid);
+		model.addAttribute("choice", choice);
 		
 		return "detailsMsg";
 	}

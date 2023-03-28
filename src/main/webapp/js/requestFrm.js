@@ -80,9 +80,7 @@ $(document).ready(function() {
 	});
 	
 	// 빈칸검사
-	$("#regiBtn").click(function(e) {
-		e.preventDefault();
-		
+	$.fn.blankChk = function(path) {
 		if($("#name").val() == undefined || $("#name").val().trim() == "") {
 			alert("대여자명을 입력해주세요");
 			return;
@@ -113,8 +111,22 @@ $(document).ready(function() {
 		} else {
 			let a = $("#frm").serializeArray();
 			console.log(a);
-			$("#frm").submit();
+			$("#frm").attr("action",path).submit();
 		}
+	}
+	
+	$("#regiBtn").click(function(e) {
+		e.preventDefault();
+		
+		let path = "requestFrmAf.do?choice='req'";
+		$.fn.blankChk(path);
+	});
+	
+	$("#shopping_cart").click(function(e) {
+		e.preventDefault();
+		
+		let path = "requestFrmAf.do?choice='cart";
+		$.fn.blankChk(path);
 	});
 });
 

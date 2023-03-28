@@ -27,7 +27,7 @@ String edate = getProduct.getEdate().toString().substring(0,10);
 
 <div class="request_form">
 <h2 class="request_title">대여 신청서 작성</h2>
-	<form action="requestFrmAf.do" method="post" id="frm">
+	<form method="post" id="frm">
 	<input type="hidden" value="<%=getProduct.getProduct_id() %>" name="product_id">
 	<input type="hidden" value="<%=login.getMember_id() %>" name="member_id">
 		<!-- rentee_info -->

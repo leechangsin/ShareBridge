@@ -38,10 +38,10 @@
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
-	<div align="center">
-		<table width="100%">
+	<div align="center" class="tiles_container">
+		<table width="100%" class="tiles_table">
 			<!-- header -->
-			<tr>
+			<tr class="tiles_header">
 				<td>
 					<tiles:insertAttribute name="header"/>
 				</td>
@@ -62,7 +62,7 @@
 			</tr>
 			
 			<!-- footer -->	
-			<tr>
+			<tr class="tiles_footer">
 				<td>
 					<tiles:insertAttribute name="footer"/>
 				</td>
