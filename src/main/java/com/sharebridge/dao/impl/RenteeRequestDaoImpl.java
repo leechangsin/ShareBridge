@@ -6,29 +6,29 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sharebridge.dao.RenterRequestDao;
+import com.sharebridge.dao.RenteeRequestDao;
 import com.sharebridge.dto.RequestDto;
 import com.sharebridge.param.MypageParam;
 
 @Repository
-public class RenterRequestImpl implements RenterRequestDao {
+public class RenteeRequestDaoImpl implements RenteeRequestDao {
 	@Autowired
 	SqlSession session;
 	
-	String ns = "RenterRequest.";
+	String ns = "RenteeRequest.";
 	
 	@Override
 	public List<RequestDto> getRequestListByMemberId(MypageParam mp) {
 		return session.selectList(ns + "selectAllByMemberId", mp);
 	}
-
+	
 	@Override
-	public void acceptRequest(int request_id) {
-		session.update(ns + "acceptRequest", request_id);
+	public RequestDto getRequestByRequest_id(int request_id) {
+		return session.selectOne(ns + "getRequestByRequest_id", request_id);
 	}
 
 	@Override
-	public void rejectRequest(int request_id) {
-		session.update(ns + "rejectRequest", request_id);
+	public void cancelRequest(int request_id) {
+		session.update(ns + "cancelRequest", request_id);
 	}
 }

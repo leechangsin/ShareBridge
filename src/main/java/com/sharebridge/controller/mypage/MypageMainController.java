@@ -52,7 +52,7 @@ public class MypageMainController {
 		System.out.println("reviewCount = " + reviewCount);
 		
 		// 렌터의 별점 계산
-		List<ReviewDto> list = reviewService.revListAnsOrder(reviewCount);
+		List<ReviewDto> list = reviewService.revListAnsOrder(member_id);
 		System.out.println(list.size());
 		double rate = 0;
 		for (int i = 0; i < list.size(); i++) {
@@ -66,7 +66,10 @@ public class MypageMainController {
 		}else if(list.size() == 1) {
 			rateAvg = rate;
 		}else {
-			rateAvg = rate / (list.size()-1);
+			rateAvg = (double) rate / list.size();
+			rateAvg = rateAvg * 10;
+			rateAvg = Math.round(rateAvg);
+			rateAvg = rateAvg / 10;
 		}
 		memberInfo.setRating((float) rateAvg);
 		
