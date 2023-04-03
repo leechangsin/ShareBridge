@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.sharebridge.dao.ReviewDao;
 import com.sharebridge.dto.ProductDto;
 import com.sharebridge.dto.RequestDto;
+import com.sharebridge.dto.ReviewDto;
 
 @Repository
 public class ReviewDaoImpl implements ReviewDao {
@@ -41,5 +42,73 @@ public class ReviewDaoImpl implements ReviewDao {
 	public String reviewListThree(int member_id) {
 		
 		return session.selectOne(ns + "reviewListThree", member_id);
+	}
+	
+	// 후기 작성
+	@Override
+	public int writeRev(ReviewDto dto) {
+		
+		return session.insert(ns + "writeRev", dto);
+	}
+
+	// 대여신청서 중 후기가 작성된 것을 구별
+	@Override
+	public int writeRevTwo(int request_id) {
+		
+		return session.update(ns + "writeRevTwo", request_id);
+	}
+
+	// 대여신청서 번호로 후기 내용 가져오기
+	@Override
+	public ReviewDto revFromReq(int request_id) {
+		
+		return session.selectOne(ns + "revFromReq", request_id);
+	}
+
+	// 후기 수정
+	@Override
+	public int updateRev(ReviewDto dto) {
+		
+		return session.update(ns + "updateRev", dto);
+	}
+	
+	// 후기 삭제
+	@Override
+	public int deleteRev(int request_id) {
+		
+		return session.delete(ns + "deleteRev", request_id);
+	}
+	@Override
+	public int deleteRevTwo(int request_id) {
+		
+		return session.update(ns + "deleteRevTwo", request_id);
+	}
+	
+	// 후기 번호로 후기 데이터 가져오기
+	@Override
+	public ReviewDto selecAllRev(int review_id) {
+		
+		return session.selectOne(ns + "selecAllRev", review_id);
+	}
+
+	// 후기 답글
+	@Override
+	public int answerRev(ReviewDto dto) {
+		session.update(ns + "answerOne", dto);
+		return session.insert(ns + "answerTwo", dto);
+	}
+
+	// 렌터번호로 후기 가져오기(답글 순서 고려)
+	@Override
+	public List<ReviewDto> revListAnsOrder(int renter_id) {
+		
+		return session.selectList(ns + "revListAnsOrder", renter_id);
+	}
+
+	// 답글 삭제
+	@Override
+	public int deleteAns(int review_id) {
+		
+		return session.delete(ns + "deleteAns", review_id);
 	}
 }

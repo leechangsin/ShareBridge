@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+main {
+	width: 1000px;
+}
+
+#renter_info_title {
+    margin-top: 50px;
+   	margin-bottom: 30px;
+   	font-size: 32px;
+   	font-weight: bold;
+   	border-bottom: 3px solid black;
+   	padding-bottom: 20px;
+}
+
+/* 회원 정보 */
+#renter_outter_wrap {
+	display: flex;
+	justify-content: flex-start;
+}
+
+#renter_innter_wrap {
+	display: flex;
+	margin-left: 100px;
+}
+
+#renter_profile_wrap > img {
+	width: 200px;
+	border-radius: 100px;
+}
+
+#renter_text_wrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-left: 50px;
+}
+
+#nickname {
+	font-size: 32px;
+	font-weight: bold;
+}
+
+#renter_text_wrap > p {
+	margin-bottom: 15px;
+	font-size: 20px;
+}
+
+#review_title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 50px;
+	margin-bottom: 30px;
+	border-bottom: 3px solid black;
+	padding-bottom: 20px;
+}
+
+.table td, .table th {
+	border: none;
+}
+
+.table {
+	margin-bottom: 50px;
+}

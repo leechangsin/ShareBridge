@@ -1,0 +1,362 @@
+@charset "UTF-8";
+
+#main_contents {
+	width: 1000px;
+    margin: 0 auto;
+}
+
+/* product_desc */
+.product_info {
+	display: flex;
+	margin-top: 50px;
+	padding: 50px;
+	justify-content: center;
+}
+
+.preview {
+	width: 400px;
+}
+
+.product_desc {
+	margin-left: 50px;
+}
+
+.product_desc > table {
+	width: 400px;
+	margin-bottom: 100px;
+}
+
+#category {
+    border-bottom: 2px solid lightgray;
+}
+
+#category > td {
+	padding-bottom: 5px;
+}
+
+#title > td {
+	padding-top: 30px;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#s_e_date > td, #price > td {
+	padding-top: 15px;
+}
+
+#s_e_date > td {
+	font-size: 14px;
+	padding-top: 11px;
+}
+
+#price > td {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+#price > td:nth-child(2) > i {
+	font-size: 20px;
+	cursor: pointer;
+}
+
+#wish {
+	cursor: pointer;
+}
+
+#btn_wrap {
+	text-align: right;
+}
+
+#btn_wrap > a {
+	color: black;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+#btn_wrap > a:nth-child(1) {
+	margin-right: 30px;
+}
+
+#requestFrmBtn {
+	width: 100%;
+	padding: 15px 0px;
+	background: lightgray;
+	border: none;
+	color: black;
+	font-size: 20px;
+	margin-top: 39px;
+}
+
+#requestFrmBtn:hover {
+	background: gray;
+	color: white;
+}
+
+
+/* renter_info */
+.renter_container {
+	margin: 50px 0 50px 0;
+}
+
+.renter_info {
+	/*margin-top: 50px;*/
+	display: flex;
+	margin-bottom: 50px;
+}
+
+.renter_profile {
+	margin-right: 30px;
+	
+}
+
+.renter_profile, .reviewlist {
+	width: 170px;
+	margin: 15px;
+	height: 175px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+	border: 2.5px solid #dedede;
+}
+
+.renter_profile > a {
+	display: flex;
+	flex-direction: column;
+}
+
+.renter_profile > a > img {
+	width: 100px;
+	border-radius: 50%;
+	padding: 10px;
+	margin-bottom: 15px;
+	background-color: #dedede;
+
+}
+
+.renter_profile > a > span {
+	text-align: center;
+	background-color: #505D58;
+	color: #fff;
+	border-radius: 100px;
+	padding: 7px 0 7px 0;
+}
+
+.renter_review {
+	display: flex;
+}
+
+.reviewlist > .reviewlist_item {
+	/* margin-left: 10px; */
+	padding: 20px;
+	width: 100%;
+}
+
+.reviewlist > .reviewlist_item > .review_rentee_info {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	line-height: 1.3;
+}
+
+.reviewlist > .reviewlist_item > .review_rentee_info > span {
+	display: inline-block;
+}
+
+#main_contents > div > div.renter_info > div.renter_review > .reviewlist > .reviewlist_item > .review_rentee_info > span:nth-child(1) {
+	width: 92px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#main_contents > div > div.renter_info > div.renter_review > .reviewlist > .reviewlist_item > .review_rentee_info > span:nth-child(2) {
+	width: 22px;
+}
+
+#main_contents > div > div.renter_info > div.renter_review > .reviewlist > .reviewlist_item > .review_rentee_info > span:nth-child(3) {
+	width: 84px;
+}
+
+.reviewlist > .reviewlist_item > .review_contents {
+	width: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: box;
+	max-height:96px;
+	overflow:hidden;
+	vertical-align:top;
+	text-overflow: ellipsis;
+	word-break:break-all;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:4;
+	margin-top: 20px;
+}
+
+#no_review_wrap{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 400px;
+	height: 104px;
+	text-align: center;
+}
+
+
+/* .content_and_question */
+/* tap */
+.content_and_question{
+	margin-top: 100px;
+	height: 500px;
+}
+
+#tap_wrap {
+	display: flex;
+	font-size: 32px;
+}
+
+#tap_wrap > .tap {
+	border-bottom: 3px solid lightgray;
+	color: lightgray;
+	flex-grow: 1;
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+#tap_wrap > .tap.active {
+	border-bottom: 3px solid black;
+	color: black;
+	cursor: default;
+}
+
+#tap_wrap > .tap:not(.active) {
+	cursor: pointer;
+}
+
+/* .content_and_question */
+/* contents_container */
+#contents_container {
+	padding: 50px;
+}
+
+/* .content_and_question */
+/* question_container */
+.question_container {
+	display: none;
+	margin: 50px 0;
+}
+
+.question_container .question_list_wrap {
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.question_container .question_list_wrap .no_question {
+	text-align: center;
+}
+
+.question_container .question_list_wrap .question_list td:nth-child(1) {
+	width: 65px;
+	text-align: center;
+}
+
+.question_container .question_list_wrap .question_list td:nth-child(2) {
+	width: 35px;
+	text-align: center;
+}
+
+.question_container .question_list_wrap .question_list td:nth-child(4) {
+	width: 100px;
+	text-align: center;
+}
+
+.question_container .question_list_wrap .question_list td:nth-child(5) {
+	width: 60px;
+	text-align: center;
+}
+
+.question_container .question_list_wrap .question_con p {
+	padding: 10px;
+}
+
+#question_pagination {
+	display: flex;
+	justify-content: center;
+}
+
+#question_pagination > .pagination > .page-item > .page-link {
+	border: none;
+	color: black;
+	cursor: pointer;
+}
+
+#question_pagination > .pagination > .page-item > .page-link:hover {
+	background: gray;
+	color: white;
+}
+
+#question_pagination > .pagination > .page-item.active > .page-link {
+	color: white;
+}
+
+#question_btn_wrap {
+	text-align: right;
+}
+
+#question_btn_wrap > button {
+	background: lightgray;
+	width: 150px;
+	height: 45px;
+}
+
+#question_btn_wrap > button:hover {
+	background: gray;
+	color: white;
+}
+
+/* .content_and_question */
+/* .question_con */
+.question_container > .question_list_wrap > .question_con > td > p {
+	margin-bottom: 0;
+}
+.question_container > .question_list_wrap > .question_con > td > div.btn_wrap {
+	text-align: right;
+	margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.question_container > .question_list_wrap > .question_con > td > div > button {
+	background: lightgray;
+	margin-right: 10px;
+}
+
+.question_container > .question_list_wrap > .question_con > td > div > button:hover {
+	background: gray;
+	color: white;
+}
+
+/* .content_and_question */
+/* reply_wrap */
+.reply_wrap {
+	display: flex;
+	padding-left: 11px;
+	margin-top: -10px;
+}
+
+.reply_wrap > img {
+	width: 20px;
+	height: 20px;
+	margin-top: 8px;
+}
+
+.reply_wrap > .reply_title_content_wrap > p {
+	margin-bottom: 0px;
+}
+
+.reply_wrap > .reply_title_content_wrap > p:nth-child(1) {	
+	padding-bottom: 0px;
+}
+
+.reply_wrap > .reply_title_content_wrap > p:nth-child(2) {
+	padding-top: 0px;
+}

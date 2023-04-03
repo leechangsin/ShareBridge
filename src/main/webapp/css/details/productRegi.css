@@ -1,11 +1,43 @@
 @charset "UTF-8";
 
 .regi_container {
-/* 	margin: 0 412px; */
+	width: 1000px;
 }
-.regi_title {
-	font-size: 24px;
+
+.title {
+	margin-top: 50px;
+	margin-bottom: 30px;
+	border-bottom: 2px solid;
+	padding-bottom: 20px;
+	font-size: 32px;
 	font-weight: bold;
+}
+
+#frm > table {
+	width: 100%;
+}
+
+#frm > table > tbody > tr > th {
+	text-align: right;
+}
+
+#frm > table > tbody > tr > th > label {
+	margin-right: 10px;
+	margin-bottom: 15px;
+}
+
+#frm > table > tbody > tr:nth-child(6) > th > label {
+	margin-top: 15px;	
+}
+
+#start, #end {
+	width: 200px;
+	display: inline-block;
+}
+
+#price {
+	width: 200px;
+	display: inline-block;
 }
 
 input[type='date']::before {
@@ -34,4 +66,46 @@ input[type='date']:valid::before {
 
 input[type=file] {
   display: none;
-} 
+}
+
+#frm > table > tbody > tr:nth-child(6) > td {
+	display: flex;
+}
+
+#frm > table > tbody > tr:nth-child(6) > td > div:nth-child(1) {
+	margin-right: 10px;
+}
+
+#frm > table > tbody > tr:nth-child(6) > td > div:nth-child(2) {
+	display: flex;
+}
+
+#frm > table > tbody > tr:nth-child(6) > td > div:nth-child(2) > button {
+	height: 25px;
+	border: 0;
+	outline: 0;
+	background-color: transparent;
+	margin-left: 5px;
+}
+
+#btn_wrap {
+	display: flex;
+	justify-content: center;
+	margin: 50px 0;
+}
+
+#btn_wrap > button {
+	background: lightgray;
+	font-size: 18px;
+	width: 200px;
+	height: 60px;
+}
+
+#btn_wrap > button:hover {
+	background: gray;
+	color: white;
+}
+
+#regiBtn {
+	margin-left: 30px;
+}

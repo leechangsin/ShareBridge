@@ -6,13 +6,25 @@
 <mapper namespace="RenteeRequest">
 
 <select id="selectAllByMemberId" parameterType="com.sharebridge.param.MypageParam" resultType="com.sharebridge.dto.RequestDto">
-	select *
-	from request
-	where member_id = #{memberId} AND del IS NULL
-	order by rdate desc
+	select *, p.title as productName, p.price as dailyPrice
+	from request as r
+	join product as p
+	on r.product_id = p.product_id
+	where r.member_id = #{memberId} and r.del is null
+	order by r.rdate desc
 	<if test="limitEnd != 0">
 		limit #{limitStart}, #{limitEnd}
 	</if>
 </select>
+
+<select id="getRequestByRequest_id" parameterType="int" resultType="com.sharebridge.dto.RequestDto">
+	select *
+	from request
+	where request_id = #{request_id}
+</select>
+
+<update id="cancelRequest" parameterType="int">
+	update request set is_cancel = b'1' where request_id = #{request_id}
+</update>
 
 </mapper>

@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+#main_contents {
+	padding: 50px 0;
+}
+
+.album {
+	width: 1060px;
+}
+
+.album > .container > .row > .col {
+	margin-bottom: 30px;
+}
+
+.album > .container > .row > .col > .card {
+	cursor: pointer;
+}
+
+.album > .container > .row > .col > .card > .bd-placeholder-img {
+	width: 322px;
+	height: 225px;
+}
+
+#main_contents > div > div.container > div > div > div > div.bd-placeholder-img.card-img-top > img {
+	height: 225px;
+	max-width: 322px;
+}
+
+#main_contents > div > div.container > div > div > div > div > div:nth-child(1) {
+	margin-bottom: 10px;
+}
+
+#main_contents > div > div.container > div > div > div > div > div.card-text {
+	display: flex;
+	justify-content: space-between;
+}
+
+#floating_btn {
+	position: absolute;
+	right: 425px;
+}

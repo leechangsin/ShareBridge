@@ -16,11 +16,15 @@
 </select>
 
 <select id="getNotificationList" parameterType="com.sharebridge.param.NotificationListParam" resultType="com.sharebridge.dto.NotificationDto">
-	select *
+	select n.*, rentee.nickname AS renteeNickname, p.title as productName
 	from notification as n
 	join request as r
 	on n.request_id = r.request_id
-	where r.member_id = #{member_id}
+	join product as p
+	on p.product_id = r.product_id
+	join member AS rentee
+	on rentee.member_id = r.member_id
+	where p.member_id = #{member_id}
 	order by n.read desc, n.rdate desc
 	<choose>
 		<when test="limitEnd == 0">
@@ -40,4 +44,9 @@
 	delete from notification where notification_id = #{notification_id}
 </delete>
 
+<!-- 대여신청 알림 -->
+<insert id="requestNoti" parameterType="Integer">
+	insert into notification(request_id, rdate)
+	values(${request_id}, now())
+</insert>
 </mapper>

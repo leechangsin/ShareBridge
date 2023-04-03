@@ -42,9 +42,34 @@
 		<put-attribute name="content" value="/WEB-INF/views/login/logMsg.jsp" />
 	</definition>
 	
+	<!-- wish -->
+	<definition name="wish" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/wish/wish.jsp" />
+	</definition>
+	
+	<!-- cart -->
+	<definition name="cart" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/cart/cart.jsp" />
+	</definition>
+	
 	<!-- 후기 목록 -->
 	<definition name="review" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/review/review.jsp" />
+	</definition>
+	
+	<!-- 후기 작성 페이지 -->
+	<definition name="review_form" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/review_form.jsp" />
+	</definition>
+	
+	<!-- 후기 작성, 수정 후 -->
+	<definition name="revMsg" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/revMsg.jsp" />
+	</definition>
+	
+	<!-- 후기 수정 페이지 -->
+	<definition name="review_update_form" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/review_update_form.jsp" />
 	</definition>
 
 	<!-- mypage -->
@@ -61,7 +86,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/mypage/delete.jsp" />
 	</definition>
 	
-	<!-- product -->
+	<!-- product registration -->
 	<definition name="productRegi" extends="baseLayout">
 		<put-attribute name="content" value="/WEB-INF/views/details/productRegi.jsp"></put-attribute>
 	</definition>
@@ -71,4 +96,55 @@
 		<put-attribute name="content" value="/WEB-INF/views/notification/notificationList.jsp"></put-attribute>
 	</definition>
 
+	<!-- details message -->
+	<definition name="detailsMsg" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/detailsMsg.jsp"></put-attribute>
+	</definition>
+	
+	<!-- product detail -->
+	<definition name="productDetail" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/productDetail.jsp"></put-attribute>
+	</definition>
+	
+	<!-- product update -->
+	<definition name="productUpdate" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/productUpdate.jsp"></put-attribute>
+	</definition>
+	
+	<!-- product management -->
+	<definition name="productManage" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/productManage.jsp"></put-attribute>
+	</definition>
+	
+	<!-- request form -->
+	<definition name="requestFrm" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/requestFrm.jsp"></put-attribute>
+	</definition>
+	<definition name="requestConfirm" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/requestConfirm.jsp"></put-attribute>
+	</definition>
+	<definition name="requestUpdate" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/requestUpdate.jsp"></put-attribute>
+	</definition>
+	
+	<!-- question write -->
+	<definition name="questionWrite" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/details/questionWrite.jsp"></put-attribute>
+	</definition>
+	
+	<!-- 렌터 상세페이지 -->
+	<definition name="seller_info" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/seller_info.jsp" />
+	</definition>
+	
+	<!-- 후기 답글 -->
+	<definition name="answerRev" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/answerRev.jsp" />
+	</definition>
+	
+	<!-- 후기 답글 수정 -->
+	<definition name="upDateRev" extends="baseLayout">
+		<put-attribute name="content" value="/WEB-INF/views/review/upDateRev.jsp" />
+	</definition>
+	
 </tiles-definitions>

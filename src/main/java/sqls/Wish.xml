@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Wish">
+	<!-- wish -->
+	<select id="getAllWishByMemberId" parameterType="int" resultType="com.sharebridge.dto.ProductDto">
+		select p.*, w.member_id as wish_member_id
+		from product p
+		left join wish w on p.product_id = w.product_id
+		where w.member_id = #{memberId}
+		order by rdate desc
+	</select>
+	
+	<select id="selectOneWish" parameterType="com.sharebridge.dto.WishDto" resultType="com.sharebridge.dto.WishDto">
+		select *
+		from wish
+		where product_id = #{product_id} and member_id = #{member_id}
+	</select>
+
+	<insert id="addWish" parameterType="com.sharebridge.dto.WishDto">
+		insert into wish(product_id, member_id, rdate)
+		value(#{product_id}, #{member_id}, now())
+	</insert>
+	
+	<delete id="removeWish" parameterType="com.sharebridge.dto.WishDto">
+	delete from wish where product_id = #{product_id} and member_id = #{member_id}
+	</delete>
+</mapper>

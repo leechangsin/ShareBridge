@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+#main_contents > div {
+	margin: 50px 0;
+	text-align: center;
+}
+
+#main_contents > div > h3 {
+	margin-bottom: 30px;
+	font-size: 28px;
+}
+
+#main_contents > div > h3 > strong {
+	font-weight: bold;
+}
+
+#main_contents > div > button {
+	font-size: 20px;
+}

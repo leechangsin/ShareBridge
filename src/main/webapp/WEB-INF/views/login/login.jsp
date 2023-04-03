@@ -13,40 +13,39 @@
 
 <link rel="stylesheet" href="/sharebridge/css/login/login.css">
 
-<div align="center">
+<div id="main_contents_wrap" align="center">
 	<h1>로그인</h1>
 	<br>
 
 	<form action="loginAf.do" method="post">
 		<table>
 			<tr>
-				<td>
-					<input type="text" id="id" name="email" size="35px" placeholder="Email Address">
+				<td class="email_box">
+					<input type="email" class="form-control" id="id" name="email" placeholder="아이디(이메일)">
+					<a href="idSearch.do" class="forget_email">Forget?</a>
 				</td>
-				<td align="right">
-					<a href="idSearch.do">Forget?</a>
+				<!-- <td>
+				</td> -->
+			</tr>
+			<tr>
+				<td class="pwd_box">
+					<input type="password" class="form-control" id="pwd" name="pwd" placeholder="비밀번호">
+					<a href="pwdSearch.do" class="forget_pwd">Forget?</a>
 				</td>
+<!-- 				<td>
+				</td> -->
 			</tr>
 			<tr>
 				<td>
-					<input type="text" name="pwd" size="35px" placeholder="Password">
+					<input type="checkbox" id="id_save" name="id_save" value="true"> 아이디(이메일) 기억하기
+					<a href="regi.do" class="regi">회원가입</a>
 				</td>
-				<td align="right">
-					<a href="pwdSearch.do">Forget?</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="checkbox" id="id_save"> Remember me
-				</td>
-				<td align="right">
-					<a href="regi.do">회원가입</a>
-				</td>
+				<!-- <td>
+				</td> -->
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<br>
-					<button type="submit">로그인</button>
+					<button type="button" class="btn light_gray_btn">로그인</button>
 				</td>
 			</tr>
 		</table>
@@ -54,29 +53,29 @@
 </div>
 
 <script type="text/javascript">
-	// 쿠키에 저장된 user_id를 user_id라는 변수에 대입
-	let user_id = $.cookie("user_id");
+	$(document).ready(function() {
+		// 쿠키에 저장된 user_id를 user_id라는 변수에 대입
+		let user_id = $.cookie("user_id");
+		
+		// user_id라는 변수에 쿠키값이 들어가있을 경우 if문 실행
+		if(user_id != null){
+			$("#id").val(user_id);
+			$("#id_save").prop("checked", true);
+		}
+	});
 	
-	// user_id라는 변수에 쿠키값이 들어가있을 경우 if문 실행
-	if(user_id != null){
-		$("#id").val(user_id);
-		$("#id_save").prop("checked", true);
-	}
-	
-	// id 저장이라는 체크박스를 클릭했을 때 실행
-	$("#id_save").click(function(){
-		if($("#id_save").is(":checked")){
-			
-			if($("#id").val().trim() == ""){
-				alert('id를 입력해주세요');
-				$("#id_save").prop("checked", false);
-			}else{
-				// cookie를 저장
-				$.cookie("user_id", $("#id").val().trim(), {expires:7, path:'./'})
-			}
-		}else{
-			
-			$.removeCookie("user_id", {path:'./'});
+	$("#main_contents_wrap > form > table > tbody > tr:nth-child(4) > td > button").on("click", function(){
+		let id = $("#id").val().trim();
+		let pw = $("#pwd").val().trim();
+		
+		if(id.length == 0) {
+			alert("아이디를 입력해주세요");
+			$("#id").focus();
+		} else if(pw.length == 0) {
+			alert("비밀번호를 입력해주세요");
+			$("#pwd").focus();
+		} else {
+			$("#main_contents_wrap form").submit();
 		}
 	});
 </script>

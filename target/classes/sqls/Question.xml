@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Question">
+	<!-- 문의내용 작성  -->
+	<insert id="writeQuestion" parameterType="com.sharebridge.dto.QuestionDto">
+		insert into question(product_id, member_id, title, content, private_question, qstate, rdate)
+		values(${product_id}, ${member_id}, #{title}, #{content}, #{private_question}, #{qstate}, now())
+	</insert>
+	
+	<!-- 문의글 리스트 -->
+	<select id="getQuestionListByProduct_id" parameterType="com.sharebridge.param.QuestionListParam" resultType="com.sharebridge.dto.QuestionDto">
+		select q.*, m.nickname as renteeNickname
+		from question as q
+		join member as m
+		on q.member_id = m.member_id
+		where q.product_id = #{product_id}
+		order by q.rdate desc
+		limit #{limitStart}, 10
+	</select>
+	
+	<select id="getQuestionByQuestion_id" parameterType="int" resultType="com.sharebridge.dto.QuestionDto">
+		select *
+		from question
+		where question_id = #{question_id}
+	</select>
+	
+	<select id="getQuestionCount" parameterType="int" resultType="int">
+		select count(*) as cnt
+		from question
+		where product_id = #{product_id}
+	</select>
+	
+	<update id="updateQstateTo1" parameterType="int">
+		update question set qstate = b'1' where question_id = #{question_id}
+	</update>
+	
+	<update id="updateQuestion" parameterType="com.sharebridge.dto.QuestionDto">
+		update question set title = #{title}, content = #{content}, 
+		<if test="private_question == true">
+			private_question = b'1'
+		</if>
+		<if test="private_question == false">
+			private_question = b'0'
+		</if>
+		where question_id = #{question_id}
+	</update>
+	
+	<delete id="deleteQuestion" parameterType="int">
+		delete from question where question_id = #{question_id}
+	</delete>
+</mapper>

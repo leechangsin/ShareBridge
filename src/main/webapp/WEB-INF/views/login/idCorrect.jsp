@@ -1,47 +1,37 @@
 <%@page import="com.sharebridge.dto.MemberDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>아이디 찾기 : sharebridge</title>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<link rel="stylesheet" href="/sharebridge/css/login/id_correct.css">
 
 <%
 MemberDto mem = (MemberDto)request.getAttribute("mem");
+
 if(mem == null){
 	%>
-	<div align="center">
-	<h3>입력하신 전화번호와 일치하는 계정이 없습니다.</h3>
-	<br>
-	
-	<button type="button" onclick="search()">아이디 찾기로 돌아가기</button>
+	<div>
+		<h3>입력하신 전화번호와 일치하는 계정이 없습니다.</h3>
+		
+		<button type="button" class="btn light_gray_btn" onclick="search()">아이디 찾기로 돌아가기</button>
 	</div>
 	<script type="text/javascript">
 	function search() {
-		location.href = "idSearch.do";
+		history.back();
 	}
 	</script>
 	<%
 }else{
 	%>
-	<div align="center">
-	<h3><%=mem.getNickname() %>님의 이메일은 <%=mem.getEmail() %>입니다.</h3>
-	<br>
+	<div>
+		<h3><%=mem.getNickname() %>님의 이메일은 <strong><%=mem.getEmail() %></strong>입니다.</h3>
 	
-	<button type="button" onclick="login()">로그인 화면으로 돌아가기</button>
+		<button type="button" class="btn light_gray_btn" onclick="login()">로그인 화면으로 돌아가기</button>
 	</div>
+	
 	<script type="text/javascript">
 	function login() {
 		location.href = "login.do";
 	}
 	</script>
 	<%
-	
 }
 %>
-
-</body>
-</html>

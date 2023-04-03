@@ -1,7 +1,9 @@
 package com.sharebridge.dto;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+
 
 /*
 CREATE TABLE IF NOT EXISTS `product` (
@@ -38,13 +40,17 @@ public class ProductDto implements Serializable{
 	private LocalDateTime wdate;
 	private byte state;
 	private byte del;
+
+	// TODO 나중에 1:1 관계 변경 필요 
+	private int wish_member_id;
+	private int cart_id;
 	
 	public ProductDto() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public ProductDto(int product_id, int category_id, int member_id, String title, String content, LocalDateTime sdate,
-			LocalDateTime edate, int price, String photo, LocalDateTime wdate, byte state, byte del) {
+			LocalDateTime edate, int price, String photo, LocalDateTime wdate, byte state, byte del,int wish_member_id, int cart_id) {
 
 		super();
 		this.product_id = product_id;
@@ -59,6 +65,24 @@ public class ProductDto implements Serializable{
 		this.wdate = wdate;
 		this.state = state;
 		this.del = del;
+		this.wish_member_id = wish_member_id;
+		this.cart_id = cart_id;
+	}
+
+	public int getCart_id() {
+		return cart_id;
+	}
+
+	public void setCart_id(int cart_id) {
+		this.cart_id = cart_id;
+	}
+	
+	public int getWish_member_id() {
+		return wish_member_id;
+	}
+
+	public void setWish_member_id(int wish_member_id) {
+		this.wish_member_id = wish_member_id;
 	}
 
 	public int getProduct_id() {
@@ -105,16 +129,16 @@ public class ProductDto implements Serializable{
 		return sdate;
 	}
 
-	public void setSdate(LocalDateTime sdate) {
-		this.sdate = sdate;
+	public void setSdate(Timestamp sdate) {
+		this.sdate = sdate.toLocalDateTime();
 	}
 
 	public LocalDateTime getEdate() {
 		return edate;
 	}
-
-	public void setEdate(LocalDateTime edate) {
-		this.edate = edate;
+	
+	public void setEdate(Timestamp edate) {
+		this.edate = edate.toLocalDateTime();
 	}
 
 	public int getPrice() {
@@ -136,11 +160,11 @@ public class ProductDto implements Serializable{
 	public LocalDateTime getWdate() {
 		return wdate;
 	}
-
-	public void setWdate(LocalDateTime wdate) {
-		this.wdate = wdate;
+	
+	public void setWdate(Timestamp wdate) {
+		this.wdate = wdate.toLocalDateTime();
 	}
-
+	
 	public byte getState() {
 		return state;
 	}
@@ -160,7 +184,7 @@ public class ProductDto implements Serializable{
 	@Override
 	public String toString() {
 		return "ProductDto [product_id=" + product_id + ", category_id=" + category_id + ", member_id=" + member_id
-				+ ", title=" + title + ", content=" + content + ", sdate=" + sdate + ", edate=" + edate + ", price="
-				+ price + ", photo=" + photo + ", wdate=" + wdate + ", state=" + state + ", del=" + del + "]";
+				+ ", title=" + title + ", content=" + content +  ", price="
+				+ price + ", photo=" + photo + ", state=" + state + ", del=" + del + ", wish_member_id=" + wish_member_id +"]";
 	}
 }

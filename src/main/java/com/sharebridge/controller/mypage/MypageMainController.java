@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sharebridge.dto.MemberDto;
 import com.sharebridge.dto.RequestDto;
+import com.sharebridge.dto.ReviewDto;
 import com.sharebridge.param.MypageParam;
 import com.sharebridge.service.MemberService;
 import com.sharebridge.service.NotificationService;
@@ -50,6 +51,28 @@ public class MypageMainController {
 		int reviewCount = reviewService.getReviewCountByMemberId(member_id);
 		System.out.println("reviewCount = " + reviewCount);
 		
+		// 렌터의 별점 계산
+		List<ReviewDto> list = reviewService.revListAnsOrder(member_id);
+		System.out.println(list.size());
+		double rate = 0;
+		for (int i = 0; i < list.size(); i++) {
+			rate += list.get(i).getRating();
+		}
+		
+		// 평균값 계산하자!
+		double rateAvg = 0;
+		if(list.size() == 0) {
+			rateAvg = 0;
+		}else if(list.size() == 1) {
+			rateAvg = rate;
+		}else {
+			rateAvg = (double) rate / list.size();
+			rateAvg = rateAvg * 10;
+			rateAvg = Math.round(rateAvg);
+			rateAvg = rateAvg / 10;
+		}
+		memberInfo.setRating((float) rateAvg);
+		
 //		로그인한 사용자의 알림 개수 가져오기
 		int notiCount = notificationService.getNotificationCountByMemberId(member_id);
 		System.out.println("notiCount = " + notiCount);
@@ -61,11 +84,11 @@ public class MypageMainController {
 //		로그인한 사용자의 대여 신청 목록 가져오기
 		MypageParam mp = new MypageParam(member_id, 0, 5);
 		List<RequestDto> requestSendList = renteeRequestService.getRequestListByMemberId(mp);
-		System.out.println(requestSendList);
+		System.out.println("requestSendList = " + requestSendList);
 		
 //		로그인한 사용자의 대여 요청 목록 가져오기
 		List<RequestDto> requestReceiveList = renterRequestService.getRequestListByMemberId(mp);
-		System.out.println(requestReceiveList);
+		System.out.println("requestReceiveList = " + requestReceiveList);
 		
 //		회원 정보, 후기 개수, 등록한 상품 개수, 대여 신청 목록, 대여 요청 목록 뷰로 전달
 		model.addAttribute("memberInfo", memberInfo);
@@ -74,6 +97,7 @@ public class MypageMainController {
 		model.addAttribute("productCount", productCount);
 		model.addAttribute("requestSendList", requestSendList);
 		model.addAttribute("requestReceiveList", requestReceiveList);
+		model.addAttribute("rateAvg", rateAvg);
 		
 		return "mypage_main";
 	}

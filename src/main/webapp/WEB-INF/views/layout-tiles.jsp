@@ -23,26 +23,32 @@
 	
 	<!-- Header CSS -->
 	<link rel="stylesheet" href="/sharebridge/css/public/header.css">
+	<link rel="stylesheet" href="/sharebridge/css/main/nav.css">
 	
 	<!-- Footer CSS -->
 	<link rel="stylesheet" href="/sharebridge/css/public/footer.css">
 	
-	<script src="https://kit.fontawesome.com/7ad71aac2c.js" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<!-- jquery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
+	<script src="https://kit.fontawesome.com/7ad71aac2c.js" crossorigin="anonymous"></script>
+	
+	<!-- flatpickr -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
-	<div align="center">
-		<table width="100%">
+	<div align="center" class="tiles_container">
+		<table width="100%" class="tiles_table">
 			<!-- header -->
-			<tr>
+			<tr class="tiles_header">
 				<td>
 					<tiles:insertAttribute name="header"/>
 				</td>
 			</tr>
 			
 			<!-- nav -->
-			<tr height="83px" style="background-color:#969F95">
+			<tr>
 				<td>
 					<tiles:insertAttribute name="nav"/>
 				</td>		
@@ -56,7 +62,7 @@
 			</tr>
 			
 			<!-- footer -->	
-			<tr>
+			<tr class="tiles_footer">
 				<td>
 					<tiles:insertAttribute name="footer"/>
 				</td>

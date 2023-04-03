@@ -2,6 +2,7 @@
 
 main {
 	width: 1000px;
+	margin-bottom: 50px;
 }
 
 #no_notification {
@@ -11,6 +12,11 @@ main {
 #title_wrap {
 	border-bottom: 3px solid;
 	margin: 50px 0;
+}
+
+#page_title {
+	font-size: 32px;
+	padding-bottom: 10px;
 }
 
 .list {

@@ -1,6 +1,8 @@
 package com.sharebridge.dto;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /*
 CREATE TABLE IF NOT EXISTS `member` (
@@ -27,7 +29,7 @@ public class MemberDto implements Serializable{
 	private String name;
 	private String phone_number;
 	private String profile;
-	private String rdate;
+	private LocalDateTime rdate;
 	private int auth;
 	private byte del;
 	private String reason;
@@ -44,7 +46,7 @@ public class MemberDto implements Serializable{
 	}
 
 	public MemberDto(int member_id, String email, String pwd, String nickname, String name, String phone_number,
-			String profile, String rdate, int auth, float rating) {
+			String profile, LocalDateTime rdate, int auth, float rating) {
 		this.member_id = member_id;
 		this.email = email;
 		this.pwd = pwd;
@@ -58,7 +60,7 @@ public class MemberDto implements Serializable{
 	}
 
 	public MemberDto(int member_id, String email, String pwd, String nickname, String name, String phone_number,
-			String profile, String rdate, int auth, byte del, String reason, float rating) {
+			String profile, LocalDateTime rdate, int auth, byte del, String reason, float rating) {
 		super();
 		this.member_id = member_id;
 		this.email = email;
@@ -130,12 +132,12 @@ public class MemberDto implements Serializable{
 		this.profile = profile;
 	}
 
-	public String getRdate() {
+	public LocalDateTime getRdate() {
 		return rdate;
 	}
 
-	public void setRdate(String rdate) {
-		this.rdate = rdate;
+	public void setRdate(Timestamp rdate) {
+		this.rdate = rdate.toLocalDateTime();
 	}
 
 	public int getAuth() {

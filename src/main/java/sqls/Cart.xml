@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Cart">
+	<!-- wish -->
+	<select id="getAllCarts" resultType="com.sharebridge.dto.ProductDto">
+		select p.*, c.cart_id from product p
+		inner join cart c on p.product_id = c.product_id
+	</select>
+
+	<delete id="deleteAll">
+		delete from cart where cart_id in (
+		<foreach collection="cartids" item="id" separator=",">
+			#{id}
+		</foreach>
+		)
+	</delete>
+	
+	<!-- 장바구니 추가 -->
+	<insert id="addCart" parameterType="com.sharebridge.dto.CartDto">
+		insert into cart(product_id, member_id, request_id, rdate)
+		value(#{product_id}, #{member_id}, #{request_id}, now())
+	</insert>
+	
+	<!-- 이용자의 장바구니 리스트 -->
+	<select id="getCartList" parameterType="Integer" resultType="com.sharebridge.dto.CartDto">
+		select *
+		from cart
+		where member_id = #{member_id}
+	</select>
+</mapper>

@@ -7,16 +7,14 @@
 
 <select id="getReviewCountByMemberId" parameterType="int" resultType="int">
 	select COUNT(*)
-	from review
-	where renter_id = #{memberId}
+	from request
+	where member_id = #{memberId} and (is_cancel is null) and (is_accept = 1)
 	order by rdate DESC
 </select>
 
 <!-- 작성해야할 후기 목록 -->
 <select id="reviewList" parameterType="Integer" resultType="com.sharebridge.dto.RequestDto">
-	select product_id, member_id
-	<!-- DATE_FORMAT(sdate, '%Y-%m-%d %H:%i:%s') AS sdate, -->
-	<!-- DATE_FORMAT(edate, '%Y-%m-%d %H:%i:%s') AS edate -->
+	select product_id, member_id, request_id, is_review, sdate, edate
 	from request
 	where member_id=${memberId} and is_accept=1
 	order by rdate desc
@@ -24,7 +22,7 @@
 
 <!-- 후기 목록2(상품명, 렌터번호, 금액) -->
 <select id="reviewListTwo" parameterType="Integer" resultType="com.sharebridge.dto.ProductDto">
-	select member_id, title, price
+	select member_id, title, price, product_id
 	from product
 	where product_id=#{product_id}
 </select>
@@ -35,5 +33,91 @@
 	from member
 	where member_id=#{member_id}
 </select>
+
+<!-- 상세페이지에 나타낼 후기 목록 -->
+<select id="getReviewList" parameterType="Integer" resultType="com.sharebridge.dto.ReviewDto">
+	select *
+	from review
+	where renter_id = #{renter_id} and (step = 0 and depth = 0)
+	order by rdate desc;
+</select>
+
+<!-- 후기 작성 -->
+<insert id="writeRev" parameterType="com.sharebridge.dto.ReviewDto">
+	insert into review(ref, step, depth, request_id, product_id, renter_id, rentee_id, content, rating, photo, rdate)
+	values((select ifnull(max(ref), 0)+1 from review b), 0, 0, #{request_id}, #{product_id}, #{renter_id}, #{rentee_id}, #{content}, #{rating}, #{photo}, now())
+</insert>
+
+<!-- 작성한 후기 표시 -->
+<update id="writeRevTwo" parameterType="Integer">
+	update request
+	set is_review=1
+	where request_id=#{request_id}
+</update>
+
+<!-- 대여신청서 번호로부터 후기 내용 가져오기 -->
+<select id="revFromReq" parameterType="Integer" resultType="com.sharebridge.dto.ReviewDto">
+	select review_id, content, rating, photo, product_id
+	from review
+	where request_id=#{request_id} and step=0
+</select>
+
+<!-- 후기 수정 -->
+<update id="updateRev" parameterType="com.sharebridge.dto.ReviewDto">
+	update review
+	set content=#{content}, rating=#{rating}, photo=#{photo}, rdate=now()
+	where review_id=#{review_id}
+</update>
+
+<!-- 후기 삭제 -->
+<delete id="deleteRev" parameterType="Integer">
+	delete from review
+	where request_id=#{request_id}
+</delete>
+
+<!-- 후기 삭제2(대여신청서 리뷰상태 0으로) -->
+<update id="deleteRevTwo" parameterType="Integer">
+	update request
+	set is_review=0
+	where request_id=#{request_id}
+</update>
+
+<!-- 리뷰번호로 리뷰 데이터 가져오기 -->
+<select id="selecAllRev" parameterType="Integer" resultType="com.sharebridge.dto.ReviewDto">
+	select * from review
+	where review_id=#{review_id}
+</select>
+
+<!-- 답글 작성 -->
+<!-- 선택한 게시글 아래 작성하기 위한 step + 1 -->
+<update id="answerOne" parameterType="com.sharebridge.dto.ReviewDto">
+	update review
+	set step=step+1
+	where ref=(select ref from (select ref from review a where review_id=${review_id}) A)
+	and step>(select step from (select step from review b where review_id=${review_id}) B) 
+</update>
+
+<!-- 답글 정보 db에 입력 -->
+<insert id="answerTwo" parameterType="com.sharebridge.dto.ReviewDto">
+	insert into review(ref, step, depth, request_id, product_id, renter_id, rentee_id, content, rating, photo, rdate)
+	values((select ref from review a where review_id=${review_id}),
+		(select step from review b where review_id=${review_id}) + 1,
+		(select depth from review c where review_id=${review_id}) + 1,
+		#{request_id}, #{product_id}, #{renter_id}, #{rentee_id}, #{content}, #{rating}, #{photo}, now())
+</insert>
+
+<!-- 렌터번호로 후기 가져오기(답글 순서 고려) -->
+<select id="revListAnsOrder" parameterType="Integer" resultType="com.sharebridge.dto.ReviewDto">
+	select *
+	from review
+	where renter_id=#{renter_id}
+	order by ref desc, step asc
+</select>
+
+<!-- 답글 삭제 -->
+<delete id="deleteAns" parameterType="Integer">
+	delete from review
+	where review_id=#{review_id}
+</delete>
 
 </mapper>

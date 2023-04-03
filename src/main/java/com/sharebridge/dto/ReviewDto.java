@@ -33,8 +33,27 @@ public class ReviewDto implements Serializable {
 	private int rating;
 	private String photo;
 	private LocalDateTime rdate;
+	private int request_id;
+	private int ref;
+	private int step;
+	private int depth;
 	
-	public ReviewDto(int review_id, int product_id, int renter_id, int rentee_id, String content, int rating, String photo, LocalDateTime rdate) {
+	public ReviewDto() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ReviewDto(int review_id, int product_id, String content, int rating, String photo) {
+		super();
+		this.review_id = review_id;
+		this.product_id = product_id;
+		this.content = content;
+		this.rating = rating;
+		this.photo = photo;
+	}
+
+	public ReviewDto(int review_id, int product_id, int renter_id, int rentee_id, String content, int rating,
+			String photo, LocalDateTime rdate, int request_id, int ref, int step, int depth) {
+		super();
 		this.review_id = review_id;
 		this.product_id = product_id;
 		this.renter_id = renter_id;
@@ -43,13 +62,18 @@ public class ReviewDto implements Serializable {
 		this.rating = rating;
 		this.photo = photo;
 		this.rdate = rdate;
+		this.request_id = request_id;
+		this.ref = ref;
+		this.step = step;
+		this.depth = depth;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "ReviewDto [review_id=" + review_id + ", product_id=" + product_id + ", renter_id=" + renter_id
 				+ ", rentee_id=" + rentee_id + ", content=" + content + ", rating=" + rating + ", photo=" + photo
-				+ ", rdate=" + rdate + "]";
+				+ ", rdate=" + rdate + ", request_id=" + request_id + ", ref=" + ref + ", step=" + step + ", depth="
+				+ depth + "]";
 	}
 
 	public int getReview_id() {
@@ -97,10 +121,39 @@ public class ReviewDto implements Serializable {
 	public LocalDateTime getRdate() {
 		return rdate;
 	}
-	public void setRdate(LocalDateTime rdate) {
-		this.rdate = rdate;
-	}
 	public void setRdate(Timestamp rdate) {
 		this.rdate = rdate.toLocalDateTime();
+	}
+
+	public int getRequest_id() {
+		return request_id;
+	}
+
+	public void setRequest_id(int request_id) {
+		this.request_id = request_id;
+	}
+
+	public int getRef() {
+		return ref;
+	}
+
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+
+	public int getStep() {
+		return step;
+	}
+
+	public void setStep(int step) {
+		this.step = step;
+	}
+
+	public int getDepth() {
+		return depth;
+	}
+
+	public void setDepth(int depth) {
+		this.depth = depth;
 	}
 }

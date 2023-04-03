@@ -13,6 +13,18 @@ $(document).ready(function() {
 
 	$(".selector").on('focus', function(currentTarget) {$(currentTarget).blur()});
 	$(".selector").prop('readonly', false);	
+	
+	// 대여기간 설정
+	// 작성,수정 시 날짜에 변동이 있으면 변동된 입력값을 넣어준다
+	$("#start").change(function() {
+		let convert_s = new Date($("#start").val()).toISOString().slice(0,19);
+		$("#startDate").val(convert_s);
+	});
+	
+	$("#end").change(function() {
+		let convert_e = new Date($("#end").val()).toISOString().slice(0,19);
+		$("#endDate").val(convert_e);	
+	});
 	    
 	// 빈칸검사
 	$("#regiBtn").click(function(e) {
@@ -20,7 +32,7 @@ $(document).ready(function() {
 		if($("#choice").val().trim() == "") {
 			alert("카테고리를 선택해주세요");
 			return;
-		} else if($("#title").val().trim() == "") {
+		} else if($("#title").val() == undefined || $("#title").val().trim() == "") {
 			e.preventDefault;
 			alert("제목(상품명)을 입력해주세요");
 			return;
@@ -31,13 +43,15 @@ $(document).ready(function() {
 		} else if($("#end").val() == undefined || $("#end").val() == "") {
 			e.preventDefault;
 			alert("마지막날짜를 선택해주세요")
-		} else if($("#price").val().trim() == "") {
+		} else if($("#price").val() == undefined || $("#price").val().trim() == "") {
 			e.preventDefault;
 			alert("가격을 입력해주세요");
-		} else if($("#content").val().trim() == "") {
+		} else if($("#content").val() == undefined || $("#content").val().trim() == "") {
 			e.preventDefault;
 			alert("상품에 대한 내용을 입력해주세요");
 		} else {
+			let a = $("#frm").serializeArray();
+			console.log(a);
 			$("#frm").submit();
 		}
 	});

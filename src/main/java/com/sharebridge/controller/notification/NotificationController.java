@@ -34,6 +34,8 @@ public class NotificationController {
 		NotificationListParam nlp = new NotificationListParam(member_id, 0, 0);
 		List<NotificationDto> notificationList = notificationService.getNotificationList(nlp);
 		
+		System.out.println("notificationList => " + notificationList);
+		
 		model.addAttribute("notificationList", notificationList);
 		
 		return "notification_list";

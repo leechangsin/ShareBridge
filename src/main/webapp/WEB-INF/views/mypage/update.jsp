@@ -4,7 +4,23 @@
 <link rel="stylesheet" href="/sharebridge/css/mypage/mypage_update.css">
 
 <style>
-	
+
+#main_contents > main > div > form > div:nth-child(4) > label {
+	display: block;
+}
+
+#nickname {
+	width: 80%;
+	display: inline-block;
+}
+
+#nickChkBtn {
+	margin-bottom: 5px;
+}
+
+#no_nickname, #yes_nickname {
+	display: none;
+}
 </style>
 
 <main class="container">
@@ -29,7 +45,10 @@
 			
 			<div class="mb-3">
 				<label for="nickname" class="form-label">닉네임</label>
-				<input type="text" class="form-control" id="nickname" name="nickname" value="${memberInfo.nickname }">
+				<input type="text" class="form-control" id="nickname" name="nickname" value="${memberInfo.nickname }" is_dup="true">
+				<button type="button" class="btn light_gray_btn" id="nickChkBtn">중복확인</button>
+				<div class="alert alert-danger" role="alert" id="no_nickname">이미 사용중인 닉네임입니다</div>
+				<div class="alert alert-primary" role="alert" id="yes_nickname">사용할 수 있는 닉네임입니다</div>
 			</div>
 			
 			<div class="mb-3">
@@ -51,6 +70,29 @@
 
 <script src="/sharebridge/js/public/common.js"></script>
 <script>
+	$("#nickChkBtn").click(function() {
+		$.ajax({
+			url:"/sharebridge/nickcheck.do",
+			type:"post",
+			data:{ "nickname":$("#nickname").val() },
+			success:function(msg){
+				if(msg == "YES"){
+					$("#yes_nickname").css("display", "block");
+					$("#no_nickname").css("display", "none");
+					$("#nickname").attr("is_dup", "false");
+				}else{
+					$("#yes_nickname").css("display", "none");
+					$("#no_nickname").css("display", "block");
+					$("#nickname").focus();
+					$("#nickname").attr("is_dup", "true");
+				}
+			},
+			error:function(){
+				alert('error');
+			}
+		});
+	});
+
 	$("#main_contents > main > div > form > div:nth-child(7) > button").on("click", function() {
 		let pwd = $("#pwd").val().trim();
 		let pwdchk = $("#pwdchk").val().trim();
@@ -58,12 +100,18 @@
 		let name = $("#name").val().trim();
 		let phone_number = $("#phone_number").val().trim();
 		
+		let duplicateNickname = $("#nickname").attr("is_dup");
+		
 		if(pwdchk.length != 0 && (pwd != pwdchk)) {
 			alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.\n비밀번호를 변경하려면 비밀번호와 비밀번호 확인이 일치해야합니다.");
 			$("#pwdchk").focus();
 			return ;
 		} else if(nickname.length == 0) {
 			alert("닉네임을 입력하세요");
+			$("#nickname").focus();
+			return ;
+		} else if(duplicateNickname == "true") {
+			alert("이미 사용중인 닉네임입니다");
 			$("#nickname").focus();
 			return ;
 		} else if(name.length == 0) {
@@ -82,6 +130,8 @@
 			data: {"pwd": pwd, "nickname": nickname, "name": name, "phone_number": phone_number},
 			success: function() {
 				alert("회원 정보를 수정했습니다.");
+				$("#yes_nickname").css("display", "none");
+				$("#no_nickname").css("display", "none");
 			},
 			error: function(xhr) {
 				if(xhr.status == 409) {

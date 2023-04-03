@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
@@ -7,22 +8,101 @@
 <select id="getProductCountByMemberId" parameterType="int" resultType="int">
 	select COUNT(*)
 	from product
-	where member_id = #{memberId} AND del IS NULL
-	order by wdate DESC
+	where member_id = #{memberId} and del is null
+</select>
+
+<!-- 상품메인화면에 보이게하기 -->
+<select id="getAllProducts" resultType="com.sharebridge.dto.ProductDto">
+	select *
+	from product
+	where del is null
+	order by wdate desc
+</select>
+
+<select id="getCategoryProducts" parameterType="int" resultType="com.sharebridge.dto.ProductDto">
+	select *
+	from product
+	where category_id = #{category_id} and del is null
+	order by wdate desc
+</select>
+
+<select id="getTermProducts" parameterType="String" resultType="com.sharebridge.dto.ProductDto">
+	select *
+	from product
+	where title like concat('%', #{term}, '%') and del is null
+	order by wdate desc
+</select>
+
+<select id="getCategoryTermProducts" parameterType="com.sharebridge.param.BaseLayoutParam" resultType="com.sharebridge.dto.ProductDto">
+	select *
+	from product
+	where category_id = #{category_id} and title like concat('%', #{term}, '%') and del is null
+	order by wdate desc
 </select>
 
 <!-- 상품등록 -->
 <insert id="insertProduct" parameterType="com.sharebridge.dto.ProductDto">
 	insert into product(product_id, category_id, member_id, title, content, 
-						sdate, edate, price, photo, wdate, state, del)
-	values(cast(concat(cast(${member_id} as char), cast(${category_id} as char)) as char), ${category_id}, ${member_id},
-			#{title}, #{content}, timestamp(#{sdate}), select timestamp(#{edate}), ${price}, #{photo}, now(), 0, 0);
+						sdate, edate, price, photo, wdate)
+	values((select LPAD(IFNULL(MAX(product_id) + 1, 1), 4, 0) from product p), ${category_id}, ${member_id}, #{title}, #{content}, 
+			#{sdate}, #{edate}, ${price}, #{photo}, now());
 </insert>
 
 <!-- 상품 상세 보기 -->
 <select id="getProduct" parameterType="Integer" resultType="com.sharebridge.dto.ProductDto">
-	select category_id, member_id, title, content, sdate, edate, price
+	select *
 	from product
-	where product_id = ${product_id};
+	where product_id = ${product_id} and del is null;
+</select>
+
+<!-- 상품 수정 -->
+<update id="updateProduct" parameterType="com.sharebridge.dto.ProductDto">
+	update product
+	set category_id=${category_id}, title=#{title}, content=#{content}, sdate=timestamp(#{sdate}), edate=timestamp(#{edate}),
+		price=${price}, photo=#{photo}, wdate=now()
+	where product_id = ${product_id}
+</update>
+
+<!-- 상품 삭제 -->
+<update id="delProduct" parameterType="Integer">
+	update product
+	set del = 1
+	where product_id = ${product_id}
+</update>
+
+<!-- 대여 상태를 대여중 으로 변경 -->
+<update id="updateStateTo1" parameterType="int">
+	update product set state = b'1' where product_id = #{product_id}
+</update>
+
+<!-- 대여 상태를 대여아님 으로 변경 -->
+<update id="updateStateTo0" parameterType="int">
+	update product set state is null where product_id = #{product_id}
+</update>
+
+<!-- 상품관리를 위한 등록상품 리스트(렌터) -->
+<select id="getProductListForRenter" parameterType="Integer" resultType="com.sharebridge.dto.ProductDto">
+	select *
+	from product
+	where member_id = #{member_id} and del is null
+</select>	
+
+<!-- 상품의 1일 대여가격 & 카테고리 번호 -->
+<select id="getProductPrice" parameterType="Integer" resultType="Integer">
+	select price
+	from product 
+	where product_id = #{product_id}
+</select>
+<select id="getProductCate" parameterType="Integer" resultType="Integer">
+	select category_id
+	from product 
+	where product_id = #{product_id}
+</select>
+
+<!-- 파일 불러오기 -->
+<select id="getProductImg" parameterType="Integer" resultType="String">
+	select photo
+	from product
+	where product_id = #{product_id}
 </select>
 </mapper>
